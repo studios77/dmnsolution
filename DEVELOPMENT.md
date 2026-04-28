@@ -13,9 +13,7 @@ Next.js(App Router) 기반의 DMN솔루션 랜딩·서비스 소개 사이트입
 | 스타일 | Tailwind CSS 4 · PostCSS |
 | SEO | `next-seo` (메타데이터는 `layout`·각 페이지와 연동) |
 | 언어 | TypeScript |
-| 호스팅 설정 | `vercel.json` |
-
-`package.json`의 `name`은 레거시(`lunarfluxai`)일 수 있으므로 브랜딩 표기와 혼동 시 메타데이터·UI 문구 기준으로 확인합니다.
+| 호스팅 설정 | `vercel.json` · `DEPLOY.md`(Cloudflare Pages 등) |
 
 ---
 
@@ -57,14 +55,18 @@ dmnsolution/
 │   ├── ServiceDetailPage.tsx   # 서비스 상세 공통 패턴
 │   └── Services.tsx
 ├── lib/
-│   ├── adminNotify.ts       # 관리자 알림 관련
+│   ├── adminNotify.ts       # 관리자 알림(Slack/Discord 웹훅)
 │   ├── app-types.ts         # 앱 전역 타입
-│   └── servicesData.ts      # 서비스 메타·본문 데이터(servicesData 배열)
+│   ├── servicesData.ts      # 서비스 메타·본문 데이터(servicesData 배열)
+│   └── site.ts              # SITE_ORIGIN·서비스 canonical URL
+├── .cursor/rules/           # Cursor 프로젝트 규칙(예: 작업 후 git 푸시)
+├── app/not-found.tsx        # 404
 ├── next.config.js
 ├── postcss.config.mjs
 ├── tsconfig.json
 ├── vercel.json
 ├── README.md
+├── DEPLOY.md                # Vercel / Cloudflare Pages 배포
 └── DEVELOPMENT.md           # 본 문서
 ```
 
@@ -102,6 +104,19 @@ dmnsolution/
 
 - 새 서비스 페이지: `lib/servicesData.ts`에 항목 추가 후 `app/services/<slug>/page.tsx`에서 `ServiceDetailPage`에 연결.
 - 사이트 전역 제목·URL: `app/layout.tsx`의 `metadata`, `metadataBase`.
+- 도메인·canonical 일괄: `lib/site.ts`의 `SITE_ORIGIN`, `serviceCanonicalUrl()`.
+
+---
+
+## Cursor 에이전트 모델 (GPT-5.5)
+
+저장소만으로 IDE 기본 모델이 바뀌지는 않습니다. **에이전트 / Composer**에 **GPT-5.5**를 쓰려면 Cursor 앱에서 지정합니다.
+
+1. **Ctrl + ,** 로 설정 열기 (또는 좌하단 톱니바퀴 → **Cursor Settings**).
+2. **Models** 또는 **Agent** / **Composer** 관련 항목에서 **Default model**·**Agent model** 드롭다운을 연다.
+3. 목록에서 **GPT-5.5** 계열(표기는 Cursor 버전에 따라 `GPT-5.5`, `GPT-5.5 Medium` 등)을 선택한다.
+
+채팅/에이전트 입력창 **상단의 모델 이름**을 눌러 같은 목록에서 바꿀 수도 있습니다.
 
 ---
 
