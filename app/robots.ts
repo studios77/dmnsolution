@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 export const revalidate = false
 
-const BASE = 'https://lunarfluxai.com'
+const BASE = 'https://dmnsolution.co.kr'
 
 export default function robots(): MetadataRoute.Robots {
   return {

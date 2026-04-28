@@ -26,7 +26,7 @@ export default function Home() {
     return () => obs.disconnect()
   }, [])
 
-  const site = 'https://lunarfluxai.com'
+  const site = 'https://dmnsolution.co.kr'
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -34,7 +34,7 @@ export default function Home() {
         '@type': 'WebSite',
         '@id': `${site}/#website`,
         url: site,
-        name: 'LunarFlux AI',
+        name: 'DMN솔루션',
         inLanguage: 'ko-KR',
         description: 'IDC·AI 보안·라이브 스트리밍 통합 기술 서비스',
         publisher: { '@id': `${site}/#organization` },
@@ -42,7 +42,7 @@ export default function Home() {
       {
         '@type': 'Organization',
         '@id': `${site}/#organization`,
-        name: 'LunarFlux AI',
+        name: 'DMN솔루션',
         url: site,
         logo: `${site}/logo.png`,
         description: 'IDC 서버 임대·위탁운영, AI 보안 관제와 스트림 이상 탐지·딥페이크 검출, Ultrastream 기반 라이브 스트리밍 등을 제공하는 기술 인프라 파트너',
@@ -53,7 +53,7 @@ export default function Home() {
         sameAs: [site],
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'LunarFlux 서비스',
+          name: 'DMN솔루션 서비스',
           itemListElement: [
             {
               '@type': 'Offer',

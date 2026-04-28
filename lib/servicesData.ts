@@ -159,14 +159,14 @@ export const servicesData: ServiceData[] = [
     icon: '🛠️',
     cat: 'IDC / 서버',
     name: '서버 장애 복구 및 이전',
-    summary: 'LunarFlux IDC와 별도로, 외부 고객이 운영 중인 서버·온프레·클라우드 VM에 대해 원격·현장 기술지원.',
+    summary: 'DMN솔루션 IDC와 별도로, 외부 고객이 운영 중인 서버·온프레·클라우드 VM에 대해 원격·현장 기술지원.',
     desc: '외부 고객이 운영 중인 서버·네트워크·애플리케이션에 대해, 서비스가 필요한 고객이 요청하면 IDC 임대 여부와 관계없이 기술 지원을 제공합니다. 장애 복구, 시스템 이전, 성능·로그 분석 기반 트러블슈팅, 긴급 진단까지 단건 또는 단기 프로젝트 형태로 대응합니다.',
     tags: ['온프레미스', '클라우드 VM', '긴급 복구', '이전', '원격·현장'],
     highlights: [
       { title: '장애 복구 & 데이터 복원', desc: '부팅 불능, 디스크 손상, DB 손상 등 원인 분석 후 복구 경로 수립. 백업이 있는 경우 RTO에 맞춘 복원 지원.' },
       { title: '시스템 이전', desc: '물리·가상 서버의 OS·앱·DB 이전, DNS·방화벽 전환 컷오버 계획. 다운타임 최소화 절차 제안.' },
       { title: '트러블슈팅', desc: '간헐 장애, 느린 응답, 메모리 누수, 네트워크 단절 등 로그·지표 기반 원인 추적 및 조치.' },
-      { title: '요청 시 외부 운영 서버 지원', desc: 'LunarFlux 코로케이션/임대 서버가 아니어도, 서비스가 필요한 고객이 요청하면 지원합니다. NDA·접근 범위 사전 합의 후 원격 VPN 또는 방문 지원.' },
+      { title: '요청 시 외부 운영 서버 지원', desc: 'DMN솔루션 코로케이션/임대 서버가 아니어도, 서비스가 필요한 고객이 요청하면 지원합니다. NDA·접근 범위 사전 합의 후 원격 VPN 또는 방문 지원.' },
     ],
     specs: [
       '대상: Linux/Windows 서버, VMware·KVM·퍼블릭 클라우드 VM, 온프레미스 랙 장비',
@@ -374,7 +374,7 @@ export const servicesData: ServiceData[] = [
     cat: '스트리밍',
     name: 'Ultrastream 엔진 호스팅',
     summary: 'MediaMTX 기반 RTMP/HLS/WebRTC. LL-HLS 1~2초 레이턴시, ABR 4단계.',
-    desc: 'LunarFlux의 자체 스트리밍 엔진 Ultrastream으로 초저지연 라이브 방송 인프라를 구축하세요. RTMP 수신부터 HLS 변환, WebRTC 배포까지 하나의 파이프라인으로 처리합니다.',
+    desc: 'DMN솔루션의 스트리밍 엔진 Ultrastream으로 초저지연 라이브 방송 인프라를 구축하세요. RTMP 수신부터 HLS 변환, WebRTC 배포까지 하나의 파이프라인으로 처리합니다.',
     tags: ['MediaMTX', 'FFmpeg', 'WebRTC', 'LL-HLS', 'SRT'],
     highlights: [
       { title: 'LL-HLS 초저지연', desc: '1~2초 레이턴시 라이브 스트리밍. 기존 HLS(10~30초) 대비 10배 빠름.' },

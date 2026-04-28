@@ -7,13 +7,13 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 }
 
-const SITE = new URL('https://lunarfluxai.com')
+const SITE = new URL('https://dmnsolution.co.kr')
 
 export const metadataBase = SITE
 
 export const metadata: Metadata = {
-  title: 'LunarFlux AI — IDC 서버 임대·AI 보안·라이브 스트리밍',
-  description: 'IDC 서버 임대·위탁운영, AI 보안 관제·스트림 이상 탐지·딥페이크 검출, Ultrastream 기반 초저지연 라이브까지. 인프라와 보안·미디어를 한 팀이 설계하고 운영합니다.',
+  title: 'DMN솔루션 — IDC 서버 임대·AI 보안·스트리밍 통합 플랫폼',
+  description: 'IDC 서버 임대·위탁운영부터 AI 보안 관제, Ultrastream 엔진 기반 라이브 스트리밍까지. 스트리밍 솔루션, 영상 스트리밍 플랫폼, 클라우드 인프라, AI 보안, 네트워크 보안, 백업/DR 솔루션을 하나의 플랫폼으로.',
   keywords: [
     'IDC', 'IDC 서버 임대', 'IDC 위탁운영', 'IDC 코로케이션', '서버 임대', '서버 위탁관리',
     '코로케이션', '1U 서버', '2U 서버', '풀랙', '하프랙', '데이터센터 임대',
@@ -21,31 +21,31 @@ export const metadata: Metadata = {
     '스트리밍 솔루션', '영상 스트리밍', '영상 스트리밍 플랫폼', '라이브 스트리밍 플랫폼',
     '라이브 방송 솔루션', 'Ultrastream', '초저지연 스트리밍', 'LL-HLS', 'WebRTC 스트리밍',
     'VOD 플랫폼', '멀티스트림', '동시 송출', '유튜브 동시 방송',
-    '인공지능 보안', 'AI 보안', 'AI 보안 서비스', 'AI 보안 관제', '네트워크 보안',
+    '인공지능 보안', 'AI 보안', 'AI 보안 관제', '네트워크 보안', 'AI 사이버보안',
     '딥페이크 탐지', '딥페이크 검출', 'AI 이상탐지', 'SOC 자동화', '사이버 보안',
     'DDoS 차단', '보안 관제', 'SIEM', '제로트러스트',
     '백업 솔루션', 'DR 솔루션', '재해복구', '데이터 백업', '서버 이중화', 'HA 구성',
     '서버 복구', '서버 장애 복구', '시스템 이전', '트러블슈팅', '온프레미스 기술지원',
-    'LunarFlux', '루나플럭스', 'LunarFlux AI'
+    'DMN솔루션', 'DMN Solution',
   ],
-  authors: [{ name: 'LunarFlux AI', url: 'https://lunarfluxai.com' }],
-  creator: 'LunarFlux AI',
+  authors: [{ name: 'DMN솔루션', url: 'https://dmnsolution.co.kr' }],
+  creator: 'DMN솔루션',
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    title: 'LunarFlux AI — IDC · AI 보안 · 라이브 스트리밍',
+    title: 'DMN솔루션 — IDC 서버 임대·AI 보안·스트리밍 통합 플랫폼',
     description: 'IDC 인프라와 AI 보안, 초저지연 스트리밍을 함께 제공합니다.',
-    url: 'https://lunarfluxai.com',
-    siteName: 'LunarFlux AI',
+    url: 'https://dmnsolution.co.kr',
+    siteName: 'DMN솔루션',
     locale: 'ko_KR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LunarFlux AI — IDC · AI 보안 · 스트리밍',
+    title: 'DMN솔루션 — IDC · AI 보안 · 스트리밍',
     description: 'IDC·AI 보안·라이브 스트리밍을 한 팀이 맡습니다.',
   },
   alternates: {
-    canonical: 'https://lunarfluxai.com',
+    canonical: 'https://dmnsolution.co.kr',
   },
   robots: {
     index: true,
