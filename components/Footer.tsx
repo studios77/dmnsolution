@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 
 const links = [
   ['서비스', '/#services'],
@@ -19,15 +20,18 @@ export default function Footer() {
   const footerBg = '#030712'
 
   return (
-    <footer style={{ background: footerBg, borderTop: '1px solid rgba(34, 197, 94, 0.18)', position: 'relative', zIndex: 1 }}>
+    <footer style={{ background: footerBg, borderTop: '1px solid rgba(93, 165, 111, 0.2)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '52px 5% 32px' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 48, alignItems: 'start' }}>
           <div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: '#f8fafc', marginBottom: 10, letterSpacing: '-0.03em' }}>
-              DMN<span style={{ color: 'var(--accent)' }}>솔루션</span>
-            </div>
-            <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.55 }}>
-              IDC · AI 보안 · 스트리밍 — 별도 상품
+            <div style={{ display: 'inline-block', background: '#fff', padding: '12px 14px', borderRadius: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+              <Image
+                src="/logo-dmn.png"
+                alt="dmn SOLUTION"
+                width={200}
+                height={56}
+                style={{ width: 'min(200px, 100%)', height: 'auto', objectFit: 'contain' }}
+              />
             </div>
           </div>
 

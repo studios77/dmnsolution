@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 type ServiceMenuLink = {
@@ -53,7 +54,7 @@ const serviceMenu: ServiceMenuCategory[] = [
   },
   {
     cat: 'AI 보안',
-    color: '#22c55e',
+    color: '#5da56f',
     sections: [
       {
         sub: '관제 · 자동화',
@@ -122,16 +123,19 @@ export default function Nav() {
         borderBottom: '1px solid var(--nav-border)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
-          fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800,
-          letterSpacing: '-0.02em', color: '#f8fafc', textDecoration: 'none',
-          display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
+          textDecoration: 'none',
+          display: 'flex', alignItems: 'center', flexShrink: 0,
         }}>
-          <span style={{
-            width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)',
-            boxShadow: '0 0 14px rgba(34,197,94,0.55)', animation: 'pulse 2s ease-in-out infinite',
-            display: 'inline-block',
-          }} />
-          DMN<span style={{ color: 'var(--accent)', fontWeight: 800 }}>솔루션</span>
+          <span style={{ display: 'inline-block', background: '#fff', padding: '6px 10px', borderRadius: 8, lineHeight: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
+            <Image
+              src="/logo-dmn.png"
+              alt="dmn SOLUTION"
+              width={168}
+              height={44}
+              priority
+              style={{ width: 'min(168px, 42vw)', height: 'auto', objectFit: 'contain' }}
+            />
+          </span>
         </Link>
 
         <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>

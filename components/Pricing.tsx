@@ -111,9 +111,9 @@ export default function Pricing() {
               <div key={p.name} style={{
                 border: p.featured ? '2px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 2, padding: '36px 28px',
-                background: p.featured ? 'linear-gradient(180deg, rgba(251,146,60,0.08), var(--surface))' : 'var(--surface)',
+                background: p.featured ? 'linear-gradient(180deg, rgba(93, 165, 111, 0.09), var(--surface))' : 'var(--surface)',
                 position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s',
-                boxShadow: p.featured ? '8px 8px 0 rgba(194,65,12,0.12)' : '4px 4px 0 rgba(20,18,17,0.04)',
+                boxShadow: p.featured ? '8px 8px 0 rgba(93, 165, 111, 0.14)' : '4px 4px 0 rgba(20,18,17,0.04)',
                 display: 'flex', flexDirection: 'column',
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)' }}
