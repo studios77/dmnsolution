@@ -61,32 +61,38 @@ export default function Contact() {
     val?: string
     lines?: string[]
   }> = [
-    { icon: '📧', title: 'Email', lines: ['studios77@gmail.com', 'phd580@gmail.com'] },
+    { icon: '📧', title: 'Inbox', lines: ['studios77@gmail.com', 'phd580@gmail.com'] },
     {
       icon: '📞',
-      title: '대표 전화',
+      title: 'Representative phones',
       lines: ['0505-299-7623', '0505-683-2580'],
       highlight: true,
     },
-    { icon: '💬', title: 'Kakao / Telegram', val: '@dmnsolution' },
+    { icon: '💬', title: 'Kakao · Telegram', val: '@dmnsolution' },
     {
       icon: '🕐',
-      title: '응답 시간',
-      lines: ['전문 엔지니어가 24시간 내 회신', '긴급 장애 즉시 대응'],
+      title: 'Response SLA',
+      lines: ['Engineer reply ≤24h biz days', 'Sev‑1 paging immediately'],
     },
-    { icon: '📍', title: '서비스 지역', val: '글로벌 전지역 가능(원격 운영)' },
+    { icon: '📍', title: 'Footprint', val: 'Remote-first anywhere' },
   ]
 
   return (
     <section id="contact" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
-            Inquiry
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>
+            Closing the loop
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.85rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 12 }}>
-            문의·견적 요청</h2>
-          <p style={{ fontSize: '0.94rem', color: 'var(--text)', maxWidth: 520, lineHeight: 1.8 }}>접수 후 영업일 기준으로 검토해 회신드립니다. 긴급 장애는 별도 연락처로 안내드립니다.</p>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
+            Tell us what you almost bought.
+          </h2>
+          <p style={{ fontSize: '0.96rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78 }}>
+            Same routing as every Korean intake channel — formatted like a storefront so procurement teams read it fast.
+            <span style={{ display: 'block', marginTop: 10, fontSize: '0.82rem', color: 'var(--text3)' }}>
+              카탈로그에서 고른 SKU를 아래 선택지에 적어 주세요. 국문 운영팀이 이어 받습니다.
+            </span>
+          </p>
         </div>
 
         <div className="reveal contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 60, marginTop: 60, alignItems: 'start' }}>
@@ -94,12 +100,12 @@ export default function Contact() {
             {contactItems.map(c => (
               <div key={c.title} style={{
                 display: 'flex', gap: 14, alignItems: 'flex-start', padding: '14px 16px',
-                background: c.highlight ? 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(37,99,235,0.03))' : 'var(--surface)',
+                background: c.highlight ? 'linear-gradient(135deg, rgba(251,146,60,0.1), rgba(251,146,60,0.02))' : 'var(--surface)',
                 border: c.highlight ? '1.5px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 6,
-                boxShadow: c.highlight ? '0 0 16px rgba(37,99,235,0.12)' : 'none',
+                boxShadow: c.highlight ? '0 0 18px rgba(194,65,12,0.15)' : 'none',
               }}>
-                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'rgba(37,99,235,0.12)' : 'rgba(15,23,42,0.06)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
+                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'var(--accent-soft)' : 'rgba(20,18,17,0.06)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
                 <div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: c.highlight ? 'var(--accent)' : 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>{c.title}</div>
                   {c.lines ? (
@@ -196,7 +202,7 @@ export default function Contact() {
               <button type="submit" disabled={status === 'sending'} style={{
                 width: '100%', marginTop: 16, padding: 14,
                 background: status === 'success' ? '#28c840' : status === 'error' ? '#ef4444' : 'var(--accent)',
-                color: '#000',
+                color: '#fff',
                 border: 'none', borderRadius: 4,
                 fontFamily: 'var(--mono)', fontSize: '0.78rem', fontWeight: 500,
                 letterSpacing: '0.08em',

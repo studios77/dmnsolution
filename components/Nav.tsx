@@ -36,7 +36,7 @@ type ServiceMenuCategory = { cat: string; color: string; sections: ServiceMenuSe
 
 const serviceMenu: ServiceMenuCategory[] = [
   {
-    cat: 'IDC / 서버',
+    cat: 'IDC · Metal',
     color: '#0ea5e9',
     sections: [
       {
@@ -51,7 +51,7 @@ const serviceMenu: ServiceMenuCategory[] = [
     ],
   },
   {
-    cat: 'AI 보안',
+    cat: 'AI Security',
     color: '#f59e0b',
     sections: [
       {
@@ -79,8 +79,8 @@ const serviceMenu: ServiceMenuCategory[] = [
     ],
   },
   {
-    cat: '스트리밍',
-    color: '#10b981',
+    cat: 'Media',
+    color: '#38bdf8',
     sections: [
       {
         items: [
@@ -117,8 +117,8 @@ export default function Nav() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         padding: '0 5%', height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(247,250,255,0.94)', backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(37, 99, 235, 0.1)',
+        background: 'rgba(253,251,246,0.92)', backdropFilter: 'blur(18px)',
+        borderBottom: '1px solid var(--border)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
           fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800,
@@ -126,11 +126,11 @@ export default function Nav() {
           display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
         }}>
           <span style={{
-            width: 8, height: 8, borderRadius: '50%', background: '#2563eb',
-            boxShadow: '0 0 10px rgba(37,99,235,0.45)', animation: 'pulse 2s ease-in-out infinite',
+            width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)',
+            boxShadow: '0 0 12px rgba(194,65,12,0.45)', animation: 'pulse 2s ease-in-out infinite',
             display: 'inline-block',
           }} />
-          DMN<span style={{ color: '#2563eb' }}>솔루션</span>
+          DMN<span style={{ color: 'var(--accent)', fontWeight: 800 }}>솔루션</span>
         </Link>
 
         <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>
@@ -150,7 +150,7 @@ export default function Nav() {
               letterSpacing: '0.02em', display: 'flex', alignItems: 'center', gap: 4,
               padding: '4px 0', transition: 'color 0.2s',
             }}>
-              서비스
+              Solutions
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" style={{ transform: menuOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
                 <polyline points="6 9 12 15 18 9" />
               </svg>
@@ -165,7 +165,7 @@ export default function Nav() {
                   left: '50%', transform: 'translateX(-50%)',
                   background: 'var(--surface)', border: '1px solid var(--border2)',
                   borderRadius: 12,
-                  boxShadow: '0 20px 60px rgba(14,165,233,0.18)',
+                  boxShadow: '0 24px 64px rgba(20,18,17,0.12)',
                   width: 'min(1120px, calc(100vw - 20px))',
                   maxWidth: 'calc(100vw - 20px)',
                   zIndex: 9999,
@@ -244,11 +244,11 @@ export default function Nav() {
                   ))}
                 </div>
                 <div style={{ borderTop: '1px solid var(--border)', padding: '10px 20px', display: 'flex', gap: 16, background: 'var(--bg)', borderRadius: '0 0 12px 12px' }}>
-                  <Link href="/#services" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)', textDecoration: 'none', letterSpacing: '0.06em' }}>
-                    전체 서비스 보기 →
+                  <Link href="/#services" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: 'var(--accent)', textDecoration: 'none', letterSpacing: '0.06em' }}>
+                    Full catalog →
                   </Link>
-                  <Link href="/#contact" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--text3)', textDecoration: 'none', letterSpacing: '0.06em' }}>
-                    무료 상담 신청 →
+                  <Link href="/#contact" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: 'var(--text3)', textDecoration: 'none', letterSpacing: '0.06em' }}>
+                    Talk to us →
                   </Link>
                 </div>
               </div>
@@ -256,9 +256,9 @@ export default function Nav() {
           </li>
 
           {[
-            { id: 'pricing', label: '요금' },
-            { id: 'about', label: '소개' },
-            { id: 'contact', label: '문의' },
+            { id: 'pricing', label: 'Pricing' },
+            { id: 'about', label: 'Approach' },
+            { id: 'contact', label: 'Contact' },
           ].map(m => (
             <li key={m.id}>
               <Link href={`/#${m.id}`} style={{
@@ -289,7 +289,7 @@ export default function Nav() {
               ;(e.target as HTMLElement).style.color = 'var(--accent)'
             }}
           >
-            문의
+            Contact
           </Link>
 
           <button
@@ -354,7 +354,7 @@ export default function Nav() {
             </div>
           ))}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
-            {[{id:'pricing',label:'요금'},{id:'about',label:'소개'},{id:'contact',label:'문의'}].map(m => (
+            {[{id:'pricing',label:'Pricing'},{id:'about',label:'Approach'},{id:'contact',label:'Contact'}].map(m => (
               <Link key={m.id} href={`/#${m.id}`} onClick={() => setMobileOpen(false)} style={{ fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text2)', textDecoration: 'none', padding: '10px 0', borderBottom: '1px solid var(--border)' }}>
                 {m.label}
               </Link>

@@ -49,7 +49,7 @@ export async function notifyAdminInstant(params: {
             {
               title: params.title,
               description: discordDescription,
-              color: 0x10b981,
+              color: 0xc2410c,
               timestamp: new Date().toISOString(),
             },
           ],

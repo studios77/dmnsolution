@@ -7,7 +7,7 @@ interface Message {
   text: string
 }
 
-const BOT_NAME = 'DMN솔루션 어시스턴트'
+const BOT_NAME = 'DMN Desk'
 
 const QUICK_REPLIES = [
   'IDC 서버 임대 문의',
@@ -71,7 +71,7 @@ function getBotResponse(input: string): string {
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: '안녕하세요! DMN솔루션 어시스턴트입니다.\n무엇을 도와드릴까요? 아래 버튼을 클릭하거나 직접 질문을 입력해 주세요.' },
+    { role: 'bot', text: 'DMN Desk online · Ask in Korean or English.\nTell us which stack you almost picked (IDC, AI sec, Ultrastream…) or tap a shortcut below.' },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -142,19 +142,19 @@ export default function ChatBot() {
         style={{
           position: 'fixed', bottom: 28, right: 28, zIndex: 9999,
           width: 56, height: 56, borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--accent), #059669)',
+          background: 'linear-gradient(135deg, var(--accent), #9a3412)',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 24px rgba(16,185,129,0.5)',
+          boxShadow: '0 4px 22px rgba(194,65,12,0.45)',
           transition: 'transform 0.2s, box-shadow 0.2s',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 32px rgba(16,185,129,0.7)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(194,65,12,0.55)'
         }}
         onMouseLeave={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 24px rgba(16,185,129,0.5)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(194,65,12,0.45)'
         }}
       >
         {open ? (
@@ -185,7 +185,7 @@ export default function ChatBot() {
         background: 'var(--surface)',
         border: '1px solid var(--border2)',
         borderRadius: 16,
-        boxShadow: '0 8px 48px rgba(16,185,129,0.18)',
+        boxShadow: '0 12px 40px rgba(20,18,17,0.14)',
         overflow: 'hidden',
         transform: open ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(16px)',
         opacity: open ? 1 : 0,
@@ -195,7 +195,7 @@ export default function ChatBot() {
       }}>
         <div style={{
           padding: '14px 18px',
-          background: 'linear-gradient(135deg, var(--accent), #059669)',
+          background: 'linear-gradient(135deg, var(--accent), #451a03)',
           display: 'flex', alignItems: 'center', gap: 10,
           flexShrink: 0,
         }}>
@@ -216,7 +216,7 @@ export default function ChatBot() {
             </div>
             <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.7rem', fontFamily: 'var(--mono)', display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
-              온라인 · 즉시 응답
+              Online · async OK
             </div>
           </div>
         </div>
@@ -235,7 +235,7 @@ export default function ChatBot() {
               {msg.role === 'bot' && (
                 <div style={{
                   width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg, var(--accent), #059669)',
+                  background: 'linear-gradient(135deg, var(--accent), #451a03)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
@@ -248,7 +248,7 @@ export default function ChatBot() {
                 padding: '9px 13px',
                 borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
                 background: msg.role === 'user'
-                  ? 'linear-gradient(135deg, var(--accent), #059669)'
+                  ? 'linear-gradient(135deg, var(--accent), #451a03)'
                   : 'var(--surface)',
                 color: msg.role === 'user' ? '#fff' : 'var(--text)',
                 fontSize: '0.82rem',
@@ -267,7 +267,7 @@ export default function ChatBot() {
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6 }}>
               <div style={{
                 width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, var(--accent), #059669)',
+                background: 'linear-gradient(135deg, var(--accent), #451a03)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">

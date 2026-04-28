@@ -4,108 +4,90 @@ export default function Hero() {
       minHeight: 'min(100vh, 920px)',
       display: 'flex',
       alignItems: 'center',
-      padding: '96px 5% 48px',
+      padding: '104px 5% 56px',
       overflow: 'hidden',
       position: 'relative',
       zIndex: 1,
+      borderBottom: '1px solid var(--border)',
+      background: 'linear-gradient(180deg, var(--surface) 0%, var(--bg) 55%)',
     }}>
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 55% 50% at 15% 20%, rgba(59,130,246,0.09) 0%, transparent 52%), radial-gradient(ellipse 45% 40% at 85% 15%, rgba(14,165,233,0.07) 0%, transparent 50%)',
-        pointerEvents: 'none',
-      }} />
-
       <div style={{
         maxWidth: 1180,
         margin: '0 auto',
         width: '100%',
         display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1.05fr) minmax(280px, 0.95fr)',
-        gap: 'clamp(32px, 5vw, 64px)',
-        alignItems: 'center',
+        gridTemplateColumns: 'minmax(0, 1.08fr) minmax(280px, 0.92fr)',
+        gap: 'clamp(36px, 5vw, 72px)',
+        alignItems: 'end',
       }} className="hero-split">
 
-        {/* 좌측: 메시지 · CTA — 중앙 정렬형 히어로와 구분 */}
-        <div style={{ textAlign: 'left', position: 'relative' }}>
+        <div style={{ textAlign: 'left', position: 'relative', paddingBottom: 8 }}>
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#1e40af',
-            letterSpacing: '0.12em', padding: '6px 14px',
-            border: '1px solid rgba(37, 99, 235, 0.2)', borderRadius: 4,
-            marginBottom: 22, background: 'rgba(255,255,255,0.75)',
-            animation: 'fadeUp 0.7s ease both',
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+            fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)',
+            letterSpacing: '0.22em', padding: '8px 0', marginBottom: 20,
+            textTransform: 'uppercase', animation: 'fadeUp 0.7s ease both',
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#2563eb', flexShrink: 0 }} />
-            IDC × AI SECURITY × STREAM
+            DMN Solution · Seoul · Since operations
           </div>
 
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              alignItems: 'center',
-              gap: '8px 10px',
-              marginBottom: 14,
+              gap: '10px 10px',
+              marginBottom: 20,
               animation: 'fadeUp 0.7s 0.05s ease both',
             }}
             aria-hidden
           >
-            {[
-              { t: 'IDC', bg: 'rgba(37,99,235,0.11)', bd: 'rgba(37,99,235,0.28)', c: '#1d4ed8' },
-              { t: 'AI 보안', bg: 'rgba(217,119,6,0.09)', bd: 'rgba(217,119,6,0.25)', c: '#b45309' },
-              { t: 'Ultrastream', bg: 'rgba(14,165,233,0.1)', bd: 'rgba(14,165,233,0.28)', c: '#0369a1' },
-            ].map(b => (
+            {['HOSTING', 'SECOPS', 'LIVE STACK'].map(label => (
               <span
-                key={b.t}
+                key={label}
                 style={{
                   fontFamily: 'var(--mono)',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.06em',
-                  padding: '5px 12px',
-                  borderRadius: 999,
-                  border: `1px solid ${b.bd}`,
-                  background: b.bg,
-                  color: b.c,
+                  fontSize: '0.64rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.14em',
+                  padding: '8px 14px',
+                  borderRadius: 2,
+                  border: '1.5px solid var(--text)',
+                  background: 'transparent',
+                  color: 'var(--text)',
                 }}
               >
-                {b.t}
+                {label}
               </span>
             ))}
           </div>
 
           <h1 style={{
             fontFamily: 'var(--display)',
-            fontSize: 'clamp(2rem, 4.6vw, 3.35rem)',
+            fontSize: 'clamp(2.25rem, 5.2vw, 3.65rem)',
             fontWeight: 800,
-            lineHeight: 1.13,
-            letterSpacing: '-0.032em',
+            lineHeight: 1.05,
+            letterSpacing: '-0.04em',
             color: 'var(--text)',
-            marginBottom: 20,
-            animation: 'fadeUp 0.7s 0.08s ease both',
-            wordBreak: 'keep-all',
+            marginBottom: 22,
+            animation: 'fadeUp 0.7s 0.1s ease both',
           }}>
-            서버부터 라이브 송출까지,<br />
-            <span style={{
-              background: 'linear-gradient(105deg, #1d4ed8 0%, #0891b2 45%, #4f46e5 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>한 줄로 연결되는</span>{' '}
-            인프라 경험
+            Infrastructure that<br />
+            stays under your signal.
           </h1>
 
           <p style={{
-            fontSize: '0.96rem',
+            fontSize: '0.94rem',
             color: 'var(--text2)',
-            maxWidth: 540,
-            lineHeight: 1.82,
-            marginBottom: 28,
-            animation: 'fadeUp 0.7s 0.15s ease both',
+            maxWidth: 520,
+            lineHeight: 1.75,
+            marginBottom: 26,
+            animation: 'fadeUp 0.7s 0.16s ease both',
+            fontWeight: 450,
           }}>
-            규격서만 같은 구축 대신 — <strong style={{ fontWeight: 700, color: 'var(--text)' }}>IDC 호스팅</strong>,
-            실시간에 대응하는 <strong style={{ fontWeight: 700, color: 'var(--text)' }}>AI 보안 레이어</strong>,
-            그리고 초저지연 <strong style={{ fontWeight: 700, color: 'var(--text)' }}>Ultrastream 스트리밍 엔진</strong>까지 한 팀에서 맞춤 설계합니다.
+            <span style={{ display: 'block', marginBottom: 10, color: 'var(--text3)', fontFamily: 'var(--mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              Korean summary
+            </span>
+            IDC부터 AI 보안·Ultrastream 초저지연까지 한 팀이 설계하고 붙입니다. 랜딩만 다른 도메인과 달리, 여기서는 제품을 고르듯 흐름을 잡도록 보였습니다.
           </p>
 
           <div style={{
@@ -115,64 +97,63 @@ export default function Hero() {
             animation: 'fadeUp 0.7s 0.22s ease both',
           }}>
             <a href="#services" style={{
-              padding: '14px 28px',
-              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 55%, #0891b2 100%)',
+              padding: '15px 26px',
+              background: 'var(--text)',
               color: '#fff',
-              borderRadius: 999,
+              borderRadius: 2,
               fontFamily: 'var(--sans)',
-              fontSize: '0.9rem',
+              fontSize: '0.88rem',
               fontWeight: 700,
+              letterSpacing: '0.02em',
               textDecoration: 'none',
-              boxShadow: '0 10px 28px rgba(37,99,235,0.38)',
+              boxShadow: '0 12px 32px rgba(20,18,17,0.18)',
               transition: 'transform 0.2s, box-shadow 0.2s',
             }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
-            >스택 둘러보기</a>
+            >Explore catalog</a>
             <a href="#contact" style={{
-              padding: '14px 28px',
-              background: 'rgba(255,255,255,0.95)',
-              color: '#1e3a8a',
-              border: '2px solid rgba(37,99,235,0.45)',
-              borderRadius: 999,
+              padding: '15px 26px',
+              background: 'transparent',
+              color: 'var(--text)',
+              border: '2px solid var(--text)',
+              borderRadius: 2,
               fontFamily: 'var(--sans)',
-              fontSize: '0.9rem',
+              fontSize: '0.88rem',
               fontWeight: 700,
+              letterSpacing: '0.02em',
               textDecoration: 'none',
-              transition: 'background 0.2s, transform 0.2s, border-color 0.2s',
+              transition: 'background 0.2s, transform 0.2s',
             }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(239,246,255,1)'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(20,18,17,0.05)'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = '#2563eb'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.95)'
+                (e.currentTarget as HTMLElement).style.background = 'transparent'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(37,99,235,0.45)'
               }}
-            >지금 상담하기</a>
+            >Book a conversation</a>
           </div>
         </div>
 
-        {/* 우측: 수치·범위 요약 카드 — 랜딩 단일열 히어로와 차별 */}
-        <div style={{
-          background: '#fff',
-          border: '1px solid rgba(37,99,235,0.15)',
-          borderRadius: 12,
-          boxShadow: '0 24px 48px rgba(15,23,42,0.08)',
-          padding: '28px 26px 24px',
-          animation: 'fadeUp 0.7s 0.2s ease both',
+        <aside style={{
+          background: 'var(--surface)',
+          border: '2px solid var(--text)',
+          borderRadius: 2,
+          boxShadow: '16px 16px 0 rgba(20,18,17,0.06)',
+          padding: '26px 24px 22px',
+          animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)', letterSpacing: '0.12em', marginBottom: 18 }}>
-            실시간 운영 스냅샷 · 참고 수치
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.6rem', color: 'var(--text3)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>
+            Reference targets · not a quote
           </div>
           <dl style={{ margin: 0, padding: 0 }}>
             {[
-              { k: '가용성', v: '99.99%', d: 'SLA 목표(서비스별 협의)' },
-              { k: '송출 지연', v: '1~2 s', d: 'LL-HLS 기준(환경별 상이)' },
-              { k: '대응', v: '24 / 7', d: '보안·장애 창구' },
-              { k: '라인업', v: '14+', d: '세부 SKU는 서비스 페이지 참조' },
+              { k: 'Uptime', v: '99.99%', d: 'SLA by contract' },
+              { k: 'Glass-to-glass', v: '1–2 s', d: 'LL-HLS baseline' },
+              { k: 'Coverage', v: '24 / 7', d: 'Sec + NOC lanes' },
+              { k: 'Lines', v: '14+', d: 'See detail pages' },
             ].map(row => (
               <div key={row.k} style={{
                 display: 'flex',
@@ -180,25 +161,25 @@ export default function Hero() {
                 alignItems: 'baseline',
                 gap: 12,
                 padding: '14px 0',
-                borderBottom: '1px solid rgba(15,23,42,0.06)',
+                borderBottom: '1px solid var(--border)',
               }}>
-                <dt style={{ fontSize: '0.82rem', color: 'var(--text3)', fontWeight: 500, margin: 0 }}>{row.k}</dt>
+                <dt style={{ fontSize: '0.78rem', color: 'var(--text3)', fontWeight: 600, margin: 0 }}>{row.k}</dt>
                 <dd style={{ margin: 0, textAlign: 'right' }}>
-                  <span style={{ fontFamily: 'var(--display)', fontSize: '1.25rem', fontWeight: 700, color: '#1d4ed8' }}>{row.v}</span>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginTop: 2, maxWidth: 200 }}>{row.d}</div>
+                  <span style={{ fontFamily: 'var(--display)', fontSize: '1.28rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text3)', marginTop: 2, maxWidth: 200 }}>{row.d}</div>
                 </dd>
               </div>
             ))}
           </dl>
-          <p style={{ marginTop: 18, fontSize: '0.72rem', color: 'var(--text3)', lineHeight: 1.6 }}>
-            수치는 대표적인 목표값이며, 산업·규모에 따라 별도 합의가 필요합니다.
+          <p style={{ marginTop: 16, fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
+            Figures are directional. Final SLA and commercials follow scoping — scroll for the stacks we ship.
           </p>
-        </div>
+        </aside>
       </div>
 
       <style>{`
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(18px); }
+          from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 900px) {

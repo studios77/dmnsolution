@@ -6,24 +6,24 @@ const WEB3FORMS_KEY = '92e76d57-87e2-4f09-8084-bc2552db772d'
 
 const plans = [
   {
-    tier: 'Starter', name: '스트림 Basic', price: '49,000', unit: '/hour', featured: false,
-    desc: '라이브 스트리밍을 시작하는 소규모 팀에 적합한 플랜입니다.',
-    features: ['Ultrastream 엔진 1채널','LL-HLS 스트리밍 (최대 1080p)','동시 시청자 100명','VOD 저장 50GB','기본 모니터링 대시보드','이메일 기술지원'],
+    tier: 'Starter', name: 'Stream Basic', price: '49,000', unit: '/hour', featured: false,
+    desc: 'Entry stack for teams proving interactive latency before scaling spend.',
+    features: ['1× Ultrastream lane','LL-HLS ladder (up to 1080p)','100 concurrent viewers','50 GB VOD shelf','Baseline telemetry','Email support'],
   },
   {
-    tier: 'Professional', name: 'Stream Pro + AI', price: '가격문의', unit: '', featured: true,
-    desc: '스트리밍 + AI 보안이 결합된 가장 인기 있는 통합 플랜입니다.',
-    features: ['Ultrastream 엔진 5채널','ABR 4단계 (1080p ~ 360p)','동시 시청자 1,000명','VOD 500GB + CDN','AI 이상탐지 + IP 자동차단','멀티플랫폼 동시 송출','24시간 Slack 기술지원'],
+    tier: 'Professional', name: 'Stream Pro + AI', price: 'QUOTE', unit: '', featured: true,
+    desc: 'Our most requested bundle — picture pipeline plus AI guardrails.',
+    features: ['5× Ultrastream lanes','4-step ABR ladder','1,000 concurrent viewers','500 GB VOD + CDN edge','Stream anomaly + IP ban','Multi-platform syndication','24/7 Slack engineer'],
   },
   {
-    tier: 'IDC Standard', name: '서버 위탁운영', price: '30만~', unit: '/월', featured: false,
-    desc: '서버 운영을 전문가에게 맡기고 비즈니스에만 집중하세요.',
-    features: ['OS 패치·보안업데이트 전담','장애대응 (4시간 이내)','Zabbix 실시간 모니터링','월간 SLA 리포트','백업 자동화 포함','전화·원격 기술지원'],
+    tier: 'IDC Standard', name: 'Managed metal', price: '30만~', unit: '/mo', featured: false,
+    desc: 'Delegation model for teams that need sleep and patch discipline.',
+    features: ['Patch + hardening cadence','Incident ≤4h SLA target','Zabbix + Grafana','Monthly SLA digest','Backup automation','Voice + remote hands'],
   },
   {
-    tier: 'HA / DR', name: '이중화 + DR', price: '80만~', unit: '/월', featured: false,
-    desc: '서버·DB 이중화와 재해복구까지 완전한 고가용성 구성.',
-    features: ['Active-Active HA 구성','자동 페일오버 30초 이내','DB 이중화 (Galera Cluster)','DR 원격지 백업 연동','RTO 4h / RPO 1h 보장','분기별 복구훈련 포함'],
+    tier: 'HA / DR', name: 'Resilience bundle', price: '80만~', unit: '/mo', featured: false,
+    desc: 'Active paths, clustered data planes, rehearsal-friendly DR.',
+    features: ['Active-active patterns','Failover ≤30s story','Galera / replica ops','Remote DR hook-in','RTO 4h · RPO 1h targets','Quarterly restore drills'],
   },
 ]
 
@@ -95,37 +95,42 @@ export default function Pricing() {
       <section id="pricing" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
           <div className="reveal">
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
-              Pricing
+            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>
+              Commercial ladders
             </div>
-            <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.85rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 12 }}>
-              표준 과금 패키지
+            <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
+              Transparent entry points.<br /><span style={{ color: 'var(--text3)' }}>Custom math on top.</span>
             </h2>
-            <p style={{ fontSize: '0.94rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.8 }}>
-              송출·보안·서버 패키지를 비교표 형태로 정리했습니다. 요금표에 없는 구성은 견적서로 별도 산출합니다.</p>
+            <p style={{ fontSize: '0.97rem', color: 'var(--text2)', maxWidth: 600, lineHeight: 1.78 }}>
+              Ballpark numbers anchor the conversation — everything else is workload discovery.
+              Hybrid stacks or regulated environments route through the intake form exactly like a checkout lane.
+              <span style={{ display: 'block', marginTop: 10, fontSize: '0.82rem', color: 'var(--text3)' }}>
+                버튼은 국내 운영팀 접수 플로우와 동일합니다.
+              </span>
+            </p>
           </div>
 
           <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, marginTop: 60 }}>
             {plans.map(p => (
               <div key={p.name} style={{
-                border: p.featured ? '1px solid var(--accent)' : '1px solid var(--border)',
-                borderRadius: 8, padding: '36px 28px',
-                background: p.featured ? 'linear-gradient(160deg, rgba(16,185,129,0.05), var(--surface))' : 'var(--surface)',
+                border: p.featured ? '2px solid var(--accent)' : '1px solid var(--border)',
+                borderRadius: 2, padding: '36px 28px',
+                background: p.featured ? 'linear-gradient(180deg, rgba(251,146,60,0.08), var(--surface))' : 'var(--surface)',
                 position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s',
-                boxShadow: p.featured ? '0 0 32px rgba(16,185,129,0.1)' : 'none',
+                boxShadow: p.featured ? '8px 8px 0 rgba(194,65,12,0.12)' : '4px 4px 0 rgba(20,18,17,0.04)',
                 display: 'flex', flexDirection: 'column',
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
               >
                 {p.featured && (
-                  <div style={{ position: 'absolute', top: -1, right: 24, background: 'var(--accent)', color: '#000', fontFamily: 'var(--mono)', fontSize: '0.6rem', fontWeight: 500, letterSpacing: '0.08em', padding: '4px 12px', borderRadius: '0 0 4px 4px' }}>POPULAR</div>
+                  <div style={{ position: 'absolute', top: -1, right: 24, background: 'var(--accent)', color: '#fff', fontFamily: 'var(--mono)', fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.12em', padding: '5px 12px', borderRadius: '0 0 2px 2px' }}>POPULAR</div>
                 )}
                 <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{p.tier}</div>
                 <div style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>{p.name}</div>
                 <div style={{ margin: '20px 0' }}>
-                  {p.price === '가격문의' ? (
-                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.8rem', fontWeight: 700, color: 'var(--accent)' }}>가격문의</span>
+                  {p.price === 'QUOTE' ? (
+                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.75rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.02em' }}>Price on scope</span>
                   ) : (
                     <span style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', fontWeight: 700, color: 'var(--text)' }}>
                       <span style={{ fontSize: '1rem', fontWeight: 400, color: 'var(--text2)', fontFamily: 'var(--mono)', verticalAlign: 'super' }}>₩</span>
@@ -150,7 +155,7 @@ export default function Pricing() {
                     fontFamily: 'var(--mono)', fontSize: '0.75rem', letterSpacing: '0.06em', transition: 'all 0.25s',
                     background: p.featured ? 'var(--accent)' : 'transparent',
                     border: p.featured ? '1px solid var(--accent)' : '1px solid var(--border2)',
-                    color: p.featured ? '#fff' : 'var(--text)', fontWeight: p.featured ? 500 : 400,
+                    color: p.featured ? '#fff' : 'var(--text)', fontWeight: p.featured ? 600 : 500,
                     cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
@@ -168,19 +173,19 @@ export default function Pricing() {
                     }
                   }}
                 >
-                  {p.tier === 'IDC Standard' || p.tier === 'HA / DR' ? '상담 신청' : '시작하기'}
+                  {p.tier === 'IDC Standard' || p.tier === 'HA / DR' ? 'Talk about this tier' : 'Hold this plan'}
                 </button>
               </div>
             ))}
           </div>
 
-          <div className="reveal" style={{ marginTop: 16, border: '1px solid var(--border)', borderRadius: 8, padding: '36px 28px', background: 'linear-gradient(135deg, rgba(253,230,138,0.07), var(--surface))' }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>Enterprise</div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>Full AI Security Suite</div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.6rem', fontWeight: 700, color: 'var(--accent2)', margin: '16px 0' }}>맞춰 견적</div>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text2)', marginBottom: 20, lineHeight: 1.7, maxWidth: 640 }}>무제한 채널 + 전용서버 + AI 보안 관제 + 딥페이크 탐지 + HA/DR 이중화 + 백업 자동화 + 외부 운영 서버 복구·이전 지원.</p>
+          <div className="reveal" style={{ marginTop: 20, border: '2px solid var(--border)', borderRadius: 2, padding: '36px 28px', background: 'var(--bg2)', boxShadow: '8px 8px 0 rgba(20,18,17,0.06)' }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 10 }}>Enterprise</div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>Full AI security fabric</div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)', margin: '14px 0' }}>Named account pricing</div>
+            <p style={{ fontSize: '0.86rem', color: 'var(--text2)', marginBottom: 20, lineHeight: 1.75, maxWidth: 640 }}>Unlimited channels, dedicated metal, 24/7 AI SOC, deepfake stack, HA/DR pairs, backup automation, break-fix anywhere you host — one commercial wrapper.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 20px', marginBottom: 24 }}>
-              {['무제한 채널 + 전용서버','AI 보안 관제 24/7','딥페이크 탐지 모듈','HA/DR 완전 이중화','LLM 보안 감사','서버 장애 복구 및 이전','네트워크 IDS/IPS','전담 전문기술엔지니어 지원'].map(f => (
+              {['Dedicated fleet + unlimited channels','AI SOC (always-on)','Deepfake + stream ML','Full HA / DR pair','LLM security program','Field + remote recovery','IDS / IPS fabric','Named principal engineer'].map(f => (
                 <div key={f} style={{ fontSize: '0.83rem', color: 'var(--text2)', padding: '7px 0', borderBottom: '1px solid var(--border)', display: 'flex', gap: 10 }}>
                   <span style={{ color: 'var(--accent)', fontFamily: 'var(--mono)', fontSize: '0.7rem', flexShrink: 0, marginTop: 2 }}>—</span>{f}
                 </div>
@@ -188,9 +193,9 @@ export default function Pricing() {
             </div>
             <button
               onClick={() => openModal('Full AI Security Suite', 'Enterprise')}
-              style={{ display: 'inline-block', padding: '12px 32px', background: 'var(--accent)', color: '#000', borderRadius: 4, fontFamily: 'var(--mono)', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', border: 'none', cursor: 'pointer' }}
+              style={{ display: 'inline-block', padding: '12px 32px', background: 'var(--accent)', color: '#fff', borderRadius: 2, fontFamily: 'var(--mono)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
             >
-              엔터프라이즈 상담
+              Book enterprise lane
             </button>
           </div>
         </div>
@@ -232,7 +237,7 @@ export default function Pricing() {
                 <div style={{ textAlign: 'center', padding: '32px 0' }}>
                   <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>✅</div>
                   <div style={{ fontFamily: 'var(--display)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text)', marginBottom: 10 }}>
-                    접수가 완료뙀습니다!
+                    접수가 완료되었습니다!
                   </div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text2)', lineHeight: 1.7, marginBottom: 24 }}>
                     전문 엔지니어가 확인 후 <strong>24시간 이내</strong> 연락드립니다.<br />
@@ -241,7 +246,7 @@ export default function Pricing() {
                   </p>
                   <button
                     onClick={closeModal}
-                    style={{ padding: '10px 28px', background: 'var(--accent)', color: '#000', border: 'none', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 600 }}
+                    style={{ padding: '10px 28px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 600 }}
                   >
                     닫기
                   </button>
@@ -303,7 +308,7 @@ export default function Pricing() {
                     </div>
                   </div>
 
-                  <div style={{ marginTop: 16, padding: '10px 14px', background: 'rgba(16,185,129,0.06)', border: '1px solid var(--border2)', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ marginTop: 16, padding: '10px 14px', background: 'var(--accent-soft)', border: '1px solid var(--border2)', borderRadius: 4, display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{ color: 'var(--accent)', fontSize: '0.8rem' }}>✓</span>
                     <span style={{ fontFamily: 'var(--mono)', fontSize: '0.72rem', color: 'var(--text2)' }}>
                       선택 플랜: <strong style={{ color: 'var(--text)' }}>{modal.planTier} — {modal.planName}</strong>
@@ -322,7 +327,7 @@ export default function Pricing() {
                     style={{
                       width: '100%', marginTop: 18, padding: '13px 0',
                       background: status === 'error' ? '#ef4444' : 'var(--accent)',
-                      color: '#000', border: 'none', borderRadius: 6,
+                      color: '#fff', border: 'none', borderRadius: 6,
                       fontFamily: 'var(--mono)', fontSize: '0.8rem', fontWeight: 600,
                       letterSpacing: '0.06em', cursor: status === 'sending' ? 'not-allowed' : 'pointer',
                       opacity: status === 'sending' ? 0.7 : 1, transition: 'all 0.2s',

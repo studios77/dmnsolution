@@ -143,10 +143,10 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
               {s.coloPricing.map((plan, i) => (
                 <div key={i} style={{
                   position: 'relative',
-                  background: plan.popular ? 'linear-gradient(160deg, #064e3b 0%, #022c22 100%)' : 'var(--surface)',
+                  background: plan.popular ? 'linear-gradient(160deg, #9a3412 0%, #431407 100%)' : 'var(--surface)',
                   border: plan.popular ? '1.5px solid var(--accent)' : '1px solid var(--border)',
                   borderRadius: 12, padding: '28px 22px 24px',
-                  boxShadow: plan.popular ? '0 0 32px rgba(16,185,129,0.18)' : '0 1px 6px rgba(0,0,0,0.05)',
+                  boxShadow: plan.popular ? '0 0 28px rgba(194,65,12,0.2)' : '0 1px 6px rgba(0,0,0,0.05)',
                   display: 'flex', flexDirection: 'column',
                 }}>
                   {plan.popular && (
@@ -156,7 +156,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                   <div style={{ fontFamily: 'var(--display)', fontSize: '1rem', fontWeight: 700, color: plan.popular ? '#fff' : 'var(--text)', marginBottom: 16 }}>{plan.name}</div>
                   <div style={{ fontSize: '1.15rem', fontWeight: 800, fontFamily: 'var(--display)', color: plan.popular ? 'var(--accent)' : 'var(--text)', letterSpacing: '-0.02em', marginBottom: 4 }}>{plan.price}</div>
                   <div style={{ fontSize: '0.7rem', color: plan.popular ? 'rgba(255,255,255,0.5)' : 'var(--text3)', fontFamily: 'var(--mono)', marginBottom: 20 }}>{plan.note}</div>
-                  <div style={{ borderTop: `1px solid ${plan.popular ? 'rgba(16,185,129,0.25)' : 'var(--border)'}`, paddingTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ borderTop: `1px solid ${plan.popular ? 'rgba(147,197,253,0.35)' : 'var(--border)'}`, paddingTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
                     {[{ label: '네트워크', value: plan.network }, { label: '냉각·보안', value: '포함' }, { label: 'IPMI 원격관리', value: '포함' }].map((item, j) => (
                       <div key={j} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: plan.popular ? 'rgba(255,255,255,0.75)' : 'var(--text2)' }}>
                         <span>{item.label}</span>

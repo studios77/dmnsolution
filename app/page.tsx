@@ -101,7 +101,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="grid-bg" />
+      <div className="grain-bg" aria-hidden />
       <Nav />
       <main id="main-content">
         <Hero />

@@ -31,7 +31,7 @@ export default function ScrollTop() {
         width: 52, height: 52, borderRadius: '50%',
         background: 'var(--surface)', border: '1px solid var(--border2)',
         cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 20px rgba(16,185,129,0.15)',
+        boxShadow: '0 4px 18px rgba(194,65,12,0.18)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.85)',
         transition: 'opacity 0.3s ease, transform 0.3s ease',
@@ -39,11 +39,11 @@ export default function ScrollTop() {
       }}
       onMouseEnter={e => {
         (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--accent)'
-        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 24px rgba(16,185,129,0.35)'
+        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(194,65,12,0.35)'
       }}
       onMouseLeave={e => {
         (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border2)'
-        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 20px rgba(16,185,129,0.15)'
+        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 18px rgba(194,65,12,0.18)'
       }}
     >
       <svg width="52" height="52" viewBox="0 0 52 52" style={{ position: 'absolute', inset: 0, transform: 'rotate(-90deg)' }}>
