@@ -111,9 +111,9 @@ export default function Pricing() {
               <div key={p.name} style={{
                 border: p.featured ? '2px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 2, padding: '36px 28px',
-                background: p.featured ? 'linear-gradient(180deg, rgba(93, 165, 111, 0.09), var(--surface))' : 'var(--surface)',
+                background: p.featured ? 'linear-gradient(180deg, rgba(251,146,60,0.08), var(--surface))' : 'var(--surface)',
                 position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s',
-                boxShadow: p.featured ? '8px 8px 0 rgba(93, 165, 111, 0.14)' : '4px 4px 0 rgba(20,18,17,0.04)',
+                boxShadow: p.featured ? '8px 8px 0 rgba(194,65,12,0.12)' : '4px 4px 0 rgba(20,18,17,0.04)',
                 display: 'flex', flexDirection: 'column',
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)' }}
@@ -236,9 +236,7 @@ export default function Pricing() {
                     접수가 완료되었습니다!
                   </div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text2)', lineHeight: 1.7, marginBottom: 24 }}>
-                    전문 엔지니어가 확인 후 <strong>24시간 이내</strong> 연락드립니다.<br />
-                    긴급 장애는 즉시 대응합니다.<br />
-                    긴급 문의: <a href="tel:01032043847" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>010-3204-3847</a>
+                    접수 내용을 확인한 뒤 <strong>영업일 기준</strong>으로 순차 연락드립니다.
                   </p>
                   <button
                     onClick={closeModal}
@@ -333,7 +331,7 @@ export default function Pricing() {
                   </button>
 
                   <p style={{ marginTop: 10, fontSize: '0.72rem', color: 'var(--text3)', textAlign: 'center', fontFamily: 'var(--mono)' }}>
-                    전문 엔지니어 24시간 내 회신 · 긴급 장애 즉시 · 010-3204-3847
+                    영업일 기준 순차 회신
                   </p>
                 </form>
               )}

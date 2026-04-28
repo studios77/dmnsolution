@@ -72,7 +72,7 @@ export default function Contact() {
     {
       icon: '🕐',
       title: '응답 안내',
-      lines: ['영업일 기준 엔지니어가 순차 회신', '긴급 장애는 즉시 연락'],
+      lines: ['영업일 기준 순차 회신'],
     },
     { icon: '📍', title: '서비스 지역', val: '원격 운영 · 글로벌 대응 가능' },
   ]
@@ -88,7 +88,7 @@ export default function Contact() {
             견적 · 도입 상담
           </h2>
           <p style={{ fontSize: '0.96rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78 }}>
-            관심 서비스와 연락처를 남겨 주시면 검토 후 회신드립니다. 긴급 장애는 전화로 바로 이어집니다.
+            관심 서비스와 연락처를 남겨 주시면 검토 후, <strong style={{ color: 'var(--text)' }}>영업일 기준</strong>으로 순차 회신드립니다.
           </p>
         </div>
 
@@ -208,12 +208,12 @@ export default function Contact() {
                 opacity: status === 'sending' ? 0.7 : 1,
               }}>
                 {status === 'sending' && '전송 중…'}
-                {status === 'success' && '전송 완료 — 곧 연락드리겠습니다 ✓'}
+                {status === 'success' && '전송 완료 — 영업일 기준 순차 회신 ✓'}
                 {status === 'error' && '전송 실패 — 다시 시도해주세요'}
                 {status === 'idle' && (
                   <>
                     <span style={{ display: 'block' }}>문의 전송</span>
-                    <span style={{ display: 'block', fontSize: '0.72rem', fontWeight: 500, marginTop: 4, opacity: 0.92 }}>24시간 내 회신 · 긴급 장애 즉시</span>
+                    <span style={{ display: 'block', fontSize: '0.72rem', fontWeight: 500, marginTop: 4, opacity: 0.92 }}>영업일 기준 순차 회신</span>
                   </>
                 )}
               </button>

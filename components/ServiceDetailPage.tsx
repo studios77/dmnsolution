@@ -143,14 +143,14 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
               {s.coloPricing.map((plan, i) => (
                 <div key={i} style={{
                   position: 'relative',
-                  background: plan.popular ? 'linear-gradient(165deg, #1e293b 0%, #0f172a 55%, #0c1220 100%)' : 'var(--surface)',
-                  border: plan.popular ? '1.5px solid rgba(93, 165, 111, 0.45)' : '1px solid var(--border)',
+                  background: plan.popular ? 'linear-gradient(160deg, #9a3412 0%, #431407 100%)' : 'var(--surface)',
+                  border: plan.popular ? '1.5px solid var(--accent)' : '1px solid var(--border)',
                   borderRadius: 12, padding: '28px 22px 24px',
-                  boxShadow: plan.popular ? '0 8px 28px rgba(93, 165, 111, 0.1)' : '0 1px 6px rgba(0,0,0,0.05)',
+                  boxShadow: plan.popular ? '0 0 28px rgba(194,65,12,0.2)' : '0 1px 6px rgba(0,0,0,0.05)',
                   display: 'flex', flexDirection: 'column',
                 }}>
                   {plan.popular && (
-                    <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#fff', fontFamily: 'var(--mono)', fontSize: '0.62rem', fontWeight: 700, padding: '3px 14px', borderRadius: 20, letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>POPULAR</div>
+                    <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#000', fontFamily: 'var(--mono)', fontSize: '0.62rem', fontWeight: 700, padding: '3px 14px', borderRadius: 20, letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>POPULAR</div>
                   )}
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: plan.popular ? 'var(--accent)' : 'var(--text3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>{plan.size}</div>
                   <div style={{ fontFamily: 'var(--display)', fontSize: '1rem', fontWeight: 700, color: plan.popular ? '#fff' : 'var(--text)', marginBottom: 16 }}>{plan.name}</div>
@@ -175,9 +175,9 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
       <section style={{ background: 'var(--bg2)', padding: '80px 5%', textAlign: 'center' }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.6rem,4vw,2.4rem)', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 16 }}>지금 바로 시작하세요</h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text2)', lineHeight: 1.8, marginBottom: 36 }}>문의는 영업일 기준 순차 회신드립니다.</p>
+          <p style={{ fontSize: '0.95rem', color: 'var(--text2)', lineHeight: 1.8, marginBottom: 36 }}>문의는 영업일 기준으로 순차 회신드립니다.</p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/#contact" style={{ padding: '14px 36px', background: 'var(--accent)', color: '#fff', borderRadius: 4, fontFamily: 'var(--mono)', fontSize: '0.8rem', fontWeight: 500, letterSpacing: '0.06em', textDecoration: 'none', boxShadow: '0 4px 24px rgba(93, 165, 111, 0.25)' }}>
+            <Link href="/#contact" style={{ padding: '14px 36px', background: 'var(--accent)', color: '#000', borderRadius: 4, fontFamily: 'var(--mono)', fontSize: '0.8rem', fontWeight: 500, letterSpacing: '0.06em', textDecoration: 'none', boxShadow: '0 0 30px rgba(52,211,153,0.3)' }}>
               {s.cta}
             </Link>
             <Link href="/#services" style={{ padding: '14px 36px', background: 'transparent', color: 'var(--text)', border: '1px solid var(--border2)', borderRadius: 4, fontFamily: 'var(--mono)', fontSize: '0.8rem', letterSpacing: '0.06em', textDecoration: 'none' }}>

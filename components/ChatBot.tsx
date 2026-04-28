@@ -50,7 +50,7 @@ function getBotResponse(input: string): string {
   }
 
   if (q.includes('가격') || q.includes('요금') || q.includes('비용') || q.includes('견적') || q.includes('플랜')) {
-    return '요금은 사용하시는 서비스 규모와 구성에 따라 달라집니다.\n\n📦 **Starter** — 소규모 팀 / PoC 용도\n📦 **Business** — 중소기업 / 운영 환경\n📦 **Enterprise** — 대규모 인프라 / SLA 보장\n\n정확한 견적은 요구사항을 말써 주시면 24시간 내 회신드립니다. [문의하기] 섹션을 이용해 주세요!'
+    return '요금은 사용하시는 서비스 규모와 구성에 따라 달라집니다.\n\n📦 **Starter** — 소규모 팀 / PoC 용도\n📦 **Business** — 중소기업 / 운영 환경\n📦 **Enterprise** — 대규모 인프라 / SLA 보장\n\n정확한 견적은 [문의하기]에 남겨 주시면 영업일 기준으로 순차 회신드립니다.'
   }
 
   if (q.includes('상담') || q.includes('문의') || q.includes('연락') || q.includes('신청')) {
