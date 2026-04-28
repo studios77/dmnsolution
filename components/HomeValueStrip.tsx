@@ -48,10 +48,10 @@ export default function HomeValueStrip() {
           maxWidth: 1100,
           margin: '0 auto',
           padding: '16px 5% 0',
-          fontSize: '0.72rem',
-          color: '#64748b',
-          fontFamily: 'var(--mono)',
-          letterSpacing: '0.04em',
+          fontSize: '0.88rem',
+          color: '#94a3b8',
+          fontFamily: 'var(--sans)',
+          letterSpacing: '0.02em',
         }}
       >
         수치는 서비스·환경마다 다르며, 아래 세 줄은 각각 다른 상품 영역입니다.
@@ -81,11 +81,11 @@ export default function HomeValueStrip() {
             <div
               style={{
                 fontFamily: 'var(--mono)',
-                fontSize: '0.65rem',
+                fontSize: '0.82rem',
                 fontWeight: 700,
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 color: '#e2e8f0',
-                marginBottom: 12,
+                marginBottom: 14,
               }}
             >
               {line.label}
@@ -93,8 +93,8 @@ export default function HomeValueStrip() {
             <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
               {line.rows.map(r => (
                 <div key={r.sub}>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{r.v}</div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: '#94a3b8', marginTop: 2 }}>{r.sub}</div>
+                  <div style={{ fontFamily: 'var(--display)', fontSize: '1.55rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{r.v}</div>
+                  <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#cbd5e1', marginTop: 4, lineHeight: 1.35 }}>{r.sub}</div>
                 </div>
               ))}
             </div>

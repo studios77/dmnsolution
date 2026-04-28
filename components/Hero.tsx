@@ -61,9 +61,9 @@ export default function Hero() {
         <div style={{ textAlign: 'left', position: 'relative', paddingBottom: 8 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
-            fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)',
-            letterSpacing: '0.12em', padding: '6px 14px', marginBottom: 18,
-            borderRadius: 6,
+            fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)',
+            letterSpacing: '0.1em', padding: '8px 16px', marginBottom: 18,
+            borderRadius: 8,
             border: '1px solid rgba(34, 197, 94, 0.35)',
             background: 'rgba(34, 197, 94, 0.08)',
             animation: 'fadeUp 0.7s ease both',
@@ -89,7 +89,7 @@ export default function Hero() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   gap: 12,
-                  padding: '10px 14px',
+                  padding: '12px 16px',
                   borderRadius: 8,
                   border: '1px solid rgba(148, 163, 184, 0.25)',
                   background: 'rgba(15, 23, 42, 0.55)',
@@ -105,8 +105,8 @@ export default function Hero() {
                   ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.55)'
                 }}
               >
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '0.9rem', fontWeight: 700, color: '#f1f5f9' }}>{row.label}</span>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: '#94a3b8', textAlign: 'right' }}>{row.hint}</span>
+                <span style={{ fontFamily: 'var(--sans)', fontSize: '1.02rem', fontWeight: 700, color: '#f1f5f9' }}>{row.label}</span>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#cbd5e1', textAlign: 'right', lineHeight: 1.35 }}>{row.hint}</span>
               </a>
             ))}
           </div>
@@ -126,10 +126,10 @@ export default function Hero() {
           </h1>
 
           <p style={{
-            fontSize: '0.96rem',
+            fontSize: '1.05rem',
             color: 'var(--hero-muted)',
-            maxWidth: 540,
-            lineHeight: 1.78,
+            maxWidth: 560,
+            lineHeight: 1.75,
             marginBottom: 26,
             animation: 'fadeUp 0.7s 0.16s ease both',
           }}>
@@ -149,7 +149,7 @@ export default function Hero() {
               color: '#030712',
               borderRadius: 8,
               fontFamily: 'var(--sans)',
-              fontSize: '0.9rem',
+              fontSize: '0.95rem',
               fontWeight: 700,
               letterSpacing: '0.02em',
               textDecoration: 'none',
@@ -166,7 +166,7 @@ export default function Hero() {
               border: '1px solid rgba(148, 163, 184, 0.45)',
               borderRadius: 8,
               fontFamily: 'var(--sans)',
-              fontSize: '0.9rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               letterSpacing: '0.02em',
               textDecoration: 'none',
@@ -193,10 +193,10 @@ export default function Hero() {
           border: '1px solid rgba(34, 197, 94, 0.22)',
           borderRadius: 12,
           boxShadow: '0 24px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
-          padding: '24px 22px 20px',
+          padding: '26px 24px 22px',
           animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: 'var(--accent)', letterSpacing: '0.1em', marginBottom: 16 }}>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)', letterSpacing: '0.08em', marginBottom: 18, fontWeight: 600 }}>
             분야별 요약 (참고)
           </div>
           {[
@@ -233,7 +233,7 @@ export default function Hero() {
                 borderBottom: '1px solid rgba(51, 65, 85, 0.65)',
               }}
             >
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', fontWeight: 700, color: block.color, letterSpacing: '0.06em', marginBottom: 10 }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', fontWeight: 700, color: block.color, letterSpacing: '0.05em', marginBottom: 12 }}>
                 {block.title}
               </div>
               {block.items.map(row => (
@@ -243,20 +243,20 @@ export default function Hero() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'baseline',
-                    gap: 10,
-                    padding: '6px 0',
+                    gap: 12,
+                    padding: '8px 0',
                   }}
                 >
-                  <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>{row.k}</span>
+                  <span style={{ fontSize: '0.88rem', color: '#cbd5e1', fontWeight: 600 }}>{row.k}</span>
                   <span style={{ textAlign: 'right' }}>
-                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
-                    <div style={{ fontSize: '0.6rem', color: '#64748b', marginTop: 1 }}>{row.d}</div>
+                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
+                    <div style={{ fontSize: '0.76rem', color: '#94a3b8', marginTop: 3, lineHeight: 1.35 }}>{row.d}</div>
                   </span>
                 </div>
               ))}
             </div>
           ))}
-          <p style={{ margin: 0, fontSize: '0.62rem', color: '#64748b', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
+          <p style={{ margin: 0, fontSize: '0.76rem', color: '#94a3b8', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
             실제 수치·범위는 견적서·SLA를 따릅니다.
           </p>
         </aside>
