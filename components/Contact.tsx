@@ -16,8 +16,8 @@ export default function Contact() {
 
     const formData = new FormData(formRef.current)
     formData.append('access_key', WEB3FORMS_KEY)
-    formData.append('subject', '[LunarFluxAI] 새 서비스 문의가 접수되었습니다')
-    formData.append('from_name', 'LunarFluxAI 문의')
+    formData.append('subject', '[DMN솔루션] 새 서비스 문의가 접수되었습니다')
+    formData.append('from_name', 'DMN솔루션 문의')
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -28,10 +28,10 @@ export default function Contact() {
       if (data.success) {
         const snapshot = formDataToRecord(new FormData(formRef.current))
         void notifyAdminInstant({
-          title: '[LunarFluxAI] 서비스 문의 접수',
+          title: '[DMN솔루션] 서비스 문의 접수',
           fields: {
             ...snapshot,
-            subject: '[LunarFluxAI] 새 서비스 문의가 접수되었습니다',
+            subject: '[DMN솔루션] 새 서비스 문의가 접수되었습니다',
           },
         })
         setStatus('success')
@@ -61,7 +61,7 @@ export default function Contact() {
     val?: string
     lines?: string[]
   }> = [
-    { icon: '📧', title: 'Email', val: 'contact@lunarfluxai.com' },
+    { icon: '📧', title: 'Email', val: 'contact@dmnsolution.co.kr' },
     { icon: '📞', title: '긴급 24시간 연락처', val: '010-3204-3847', highlight: true },
     { icon: '💬', title: 'Kakao / Telegram', val: '@lunarflux_support' },
     {
@@ -194,7 +194,7 @@ export default function Contact() {
                 opacity: status === 'sending' ? 0.7 : 1,
               }}>
                 {status === 'sending' && '전송 중…'}
-                {status === 'success' && '전송 완료 — 곧 연락드리겠습니다 ✓'}
+                {status === 'success' && '전송 완료 — 곳 연락드리겠습니다 ✓'}
                 {status === 'error' && '전송 실패 — 다시 시도해주세요'}
                 {status === 'idle' && (
                   <>
