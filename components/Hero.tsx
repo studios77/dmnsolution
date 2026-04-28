@@ -10,12 +10,12 @@ export default function Hero() {
       minHeight: 'min(100vh, 920px)',
       display: 'flex',
       alignItems: 'center',
-      padding: '112px 5% 64px',
+      padding: '124px 5% 64px',
       overflow: 'hidden',
       position: 'relative',
       zIndex: 1,
-      background: 'linear-gradient(165deg, #0b1220 0%, #111827 48%, #1e293b 100%)',
-      borderBottom: '1px solid rgba(93, 165, 111, 0.22)',
+      background: 'linear-gradient(165deg, #030712 0%, #0f172a 42%, #111827 100%)',
+      borderBottom: '1px solid rgba(34, 197, 94, 0.18)',
     }}>
       <div
         aria-hidden
@@ -24,8 +24,8 @@ export default function Hero() {
           inset: 0,
           opacity: 0.45,
           backgroundImage: `
-            linear-gradient(rgba(93, 165, 111, 0.055) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(93, 165, 111, 0.055) 1px, transparent 1px)
+            linear-gradient(rgba(34, 197, 94, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.07) 1px, transparent 1px)
           `,
           backgroundSize: '48px 48px',
           maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 85%)',
@@ -42,7 +42,7 @@ export default function Hero() {
           transform: 'translateX(-50%)',
           width: 'min(900px, 90vw)',
           height: '55%',
-          background: 'radial-gradient(ellipse at center, rgba(93, 165, 111, 0.12) 0%, transparent 68%)',
+          background: 'radial-gradient(ellipse at center, rgba(34, 197, 94, 0.18) 0%, transparent 68%)',
           pointerEvents: 'none',
         }}
       />
@@ -64,8 +64,8 @@ export default function Hero() {
             fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)',
             letterSpacing: '0.12em', padding: '6px 14px', marginBottom: 18,
             borderRadius: 6,
-            border: '1px solid rgba(93, 165, 111, 0.35)',
-            background: 'rgba(93, 165, 111, 0.07)',
+            border: '1px solid rgba(34, 197, 94, 0.35)',
+            background: 'rgba(34, 197, 94, 0.08)',
             animation: 'fadeUp 0.7s ease both',
           }}>
             THREE SERVICE LINES — 별도 견적 · 별도 계약
@@ -97,7 +97,7 @@ export default function Hero() {
                   transition: 'border-color 0.2s, background 0.2s',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(93, 165, 111, 0.4)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(34, 197, 94, 0.45)'
                   ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.85)'
                 }}
                 onMouseLeave={e => {
@@ -153,7 +153,7 @@ export default function Hero() {
               fontWeight: 700,
               letterSpacing: '0.02em',
               textDecoration: 'none',
-              boxShadow: '0 10px 32px rgba(93, 165, 111, 0.22)',
+              boxShadow: '0 12px 36px rgba(34, 197, 94, 0.35)',
               transition: 'transform 0.2s, box-shadow 0.2s',
             }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
@@ -175,7 +175,7 @@ export default function Hero() {
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(93, 165, 111, 0.45)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(34, 197, 94, 0.5)'
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = 'transparent'
@@ -190,7 +190,7 @@ export default function Hero() {
           background: 'rgba(15, 23, 42, 0.72)',
           backdropFilter: 'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
-          border: '1px solid rgba(93, 165, 111, 0.28)',
+          border: '1px solid rgba(34, 197, 94, 0.22)',
           borderRadius: 12,
           boxShadow: '0 24px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
           padding: '24px 22px 20px',
@@ -210,7 +210,7 @@ export default function Hero() {
             },
             {
               title: 'AI 보안',
-              color: 'var(--accent)',
+              color: '#22c55e',
               items: [
                 { k: '관제', v: '24/7', d: '옵션·범위별' },
                 { k: '탐지', v: '95%+', d: '딥페이크 등 목표' },

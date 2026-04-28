@@ -46,7 +46,7 @@ export default function Home() {
         '@id': `${site}/#organization`,
         name: 'DMN솔루션',
         url: site,
-        logo: `${site}/logo.png`,
+        logo: `${site}/logo-dmn.png`,
         description: 'IDC·서버 임대·위탁운영, AI 보안 관제·탐지, Ultrastream 기반 라이브 스트리밍 등을 분야별로 제공하는 기술 인프라 파트너. 각 사업은 별도 견적·계약이 가능합니다.',
         address: {
           '@type': 'PostalAddress',

@@ -21,7 +21,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
       <Nav />
 
       <main id="main-content" style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--text)' }}>
-        <section style={{ padding: '112px 5% 80px', maxWidth: 1100, margin: '0 auto' }}>
+        <section style={{ padding: '124px 5% 80px', maxWidth: 1100, margin: '0 auto' }}>
           <div role="navigation" aria-label="breadcrumb" style={{ marginBottom: 20 }}>
             <ol
               style={{

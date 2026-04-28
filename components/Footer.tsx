@@ -1,6 +1,8 @@
 'use client'
 import Image from 'next/image'
 
+const BRAND_TAGLINE = 'IDC · AI 보안 · 스트리밍 서비스 전문기업'
+
 const links = [
   ['서비스', '/#services'],
   ['요금', '/#pricing'],
@@ -20,18 +22,28 @@ export default function Footer() {
   const footerBg = '#030712'
 
   return (
-    <footer style={{ background: footerBg, borderTop: '1px solid rgba(93, 165, 111, 0.2)', position: 'relative', zIndex: 1 }}>
+    <footer style={{ background: footerBg, borderTop: '1px solid rgba(34, 197, 94, 0.18)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '52px 5% 32px' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 48, alignItems: 'start' }}>
           <div>
-            <div style={{ display: 'inline-block', background: '#fff', padding: '12px 14px', borderRadius: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center',
+              background: 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)',
+              borderRadius: 10,
+              padding: '8px 14px',
+              marginBottom: 12,
+              boxShadow: '0 4px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.9)',
+            }}>
               <Image
                 src="/logo-dmn.png"
-                alt="dmn SOLUTION"
-                width={200}
+                alt="DMN솔루션"
+                width={220}
                 height={56}
-                style={{ width: 'min(200px, 100%)', height: 'auto', objectFit: 'contain' }}
+                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
+            </div>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.55 }}>
+              {BRAND_TAGLINE}
             </div>
           </div>
 

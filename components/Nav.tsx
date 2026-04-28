@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const BRAND_TAGLINE = 'IDC · AI 보안 · 스트리밍 서비스 전문기업'
+/** fixed bar height for dropdown top / scroll padding */
+const NAV_OUTER_PX = 86
+
 type ServiceMenuLink = {
   name: string
   slug: string
@@ -54,7 +58,7 @@ const serviceMenu: ServiceMenuCategory[] = [
   },
   {
     cat: 'AI 보안',
-    color: '#5da56f',
+    color: '#22c55e',
     sections: [
       {
         sub: '관제 · 자동화',
@@ -105,7 +109,7 @@ export default function Nav() {
     const onScroll = () => {
       let cur = ''
       sections.forEach(s => {
-        if (window.scrollY >= (s as HTMLElement).offsetTop - 80) cur = s.id
+        if (window.scrollY >= (s as HTMLElement).offsetTop - NAV_OUTER_PX) cur = s.id
       })
       setActive(cur)
     }
@@ -117,24 +121,41 @@ export default function Nav() {
     <>
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        padding: '0 5%', height: 64,
+        padding: '8px 5%', minHeight: NAV_OUTER_PX,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: 'var(--nav-bg)', backdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--nav-border)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
           textDecoration: 'none',
-          display: 'flex', alignItems: 'center', flexShrink: 0,
+          display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5,
+          flexShrink: 0, maxWidth: 'min(92vw, 320px)',
         }}>
-          <span style={{ display: 'inline-block', background: '#fff', padding: '6px 10px', borderRadius: 8, lineHeight: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.12)' }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center',
+            background: 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)',
+            borderRadius: 10,
+            padding: '5px 12px',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.95)',
+          }}>
             <Image
               src="/logo-dmn.png"
-              alt="dmn SOLUTION"
-              width={168}
-              height={44}
+              alt="DMN솔루션"
+              width={200}
+              height={52}
               priority
-              style={{ width: 'min(168px, 42vw)', height: 'auto', objectFit: 'contain' }}
+              sizes="(max-width: 480px) 150px, 200px"
+              style={{ height: 32, width: 'auto', maxWidth: 'min(52vw, 200px)', objectFit: 'contain' }}
             />
+          </span>
+          <span className="nav-brand-tagline" style={{
+            fontFamily: 'var(--mono)',
+            fontSize: '0.56rem',
+            color: '#94a3b8',
+            letterSpacing: '0.06em',
+            lineHeight: 1.35,
+          }}>
+            {BRAND_TAGLINE}
           </span>
         </Link>
 
@@ -312,9 +333,9 @@ export default function Nav() {
 
       {mobileOpen && (
         <div style={{
-          position: 'fixed', top: 64, left: 0, right: 0, zIndex: 199,
+          position: 'fixed', top: NAV_OUTER_PX, left: 0, right: 0, zIndex: 199,
           background: '#0f172a', borderBottom: '1px solid var(--nav-border)',
-          padding: '20px 5%', maxHeight: 'calc(100vh - 64px)', overflowY: 'auto',
+          padding: '20px 5%', maxHeight: `calc(100vh - ${NAV_OUTER_PX}px)`, overflowY: 'auto',
         }}>
           {serviceMenu.map((cat, ci) => (
             <div key={ci} style={{ marginBottom: 24 }}>
@@ -376,6 +397,9 @@ export default function Nav() {
         @media (max-width: 768px) {
           nav ul { display: none !important; }
           .hamburger { display: flex !important; }
+        }
+        @media (max-width: 400px) {
+          .nav-brand-tagline { font-size: 0.5rem !important; letter-spacing: 0.04em !important; }
         }
       `}</style>
     </>
