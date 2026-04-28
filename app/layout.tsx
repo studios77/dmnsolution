@@ -5,7 +5,7 @@ import './globals.css'
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: '#eef4fb',
 }
 
 export const metadataBase = new URL(SITE_ORIGIN)

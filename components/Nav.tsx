@@ -117,8 +117,8 @@ export default function Nav() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         padding: '0 5%', height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid var(--border)',
+        background: 'rgba(247,250,255,0.94)', backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(37, 99, 235, 0.1)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
           fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800,
@@ -126,11 +126,11 @@ export default function Nav() {
           display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
         }}>
           <span style={{
-            width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)',
-            boxShadow: '0 0 10px var(--accent)', animation: 'pulse 2s ease-in-out infinite',
+            width: 8, height: 8, borderRadius: '50%', background: '#2563eb',
+            boxShadow: '0 0 10px rgba(37,99,235,0.45)', animation: 'pulse 2s ease-in-out infinite',
             display: 'inline-block',
           }} />
-          DMN<span style={{ color: 'var(--accent)' }}>솔루션</span>
+          DMN<span style={{ color: '#2563eb' }}>솔루션</span>
         </Link>
 
         <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>
