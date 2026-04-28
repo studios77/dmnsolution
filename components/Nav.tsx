@@ -137,12 +137,12 @@ export default function Nav() {
             width={1200}
             height={438}
             priority
-            sizes="(max-width: 480px) 160px, 200px"
+            sizes="(max-width: 480px) 240px, 300px"
             className="nav-brand-logo"
             style={{
-              height: 34,
+              height: 40,
               width: 'auto',
-              maxWidth: 'min(58vw, 220px)',
+              maxWidth: 'min(72vw, 300px)',
               objectFit: 'contain',
               objectPosition: 'left center',
             }}
@@ -389,7 +389,7 @@ export default function Nav() {
           .hamburger { display: flex !important; }
         }
         @media (max-width: 400px) {
-          .nav-brand-logo { max-width: min(70vw, 180px) !important; height: 28px !important; }
+          .nav-brand-logo { max-width: min(82vw, 260px) !important; height: 34px !important; }
         }
       `}</style>
     </>

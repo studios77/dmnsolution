@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer style={{ background: footerBg, borderTop: '1px solid rgba(34, 197, 94, 0.18)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '52px 5% 32px' }}>
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 48, alignItems: 'start' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(260px, 320px) 1fr auto', gap: 48, alignItems: 'start' }}>
           <div>
             <div style={{ marginBottom: 20, lineHeight: 0 }}>
               <Image
@@ -30,8 +30,9 @@ export default function Footer() {
                 alt="DMN솔루션"
                 width={1200}
                 height={438}
+                sizes="(max-width: 768px) 90vw, 320px"
                 style={{
-                  height: 44,
+                  height: 56,
                   width: 'auto',
                   maxWidth: '100%',
                   objectFit: 'contain',
