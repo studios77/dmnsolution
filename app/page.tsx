@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import Nav from '@/components/Nav'
+import { SEO_DEFAULT_DESCRIPTION, SEO_KNOWS_ABOUT } from '@/lib/seo'
 import { SITE_ORIGIN } from '@/lib/site'
 import Hero from '@/components/Hero'
 import HomeValueStrip from '@/components/HomeValueStrip'
@@ -38,18 +39,22 @@ export default function Home() {
         url: site,
         name: 'DMN솔루션',
         inLanguage: 'ko-KR',
-        description: 'IDC·서버, AI 보안, 라이브 스트리밍을 각각 독립된 기술 서비스로 제공',
+        description: SEO_DEFAULT_DESCRIPTION,
         publisher: { '@id': `${site}/#organization` },
       },
       {
         '@type': 'Organization',
         '@id': `${site}/#organization`,
         name: 'DMN솔루션',
+        legalName: '(주)디엠엔솔루션',
         url: site,
         logo: `${site}/logo-dmn.png`,
-        description: 'IDC·서버 임대·위탁운영, AI 보안 관제·탐지, Ultrastream 기반 라이브 스트리밍 등을 분야별로 제공하는 기술 인프라 파트너. 각 사업은 별도 견적·계약이 가능합니다.',
+        description: SEO_DEFAULT_DESCRIPTION,
+        knowsAbout: SEO_KNOWS_ABOUT,
         address: {
           '@type': 'PostalAddress',
+          streetAddress: '영등포구 영중로 140 5F',
+          addressLocality: '서울',
           addressCountry: 'KR',
         },
         sameAs: [site],

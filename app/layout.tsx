@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { SITE_ORIGIN } from '@/lib/site'
+import {
+  SEO_DEFAULT_DESCRIPTION,
+  SEO_DEFAULT_TITLE,
+  SEO_KEYWORDS,
+  SEO_OG_IMAGE,
+} from '@/lib/seo'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -11,37 +17,34 @@ export const viewport: Viewport = {
 export const metadataBase = new URL(SITE_ORIGIN)
 
 export const metadata: Metadata = {
-  title: 'DMN솔루션 — IDC · AI 보안 · 라이브 스트리밍 (독립 상품)',
-  description: 'IDC·서버 인프라, AI 보안, 라이브 스트리밍을 각각 별도 서비스로 제공합니다. 코로케이션·위탁운영, AI 보안 관제·딥페이크 탐지, Ultrastream(LL-HLS) 등 분야별로 견적·도입이 가능합니다.',
-  keywords: [
-    'IDC', 'IDC 서버 임대', 'IDC 위탁운영', 'IDC 코로케이션', '서버 임대', '서버 위탁관리',
-    '코로케이션', '1U 서버', '2U 서버', '풀랙', '하프랙', '데이터센터 임대',
-    '클라우드 인프라', '베어메탈 서버', '전용서버 임대', 'VPS', '서버 호스팅',
-    '스트리밍 솔루션', '영상 스트리밍', '영상 스트리밍 플랫폼', '라이브 스트리밍 플랫폼',
-    '라이브 방송 솔루션', 'Ultrastream', '초저지연 스트리밍', 'LL-HLS', 'WebRTC 스트리밍',
-    'VOD 플랫폼', '멀티스트림', '동시 송출', '유튜브 동시 방송',
-    '인공지능 보안', 'AI 보안', 'AI 보안 관제', '네트워크 보안', 'AI 사이버보안',
-    '딥페이크 탐지', '딥페이크 검출', 'AI 이상탐지', 'SOC 자동화', '사이버 보안',
-    'DDoS 차단', '보안 관제', 'SIEM', '제로트러스트',
-    '백업 솔루션', 'DR 솔루션', '재해복구', '데이터 백업', '서버 이중화', 'HA 구성',
-    '서버 복구', '서버 장애 복구', '시스템 이전', '트러블슈팅', '온프레미스 기술지원',
-    'DMN솔루션', 'DMN Solution',
-  ],
+  applicationName: 'DMN솔루션',
+  title: SEO_DEFAULT_TITLE,
+  description: SEO_DEFAULT_DESCRIPTION,
+  keywords: SEO_KEYWORDS,
   authors: [{ name: 'DMN솔루션', url: SITE_ORIGIN }],
   creator: 'DMN솔루션',
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     title: 'DMN솔루션 — IDC · AI 보안 · 라이브 스트리밍',
-    description: 'IDC, AI 보안, 스트리밍을 서로 다른 상품 라인으로 운영합니다. 필요한 분야만 선택해 문의하세요.',
+    description: SEO_DEFAULT_DESCRIPTION,
     url: SITE_ORIGIN,
     siteName: 'DMN솔루션',
     locale: 'ko_KR',
     type: 'website',
+    images: [
+      {
+        url: SEO_OG_IMAGE,
+        width: 1200,
+        height: 438,
+        alt: 'DMN솔루션 로고',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DMN솔루션 — IDC · AI 보안 · 스트리밍',
-    description: '세 가지 사업을 독립된 서비스로 제공하며, 분야별로 견적·도입합니다.',
+    title: 'DMN솔루션 — IDC · AI 보안 · 라이브 스트리밍',
+    description: SEO_DEFAULT_DESCRIPTION,
+    images: [SEO_OG_IMAGE],
   },
   alternates: {
     canonical: SITE_ORIGIN,
