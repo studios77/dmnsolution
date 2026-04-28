@@ -27,7 +27,7 @@ export default function Footer() {
               DMN<span style={{ color: 'var(--accent)' }}>솔루션</span>
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.55 }}>
-              IDC · AI 보안 · 라이브 스트리밍
+              IDC · AI 보안 · 스트리밍 — 별도 상품
             </div>
           </div>
 

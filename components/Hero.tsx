@@ -1,3 +1,9 @@
+const lines = [
+  { href: '#services-idc', label: 'IDC · 서버', hint: '코로케이션 · MSP · HA' },
+  { href: '#services-security', label: 'AI 보안', hint: '관제 · 탐지 · 거버넌스' },
+  { href: '#services-streaming', label: '라이브 스트리밍', hint: 'Ultrastream · LL-HLS' },
+]
+
 export default function Hero() {
   return (
     <section id="hero" style={{
@@ -11,7 +17,6 @@ export default function Hero() {
       background: 'linear-gradient(165deg, #030712 0%, #0f172a 42%, #111827 100%)',
       borderBottom: '1px solid rgba(34, 197, 94, 0.18)',
     }}>
-      {/* Tech grid overlay */}
       <div
         aria-hidden
         style={{
@@ -57,68 +62,79 @@ export default function Hero() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)',
-            letterSpacing: '0.14em', padding: '6px 14px', marginBottom: 18,
+            letterSpacing: '0.12em', padding: '6px 14px', marginBottom: 18,
             borderRadius: 6,
             border: '1px solid rgba(34, 197, 94, 0.35)',
             background: 'rgba(34, 197, 94, 0.08)',
             animation: 'fadeUp 0.7s ease both',
           }}>
-            LIVE STACK · ULTRASTREAM ENGINE
+            THREE SERVICE LINES — 별도 견적 · 별도 계약
           </div>
 
           <div
             style={{
               display: 'flex',
-              flexWrap: 'wrap',
-              gap: '8px',
+              flexDirection: 'column',
+              gap: 10,
               marginBottom: 22,
               animation: 'fadeUp 0.7s 0.05s ease both',
             }}
-            aria-hidden
           >
-            {['RTMP', 'HLS', 'LL-HLS', 'WebRTC', 'SRT'].map(label => (
-              <span
-                key={label}
+            {lines.map(row => (
+              <a
+                key={row.href}
+                href={row.href}
                 style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: '0.62rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  padding: '6px 11px',
-                  borderRadius: 4,
-                  border: '1px solid rgba(148, 163, 184, 0.35)',
-                  background: 'rgba(15, 23, 42, 0.6)',
-                  color: '#cbd5e1',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  padding: '10px 14px',
+                  borderRadius: 8,
+                  border: '1px solid rgba(148, 163, 184, 0.25)',
+                  background: 'rgba(15, 23, 42, 0.55)',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.2s, background 0.2s',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(34, 197, 94, 0.45)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.85)'
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.25)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.55)'
                 }}
               >
-                {label}
-              </span>
+                <span style={{ fontFamily: 'var(--sans)', fontSize: '0.9rem', fontWeight: 700, color: '#f1f5f9' }}>{row.label}</span>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: '#94a3b8', textAlign: 'right' }}>{row.hint}</span>
+              </a>
             ))}
           </div>
 
           <h1 style={{
             fontFamily: 'var(--display)',
-            fontSize: 'clamp(2rem, 5vw, 3.35rem)',
+            fontSize: 'clamp(2rem, 5vw, 3.2rem)',
             fontWeight: 800,
-            lineHeight: 1.1,
+            lineHeight: 1.12,
             letterSpacing: '-0.035em',
             color: 'var(--hero-text)',
             marginBottom: 20,
             animation: 'fadeUp 0.7s 0.1s ease both',
           }}>
-            실시간 송출 인프라를<br />
-            <span style={{ color: 'var(--accent)' }}>서버에서 뷰어까지</span> 한 번에
+            IDC, AI 보안, 스트리밍을<br />
+            <span style={{ color: 'var(--accent)' }}>각각의 서비스</span>로 도입합니다
           </h1>
 
           <p style={{
             fontSize: '0.96rem',
             color: 'var(--hero-muted)',
-            maxWidth: 520,
+            maxWidth: 540,
             lineHeight: 1.78,
             marginBottom: 26,
             animation: 'fadeUp 0.7s 0.16s ease both',
           }}>
-            IDC·코로케이션부터 AI 보안 관제, Ultrastream(LL-HLS) 초저지연까지 — 미디어 서버 제품을 고르듯 모듈을 조합할 수 있습니다.
+            세 사업은 서로 다른 목표·SLA·운영 방식을 가집니다. 인프라만, 보안만, 송출만 — 필요한 라인만 골라 상세 스펙과 견적을 받을 수 있습니다. (여러 분야를 동시에 쓰는 경우에도{' '}
+            <strong style={{ color: '#e2e8f0', fontWeight: 600 }}>항목별로</strong> 구분해 제안합니다.)
           </p>
 
           <div style={{
@@ -142,7 +158,7 @@ export default function Hero() {
             }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
-            >서비스 카탈로그</a>
+            >분야별 서비스 보기</a>
             <a href="#contact" style={{
               padding: '14px 28px',
               background: 'transparent',
@@ -166,7 +182,7 @@ export default function Hero() {
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.45)'
               }}
-            >도입 문의</a>
+            >분야 지정 문의</a>
           </div>
         </div>
 
@@ -177,37 +193,71 @@ export default function Hero() {
           border: '1px solid rgba(34, 197, 94, 0.22)',
           borderRadius: 12,
           boxShadow: '0 24px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
-          padding: '26px 24px 22px',
+          padding: '24px 22px 20px',
           animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 14 }}>
-            지표 요약
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: 'var(--accent)', letterSpacing: '0.1em', marginBottom: 16 }}>
+            분야별 요약 (참고)
           </div>
-          <dl style={{ margin: 0, padding: 0 }}>
-            {[
-              { k: '가용성 목표', v: '99.99%', d: 'SLA는 서비스별 협의' },
-              { k: '송출 지연', v: '1~2초', d: 'LL-HLS 기준' },
-              { k: '대응', v: '24/7', d: '보안 · 장애' },
-              { k: '라인업', v: '14+', d: '상세에서 스펙 확인' },
-            ].map(row => (
-              <div key={row.k} style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'baseline',
-                gap: 12,
-                padding: '12px 0',
+          {[
+            {
+              title: 'IDC · 서버',
+              color: '#38bdf8',
+              items: [
+                { k: '가용·SLA', v: '99.99%', d: '인프라·계약별' },
+                { k: 'HA', v: '<30s', d: '페일오버 목표' },
+              ],
+            },
+            {
+              title: 'AI 보안',
+              color: '#22c55e',
+              items: [
+                { k: '관제', v: '24/7', d: '옵션·범위별' },
+                { k: '탐지', v: '95%+', d: '딥페이크 등 목표' },
+              ],
+            },
+            {
+              title: '스트리밍',
+              color: '#a78bfa',
+              items: [
+                { k: '지연', v: '1~2s', d: 'LL-HLS' },
+                { k: '엔진', v: 'Ultrastream', d: '채널·용량 별도' },
+              ],
+            },
+          ].map(block => (
+            <div
+              key={block.title}
+              style={{
+                marginBottom: 16,
+                paddingBottom: 16,
                 borderBottom: '1px solid rgba(51, 65, 85, 0.65)',
-              }}>
-                <dt style={{ fontSize: '0.76rem', color: '#94a3b8', fontWeight: 500, margin: 0 }}>{row.k}</dt>
-                <dd style={{ margin: 0, textAlign: 'right' }}>
-                  <span style={{ fontFamily: 'var(--display)', fontSize: '1.22rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
-                  <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: 2, maxWidth: 200 }}>{row.d}</div>
-                </dd>
+              }}
+            >
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', fontWeight: 700, color: block.color, letterSpacing: '0.06em', marginBottom: 10 }}>
+                {block.title}
               </div>
-            ))}
-          </dl>
-          <p style={{ marginTop: 14, fontSize: '0.65rem', color: '#64748b', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
-            실제 수치는 도입 환경에 따라 달라집니다.
+              {block.items.map(row => (
+                <div
+                  key={row.k}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'baseline',
+                    gap: 10,
+                    padding: '6px 0',
+                  }}
+                >
+                  <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>{row.k}</span>
+                  <span style={{ textAlign: 'right' }}>
+                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.05rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
+                    <div style={{ fontSize: '0.6rem', color: '#64748b', marginTop: 1 }}>{row.d}</div>
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+          <p style={{ margin: 0, fontSize: '0.62rem', color: '#64748b', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
+            실제 수치·범위는 견적서·SLA를 따릅니다.
           </p>
         </aside>
       </div>

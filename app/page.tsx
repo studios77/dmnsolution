@@ -38,7 +38,7 @@ export default function Home() {
         url: site,
         name: 'DMN솔루션',
         inLanguage: 'ko-KR',
-        description: 'IDC·AI 보안·라이브 스트리밍 통합 기술 서비스',
+        description: 'IDC·서버, AI 보안, 라이브 스트리밍을 각각 독립된 기술 서비스로 제공',
         publisher: { '@id': `${site}/#organization` },
       },
       {
@@ -47,7 +47,7 @@ export default function Home() {
         name: 'DMN솔루션',
         url: site,
         logo: `${site}/logo.png`,
-        description: 'IDC 서버 임대·위탁운영, AI 보안 관제와 스트림 이상 탐지·딥페이크 검출, Ultrastream 기반 라이브 스트리밍 등을 제공하는 기술 인프라 파트너',
+        description: 'IDC·서버 임대·위탁운영, AI 보안 관제·탐지, Ultrastream 기반 라이브 스트리밍 등을 분야별로 제공하는 기술 인프라 파트너. 각 사업은 별도 견적·계약이 가능합니다.',
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'KR',

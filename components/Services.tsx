@@ -16,7 +16,7 @@ const services: ServiceCard[] = [
   { icon: '🗄️', cat: 'IDC / DB', name: 'DB 이중화 매니지먼트', slug: 'db-cluster', desc: 'Galera Cluster·Master-Slave 구성·모니터링·자동복구 위탁관리. 슬로우쿼리 분석.', tags: ['Galera', 'ProxySQL', 'Percona'] },
   { icon: '🛠️', cat: 'IDC / 서버', name: '서버 장애 복구 및 이전', slug: 'system-recovery-migration', desc: '당사 IDC 입주 여부와 무관하게 외부 운영 서버·VM·온프레 환경까지 장애 복구·이전·성능·네트워크 지원. 원격·현장.', tags: ['긴급복구', '이전', '온프레'] },
   { icon: '🛡️', cat: 'AI 보안', name: 'AI 보안 관제', slug: 'ai-security', desc: '365일 24시간 무인 관제. 위협 자동 탐지·분류·대응과 비용 절감을 동시에. 공공·금융·중견기업 특화.', tags: ['24/7', '자동 대응', '컴플라이언스'] },
-  { icon: '🤖', cat: 'AI 보안', name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM 기반 SOC 자동화. Wazuh SIEM·SOAR 플레이북으로 탐지→분석→대응까지 연결.', tags: ['LLM', 'SIEM', 'SOAR'] },
+  { icon: '🤖', cat: 'AI 보안', name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM 기반 SOC 자동화. Wazuh SIEM·SOAR 플레이북으로 탐지·분석·대응을 자동화합니다.', tags: ['LLM', 'SIEM', 'SOAR'] },
   { icon: '🛰️', cat: 'AI 보안', name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'RTMP/HLS 트래픽 머신러닝 분석. 세션 하이재킹·인젝션·DDoS 실시간 탐지 및 자동차단.', tags: ['Python ML', 'MediaMTX', 'Fail2ban'] },
   { icon: '🔍', cat: 'AI 보안', name: '딥페이크 탐지 서비스', slug: 'deepfake-detection', desc: '라이브 스트림 내 AI 합성 영상·음성 실시간 검출. 방송사·기업 미디어 대상 고부가가치.', tags: ['PyTorch', 'ONNX', 'FaceForensics'] },
   { icon: '🌐', cat: 'AI 보안', name: '네트워크 보안 · IDS/IPS', slug: 'network-security', desc: '침입탐지·방지와 ML 보조 이상탐지. 경계·내부 세그먼트 가시화 및 SIEM 연동.', tags: ['Suricata', 'Zeek', 'eBPF'] },
@@ -26,23 +26,26 @@ const services: ServiceCard[] = [
   { icon: '🎬', cat: '스트리밍', name: 'VOD 관리 + 멀티 리스트림', slug: 'vod-multistream', desc: 'VOD 저장·썸네일 자동생성. 유튜브·트위치·네이버 동시 송출 자동화.', tags: ['MariaDB', 'Cloudflare', 'FFmpeg'] },
 ]
 
-const GROUPS: { id: string; title: string; subtitle: string; slugs: string[] }[] = [
+const GROUPS: { id: string; anchorId: string; title: string; subtitle: string; slugs: string[] }[] = [
   {
-    id: 'infra',
-    title: '호스팅 · 운영',
-    subtitle: '서버부터 이중화·복구까지 한 묶음으로',
+    id: 'idc',
+    anchorId: 'services-idc',
+    title: 'IDC · 서버 인프라',
+    subtitle: '데이터센터 입주·위탁운영·이중화·DB·장애 복구. IDC만 단독으로 문의·계약할 수 있습니다.',
     slugs: ['server-rental', 'managed-service', 'ha', 'db-cluster', 'system-recovery-migration'],
   },
   {
     id: 'security',
-    title: '보안 · 거버넌스',
-    subtitle: '관제·탐지·감사까지 필요한 만큼만',
+    anchorId: 'services-security',
+    title: 'AI 보안 · 거버넌스',
+    subtitle: '관제, 이상·딥페이크 탐지, 네트워크·제로트러스트, LLM 감사. 보안 라인은 인프라·스트리밍과 별도 견적입니다.',
     slugs: ['ai-security', 'ai-agent', 'ai-stream-security', 'deepfake-detection', 'network-security', 'zero-trust', 'llm-security-audit'],
   },
   {
     id: 'media',
-    title: '미디어 · 송출',
-    subtitle: '초저지연 라이브와 동시 송출',
+    anchorId: 'services-streaming',
+    title: '라이브 스트리밍 · 미디어',
+    subtitle: 'Ultrastream 엔진·VOD·멀티 송출. 송출 품질·채널 수는 스트리밍 상품 기준으로 산정합니다.',
     slugs: ['ultrastream', 'vod-multistream'],
   },
 ]
@@ -60,15 +63,15 @@ export default function Services() {
             서비스 카탈로그
           </div>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.85rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            필요한 모듈만 골라 붙입니다
+            세 가지 사업, 서로 다른 서비스
           </h2>
-          <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 620, lineHeight: 1.78 }}>
-            IDC·보안·스트리밍을 각각 고르거나 통합으로 문의할 수 있습니다. 카드를 누르면 상세 페이지에서 규격·도입 조건·견적 흐름을 이어갈 수 있습니다.
+          <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 640, lineHeight: 1.78 }}>
+            아래는 <strong style={{ color: 'var(--text)' }}>IDC</strong>, <strong style={{ color: 'var(--text)' }}>AI 보안</strong>, <strong style={{ color: 'var(--text)' }}>스트리밍</strong>으로 나뉜 목록입니다. 동시에 문의하셔도 견적·계약·운영은 분야별로 구분합니다. 카드를 누르면 해당 상품의 상세·스펙으로 이동합니다.
           </p>
         </div>
 
         {GROUPS.map((g, gi) => (
-          <div key={g.id} style={{ marginTop: gi === 0 ? 52 : 60 }}>
+          <div key={g.id} id={g.anchorId} style={{ marginTop: gi === 0 ? 52 : 60, scrollMarginTop: 88 }}>
             <div style={{ marginBottom: 24, paddingBottom: 14, borderBottom: '2px solid var(--text)' }}>
               <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>{g.title}</h3>
               <p style={{ fontSize: '0.88rem', color: 'var(--text3)', margin: 0 }}>{g.subtitle}</p>
@@ -98,7 +101,7 @@ export default function Services() {
                       onMouseEnter={e => {
                         const el = e.currentTarget as HTMLElement
                         el.style.transform = 'translate(-2px,-2px)'
-                        el.style.boxShadow = '8px 8px 0 rgba(194,65,12,0.12)'
+                        el.style.boxShadow = '8px 8px 0 rgba(34,197,94,0.15)'
                       }}
                       onMouseLeave={e => {
                         const el = e.currentTarget as HTMLElement

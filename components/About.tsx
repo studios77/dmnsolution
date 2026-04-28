@@ -1,9 +1,9 @@
 'use client'
 const whyItems = [
-  { num: '01', title: '한 군데서 끝나는 창구', desc: '네트워크·서버·스트림·장애 연락이 제각각이면 문제 생길 때마다 공만 돕니다. 설계·운영·장애를 같은 라인으로 잡습니다.' },
-  { num: '02', title: '로그·트래픽이 먼저', desc: '가짜 시나리오가 아니라 실제 트래픽·로그에 맞춰 룰과 모델을 붙입니다. 환경마다 튜닝합니다.' },
-  { num: '03', title: '화면(송출)에 맞춘 설계', desc: 'LL-HLS, VOD, 멀티 플랫폼 동시 송출까지 — 방송·커머스 일정에 맞춰 구성합니다.' },
-  { num: '04', title: '끊기지 않게 미리 잡는 HA', desc: '이중화·DB 클러스터·백업·DR은 나중이 아니라 처음 설계부터 같이 봅니다.' },
+  { num: '01', title: '분야별로 다른 목표', desc: 'IDC는 가용·복구, AI 보안은 탐지·관제, 스트리밍은 지연·동시 시청이 핵심입니다. 한 문장으로 뭉뚱그리지 않고 라인마다 요구사항을 나눕니다.' },
+  { num: '02', title: '로그·트래픽이 먼저', desc: '각 서비스에서 실제 트래픽·로그를 기준으로 룰과 모델·인프라 스펙을 잡습니다. 환경마다 튜닝합니다.' },
+  { num: '03', title: '상품 단위로 명확히', desc: '송출(HLS·VOD)과 보안(SIEM·딥페이크)은 계약 범위·SLA가 다릅니다. 혼합 도입 시에도 항목을 분리해 제안합니다.' },
+  { num: '04', title: '담당 창구는 하나, 범위는 구분', desc: '문의·장애 접점은 한곳으로 모을 수 있으나, 견적과 운영 책임은 IDC / 보안 / 스트리밍으로 나누어 정합니다.' },
 ]
 
 const summaryRows = [
@@ -24,10 +24,10 @@ export default function About() {
             회사 · 접근 방식
           </div>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.85rem)', fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            도입부터 운영까지 한 줄로
+            세 라인, 각각 다른 기준으로
           </h2>
           <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78, marginBottom: 0 }}>
-            인프라 업체·보안 업체·스트리밍 업체로 쪼개지면 장애 시 책임만 늘어납니다. 진단·운영 루틴을 같이 잡고, 위에서 고른 구성이 실제로 굴러가게 맞춥니다.
+            IDC·AI 보안·스트리밍은 통합 패키지가 아니라 <strong style={{ color: 'var(--text)', fontWeight: 600 }}>별도 상품</strong>입니다. 도입 검토 시 분야를 나누어 스펙과 SLA를 맞추고, 필요하면 동시에 제안하되 견적은 구분합니다.
           </p>
         </div>
 

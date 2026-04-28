@@ -1,14 +1,40 @@
-const pillars = [
-  { v: '1~2s', label: 'LL-HLS 지연(목표)', sub: 'Ultrastream' },
-  { v: '99.99%', label: '가용성 SLA', sub: '협의·환경별' },
-  { v: '24/7', label: '보안·모니터링', sub: 'AI 관제 옵션' },
-  { v: '14+', label: '서비스 모듈', sub: '조합·견적' },
+const lines = [
+  {
+    id: 'idc',
+    label: 'IDC · 서버',
+    border: 'rgba(56, 189, 248, 0.35)',
+    glow: 'rgba(56, 189, 248, 0.12)',
+    rows: [
+      { v: '99.99%', sub: '가용 SLA(목표)' },
+      { v: '<30s', sub: 'HA 페일오버' },
+    ],
+  },
+  {
+    id: 'security',
+    label: 'AI 보안',
+    border: 'rgba(34, 197, 94, 0.35)',
+    glow: 'rgba(34, 197, 94, 0.1)',
+    rows: [
+      { v: '24/7', sub: '관제·자동 대응' },
+      { v: '95%+', sub: '딥페이크·ML(목표)' },
+    ],
+  },
+  {
+    id: 'stream',
+    label: '스트리밍',
+    border: 'rgba(167, 139, 250, 0.35)',
+    glow: 'rgba(167, 139, 250, 0.1)',
+    rows: [
+      { v: '1~2s', sub: 'LL-HLS 지연' },
+      { v: '∞', sub: '동시 시청(엔진별)' },
+    ],
+  },
 ]
 
 export default function HomeValueStrip() {
   return (
     <section
-      aria-label="핵심 수치"
+      aria-label="분야별 참고 지표"
       style={{
         position: 'relative',
         zIndex: 1,
@@ -17,39 +43,66 @@ export default function HomeValueStrip() {
         borderBottom: '1px solid rgba(51, 65, 85, 0.8)',
       }}
     >
+      <p
+        style={{
+          maxWidth: 1100,
+          margin: '0 auto',
+          padding: '16px 5% 0',
+          fontSize: '0.72rem',
+          color: '#64748b',
+          fontFamily: 'var(--mono)',
+          letterSpacing: '0.04em',
+        }}
+      >
+        수치는 서비스·환경마다 다르며, 아래 세 줄은 각각 다른 상품 영역입니다.
+      </p>
       <div
         style={{
           maxWidth: 1100,
           margin: '0 auto',
-          padding: '24px 5%',
+          padding: '20px 5% 24px',
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 16,
         }}
         className="home-stat-grid"
       >
-        {pillars.map(p => (
+        {lines.map(line => (
           <div
-            key={p.label}
+            key={line.id}
             style={{
               textAlign: 'center',
-              padding: '12px 8px',
-              borderRadius: 8,
-              border: '1px solid rgba(51, 65, 85, 0.7)',
-              background: 'rgba(3, 7, 18, 0.45)',
+              padding: '16px 12px',
+              borderRadius: 10,
+              border: `1px solid ${line.border}`,
+              background: `linear-gradient(165deg, rgba(3,7,18,0.6) 0%, ${line.glow} 100%)`,
             }}
           >
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.55rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{p.v}</div>
-            <div style={{ fontSize: '0.78rem', color: '#e2e8f0', fontWeight: 600, marginTop: 4 }}>{p.label}</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: '#64748b', marginTop: 2 }}>{p.sub}</div>
+            <div
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '0.65rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                color: '#e2e8f0',
+                marginBottom: 12,
+              }}
+            >
+              {line.label}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
+              {line.rows.map(r => (
+                <div key={r.sub}>
+                  <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{r.v}</div>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: '#94a3b8', marginTop: 2 }}>{r.sub}</div>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
       <style>{`
         @media (max-width: 900px) {
-          .home-stat-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 480px) {
           .home-stat-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

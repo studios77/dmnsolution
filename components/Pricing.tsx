@@ -11,9 +11,9 @@ const plans = [
     features: ['Ultrastream 엔진 1채널','LL-HLS (최대 1080p)','동시 시청자 100명','VOD 저장 50GB','기본 모니터링 대시보드','이메일 기술지원'],
   },
   {
-    tier: 'Professional', name: 'Stream Pro + AI', price: '가격문의', unit: '', featured: true,
-    desc: '스트리밍과 AI 보안을 함께 쓰는 가장 많이 문의되는 플랜입니다.',
-    features: ['Ultrastream 엔진 5채널','ABR 4단계 (1080p~360p)','동시 시청자 1,000명','VOD 500GB + CDN','AI 이상탐지 + IP 차단','멀티플랫폼 동시 송출','24시간 Slack 지원'],
+    tier: 'Professional', name: 'Stream Pro', price: '가격문의', unit: '', featured: true,
+    desc: '스트리밍 단독 플래그십. AI 보안·IDC 옵션은 별도 견적로 추가할 수 있습니다.',
+    features: ['Ultrastream 엔진 5채널','ABR 4단계 (1080p~360p)','동시 시청자 1,000명','VOD 500GB + CDN','멀티플랫폼 동시 송출','엔드포인트 모니터링(기본)','24시간 Slack 지원 · AI 보안 옵션 별도'],
   },
   {
     tier: 'IDC Standard', name: '서버 위탁운영', price: '30만~', unit: '/월', featured: false,
@@ -101,8 +101,8 @@ export default function Pricing() {
             <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
               대표 요금제 · 맞춤 견적
             </h2>
-            <p style={{ fontSize: '0.97rem', color: 'var(--text2)', maxWidth: 600, lineHeight: 1.78 }}>
-              송출·서버·보안 패키지를 표로 정리했습니다. 표에 없는 조합은 문의 후 별도 견적입니다.
+            <p style={{ fontSize: '0.97rem', color: 'var(--text2)', maxWidth: 620, lineHeight: 1.78 }}>
+              아래는 대표 요금 예시입니다. IDC·AI 보안·스트리밍은 서로 다른 상품이므로, 표에 없는 조합이나 “한 분야만” 도입도 문의 후 별도 견적합니다.
             </p>
           </div>
 
@@ -177,9 +177,9 @@ export default function Pricing() {
 
           <div className="reveal" style={{ marginTop: 20, border: '2px solid var(--border)', borderRadius: 2, padding: '36px 28px', background: 'var(--bg2)', boxShadow: '8px 8px 0 rgba(20,18,17,0.06)' }}>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.12em', marginBottom: 10 }}>엔터프라이즈</div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>풀 AI 보안 스위트</div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>복수 라인 · 대규모 맞춤</div>
             <div style={{ fontFamily: 'var(--display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)', margin: '14px 0' }}>맞춤 견적</div>
-            <p style={{ fontSize: '0.86rem', color: 'var(--text2)', marginBottom: 20, lineHeight: 1.75, maxWidth: 640 }}>무제한 채널·전용 서버·AI 보안 관제·딥페이크·HA/DR·백업·외부 운영 서버 복구까지 한 번에 묶은 상위 패키지입니다.</p>
+            <p style={{ fontSize: '0.86rem', color: 'var(--text2)', marginBottom: 20, lineHeight: 1.75, maxWidth: 640 }}>IDC·보안·스트리밍 중 여러 라인을 동시에 쓰거나, 전용 서버·무제한 채널·관제 범위 확대 같은 대규모 요구가 있을 때 협의합니다. 항목별 범위와 SLA를 나누어 제안합니다.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 20px', marginBottom: 24 }}>
               {['무제한 채널 + 전용 서버','AI 보안 관제 24/7','딥페이크·스트림 ML','HA/DR 완전 이중화','LLM 보안 프로그램','현장·원격 복구','IDS/IPS 구성','전담 엔지니어'].map(f => (
                 <div key={f} style={{ fontSize: '0.83rem', color: 'var(--text2)', padding: '7px 0', borderBottom: '1px solid var(--border)', display: 'flex', gap: 10 }}>
@@ -188,7 +188,7 @@ export default function Pricing() {
               ))}
             </div>
             <button
-              onClick={() => openModal('Full AI Security Suite', 'Enterprise')}
+              onClick={() => openModal('복수 라인 · 대규모 맞춤', 'Enterprise')}
               style={{ display: 'inline-block', padding: '12px 32px', background: 'var(--accent)', color: '#fff', borderRadius: 2, fontFamily: 'var(--mono)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
             >
               엔터프라이즈 상담

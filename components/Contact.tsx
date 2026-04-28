@@ -174,7 +174,7 @@ export default function Contact() {
                     </optgroup>
                     <optgroup label="기타">
                       <option>DR 재해복구</option>
-                      <option>엔터프라이즈 (전체 통합)</option>
+                      <option>엔터프라이즈 (복수 라인 · 맞춤)</option>
                       <option>기타 / 복합 문의</option>
                     </optgroup>
                   </select>
