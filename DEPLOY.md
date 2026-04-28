@@ -11,6 +11,17 @@
 
 ---
 
+### Cloudflare·도메인 — 이렇게 이해하면 됩니다
+
+| 질문 | 답 |
+|------|-----|
+| **Cloudflare에서 도메인을 새로 사야 하나?** | **아니오.** 배포에는 **Workers & Pages → Pages** 만 있으면 됩니다. **도메인 등록(구매·이전)은 필수 아님.** |
+| **DNS를 타사(가비아, 후이즈, Route53 등)에서 쓰는데 괜찮나?** | **임시로 사이트만 볼 때**는 DNS와 **무관**합니다. Git만 연결해 배포하면 **`https://○○○.pages.dev`** 로 바로 열 수 있습니다. |
+| **임시로만 보려면?** | 아래 **「2. Cloudflare Pages」** 만 진행하세요. 완료 후 주소는 **`프로젝트이름.pages.dev`** (배포 화면·프로젝트 **Domains** 에 표시). |
+| **나중에 `dmns.co.kr`을 이 사이트로 쓰려면?** | 그때 **Pages 프로젝트 → Custom domains** 에 `dmns.co.kr` 추가 → Cloudflare가 **타사 DNS에 넣을 CNAME/TXT** 를 안내합니다. **네임서버를 Cloudflare로 옮기지 않아도** “CNAME만 타사에 추가”하는 방식이 가능한 경우가 많습니다(화면 안내 따름). |
+
+---
+
 ## 1. Vercel — 임시 도메인 `*.vercel.app`
 
 1. [Vercel](https://vercel.com) 로그인 → **Add New…** → **Project**
@@ -52,9 +63,9 @@
    `.nvmrc` 만으로도 종종 잡히지만, Pages에서는 **`NODE_VERSION=20`** 을 명시하는 편이 안전합니다.
 
 6. **Save and Deploy**.
-7. 완료 후 **`프로젝트명.pages.dev`** 주소가 발급됩니다 — 이게 **임시 공개 데모 URL**입니다.
+7. 완료 후 프로젝트 **Overview** 또는 **Custom domains** 에 **`https://프로젝트명.pages.dev`** 가 보입니다. **이것만으로 임시 데모 완료** — 별도 도메인 구매·DNS 설정 없음.
 
-**커스텀 도메인:** 프로젝트 **Custom domains** 에 `dmns.co.kr` 등을 추가하면, Cloudflare DNS 안내에 따라 연결하면 됩니다.
+**나중에 본인 도메인 연결:** **Custom domains** 에 `dmns.co.kr` 입력 → 표시되는 **CNAME/TXT** 를 **지금 쓰는 타사 DNS 관리 화면**에 추가(또는 Cloudflare가 네임서버 이전을 권유할 수 있음). **임시 데모 단계에서는 아무 것도 넣지 않아도 됨.**
 
 ---
 
