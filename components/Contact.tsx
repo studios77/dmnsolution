@@ -76,12 +76,12 @@ export default function Contact() {
     <section id="contact" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Contact
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
+            Inquiry
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 16 }}>서비스 문의</h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text)', maxWidth: 520, lineHeight: 1.8 }}>전문 엔지니어가 검토 후 24시간 내 회신드리며, 긴급 장애는 즉시 대응합니다.</p>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.85rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 12 }}>
+            문의·견적 요청</h2>
+          <p style={{ fontSize: '0.94rem', color: 'var(--text)', maxWidth: 520, lineHeight: 1.8 }}>접수 후 영업일 기준으로 검토해 회신드립니다. 긴급 장애는 별도 연락처로 안내드립니다.</p>
         </div>
 
         <div className="reveal contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 60, marginTop: 60, alignItems: 'start' }}>
@@ -89,12 +89,12 @@ export default function Contact() {
             {contactItems.map(c => (
               <div key={c.title} style={{
                 display: 'flex', gap: 14, alignItems: 'flex-start', padding: '14px 16px',
-                background: c.highlight ? 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.04))' : 'var(--surface)',
+                background: c.highlight ? 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(37,99,235,0.03))' : 'var(--surface)',
                 border: c.highlight ? '1.5px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 6,
-                boxShadow: c.highlight ? '0 0 16px rgba(16,185,129,0.1)' : 'none',
+                boxShadow: c.highlight ? '0 0 16px rgba(37,99,235,0.12)' : 'none',
               }}>
-                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'rgba(16,185,129,0.15)' : 'rgba(15,23,42,0.06)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
+                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'rgba(37,99,235,0.12)' : 'rgba(15,23,42,0.06)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
                 <div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: c.highlight ? 'var(--accent)' : 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>{c.title}</div>
                   {c.lines ? (

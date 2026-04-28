@@ -289,7 +289,7 @@ export default function Nav() {
               ;(e.target as HTMLElement).style.color = 'var(--accent)'
             }}
           >
-            무료 상담
+            문의
           </Link>
 
           <button

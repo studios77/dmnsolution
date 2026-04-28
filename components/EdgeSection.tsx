@@ -72,16 +72,15 @@ export default function EdgeSection() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
 
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Competitive Edge
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
+            Capabilities
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 14 }}>
-            경쟁사 대비 두드러지는<br />
-            <span style={{ background: 'linear-gradient(135deg,#059669,#0d9488,#d97706)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>세 가지 기술 강점</span>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.85rem)', fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 14 }}>
+            업계별로 요구되는<br />
+            <span style={{ background: 'linear-gradient(135deg,#1d4ed8,#0369a1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>핵심 기술 과제</span>
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text2)', lineHeight: 1.8, maxWidth: 560 }}>
-            딥페이크 탐지, AI 보안 관제, 초저지연 스트리밍을 라이브·보안 환경에 맞춰 제공합니다. 설계부터 운영까지 한 팀이 맡습니다.
+          <p style={{ fontSize: '0.94rem', color: 'var(--text2)', lineHeight: 1.8, maxWidth: 560 }}>
+            검·관제·송출에서 반복되는 난제를 제품형 구성으로 묶어 제시합니다. 라이브 신뢰도, 실시간 분석, 초저지연 전송에 각각 초점을 두었습니다.
           </p>
         </div>
 

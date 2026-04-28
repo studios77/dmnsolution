@@ -95,12 +95,14 @@ export default function Pricing() {
       <section id="pricing" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
           <div className="reveal">
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
+            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
               Pricing
             </div>
-            <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 16 }}>투명한 요금제</h2>
-            <p style={{ fontSize: '0.95rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.8 }}>스트리밍, AI 보안, IDC 운영 중 필요한 범위만 선택하세요. 기업용 맞춰 견적도 상담으로 안내합니다.</p>
+            <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.85rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 12 }}>
+              표준 과금 패키지
+            </h2>
+            <p style={{ fontSize: '0.94rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.8 }}>
+              송출·보안·서버 패키지를 비교표 형태로 정리했습니다. 요금표에 없는 구성은 견적서로 별도 산출합니다.</p>
           </div>
 
           <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, marginTop: 60 }}>

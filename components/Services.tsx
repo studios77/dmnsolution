@@ -26,64 +26,105 @@ const services: ServiceCard[] = [
   { icon: '🎬', cat: '스트리밍', name: 'VOD 관리 + 멀티 리스트림', slug: 'vod-multistream', desc: 'VOD 저장·썸네일 자동생성. 유튜브·트위치·네이버 동시 송출 자동화.', tags: ['MariaDB','Cloudflare','FFmpeg'] },
 ]
 
+const GROUPS: { id: string; title: string; subtitle: string; slugs: string[] }[] = [
+  {
+    id: 'infra',
+    title: '호스팅 · 운영',
+    subtitle: 'IDC, 위탁운영, 이중화, 복구',
+    slugs: ['server-rental', 'managed-service', 'ha', 'db-cluster', 'system-recovery-migration'],
+  },
+  {
+    id: 'security',
+    title: '보안 · 거버넌스',
+    subtitle: '관제, 이상탐지, 제로트러스트, LLM 감사',
+    slugs: ['ai-security', 'ai-agent', 'ai-stream-security', 'deepfake-detection', 'network-security', 'zero-trust', 'llm-security-audit'],
+  },
+  {
+    id: 'media',
+    title: '미디어 · 송출',
+    subtitle: '저지연 스트림, 멀티 플랫폼',
+    slugs: ['ultrastream', 'vod-multistream'],
+  },
+]
+
+function cardFor(slug: string): ServiceCard | undefined {
+  return services.find(s => s.slug === slug)
+}
+
 export default function Services() {
   return (
-    <section id="services" style={{ background: 'var(--bg2)', position: 'relative', zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
+    <section id="services" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '88px 5% 100px' }}>
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Services
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: '#b45309', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
+            Portfolio
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 16 }}>통합 기술 서비스</h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.8 }}>IDC 인프라, AI 보안, 라이브 스트리밍을 한 플랫폼에서. 필요한 항목만 고르거나, 전체를 맡기셔도 됩니다.</p>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.75rem,4vw,2.65rem)', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 12 }}>
+            사업 라인별 구성안
+          </h2>
+          <p style={{ fontSize: '0.94rem', color: 'var(--text2)', maxWidth: 560, lineHeight: 1.8 }}>
+            카테고리별로 필요한 SKU만 선택하거나 통합 패키지로 제안합니다. 모든 항목은 상세 페이지에서 규격·도입 조건을 확인할 수 있습니다.
+          </p>
         </div>
 
-        <div className="reveal" style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 20, marginTop: 60,
-        }}>
-          {services.map(s => (
-            <Link key={s.slug} href={`/services/${s.slug}/`} title={s.name} style={{ textDecoration: 'none', minWidth: 0 }}>
-              <div style={{
-                background: 'rgba(255,255,255,0.6)', padding: '36px 28px', height: '100%',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', cursor: 'pointer',
-                position: 'relative', overflow: 'hidden', minWidth: 0,
-                borderRadius: 20, border: '1px solid var(--border)',
-                backdropFilter: 'blur(12px)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
-              }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.background = '#ffffff'
-                  ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'
-                  ;(e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(16,185,129,0.12)'
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--border2)'
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.6)'
-                  ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                  ;(e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)'
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'
-                }}
-              >
-                <div style={{ fontSize: '1.4rem', marginBottom: 20, width: 48, height: 48, border: '1px solid var(--border2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface)', boxShadow: '0 4px 12px rgba(16,185,129,0.08)' }}>{s.icon}</div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--accent)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8, fontWeight: 600 }}>{s.cat}</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1rem, 2.2vw, 1.1rem)', fontWeight: 700, color: 'var(--text)', marginBottom: 12, letterSpacing: '-0.02em', lineHeight: 1.35, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', minWidth: 0 }}>
-                  {s.name}
-                </div>
-                <div style={{ fontSize: '0.86rem', color: 'var(--text2)', lineHeight: 1.65, marginBottom: 20, wordBreak: 'keep-all' }}>{s.desc}</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {s.tags.map(t => (
-                    <span key={t} style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', padding: '4px 10px', background: 'rgba(16,185,129,0.05)', border: '1px solid var(--border)', borderRadius: 20, color: 'var(--text3)', letterSpacing: '0.02em', fontWeight: 500 }}>{t}</span>
-                  ))}
-                </div>
-                <div style={{ marginTop: 24, fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--accent)', letterSpacing: '0.04em', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
-                  자세히 보기 <span style={{ fontSize: '1rem' }}>→</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {GROUPS.map((g, gi) => (
+          <div key={g.id} style={{ marginTop: gi === 0 ? 48 : 56 }}>
+            <div style={{ marginBottom: 24, paddingBottom: 12, borderBottom: '2px solid rgba(37,99,235,0.12)' }}>
+              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.15rem', fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{g.title}</h3>
+              <p style={{ fontSize: '0.82rem', color: 'var(--text3)', margin: 0 }}>{g.subtitle}</p>
+            </div>
+            <div className="reveal" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 18,
+            }}>
+              {g.slugs.map(slug => {
+                const s = cardFor(slug)
+                if (!s) return null
+                return (
+                  <Link key={s.slug} href={`/services/${s.slug}/`} title={s.name} style={{ textDecoration: 'none', minWidth: 0 }}>
+                    <div style={{
+                      background: gi % 2 === 0 ? 'rgba(255,255,255,0.92)' : 'rgba(248,250,255,0.95)',
+                      padding: '28px 22px',
+                      height: '100%',
+                      transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      borderRadius: 10,
+                      border: '1px solid rgba(37,99,235,0.1)',
+                      boxShadow: '0 4px 16px rgba(15,23,42,0.04)',
+                    }}
+                      onMouseEnter={e => {
+                        const el = e.currentTarget as HTMLElement
+                        el.style.transform = 'translateY(-3px)'
+                        el.style.boxShadow = '0 12px 28px rgba(37,99,235,0.12)'
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget as HTMLElement
+                        el.style.transform = 'translateY(0)'
+                        el.style.boxShadow = '0 4px 16px rgba(15,23,42,0.04)'
+                      }}
+                    >
+                      <div style={{ fontSize: '1.25rem', marginBottom: 14 }} aria-hidden>{s.icon}</div>
+                      <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: '#2563eb', letterSpacing: '0.06em', marginBottom: 8, fontWeight: 600 }}>{s.cat}</div>
+                      <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1rem, 2vw, 1.08rem)', fontWeight: 700, color: 'var(--text)', marginBottom: 10, lineHeight: 1.35 }}>{s.name}</div>
+                      <div style={{ fontSize: '0.84rem', color: 'var(--text2)', lineHeight: 1.62, marginBottom: 16, wordBreak: 'keep-all' }}>{s.desc}</div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                        {s.tags.map(t => (
+                          <span key={t} style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', padding: '3px 8px', background: 'rgba(37,99,235,0.06)', border: '1px solid rgba(37,99,235,0.12)', borderRadius: 4, color: 'var(--text3)' }}>{t}</span>
+                        ))}
+                      </div>
+                      <div style={{ marginTop: 18, fontFamily: 'var(--mono)', fontSize: '0.72rem', color: '#2563eb', fontWeight: 600 }}>
+                        상세 보기 →
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )

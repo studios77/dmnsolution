@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Nav from '@/components/Nav'
 import { SITE_ORIGIN } from '@/lib/site'
 import Hero from '@/components/Hero'
+import HomeValueStrip from '@/components/HomeValueStrip'
 import Services from '@/components/Services'
 import Pricing from '@/components/Pricing'
 import About from '@/components/About'
@@ -104,10 +105,11 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         <Hero />
+        <HomeValueStrip />
         <Services />
+        <About />
         <EdgeSection />
         <Pricing />
-        <About />
         <Contact />
       </main>
       <Footer />
