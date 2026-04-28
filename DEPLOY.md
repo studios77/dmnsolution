@@ -69,6 +69,52 @@
 
 ---
 
+## 2-1. 타사 DNS 유지한 채 `dmns.co.kr` → Cloudflare Pages 연결
+
+네임서버를 Cloudflare로 옮기지 않고 **가비아·후이즈·카페24 DNS 등 외부에 두는 경우**도 가능합니다. 순서는 아래와 같습니다.
+
+### A. Cloudflare Pages 쪽 (먼저)
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → 해당 Pages 프로젝트 선택.
+2. **Custom domains** → **Set up a custom domain**.
+3. 입력 예:
+   - 루트: **`dmns.co.kr`**
+   - 필요하면 **`www.dmns.co.kr`** 도 추가.
+4. 저장 후 화면에 **타사 DNS에 넣을 레코드**가 표시됩니다.  
+   - **`www`** → 보통 **CNAME** 이 **`프로젝트명.pages.dev`** (예: `dmnsolution.pages.dev`) 를 가리키게 안내합니다.  
+     현재 임시 주소가 `https://d32bd49b.dmnsolution.pages.dev/` 라면, 안내에 나온 **목표 호스트명**을 그대로 사용하면 됩니다. (커스텀 도메인 연결 후에는 보통 **`*.pages.dev`** 로 통일된 이름을 줍니다.)
+   - **루트(`dmns.co.kr`)** 는 제공자마다 **ALIAS/ANAME/CNAME flattening** 지원 여부가 다릅니다. 지원하면 안내한 **CNAME** 한 줄만 넣으면 되고, 없으면 아래 **B-2** 참고.
+
+### B. 외부 DNS 관리 화면 (가비아 등)
+
+**B-1. `www.dmns.co.kr`만 쓸 때 (가장 단순)**
+
+| 타입 | 이름(호스트) | 값 |
+|------|----------------|-----|
+| **CNAME** | `www` | Pages 안내에 적힌 값 (예: `dmnsolution.pages.dev` 또는 프로젝트별 hostname — **대시보드 표시를 따름**) |
+
+TTL은 기본(자동) 또는 300초 등으로 두면 됩니다.
+
+**B-2. 루트 `dmns.co.kr`(APEX)까지 같은 사이트로 열고 싶을 때**
+
+1. DNS 업체가 **루트에 CNAME** 을 허용(ALIAS)** 하는지 확인합니다.**  
+   - 허용하면 Cloudflare가 안내하는 **루트용 CNAME/별칭** 한 줄 추가.
+2. **허용하지 않으면** 선택지는 다음 중 하나입니다.
+   - 루트에서 **`www.dmns.co.kr` 로 URL 리다이렉트**(301)만 설정하고, 실제 서비스는 `www` 로만 연결.
+   - 또는 도메인만 Cloudflare로 옮겨 **DNS만 Cloudflare** 로 두는 방법(별도 검토).
+
+### C. SSL
+
+- Pages 커스텀 도메인은 Cloudflare가 **자동으로 인증서**를 발급합니다. DNS가 올바르게 연결되면 몇 분~최대 수십 분 내 **HTTPS** 로 열립니다.
+- DNS만 넣고 **Pages에 도메인을 추가하지 않으면** 인증이 안 되므로, 반드시 **A단계**를 먼저 완료하세요.
+
+### D. 이 저장소(코드)에서 할 일
+
+- 프로덕션 기준 URL은 이미 **`lib/site.ts`** 의 `SITE_ORIGIN = 'https://dmns.co.kr'` 로 맞춰 두었습니다. DNS만 성공하면 별도 수정 없이 동일 코드로 배포하면 됩니다.
+- 배포 미리보기 주소(`*.pages.dev`)만 쓸 때는 검색·canonical 이 어긋날 수 있으므로, **실서비스는 커스텀 도메인 연결 후**를 권장합니다.
+
+---
+
 ## 3. 배포 확인
 
 빌드 로그에서 `next build` 가 끝난 뒤 `out/` 이 생성되어야 하고, 접속 시:
