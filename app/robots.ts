@@ -1,9 +1,10 @@
 import type { MetadataRoute } from 'next'
+import { SITE_ORIGIN } from '@/lib/site'
 
 export const dynamic = 'force-static'
 export const revalidate = false
 
-const BASE = 'https://dmnsolution.co.kr'
+const BASE = SITE_ORIGIN
 
 export default function robots(): MetadataRoute.Robots {
   return {

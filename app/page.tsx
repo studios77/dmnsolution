@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import Nav from '@/components/Nav'
+import { SITE_ORIGIN } from '@/lib/site'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
 import Pricing from '@/components/Pricing'
@@ -26,7 +27,7 @@ export default function Home() {
     return () => obs.disconnect()
   }, [])
 
-  const site = 'https://dmnsolution.co.kr'
+  const site = SITE_ORIGIN
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -101,7 +102,7 @@ export default function Home() {
       />
       <div className="grid-bg" />
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <Services />
         <EdgeSection />

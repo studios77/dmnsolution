@@ -1,18 +1,66 @@
 import Link from 'next/link'
+import ChatBot from '@/components/ChatBot'
+import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
+import ScrollTop from '@/components/ScrollTop'
 import type { ServiceData } from '@/lib/servicesData'
 import { servicesData } from '@/lib/servicesData'
 
+function getRelatedServices(current: ServiceData): ServiceData[] {
+  const rest = servicesData.filter(sv => sv.slug !== current.slug)
+  const sameCat = rest.filter(sv => sv.cat === current.cat)
+  const other = rest.filter(sv => sv.cat !== current.cat)
+  return [...sameCat, ...other].slice(0, 4)
+}
+
 export default function ServiceDetailPage({ s }: { s: ServiceData }) {
+  const related = getRelatedServices(s)
+
   return (
-    <main style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--text)' }}>
+    <>
       <Nav />
 
-      <section style={{ padding: '120px 5% 80px', maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-          {s.cat}
-        </div>
+      <main id="main-content" style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--text)' }}>
+        <section style={{ padding: '112px 5% 80px', maxWidth: 1100, margin: '0 auto' }}>
+          <div role="navigation" aria-label="breadcrumb" style={{ marginBottom: 20 }}>
+            <ol
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: 8,
+                fontSize: '0.74rem',
+                color: 'var(--text3)',
+                fontFamily: 'var(--mono)',
+                letterSpacing: '0.04em',
+              }}
+            >
+              <li>
+                <Link href="/" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
+                  홈
+                </Link>
+              </li>
+              <li aria-hidden="true" style={{ color: 'var(--border2)' }}>
+                /
+              </li>
+              <li>
+                <Link href="/#services" style={{ color: 'var(--text3)', textDecoration: 'none' }}>
+                  {s.cat}
+                </Link>
+              </li>
+              <li aria-hidden="true" style={{ color: 'var(--border2)' }}>
+                /
+              </li>
+              <li style={{ color: 'var(--text)', fontWeight: 600, maxWidth: '100%', wordBreak: 'keep-all' }}>{s.name}</li>
+            </ol>
+          </div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
+            {s.cat}
+          </div>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
           <div style={{ fontSize: '2.4rem', width: 72, height: 72, border: '1px solid var(--border2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface)', flexShrink: 0 }}>
             {s.icon}
@@ -143,7 +191,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--text3)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 28 }}>관련 서비스</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
-            {servicesData.filter(sv => sv.slug !== s.slug).slice(0, 4).map(sv => (
+            {related.map(sv => (
               <Link key={sv.slug} href={`/services/${sv.slug}/`} title={sv.name} style={{ display: 'block', padding: '18px 16px', textDecoration: 'none', border: '1px solid var(--border)', borderRadius: 6, background: 'var(--surface)' }}>
                 <div style={{ fontSize: '1.05rem', marginBottom: 8 }}>{sv.icon}</div>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>{sv.cat}</div>
@@ -158,6 +206,11 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
       <style>{`
         @media(max-width:768px){ .specs-grid { grid-template-columns: 1fr !important; gap: 40px !important; } }
       `}</style>
-    </main>
+      </main>
+
+      <Footer />
+      <ChatBot />
+      <ScrollTop />
+    </>
   )
 }

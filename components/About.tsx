@@ -77,7 +77,7 @@ export default function About() {
           <div style={{ background: '#022c22', border: '1px solid var(--border2)', borderRadius: 8, overflow: 'hidden', fontFamily: 'var(--mono)' }}>
             <div style={{ background: 'var(--surface)', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 6, borderBottom: '1px solid var(--border)' }}>
               {['#ff5f57','#febc2e','#28c840'].map(c => <span key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block' }} />)}
-              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', marginLeft: 'auto', letterSpacing: '0.05em' }}>dmnsolution — security-monitor</span>
+              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', marginLeft: 'auto', letterSpacing: '0.05em' }}>dmns.co.kr — security-monitor</span>
             </div>
             <div ref={termRef} style={{ padding: 20, fontSize: '0.78rem', lineHeight: 2 }}>
               {termLines.map((line, i) => (

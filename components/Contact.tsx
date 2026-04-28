@@ -61,9 +61,9 @@ export default function Contact() {
     val?: string
     lines?: string[]
   }> = [
-    { icon: '📧', title: 'Email', val: 'contact@dmnsolution.co.kr' },
+    { icon: '📧', title: 'Email', val: 'contact@dmns.co.kr' },
     { icon: '📞', title: '긴급 24시간 연락처', val: '010-3204-3847', highlight: true },
-    { icon: '💬', title: 'Kakao / Telegram', val: '@lunarflux_support' },
+    { icon: '💬', title: 'Kakao / Telegram', val: '@dmnsolution' },
     {
       icon: '🕐',
       title: '응답 시간',
@@ -116,7 +116,7 @@ export default function Contact() {
               <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                 {[
                   { label: '이름 / 담당자', name: 'name', type: 'text', placeholder: '홍길동' },
-                  { label: '회사명', name: 'company', type: 'text', placeholder: '(주)루나테크' },
+                  { label: '회사명', name: 'company', type: 'text', placeholder: '(주)회사명' },
                   { label: '이메일', name: 'email', type: 'email', placeholder: 'contact@company.com' },
                   { label: '연락처', name: 'phone', type: 'tel', placeholder: '010-0000-0000' },
                 ].map(f => (
@@ -194,7 +194,7 @@ export default function Contact() {
                 opacity: status === 'sending' ? 0.7 : 1,
               }}>
                 {status === 'sending' && '전송 중…'}
-                {status === 'success' && '전송 완료 — 곳 연락드리겠습니다 ✓'}
+                {status === 'success' && '전송 완료 — 곧 연락드리겠습니다 ✓'}
                 {status === 'error' && '전송 실패 — 다시 시도해주세요'}
                 {status === 'idle' && (
                   <>

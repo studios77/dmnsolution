@@ -54,14 +54,14 @@ function getBotResponse(input: string): string {
   }
 
   if (q.includes('상담') || q.includes('문의') || q.includes('연락') || q.includes('신청')) {
-    return '무료 상담을 원하신다면 페이지 하단의 [문의하기] 섹션을 이용해 주세요.\n\n📧 이메일: contact@dmnsolution.co.kr\n⏰ 응답 시간: 영업일 기준 24시간 이내\n\n또는 원하시는 서비스에 대해 여기서 질문해 주시면 안내해 드리겠습니다!'
+    return '무료 상담을 원하신다면 페이지 하단의 [문의하기] 섹션을 이용해 주세요.\n\n📧 이메일: contact@dmns.co.kr\n⏰ 응답 시간: 영업일 기준 24시간 이내\n\n또는 원하시는 서비스에 대해 여기서 질문해 주시면 안내해 드리겠습니다!'
   }
 
   if (q.includes('안녕') || q.includes('hello') || q.includes('hi') || q.includes('반가')) {
     return '안녕하세요! DMN솔루션 어시스턴트입니다. 😊\n\nIDC 서버, 스트리밍, AI 보안, 백업/DR 등 다양한 서비스를 제공하고 있습니다. 궁금하신 점을 편하게 물어보세요!'
   }
 
-  if (q.includes('소개') || q.includes('회사') || q.includes('dmnsolution') || q.includes('dmn솔루션')) {
+  if (q.includes('소개') || q.includes('회사') || q.includes('dmnsolution') || q.includes('dmns.co.kr') || q.includes('dmn솔루션')) {
     return 'DMN솔루션은 IDC 인프라와 AI 보안, 스트리밍을 통합한 기술 전문 기업입니다.\n\n🌙 주요 사업 분야\n✔ IDC 서버 임대·위탁운영\n✔ 스트리밍 솔루션 / 영상 플랫폼\n✔ AI 보안 / 딥페이크 탐지\n✔ 네트워크 보안\n✔ 백업 / 재해복구(DR)\n\n기업 고객의 디지털 인프라를 안전하고 효율적으로 운영할 수 있도록 지원합니다.'
   }
 

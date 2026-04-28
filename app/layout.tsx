@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { SITE_ORIGIN } from '@/lib/site'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -7,9 +8,7 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 }
 
-const SITE = new URL('https://dmnsolution.co.kr')
-
-export const metadataBase = SITE
+export const metadataBase = new URL(SITE_ORIGIN)
 
 export const metadata: Metadata = {
   title: 'DMN솔루션 — IDC 서버 임대·AI 보안·스트리밍 통합 플랫폼',
@@ -28,13 +27,13 @@ export const metadata: Metadata = {
     '서버 복구', '서버 장애 복구', '시스템 이전', '트러블슈팅', '온프레미스 기술지원',
     'DMN솔루션', 'DMN Solution',
   ],
-  authors: [{ name: 'DMN솔루션', url: 'https://dmnsolution.co.kr' }],
+  authors: [{ name: 'DMN솔루션', url: SITE_ORIGIN }],
   creator: 'DMN솔루션',
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     title: 'DMN솔루션 — IDC 서버 임대·AI 보안·스트리밍 통합 플랫폼',
     description: 'IDC 인프라와 AI 보안, 초저지연 스트리밍을 함께 제공합니다.',
-    url: 'https://dmnsolution.co.kr',
+    url: SITE_ORIGIN,
     siteName: 'DMN솔루션',
     locale: 'ko_KR',
     type: 'website',
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
     description: 'IDC·AI 보안·라이브 스트리밍을 한 팀이 맡습니다.',
   },
   alternates: {
-    canonical: 'https://dmnsolution.co.kr',
+    canonical: SITE_ORIGIN,
   },
   robots: {
     index: true,
@@ -73,7 +72,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          본문으로 건너뛰기
+        </a>
+        {children}
+      </body>
     </html>
   )
 }

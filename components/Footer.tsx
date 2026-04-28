@@ -1,10 +1,10 @@
 'use client'
 
 const links = [
-  ['서비스', '#services'],
-  ['요금', '#pricing'],
-  ['소개', '#about'],
-  ['문의', '#contact'],
+  ['서비스', '/#services'],
+  ['요금', '/#pricing'],
+  ['소개', '/#about'],
+  ['문의', '/#contact'],
 ]
 
 const companyInfo = [
@@ -12,7 +12,7 @@ const companyInfo = [
   { label: '사업자등록번호', value: '536-88-02408' },
   { label: '주소', value: '서울시 강서구 마곡중앙6로 21, 508호' },
   { label: '전화', value: '0505-924-1004' },
-  { label: '이메일', value: 'contact@dmnsolution.co.kr' },
+  { label: '이메일', value: 'contact@dmns.co.kr' },
 ]
 
 export default function Footer() {
@@ -60,7 +60,7 @@ export default function Footer() {
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'center' }}>
           <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#475569', letterSpacing: '0.06em' }}>
-            © 2025 DMN솔루션. All rights reserved.
+            © 2026 DMN솔루션. All rights reserved.
           </span>
         </div>
       </div>
