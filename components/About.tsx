@@ -9,8 +9,8 @@ const whyItems = [
 ]
 
 const termLines = [
-  { type: 'prompt', text: '$ lunarflux status --all' },
-  { type: 'out', text: 'LunarFlux 엔진에 연결 중…' },
+  { type: 'prompt', text: '$ dmn status --all' },
+  { type: 'out', text: 'DMN솔루션 시스템에 연결 중…' },
   { type: 'blank' },
   { type: 'ok', text: '✓ MediaMTX      running — 4 streams active' },
   { type: 'ok', text: '✓ HA Cluster    ACTIVE-ACTIVE — no failover' },
@@ -52,9 +52,9 @@ export default function About() {
         <div className="reveal">
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Why LunarfluxAI
+            Why DMN솔루션
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 16 }}>왜 LunarfluxAI인가?</h2>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--text)', marginBottom: 16 }}>왜 DMN솔루션인가?</h2>
           <p style={{ fontSize: '0.95rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.75, marginBottom: 8 }}>인프라와 AI 보안, 스트리밍을 나눠 맡기지 않고 한 팀이 맡습니다. 설계부터 운영·장애 대응까지 이어집니다.</p>
         </div>
 
@@ -77,7 +77,7 @@ export default function About() {
           <div style={{ background: '#022c22', border: '1px solid var(--border2)', borderRadius: 8, overflow: 'hidden', fontFamily: 'var(--mono)' }}>
             <div style={{ background: 'var(--surface)', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 6, borderBottom: '1px solid var(--border)' }}>
               {['#ff5f57','#febc2e','#28c840'].map(c => <span key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block' }} />)}
-              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', marginLeft: 'auto', letterSpacing: '0.05em' }}>lunarfluxai — security-monitor</span>
+              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', marginLeft: 'auto', letterSpacing: '0.05em' }}>dmnsolution — security-monitor</span>
             </div>
             <div ref={termRef} style={{ padding: 20, fontSize: '0.78rem', lineHeight: 2 }}>
               {termLines.map((line, i) => (

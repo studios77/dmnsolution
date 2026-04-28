@@ -130,7 +130,7 @@ export default function Nav() {
             boxShadow: '0 0 10px var(--accent)', animation: 'pulse 2s ease-in-out infinite',
             display: 'inline-block',
           }} />
-          LunarFlux<span style={{ color: 'var(--accent)' }}>AI</span>
+          DMN<span style={{ color: 'var(--accent)' }}>솔루션</span>
         </Link>
 
         <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>

@@ -12,7 +12,7 @@ const companyInfo = [
   { label: '사업자등록번호', value: '536-88-02408' },
   { label: '주소', value: '서울시 강서구 마곡중앙6로 21, 508호' },
   { label: '전화', value: '0505-924-1004' },
-  { label: '이메일', value: 'contact@lunarfluxai.com' },
+  { label: '이메일', value: 'contact@dmnsolution.co.kr' },
 ]
 
 export default function Footer() {
@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '200px 1fr auto', gap: 48, alignItems: 'start' }}>
           <div>
             <div style={{ fontFamily: 'var(--display)', fontSize: '1.5rem', fontWeight: 800, color: '#ffffff', marginBottom: 8 }}>
-              LunarFlux<span style={{ color: 'var(--accent)' }}>AI</span>
+              DMN<span style={{ color: 'var(--accent)' }}>솔루션</span>
             </div>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '0.72rem', color: '#94a3b8', letterSpacing: '0.08em', lineHeight: 1.6 }}>
               IDC · AI 보안 · 스트리밍<br />인프라 전문 기업
@@ -60,7 +60,7 @@ export default function Footer() {
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'center' }}>
           <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#475569', letterSpacing: '0.06em' }}>
-            © 2025 LunarFlux AI. All rights reserved.
+            © 2025 DMN솔루션. All rights reserved.
           </span>
         </div>
       </div>
