@@ -4,6 +4,8 @@ Next.js 기반 회사 소개·서비스 랜딩 사이트입니다.
 
 **[개발 내역 · 폴더 구조 · 기술 스택](./DEVELOPMENT.md)**
 
+**[Vercel / Cloudflare Pages 배포 설정](./DEPLOY.md)** — 빌드(`out/`), 임시 도메인(`*.vercel.app`, `*.pages.dev`)
+
 ## 스크립트
 
 - `npm run dev` — 로컬 개발 서버
