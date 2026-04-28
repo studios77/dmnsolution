@@ -21,7 +21,7 @@ const edges = [
     icon: '🤖',
     title: 'LLM 기반 AI 보안 관제',
     subtitle: '룰이 아닌 맥락으로 대응',
-    desc: '기존 보안 시스템은 사전 정의된 패턴에만 반응합니다. LunarFluxAI 관제는 보안 이벤트의 맥락을 이해하고 처음 보는 공격 패턴도 스스로 판단·대응합니다. 24시간 인력 관제 대비 비용 90% 절감.',
+    desc: '기존 보안 시스템은 사전 정의된 패턴에만 반응합니다. DMN솔루션 관제는 보안 이벤트의 맥락을 이해하고 쉢음 보는 공격 패턴도 스스로 판단·대응합니다. 24시간 인력 관제 대비 비용 90% 절감.',
     stats: [
       { val: '50+', label: '자동 대응 시나리오' },
       { val: '90%', label: '관제 비용 절감' },
@@ -36,7 +36,7 @@ const edges = [
     icon: '📡',
     title: 'LL-HLS 1~2초 레이턴시',
     subtitle: '국내 CDN 평균 대비 10배 빠름',
-    desc: '국내 주요 CDN의 HLS 레이턴시는 평균 5~15초입니다. LunarFluxAI Ultrastream은 LL-HLS 프로토콜로 1~2초를 달성합니다. 라이브 커머스에서 지연 1초 단축이 구매 전환율에 직접 영향을 미칩니다.',
+    desc: '국내 주요 CDN의 HLS 레이턴시는 평균 5~15초입니다. DMN솔루션 Ultrastream은 LL-HLS 프로토콜로 1~2초를 달성합니다. 라이브 커머스에서 지연 1초 단축이 구매 전환율에 직접 영향을 미칩니다.',
     stats: [
       { val: '1~2s', label: 'LL-HLS 레이턴시' },
       { val: '80%', label: '비용 절감' },
@@ -71,7 +71,6 @@ export default function EdgeSection() {
     <section style={{ background: 'var(--bg2)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
 
-        {/* Header */}
         <div className="reveal">
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
@@ -86,7 +85,6 @@ export default function EdgeSection() {
           </p>
         </div>
 
-        {/* 3 Edge Cards */}
         <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 60 }}>
           {edges.map((e, i) => (
             <div key={i} className="edge-card" style={{
@@ -109,7 +107,6 @@ export default function EdgeSection() {
                 ;(e2.currentTarget as HTMLDivElement).style.boxShadow = 'none'
               }}
             >
-              {/* Left */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                   <span style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: e.color, letterSpacing: '0.12em', textTransform: 'uppercase', background: `${e.color}18`, border: `1px solid ${e.color}44`, borderRadius: 20, padding: '3px 12px' }}>
@@ -136,7 +133,6 @@ export default function EdgeSection() {
                 )}
               </div>
 
-              {/* Right — stats */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {e.stats.map((s, j) => (
                   <div key={j} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '20px 24px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 8 }}>
@@ -153,7 +149,6 @@ export default function EdgeSection() {
           ))}
         </div>
 
-        {/* Trust Stats */}
         <div className="reveal" style={{ marginTop: 80 }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
@@ -173,7 +168,6 @@ export default function EdgeSection() {
           </div>
         </div>
 
-        {/* Sectors */}
         <div className="reveal" style={{ marginTop: 64 }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--accent2)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 24, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
