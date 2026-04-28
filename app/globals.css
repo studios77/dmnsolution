@@ -110,3 +110,13 @@ body::before {
   outline: 2px solid var(--hero-text);
   outline-offset: 2px;
 }
+
+/* Metrics / prices — unambiguous digit shapes, equal width (main + cards) */
+.stat-num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

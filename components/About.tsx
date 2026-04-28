@@ -62,7 +62,7 @@ export default function About() {
                   fontSize: '0.8rem',
                 }}>
                   <span style={{ color: 'var(--text3)', fontWeight: 500 }}>{row.label}</span>
-                  <span style={{ fontWeight: 600, fontFamily: 'var(--mono)', fontSize: '0.72rem', color: row.tone === 'muted' ? 'var(--text3)' : 'var(--accent2)' }}>{row.value}</span>
+                  <span className="stat-num" style={{ fontWeight: 600, fontSize: '0.8rem', color: row.tone === 'muted' ? 'var(--text3)' : 'var(--accent2)' }}>{row.value}</span>
                 </div>
               ))}
               <p style={{ marginTop: 14, marginBottom: 0, fontSize: '0.66rem', color: 'var(--text3)', lineHeight: 1.55 }}>

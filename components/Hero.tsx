@@ -249,8 +249,8 @@ export default function Hero() {
                 >
                   <span style={{ fontSize: '0.88rem', color: '#cbd5e1', fontWeight: 600 }}>{row.k}</span>
                   <span style={{ textAlign: 'right' }}>
-                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{row.v}</span>
-                    <div style={{ fontSize: '0.76rem', color: '#94a3b8', marginTop: 3, lineHeight: 1.35 }}>{row.d}</div>
+                    <span className="stat-num" style={{ display: 'block', fontSize: '1.28rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.01em' }}>{row.v}</span>
+                    <div style={{ fontSize: '0.76rem', color: '#94a3b8', marginTop: 3, lineHeight: 1.35, fontFamily: 'var(--sans)' }}>{row.d}</div>
                   </span>
                 </div>
               ))}

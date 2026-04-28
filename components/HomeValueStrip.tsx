@@ -93,7 +93,7 @@ export default function HomeValueStrip() {
             <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
               {line.rows.map(r => (
                 <div key={r.sub}>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: '1.55rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.03em' }}>{r.v}</div>
+                  <div className="stat-num" style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.02em' }}>{r.v}</div>
                   <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#cbd5e1', marginTop: 4, lineHeight: 1.35 }}>{r.sub}</div>
                 </div>
               ))}

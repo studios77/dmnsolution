@@ -135,7 +135,7 @@ export default function EdgeSection() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {e.stats.map((s, j) => (
                   <div key={j} style={{ display: 'flex', alignItems: 'center', gap: 18, padding: '18px 20px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 2 }}>
-                    <div style={{ fontFamily: 'var(--display)', fontSize: '2rem', fontWeight: 800, color: e.color, letterSpacing: '-0.03em', lineHeight: 1, flexShrink: 0 }}>
+                    <div className="stat-num" style={{ fontSize: '2rem', fontWeight: 700, color: e.color, letterSpacing: '0.02em', lineHeight: 1, flexShrink: 0 }}>
                       {s.val}
                     </div>
                     <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: 'var(--text2)', fontWeight: 600, lineHeight: 1.45 }}>
@@ -159,7 +159,7 @@ export default function EdgeSection() {
                 <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', letterSpacing: '0.08em', marginBottom: 10 }}>
                   {t.line}
                 </div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: '1.85rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em', marginBottom: 8 }}>
+                <div className="stat-num" style={{ fontSize: '1.9rem', fontWeight: 700, color: 'var(--text)', letterSpacing: '0.02em', marginBottom: 8 }}>
                   {t.val}
                 </div>
                 <div style={{ fontFamily: 'var(--sans)', fontSize: '0.72rem', color: 'var(--text3)', lineHeight: 1.45 }}>

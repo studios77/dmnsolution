@@ -126,12 +126,12 @@ export default function Pricing() {
                 <div style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>{p.name}</div>
                 <div style={{ margin: '20px 0' }}>
                   {p.price === '가격문의' ? (
-                    <span style={{ fontFamily: 'var(--display)', fontSize: '1.75rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.02em' }}>가격 문의</span>
+                    <span className="stat-num" style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.02em' }}>가격 문의</span>
                   ) : (
-                    <span style={{ fontFamily: 'var(--display)', fontSize: '2.4rem', fontWeight: 700, color: 'var(--text)' }}>
-                      <span style={{ fontSize: '1rem', fontWeight: 400, color: 'var(--text2)', fontFamily: 'var(--mono)', verticalAlign: 'super' }}>₩</span>
+                    <span className="stat-num" style={{ fontSize: '2.35rem', fontWeight: 700, color: 'var(--text)', letterSpacing: '0.02em' }}>
+                      <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--text2)', verticalAlign: 'super', marginRight: 2 }}>₩</span>
                       {p.price}
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text3)', fontFamily: 'var(--mono)', fontWeight: 400 }}>{p.unit}</span>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--text3)', fontWeight: 500, marginLeft: 2 }}>{p.unit}</span>
                     </span>
                   )}
                 </div>
