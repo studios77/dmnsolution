@@ -9,8 +9,9 @@ type ServiceMenuLink = {
   highlight?: boolean
 }
 
-function MenuItemTitle({ item, size }: { item: ServiceMenuLink; size: 'sm' | 'md' }) {
+function MenuItemTitle({ item, size, tone = 'onLight' }: { item: ServiceMenuLink; size: 'sm' | 'md'; tone?: 'onLight' | 'onDark' }) {
   const fs = size === 'sm' ? '0.875rem' : '0.95rem'
+  const color = tone === 'onDark' ? '#f1f5f9' : 'var(--text)'
   return (
     <span
       style={{
@@ -19,7 +20,7 @@ function MenuItemTitle({ item, size }: { item: ServiceMenuLink; size: 'sm' | 'md
         fontFamily: 'var(--sans)',
         fontSize: fs,
         fontWeight: 600,
-        color: 'var(--text)',
+        color,
         lineHeight: 1.35,
         letterSpacing: '-0.01em',
         whiteSpace: 'nowrap',
@@ -37,7 +38,7 @@ type ServiceMenuCategory = { cat: string; color: string; sections: ServiceMenuSe
 const serviceMenu: ServiceMenuCategory[] = [
   {
     cat: 'IDC / 서버',
-    color: '#0ea5e9',
+    color: '#38bdf8',
     sections: [
       {
         items: [
@@ -52,7 +53,7 @@ const serviceMenu: ServiceMenuCategory[] = [
   },
   {
     cat: 'AI 보안',
-    color: '#f59e0b',
+    color: '#22c55e',
     sections: [
       {
         sub: '관제 · 자동화',
@@ -80,7 +81,7 @@ const serviceMenu: ServiceMenuCategory[] = [
   },
   {
     cat: '스트리밍',
-    color: '#38bdf8',
+    color: '#a78bfa',
     sections: [
       {
         items: [
@@ -117,17 +118,17 @@ export default function Nav() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         padding: '0 5%', height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(253,251,246,0.92)', backdropFilter: 'blur(18px)',
-        borderBottom: '1px solid var(--border)',
+        background: 'var(--nav-bg)', backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid var(--nav-border)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
           fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800,
-          letterSpacing: '-0.02em', color: 'var(--text)', textDecoration: 'none',
+          letterSpacing: '-0.02em', color: '#f8fafc', textDecoration: 'none',
           display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
         }}>
           <span style={{
             width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)',
-            boxShadow: '0 0 12px rgba(194,65,12,0.45)', animation: 'pulse 2s ease-in-out infinite',
+            boxShadow: '0 0 14px rgba(34,197,94,0.55)', animation: 'pulse 2s ease-in-out infinite',
             display: 'inline-block',
           }} />
           DMN<span style={{ color: 'var(--accent)', fontWeight: 800 }}>솔루션</span>
@@ -145,7 +146,7 @@ export default function Nav() {
           >
             <button style={{
               fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700,
-              color: menuOpen ? 'var(--accent)' : 'var(--text2)',
+              color: menuOpen ? 'var(--accent)' : 'var(--nav-link)',
               background: 'none', border: 'none', cursor: 'pointer',
               letterSpacing: '0.02em', display: 'flex', alignItems: 'center', gap: 4,
               padding: '4px 0', transition: 'color 0.2s',
@@ -263,7 +264,7 @@ export default function Nav() {
             <li key={m.id}>
               <Link href={`/#${m.id}`} style={{
                 fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700,
-                color: active === m.id ? 'var(--accent)' : 'var(--text2)',
+                color: active === m.id ? 'var(--accent)' : 'var(--nav-link)',
                 textDecoration: 'none', letterSpacing: '0.02em', transition: 'color 0.2s',
               }}>
                 {m.label}
@@ -277,12 +278,12 @@ export default function Nav() {
             fontFamily: 'var(--mono)', fontSize: '0.75rem',
             padding: '8px 18px', background: 'transparent',
             border: '1px solid var(--accent)', color: 'var(--accent)',
-            borderRadius: 4, textDecoration: 'none', letterSpacing: '0.05em',
+            borderRadius: 8, textDecoration: 'none', letterSpacing: '0.05em',
             transition: 'all 0.2s',
           }}
             onMouseEnter={e => {
               (e.target as HTMLElement).style.background = 'var(--accent)'
-              ;(e.target as HTMLElement).style.color = '#000'
+              ;(e.target as HTMLElement).style.color = '#030712'
             }}
             onMouseLeave={e => {
               (e.target as HTMLElement).style.background = 'transparent'
@@ -294,7 +295,7 @@ export default function Nav() {
 
           <button
             onClick={() => setMobileOpen(o => !o)}
-            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text)' }}
+            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: '#e2e8f0' }}
             className="hamburger"
           >
             {mobileOpen
@@ -308,18 +309,18 @@ export default function Nav() {
       {mobileOpen && (
         <div style={{
           position: 'fixed', top: 64, left: 0, right: 0, zIndex: 199,
-          background: 'var(--surface)', borderBottom: '1px solid var(--border)',
+          background: '#0f172a', borderBottom: '1px solid var(--nav-border)',
           padding: '20px 5%', maxHeight: 'calc(100vh - 64px)', overflowY: 'auto',
         }}>
           {serviceMenu.map((cat, ci) => (
             <div key={ci} style={{ marginBottom: 24 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: cat.color, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10, fontWeight: 700 }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: cat.color, letterSpacing: '0.08em', marginBottom: 10, fontWeight: 700 }}>
                 {cat.cat}
               </div>
               {cat.sections.map((sec, si) => (
                 <div key={si}>
                   {sec.sub && (
-                    <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: si > 0 ? 12 : 0, marginBottom: 8, fontWeight: 600 }}>
+                    <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: '#64748b', letterSpacing: '0.06em', marginTop: si > 0 ? 12 : 0, marginBottom: 8, fontWeight: 600 }}>
                       {sec.sub}
                     </div>
                   )}
@@ -340,7 +341,7 @@ export default function Nav() {
                       }}
                     >
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <MenuItemTitle item={item} size="md" />
+                        <MenuItemTitle item={item} size="md" tone="onDark" />
                       </div>
                       {item.highlight && (
                         <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: cat.color, background: `${cat.color}15`, border: `1px solid ${cat.color}30`, borderRadius: 10, padding: '4px 9px', flexShrink: 0 }}>
@@ -355,7 +356,7 @@ export default function Nav() {
           ))}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
             {[{id:'pricing',label:'요금'},{id:'about',label:'소개'},{id:'contact',label:'문의'}].map(m => (
-              <Link key={m.id} href={`/#${m.id}`} onClick={() => setMobileOpen(false)} style={{ fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text2)', textDecoration: 'none', padding: '10px 0', borderBottom: '1px solid var(--border)' }}>
+              <Link key={m.id} href={`/#${m.id}`} onClick={() => setMobileOpen(false)} style={{ fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--nav-link)', textDecoration: 'none', padding: '10px 0', borderBottom: '1px solid var(--nav-border)' }}>
                 {m.label}
               </Link>
             ))}

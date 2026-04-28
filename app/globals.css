@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
+/* Streaming / media-server product aesthetic (Ant Media · Red5 class) */
 :root {
-  --bg: #f5f3ef;
-  --bg2: #ebe7e0;
-  --bg3: #e4dfd6;
-  --surface: #fffdf8;
-  --surface2: #ffffff;
-  --border: rgba(20, 18, 17, 0.12);
-  --border2: rgba(20, 18, 17, 0.22);
-  --accent: #c2410c;
-  --accent2: #0f766e;
-  --accent3: #a16207;
-  --accent-soft: rgba(194, 65, 12, 0.08);
-  --accent-soft2: rgba(194, 65, 12, 0.14);
-  --glow: rgba(194, 65, 12, 0.12);
-  --text: #141210;
-  --text2: #292524;
-  --text3: #57534e;
+  --bg: #f1f5f9;
+  --bg2: #e2e8f0;
+  --bg3: #cbd5e1;
+  --surface: #ffffff;
+  --surface2: #f8fafc;
+  --hero-bg: #030712;
+  --hero-elevated: #0f172a;
+  --border: rgba(148, 163, 184, 0.35);
+  --border2: rgba(100, 116, 139, 0.45);
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --accent-soft: rgba(34, 197, 94, 0.12);
+  --accent-soft2: rgba(34, 197, 94, 0.2);
+  --accent2: #0ea5e9;
+  --accent3: #8b5cf6;
+  --glow: rgba(34, 197, 94, 0.2);
+  --text: #0f172a;
+  --text2: #334155;
+  --text3: #64748b;
+  --hero-text: #f8fafc;
+  --hero-muted: #94a3b8;
+  --nav-bg: rgba(15, 23, 42, 0.92);
+  --nav-border: rgba(51, 65, 85, 0.85);
+  --nav-link: #cbd5e1;
   --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
   --sans: 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --display: 'Syne', 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
@@ -43,39 +52,37 @@ main .reveal p {
   letter-spacing: -0.01em;
 }
 
+/* Ambient mesh behind fixed layers — light slate base */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 90% 50% at 50% -20%, rgba(194, 65, 12, 0.06), transparent 50%),
-    radial-gradient(circle at 8% 30%, rgba(15, 118, 110, 0.04), transparent 35%);
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(34, 197, 94, 0.06), transparent 55%),
+    radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.05), transparent 40%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Dot screen — replaces cold blue grid */
-.grain-bg {
+/* Top fade only — hero owns the dark band */
+.streaming-bg {
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(rgba(20, 18, 17, 0.055) 1px, transparent 1px);
-  background-size: 22px 22px;
+  height: 52vh;
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.15) 0%, transparent 100%);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 100%);
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg3); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -89,17 +96,17 @@ body::before {
   z-index: 10001;
   padding: 12px 18px;
   background: var(--accent);
-  color: #fff;
+  color: #030712;
   font-family: var(--mono);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-decoration: none;
-  border-radius: 4px;
-  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.35);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px var(--glow);
 }
 .skip-link:focus {
   left: max(16px, env(safe-area-inset-left));
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--hero-text);
   outline-offset: 2px;
 }
