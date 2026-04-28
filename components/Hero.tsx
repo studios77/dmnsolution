@@ -35,35 +35,77 @@ export default function Hero() {
             marginBottom: 22, background: 'rgba(255,255,255,0.75)',
             animation: 'fadeUp 0.7s ease both',
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#2563eb' }} />
-            B2B IT · Security · Broadcasting
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#2563eb', flexShrink: 0 }} />
+            IDC × AI SECURITY × STREAM
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              gap: '8px 10px',
+              marginBottom: 14,
+              animation: 'fadeUp 0.7s 0.05s ease both',
+            }}
+            aria-hidden
+          >
+            {[
+              { t: 'IDC', bg: 'rgba(37,99,235,0.11)', bd: 'rgba(37,99,235,0.28)', c: '#1d4ed8' },
+              { t: 'AI 보안', bg: 'rgba(217,119,6,0.09)', bd: 'rgba(217,119,6,0.25)', c: '#b45309' },
+              { t: 'Ultrastream', bg: 'rgba(14,165,233,0.1)', bd: 'rgba(14,165,233,0.28)', c: '#0369a1' },
+            ].map(b => (
+              <span
+                key={b.t}
+                style={{
+                  fontFamily: 'var(--mono)',
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  padding: '5px 12px',
+                  borderRadius: 999,
+                  border: `1px solid ${b.bd}`,
+                  background: b.bg,
+                  color: b.c,
+                }}
+              >
+                {b.t}
+              </span>
+            ))}
           </div>
 
           <h1 style={{
             fontFamily: 'var(--display)',
-            fontSize: 'clamp(1.95rem, 4.2vw, 3.15rem)',
-            fontWeight: 700,
-            lineHeight: 1.18,
-            letterSpacing: '-0.028em',
+            fontSize: 'clamp(2rem, 4.6vw, 3.35rem)',
+            fontWeight: 800,
+            lineHeight: 1.13,
+            letterSpacing: '-0.032em',
             color: 'var(--text)',
             marginBottom: 20,
             animation: 'fadeUp 0.7s 0.08s ease both',
             wordBreak: 'keep-all',
           }}>
-            운영 부담을 줄이고,<br />
-            <span style={{ color: '#1d4ed8' }}>안정적인 IT 기반을</span> 제공합니다
+            서버부터 라이브 송출까지,<br />
+            <span style={{
+              background: 'linear-gradient(105deg, #1d4ed8 0%, #0891b2 45%, #4f46e5 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>한 줄로 연결되는</span>{' '}
+            인프라 경험
           </h1>
 
           <p style={{
-            fontSize: '0.98rem',
+            fontSize: '0.96rem',
             color: 'var(--text2)',
-            maxWidth: 520,
+            maxWidth: 540,
             lineHeight: 1.82,
             marginBottom: 28,
             animation: 'fadeUp 0.7s 0.15s ease both',
           }}>
-            호스팅·보안관제·송출까지 분산하지 않고 단일 채널로 문의와 운영을 이어 드립니다.
-            규모에 맞는 구성부터 확장까지 함께 설계합니다.
+            규격서만 같은 구축 대신 — <strong style={{ fontWeight: 700, color: 'var(--text)' }}>IDC 호스팅</strong>,
+            실시간에 대응하는 <strong style={{ fontWeight: 700, color: 'var(--text)' }}>AI 보안 레이어</strong>,
+            그리고 초저지연 <strong style={{ fontWeight: 700, color: 'var(--text)' }}>Ultrastream 스트리밍 엔진</strong>까지 한 팀에서 맞춤 설계합니다.
           </p>
 
           <div style={{
@@ -74,34 +116,42 @@ export default function Hero() {
           }}>
             <a href="#services" style={{
               padding: '14px 28px',
-              background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 55%, #0891b2 100%)',
               color: '#fff',
-              borderRadius: 6,
+              borderRadius: 999,
               fontFamily: 'var(--sans)',
               fontSize: '0.9rem',
-              fontWeight: 600,
+              fontWeight: 700,
               textDecoration: 'none',
-              boxShadow: '0 6px 20px rgba(37,99,235,0.35)',
+              boxShadow: '0 10px 28px rgba(37,99,235,0.38)',
               transition: 'transform 0.2s, box-shadow 0.2s',
             }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
-            >업무 분야 확인</a>
+            >스택 둘러보기</a>
             <a href="#contact" style={{
               padding: '14px 28px',
-              background: '#fff',
-              color: 'var(--text)',
-              border: '1px solid rgba(37,99,235,0.35)',
-              borderRadius: 6,
+              background: 'rgba(255,255,255,0.95)',
+              color: '#1e3a8a',
+              border: '2px solid rgba(37,99,235,0.45)',
+              borderRadius: 999,
               fontFamily: 'var(--sans)',
               fontSize: '0.9rem',
-              fontWeight: 600,
+              fontWeight: 700,
               textDecoration: 'none',
-              transition: 'background 0.2s',
+              transition: 'background 0.2s, transform 0.2s, border-color 0.2s',
             }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(239,246,255,1)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#fff' }}
-            >견적·상담 요청</a>
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(239,246,255,1)'
+                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = '#2563eb'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.95)'
+                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(37,99,235,0.45)'
+              }}
+            >지금 상담하기</a>
           </div>
         </div>
 
@@ -114,8 +164,8 @@ export default function Hero() {
           padding: '28px 26px 24px',
           animation: 'fadeUp 0.7s 0.2s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)', letterSpacing: '0.14em', marginBottom: 18, textTransform: 'uppercase' }}>
-            운영 지표 · 범위
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)', letterSpacing: '0.12em', marginBottom: 18 }}>
+            실시간 운영 스냅샷 · 참고 수치
           </div>
           <dl style={{ margin: 0, padding: 0 }}>
             {[
