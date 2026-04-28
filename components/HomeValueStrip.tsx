@@ -12,8 +12,8 @@ const lines = [
   {
     id: 'security',
     label: 'AI 보안',
-    border: 'rgba(93, 165, 111, 0.32)',
-    glow: 'rgba(93, 165, 111, 0.08)',
+    border: 'rgba(34, 197, 94, 0.35)',
+    glow: 'rgba(34, 197, 94, 0.1)',
     rows: [
       { v: '24/7', sub: '관제·자동 대응' },
       { v: '95%+', sub: '딥페이크·ML(목표)' },
@@ -39,7 +39,7 @@ export default function HomeValueStrip() {
         position: 'relative',
         zIndex: 1,
         background: 'linear-gradient(90deg, #0f172a 0%, #111827 50%, #0f172a 100%)',
-        borderTop: '1px solid rgba(93, 165, 111, 0.2)',
+        borderTop: '1px solid rgba(34, 197, 94, 0.2)',
         borderBottom: '1px solid rgba(51, 65, 85, 0.8)',
       }}
     >

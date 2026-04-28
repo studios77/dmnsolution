@@ -101,7 +101,7 @@ export default function Services() {
                       onMouseEnter={e => {
                         const el = e.currentTarget as HTMLElement
                         el.style.transform = 'translate(-2px,-2px)'
-                        el.style.boxShadow = '8px 8px 0 rgba(93,165,111,0.12)'
+                        el.style.boxShadow = '8px 8px 0 rgba(34,197,94,0.15)'
                       }}
                       onMouseLeave={e => {
                         const el = e.currentTarget as HTMLElement
