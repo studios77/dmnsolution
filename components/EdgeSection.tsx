@@ -3,67 +3,67 @@ import Link from 'next/link'
 
 const edges = [
   {
-    badge: '01 · Signal integrity',
+    badge: '01 · 딥페이크 탐지',
     icon: '🔍',
-    title: 'Deepfake defense on live rails',
-    subtitle: 'Stream-native, not batch review',
-    desc: 'CNN + LSTM across frames and audio to catch synthetic talent before it airs. Automate blocking when confidence clears policy — tuned for broadcast clocks, not slide decks.',
+    title: '실시간 딥페이크 탐지',
+    subtitle: '라이브 스트림 특화',
+    desc: '방송 중 AI 합성 영상·음성을 프레임·오디오 단위로 검출합니다. CNN+LSTM 기반으로 탐지율 95% 이상을 목표로 하며, 사후 영상만 보는 방식이 아니라 송출 직전·직후에 막을 수 있게 구성합니다.',
     stats: [
-      { val: '95%+', label: 'Model accuracy' },
-      { val: '<1s', label: 'Detect → gate' },
-      { val: '24/7', label: 'Unattended' },
+      { val: '95%+', label: '탐지 정확도' },
+      { val: '<1s', label: '감지→조치' },
+      { val: '24/7', label: '무인 감시' },
     ],
-    highlight: 'Election cycles, financial streams, corporate town-halls — anywhere trust is the product.',
+    highlight: '선거·금융 설명·기업 공지 등 신뢰가 곧 서비스인 화면에 맞춥니다.',
     color: '#c2410c',
   },
   {
-    badge: '02 · Autonomous SOC',
+    badge: '02 · AI 자율 관제',
     icon: '🤖',
-    title: 'LLM-backed security brain',
-    subtitle: 'Context beats regex',
-    desc: 'Rules still matter, but they miss novel chains. We pair SIEM/SOAR with models that read analyst notes, not just signatures — fewer pages, faster containment.',
+    title: 'LLM 기반 AI 보안 관제',
+    subtitle: '시그니처만이 아닌 맥락',
+    desc: '고정 룰만으로는 놓치는 연쇄 공격·이상 징후를 SIEM·SOAR와 LLM이 함께 읽습니다. 야간 인력을 늘리지 않고도 엔터프라이즈 수준의 대응 절차에 가깝게 맞출 수 있습니다.',
     stats: [
-      { val: '50+', label: 'Playbooks' },
-      { val: '90%', label: 'Ops savings vs.' },
-      { val: '<5m', label: 'Threat isolate' },
+      { val: '50+', label: '자동 시나리오' },
+      { val: '90%', label: '관제비 절감(사례)' },
+      { val: '<5분', label: '위협→격리' },
     ],
-    highlight: 'Mid-market teams that cannot staff a 24/7 bench still get enterprise discipline.',
+    highlight: '보안 전담 인력이 부족한 조직도 도입·운영 현실을 맞춥니다.',
     color: '#0f766e',
     link: '/services/ai-security/',
   },
   {
-    badge: '03 · Glass-to-glass',
+    badge: '03 · 초저지연 스트리밍',
     icon: '📡',
-    title: 'LL-HLS in single digits',
-    subtitle: 'Latency budget for commerce',
-    desc: 'Domestic CDNs often land 5–15s behind glass. Ultrastream targets 1–2s LL-HLS so auctions, sports ticks, and drops feel instant — conversion follows physics.',
+    title: 'LL-HLS 1~2초대',
+    subtitle: '일반 CDN HLS 대비 체감 지연 축소',
+    desc: '국내 일반 CDN HLS는 종종 5~15초대 지연이 납니다. Ultrastream은 LL-HLS로 1~2초대를 목표로 해 라이브커머스·중계·실시간 이벤트에서 체감 차이를 만듭니다.',
     stats: [
-      { val: '1–2s', label: 'Target latency' },
-      { val: '80%', label: 'Cost story' },
-      { val: '∞', label: 'Concurrent eyeballs' },
+      { val: '1~2s', label: '목표 지연' },
+      { val: '80%', label: '비용 절감(사례)' },
+      { val: '∞', label: '동시 시청' },
     ],
-    highlight: 'Where a second equals margin — arenas, live shopping, drop culture.',
+    highlight: '스포츠·라이브커머스·실시간 경매처럼 초 단위가 매출·신뢰로 이어지는 경우에 적합합니다.',
     color: '#a16207',
     link: '/services/ultrastream/',
   },
 ]
 
 const trustStats = [
-  { val: '99.99%', label: 'Availability SLA' },
-  { val: '24/7', label: 'AI SOC coverage' },
-  { val: '<30s', label: 'HA failover' },
-  { val: '95%+', label: 'Deepfake accuracy' },
+  { val: '99.99%', label: '서비스 가용성 SLA' },
+  { val: '24/7', label: 'AI 보안 관제' },
+  { val: '<30초', label: 'HA 페일오버' },
+  { val: '95%+', label: '딥페이크 탐지' },
 ]
 
 const sectors = [
-  { icon: '🏛️', label: 'Public sector' },
-  { icon: '🏦', label: 'Finance' },
-  { icon: '📺', label: 'Broadcast / OTT' },
-  { icon: '🛒', label: 'Live commerce' },
-  { icon: '🎮', label: 'Games & media' },
-  { icon: '🏥', label: 'Health' },
-  { icon: '🎓', label: 'EdTech' },
-  { icon: '🏢', label: 'Mid-market' },
+  { icon: '🏛️', label: '공공 · 지자체' },
+  { icon: '🏦', label: '금융 · 핀테크' },
+  { icon: '📺', label: '방송 · OTT' },
+  { icon: '🛒', label: '이커머스 · 라이브커머스' },
+  { icon: '🎮', label: '게임 · 미디어' },
+  { icon: '🏥', label: '의료 · 헬스' },
+  { icon: '🎓', label: '교육 · 에듀' },
+  { icon: '🏢', label: '중견 · 중소' },
 ]
 
 export default function EdgeSection() {
@@ -72,19 +72,15 @@ export default function EdgeSection() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
 
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Signal · Sec · Stream
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 12 }}>
+            검증 · 관제 · 송출
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 16 }}>
-            Three vectors we refuse<br />
-            <span style={{ color: 'var(--accent)' }}>to sell separately.</span>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.12, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 16 }}>
+            라이브 시대에 반복되는<br />
+            <span style={{ color: 'var(--accent)' }}>세 가지 숙제</span>를 함께 봅니다
           </h2>
           <p style={{ fontSize: '0.98rem', color: 'var(--text2)', lineHeight: 1.78, maxWidth: 620 }}>
-            Detect forgery, understand incidents, compress latency — most vendors pick one poster child.
-            We ship the bundle because Korean live stacks actually break at the seams between them.
-            <span style={{ display: 'block', marginTop: 10, fontSize: '0.84rem', color: 'var(--text3)' }}>
-              검·관제·송출을 한 화면에서 설계 — 유튜브·방송·커머스 공통의 ‘지금 이거 진짜냐’를 잡습니다.
-            </span>
+            “지금 이 영상이 진짜냐”, “서버에 무슨 일이냐”, “왜 이렇게 늦게 보이냐” — 검측·보안·송출은 따로 사면 이음새에서 깨집니다. DMN솔루션은 세 축을 한 구성으로 설계할 수 있게 제품을 묶었습니다.
           </p>
         </div>
 
@@ -113,7 +109,7 @@ export default function EdgeSection() {
             >
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-                  <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: e.color, letterSpacing: '0.12em', textTransform: 'uppercase', border: `1px solid ${e.color}`, borderRadius: 2, padding: '4px 12px' }}>
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: e.color, letterSpacing: '0.08em', border: `1px solid ${e.color}`, borderRadius: 2, padding: '4px 12px' }}>
                     {e.badge}
                   </span>
                 </div>
@@ -121,7 +117,7 @@ export default function EdgeSection() {
                 <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.42rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em', marginBottom: 6 }}>
                   {e.title}
                 </h3>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: e.color, marginBottom: 14, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: e.color, marginBottom: 14, letterSpacing: '0.06em' }}>
                   {e.subtitle}
                 </div>
                 <p style={{ fontSize: '0.88rem', color: 'var(--text2)', lineHeight: 1.75 }}>
@@ -131,8 +127,8 @@ export default function EdgeSection() {
                   {e.highlight}
                 </div>
                 {e.link && (
-                  <Link href={e.link} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, fontFamily: 'var(--mono)', fontSize: '0.7rem', color: e.color, textDecoration: 'none', letterSpacing: '0.06em', borderBottom: `1px solid ${e.color}88`, paddingBottom: 2 }}>
-                    Read service brief →
+                  <Link href={e.link} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 18, fontFamily: 'var(--sans)', fontSize: '0.82rem', fontWeight: 600, color: e.color, textDecoration: 'none', borderBottom: `1px solid ${e.color}88`, paddingBottom: 2 }}>
+                    서비스 상세 보기 →
                   </Link>
                 )}
               </div>
@@ -143,7 +139,7 @@ export default function EdgeSection() {
                     <div style={{ fontFamily: 'var(--display)', fontSize: '2rem', fontWeight: 800, color: e.color, letterSpacing: '-0.03em', lineHeight: 1, flexShrink: 0 }}>
                       {s.val}
                     </div>
-                    <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text2)', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.45 }}>
+                    <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: 'var(--text2)', fontWeight: 600, lineHeight: 1.45 }}>
                       {s.label}
                     </div>
                   </div>
@@ -154,9 +150,9 @@ export default function EdgeSection() {
         </div>
 
         <div className="reveal" style={{ marginTop: 72 }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.12em', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 28, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Proof points
+            검증된 수치 (목표·참고)
           </div>
           <div className="trust-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', borderRadius: 2, overflow: 'hidden' }}>
             {trustStats.map((t, i) => (
@@ -164,7 +160,7 @@ export default function EdgeSection() {
                 <div style={{ fontFamily: 'var(--display)', fontSize: '1.85rem', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em', marginBottom: 8 }}>
                   {t.val}
                 </div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.45 }}>
+                <div style={{ fontFamily: 'var(--sans)', fontSize: '0.72rem', color: 'var(--text3)', lineHeight: 1.45 }}>
                   {t.label}
                 </div>
               </div>
@@ -173,9 +169,9 @@ export default function EdgeSection() {
         </div>
 
         <div className="reveal" style={{ marginTop: 56 }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.12em', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 28, height: 1, background: 'var(--accent2)', display: 'inline-block' }} />
-            Where teams deploy
+            도입이 많은 분야
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
             {sectors.map((s, i) => (

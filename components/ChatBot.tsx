@@ -7,7 +7,7 @@ interface Message {
   text: string
 }
 
-const BOT_NAME = 'DMN Desk'
+const BOT_NAME = 'DMN솔루션 어시스턴트'
 
 const QUICK_REPLIES = [
   'IDC 서버 임대 문의',
@@ -71,7 +71,7 @@ function getBotResponse(input: string): string {
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: 'DMN Desk online · Ask in Korean or English.\nTell us which stack you almost picked (IDC, AI sec, Ultrastream…) or tap a shortcut below.' },
+    { role: 'bot', text: '안녕하세요! DMN솔루션 어시스턴트입니다.\nIDC·스트리밍·AI 보안 등 궁금한 점을 적어 주시거나, 아래 버튼을 눌러 주세요.' },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -216,7 +216,7 @@ export default function ChatBot() {
             </div>
             <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.7rem', fontFamily: 'var(--mono)', display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
-              Online · async OK
+              온라인 · 순차 응답
             </div>
           </div>
         </div>

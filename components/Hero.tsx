@@ -25,10 +25,10 @@ export default function Hero() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)',
-            letterSpacing: '0.22em', padding: '8px 0', marginBottom: 20,
-            textTransform: 'uppercase', animation: 'fadeUp 0.7s ease both',
+            letterSpacing: '0.12em', padding: '8px 0', marginBottom: 20,
+            animation: 'fadeUp 0.7s ease both',
           }}>
-            DMN Solution · Seoul · Since operations
+            DMN솔루션 · 서울 · IDC · AI 보안 · 스트리밍
           </div>
 
           <div
@@ -41,14 +41,14 @@ export default function Hero() {
             }}
             aria-hidden
           >
-            {['HOSTING', 'SECOPS', 'LIVE STACK'].map(label => (
+            {['IDC 호스팅', 'AI 보안', 'Ultrastream'].map(label => (
               <span
                 key={label}
                 style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: '0.64rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.14em',
+                  fontFamily: 'var(--sans)',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.02em',
                   padding: '8px 14px',
                   borderRadius: 2,
                   border: '1.5px solid var(--text)',
@@ -63,31 +63,28 @@ export default function Hero() {
 
           <h1 style={{
             fontFamily: 'var(--display)',
-            fontSize: 'clamp(2.25rem, 5.2vw, 3.65rem)',
+            fontSize: 'clamp(2.1rem, 5vw, 3.45rem)',
             fontWeight: 800,
-            lineHeight: 1.05,
+            lineHeight: 1.12,
             letterSpacing: '-0.04em',
             color: 'var(--text)',
             marginBottom: 22,
             animation: 'fadeUp 0.7s 0.1s ease both',
           }}>
-            Infrastructure that<br />
-            stays under your signal.
+            송출 화면까지<br />
+            <span style={{ color: 'var(--accent)' }}>끊기지 않게</span> 잇는 인프라
           </h1>
 
           <p style={{
-            fontSize: '0.94rem',
+            fontSize: '0.96rem',
             color: 'var(--text2)',
             maxWidth: 520,
-            lineHeight: 1.75,
+            lineHeight: 1.78,
             marginBottom: 26,
             animation: 'fadeUp 0.7s 0.16s ease both',
             fontWeight: 450,
           }}>
-            <span style={{ display: 'block', marginBottom: 10, color: 'var(--text3)', fontFamily: 'var(--mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-              Korean summary
-            </span>
-            IDC부터 AI 보안·Ultrastream 초저지연까지 한 팀이 설계하고 붙입니다. 랜딩만 다른 도메인과 달리, 여기서는 제품을 고르듯 흐름을 잡도록 보였습니다.
+            서버·코로케이션부터 AI 보안 관제, 초저지연 라이브(Ultrastream)까지 한 팀이 설계합니다. 아래 카탈로그에서 항목을 고르면 상세 페이지로 이어져 견적·도입을 정리할 수 있습니다.
           </p>
 
           <div style={{
@@ -111,7 +108,7 @@ export default function Hero() {
             }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
-            >Explore catalog</a>
+            >서비스 둘러보기</a>
             <a href="#contact" style={{
               padding: '15px 26px',
               background: 'transparent',
@@ -133,7 +130,7 @@ export default function Hero() {
                 (e.currentTarget as HTMLElement).style.background = 'transparent'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
               }}
-            >Book a conversation</a>
+            >문의 · 견적</a>
           </div>
         </div>
 
@@ -145,15 +142,15 @@ export default function Hero() {
           padding: '26px 24px 22px',
           animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.6rem', color: 'var(--text3)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>
-            Reference targets · not a quote
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.6rem', color: 'var(--text3)', letterSpacing: '0.1em', marginBottom: 16 }}>
+            대표 수치 · 참고용 (계약별 협의)
           </div>
           <dl style={{ margin: 0, padding: 0 }}>
             {[
-              { k: 'Uptime', v: '99.99%', d: 'SLA by contract' },
-              { k: 'Glass-to-glass', v: '1–2 s', d: 'LL-HLS baseline' },
-              { k: 'Coverage', v: '24 / 7', d: 'Sec + NOC lanes' },
-              { k: 'Lines', v: '14+', d: 'See detail pages' },
+              { k: '가용성 목표', v: '99.99%', d: 'SLA는 서비스별 협의' },
+              { k: '송출 지연', v: '1~2초', d: 'LL-HLS 기준(환경별 상이)' },
+              { k: '대응', v: '24 / 7', d: '보안·장애 창구' },
+              { k: '라인업', v: '14+', d: '상세 페이지에서 옵션 확인' },
             ].map(row => (
               <div key={row.k} style={{
                 display: 'flex',
@@ -171,8 +168,8 @@ export default function Hero() {
               </div>
             ))}
           </dl>
-          <p style={{ marginTop: 16, fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
-            Figures are directional. Final SLA and commercials follow scoping — scroll for the stacks we ship.
+          <p style={{ marginTop: 16, fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.55 }}>
+            실제 과금·SLA는 도입 범위에 따라 달라집니다. 스크롤하여 서비스 목록을 확인해 주세요.
           </p>
         </aside>
       </div>

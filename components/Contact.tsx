@@ -61,37 +61,34 @@ export default function Contact() {
     val?: string
     lines?: string[]
   }> = [
-    { icon: '📧', title: 'Inbox', lines: ['studios77@gmail.com', 'phd580@gmail.com'] },
+    { icon: '📧', title: '이메일', lines: ['studios77@gmail.com', 'phd580@gmail.com'] },
     {
       icon: '📞',
-      title: 'Representative phones',
+      title: '대표 전화',
       lines: ['0505-299-7623', '0505-683-2580'],
       highlight: true,
     },
-    { icon: '💬', title: 'Kakao · Telegram', val: '@dmnsolution' },
+    { icon: '💬', title: 'Kakao / Telegram', val: '@dmnsolution' },
     {
       icon: '🕐',
-      title: 'Response SLA',
-      lines: ['Engineer reply ≤24h biz days', 'Sev‑1 paging immediately'],
+      title: '응답 안내',
+      lines: ['영업일 기준 엔지니어가 순차 회신', '긴급 장애는 즉시 연락'],
     },
-    { icon: '📍', title: 'Footprint', val: 'Remote-first anywhere' },
+    { icon: '📍', title: '서비스 지역', val: '원격 운영 · 글로벌 대응 가능' },
   ]
 
   return (
     <section id="contact" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 5%' }}>
         <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Closing the loop
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 12 }}>
+            문의
           </div>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.95rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            Tell us what you almost bought.
+            견적 · 도입 상담
           </h2>
           <p style={{ fontSize: '0.96rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78 }}>
-            Same routing as every Korean intake channel — formatted like a storefront so procurement teams read it fast.
-            <span style={{ display: 'block', marginTop: 10, fontSize: '0.82rem', color: 'var(--text3)' }}>
-              카탈로그에서 고른 SKU를 아래 선택지에 적어 주세요. 국문 운영팀이 이어 받습니다.
-            </span>
+            관심 서비스와 연락처를 남겨 주시면 검토 후 회신드립니다. 긴급 장애는 전화로 바로 이어집니다.
           </p>
         </div>
 

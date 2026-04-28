@@ -1,13 +1,13 @@
 const pillars = [
-  { title: 'HOST', titleKr: '인프라', desc: 'Racks through failover — boring on purpose.', icon: '🏗️' },
-  { title: 'GUARD', titleKr: '보안', desc: 'Models that read context, not only rules.', icon: '🔒' },
-  { title: 'BEAM', titleKr: '미디어', desc: 'LL-HLS paths your audience actually feels.', icon: '📺' },
+  { title: '인프라', desc: '서버·이중화·복구까지 한 흐름으로', icon: '🏗️' },
+  { title: '보안', desc: 'AI 관제·탐지로 사후 대응만이 아닌 선제 대응', icon: '🔒' },
+  { title: '미디어', desc: 'LL-HLS 초저지연 · VOD · 멀티 송출', icon: '📺' },
 ]
 
 export default function HomeValueStrip() {
   return (
     <section
-      aria-label="Practice areas"
+      aria-label="사업 영역 요약"
       style={{
         position: 'relative',
         zIndex: 1,
@@ -43,9 +43,8 @@ export default function HomeValueStrip() {
           >
             <span style={{ fontSize: '1.25rem', lineHeight: 1 }} aria-hidden>{p.icon}</span>
             <div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: 'var(--accent)', letterSpacing: '0.16em', marginBottom: 4 }}>{p.title}</div>
-              <div style={{ fontFamily: 'var(--display)', fontSize: '0.95rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>{p.titleKr}</div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text3)', lineHeight: 1.55 }}>{p.desc}</div>
+              <div style={{ fontFamily: 'var(--display)', fontSize: '1rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>{p.title}</div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text3)', lineHeight: 1.55 }}>{p.desc}</div>
             </div>
           </div>
         ))}
