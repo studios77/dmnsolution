@@ -10,7 +10,7 @@ export default function Hero() {
       minHeight: 'min(100vh, 920px)',
       display: 'flex',
       alignItems: 'center',
-      padding: '124px 5% 64px',
+      padding: '112px 5% 64px',
       overflow: 'hidden',
       position: 'relative',
       zIndex: 1,

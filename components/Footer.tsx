@@ -1,8 +1,6 @@
 'use client'
 import Image from 'next/image'
 
-const BRAND_TAGLINE = 'IDC · AI 보안 · 스트리밍 서비스 전문기업'
-
 const links = [
   ['서비스', '/#services'],
   ['요금', '/#pricing'],
@@ -26,24 +24,20 @@ export default function Footer() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '52px 5% 32px' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 48, alignItems: 'start' }}>
           <div>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center',
-              background: 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)',
-              borderRadius: 10,
-              padding: '8px 14px',
-              marginBottom: 12,
-              boxShadow: '0 4px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.9)',
-            }}>
+            <div style={{ marginBottom: 20, lineHeight: 0 }}>
               <Image
                 src="/logo-dmn.png"
                 alt="DMN솔루션"
-                width={220}
-                height={56}
-                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                width={1200}
+                height={438}
+                style={{
+                  height: 44,
+                  width: 'auto',
+                  maxWidth: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'left center',
+                }}
               />
-            </div>
-            <div style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.55 }}>
-              {BRAND_TAGLINE}
             </div>
           </div>
 

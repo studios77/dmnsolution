@@ -3,9 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const BRAND_TAGLINE = 'IDC · AI 보안 · 스트리밍 서비스 전문기업'
 /** fixed bar height for dropdown top / scroll padding */
-const NAV_OUTER_PX = 86
+const NAV_OUTER_PX = 64
 
 type ServiceMenuLink = {
   name: string
@@ -121,42 +120,33 @@ export default function Nav() {
     <>
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        padding: '8px 5%', minHeight: NAV_OUTER_PX,
+        padding: '0 5%', minHeight: NAV_OUTER_PX,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: 'var(--nav-bg)', backdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--nav-border)',
       }}>
         <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
           textDecoration: 'none',
-          display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5,
-          flexShrink: 0, maxWidth: 'min(92vw, 320px)',
+          display: 'flex', alignItems: 'center',
+          flexShrink: 0,
+          lineHeight: 0,
         }}>
-          <span style={{
-            display: 'inline-flex', alignItems: 'center',
-            background: 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)',
-            borderRadius: 10,
-            padding: '5px 12px',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.95)',
-          }}>
-            <Image
-              src="/logo-dmn.png"
-              alt="DMN솔루션"
-              width={200}
-              height={52}
-              priority
-              sizes="(max-width: 480px) 150px, 200px"
-              style={{ height: 32, width: 'auto', maxWidth: 'min(52vw, 200px)', objectFit: 'contain' }}
-            />
-          </span>
-          <span className="nav-brand-tagline" style={{
-            fontFamily: 'var(--mono)',
-            fontSize: '0.56rem',
-            color: '#94a3b8',
-            letterSpacing: '0.06em',
-            lineHeight: 1.35,
-          }}>
-            {BRAND_TAGLINE}
-          </span>
+          <Image
+            src="/logo-dmn.png"
+            alt="DMN솔루션"
+            width={1200}
+            height={438}
+            priority
+            sizes="(max-width: 480px) 160px, 200px"
+            className="nav-brand-logo"
+            style={{
+              height: 34,
+              width: 'auto',
+              maxWidth: 'min(58vw, 220px)',
+              objectFit: 'contain',
+              objectPosition: 'left center',
+            }}
+          />
         </Link>
 
         <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>
@@ -399,7 +389,7 @@ export default function Nav() {
           .hamburger { display: flex !important; }
         }
         @media (max-width: 400px) {
-          .nav-brand-tagline { font-size: 0.5rem !important; letter-spacing: 0.04em !important; }
+          .nav-brand-logo { max-width: min(70vw, 180px) !important; height: 28px !important; }
         }
       `}</style>
     </>
