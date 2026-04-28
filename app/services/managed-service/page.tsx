@@ -3,9 +3,9 @@ import ServiceDetailPage from '@/components/ServiceDetailPage'
 import { findServiceBySlug } from '@/lib/servicesData'
 
 export const metadata: Metadata = {
-  title: '위탁운영 매니지먼트 | LunarFlux AI',
+  title: '위탁운영 매니지먼트 | DMN솔루션',
   description: 'OS 패치·장애대응·성능튜닝 전담. 실시간 모니터링 + 월 SLA 리포트.',
-  alternates: { canonical: 'https://lunarfluxai.com/services/managed-service/' },
+  alternates: { canonical: 'https://dmnsolution.co.kr/services/managed-service/' },
 }
 
 export default function Page() {
