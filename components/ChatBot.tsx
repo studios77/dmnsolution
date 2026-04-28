@@ -54,7 +54,7 @@ function getBotResponse(input: string): string {
   }
 
   if (q.includes('상담') || q.includes('문의') || q.includes('연락') || q.includes('신청')) {
-    return '무료 상담을 원하신다면 페이지 하단의 [문의하기] 섹션을 이용해 주세요.\n\n📧 이메일: contact@dmns.co.kr\n⏰ 응답 시간: 영업일 기준 24시간 이내\n\n또는 원하시는 서비스에 대해 여기서 질문해 주시면 안내해 드리겠습니다!'
+    return '무료 상담을 원하신다면 페이지 하단의 [문의하기] 섹션을 이용해 주세요.\n\n📧 이메일: studios77@gmail.com / phd580@gmail.com\n⏰ 응답: 영업일 기준 순차 회신\n\n또는 원하시는 서비스에 대해 여기서 질문해 주시면 안내해 드리겠습니다!'
   }
 
   if (q.includes('안녕') || q.includes('hello') || q.includes('hi') || q.includes('반가')) {

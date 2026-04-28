@@ -8,11 +8,11 @@ const links = [
 ]
 
 const companyInfo = [
-  { label: '회사명', value: '주식회사 스트리밍랩스' },
-  { label: '사업자등록번호', value: '536-88-02408' },
-  { label: '주소', value: '서울시 강서구 마곡중앙6로 21, 508호' },
-  { label: '전화', value: '0505-924-1004' },
-  { label: '이메일', value: 'contact@dmns.co.kr' },
+  { label: '회사명', value: '(주)디엠엔솔루션' },
+  { label: '사업자등록번호', value: '209-81-37743' },
+  { label: '주소', value: '서울시 영등포구 영중로 140 5F' },
+  { label: '전화', value: '0505-299-7623 / 0505-683-2580' },
+  { label: '이메일', value: 'studios77@gmail.com / phd580@gmail.com' },
 ]
 
 export default function Footer() {
@@ -60,7 +60,7 @@ export default function Footer() {
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'center' }}>
           <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#475569', letterSpacing: '0.06em' }}>
-            © 2026 DMN솔루션. All rights reserved.
+            © 2026 (주)디엠엔솔루션 · DMN솔루션. All rights reserved.
           </span>
         </div>
       </div>

@@ -61,8 +61,13 @@ export default function Contact() {
     val?: string
     lines?: string[]
   }> = [
-    { icon: '📧', title: 'Email', val: 'contact@dmns.co.kr' },
-    { icon: '📞', title: '긴급 24시간 연락처', val: '010-3204-3847', highlight: true },
+    { icon: '📧', title: 'Email', lines: ['studios77@gmail.com', 'phd580@gmail.com'] },
+    {
+      icon: '📞',
+      title: '대표 전화',
+      lines: ['0505-299-7623', '0505-683-2580'],
+      highlight: true,
+    },
     { icon: '💬', title: 'Kakao / Telegram', val: '@dmnsolution' },
     {
       icon: '🕐',
@@ -98,10 +103,16 @@ export default function Contact() {
                 <div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: c.highlight ? 'var(--accent)' : 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>{c.title}</div>
                   {c.lines ? (
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text)', fontWeight: 500, lineHeight: 1.6 }}>
-                      {c.lines.map((line, i) => (
-                        <div key={i}>{line}</div>
-                      ))}
+                    <div style={{ fontSize: c.highlight ? '1rem' : '0.85rem', color: 'var(--text)', fontWeight: c.highlight ? 700 : 500, lineHeight: 1.65 }}>
+                      {c.lines.map((line, i) =>
+                        c.highlight && /^[\d\-]+$/.test(line.replace(/\s/g, '')) ? (
+                          <div key={i}>
+                            <a href={`tel:${line.replace(/-/g, '')}`} style={{ color: 'var(--text)', textDecoration: 'none', letterSpacing: '0.03em' }}>{line}</a>
+                          </div>
+                        ) : (
+                          <div key={i}>{line}</div>
+                        ),
+                      )}
                     </div>
                   ) : (
                     <a href={c.highlight && c.val ? `tel:${c.val.replace(/-/g, '')}` : undefined} style={{ fontSize: c.highlight ? '1rem' : '0.85rem', color: 'var(--text)', fontWeight: c.highlight ? 700 : 500, textDecoration: 'none', letterSpacing: c.highlight ? '0.04em' : 'normal' }}>{c.val}</a>
