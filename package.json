@@ -1,0 +1,26 @@
+{
+  "name": "lunarfluxai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "next": "^16.2.4",
+    "next-seo": "^7.2.0",
+    "postcss": "^8.5.12",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  }
+}
