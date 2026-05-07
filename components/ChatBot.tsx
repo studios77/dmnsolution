@@ -114,7 +114,6 @@ export default function ChatBot() {
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    setOpen(false)
     const contactSection = document.getElementById('contact')
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' })
@@ -344,7 +343,8 @@ export default function ChatBot() {
           </span>
           <button
             type="button"
-            onClick={handleContactClick}
+            onClick={() => sendMessage('상담원과 채팅하기')}
+            disabled={typing}
             style={{
               flexShrink: 0,
               padding: '6px 12px',
@@ -354,9 +354,10 @@ export default function ChatBot() {
               letterSpacing: '0.04em',
               borderRadius: 6,
               border: '1px solid var(--accent)',
-              background: 'var(--accent)',
-              color: '#fff',
-              cursor: 'pointer',
+              background: typing ? 'transparent' : 'var(--accent)',
+              color: typing ? 'var(--accent)' : '#fff',
+              cursor: typing ? 'not-allowed' : 'pointer',
+              transition: 'all 0.2s',
             }}
           >
             상담원과 채팅하기
