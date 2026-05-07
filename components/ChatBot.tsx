@@ -151,19 +151,19 @@ export default function ChatBot() {
         style={{
           position: 'fixed', bottom: 28, right: 28, zIndex: 9999,
           width: 56, height: 56, borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--accent), #9a3412)',
+          background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 22px rgba(194,65,12,0.45)',
+          boxShadow: '0 4px 22px var(--glow)',
           transition: 'transform 0.2s, box-shadow 0.2s',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(194,65,12,0.55)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px var(--glow)'
         }}
         onMouseLeave={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(194,65,12,0.45)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px var(--glow)'
         }}
       >
         {open ? (
@@ -204,7 +204,7 @@ export default function ChatBot() {
       }}>
         <div style={{
           padding: '14px 18px',
-          background: 'linear-gradient(135deg, var(--accent), #451a03)',
+          background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
           display: 'flex', alignItems: 'center', gap: 10,
           flexShrink: 0,
         }}>
@@ -244,7 +244,7 @@ export default function ChatBot() {
               {msg.role === 'bot' && (
                 <div style={{
                   width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg, var(--accent), #451a03)',
+                  background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
@@ -257,7 +257,7 @@ export default function ChatBot() {
                 padding: '9px 13px',
                 borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
                 background: msg.role === 'user'
-                  ? 'linear-gradient(135deg, var(--accent), #451a03)'
+                  ? 'linear-gradient(135deg, var(--accent), var(--accent2))'
                   : 'var(--surface)',
                 color: msg.role === 'user' ? '#fff' : 'var(--text)',
                 fontSize: '0.82rem',
@@ -276,7 +276,7 @@ export default function ChatBot() {
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6 }}>
               <div style={{
                 width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, var(--accent), #451a03)',
+                background: 'linear-gradient(135deg, var(--accent), var(--accent2))',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
@@ -331,7 +331,7 @@ export default function ChatBot() {
         <div style={{
           padding: '8px 12px',
           borderTop: '1px solid var(--border)',
-          background: 'rgba(251,146,60,0.06)',
+          background: 'var(--accent-soft)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',

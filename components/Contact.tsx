@@ -94,12 +94,12 @@ export default function Contact() {
             {contactItems.map(c => (
               <div key={c.title} style={{
                 display: 'flex', gap: 14, alignItems: 'flex-start', padding: '14px 16px',
-                background: c.highlight ? 'linear-gradient(135deg, rgba(251,146,60,0.1), rgba(251,146,60,0.02))' : 'var(--surface)',
+                background: c.highlight ? 'linear-gradient(135deg, var(--accent-soft), transparent)' : 'var(--surface)',
                 border: c.highlight ? '1.5px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 6,
-                boxShadow: c.highlight ? '0 0 18px rgba(194,65,12,0.15)' : 'none',
+                boxShadow: c.highlight ? '0 0 18px var(--glow)' : 'none',
               }}>
-                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'var(--accent-soft)' : 'rgba(20,18,17,0.06)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
+                <div style={{ fontSize: '1rem', width: 36, height: 36, background: c.highlight ? 'var(--accent-soft)' : 'rgba(0,0,0,0.04)', border: `1px solid ${c.highlight ? 'var(--accent)' : 'var(--border)'}`, borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
                 <div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: c.highlight ? 'var(--accent)' : 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>{c.title}</div>
                   {c.lines ? (
