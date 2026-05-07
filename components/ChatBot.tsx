@@ -1,6 +1,5 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
-import { isAdminNotifyConfigured, notifyAdminInstant } from '@/lib/adminNotify'
 
 interface Message {
   role: 'user' | 'bot'
@@ -13,7 +12,7 @@ const QUICK_REPLIES = [
   'IDC 서버 임대 문의',
   '스트리밍 솔루션 가격',
   'AI 보안 서비스 소개',
-  '백업/DR 솔루션',
+  '상담원과 채팅하기',
   '무료 상담 신청',
 ]
 
@@ -53,6 +52,10 @@ function getBotResponse(input: string): string {
     return '요금은 사용하시는 서비스 규모와 구성에 따라 달라집니다.\n\n📦 **Starter** — 소규모 팀 / PoC 용도\n📦 **Business** — 중소기업 / 운영 환경\n📦 **Enterprise** — 대규모 인프라 / SLA 보장\n\n정확한 견적은 [문의하기]에 남겨 주시면 영업일 기준으로 순차 회신드립니다.'
   }
 
+  if (q.includes('상담원') || q.includes('채팅하기') || q.includes('사람') || q.includes('직원')) {
+    return '상담원과 직접 채팅을 원하시나요?\n\n💬 카카오톡 / 텔레그램: @dmnsolution\n📞 대표 전화: 0505-299-7623\n\n위 메신저로 연락해 주시거나, 하단의 [문의하기] 폼에 내용을 남겨주시면 담당자가 빠르게 확인 후 연락드리겠습니다.'
+  }
+
   if (q.includes('상담') || q.includes('문의') || q.includes('연락') || q.includes('신청')) {
     return '무료 상담을 원하신다면 페이지 하단의 [문의하기] 섹션을 이용해 주세요.\n\n📧 이메일: studios77@gmail.com / phd580@gmail.com\n⏰ 응답: 영업일 기준 순차 회신\n\n또는 원하시는 서비스에 대해 여기서 질문해 주시면 안내해 드리겠습니다!'
   }
@@ -76,33 +79,8 @@ export default function ChatBot() {
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
   const [unread, setUnread] = useState(1)
-  const [notifyBusy, setNotifyBusy] = useState(false)
-  const [notifyOk, setNotifyOk] = useState(false)
   const endRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const hasUserMessage = messages.some(m => m.role === 'user')
-
-  const notifyStaff = async () => {
-    if (!isAdminNotifyConfigured() || notifyBusy || !hasUserMessage) return
-    setNotifyBusy(true)
-    setNotifyOk(false)
-    const transcript = messages
-      .slice(-20)
-      .map(m => `${m.role === 'user' ? '[고객]' : '[봇]'} ${m.text.replace(/\n+/g, ' ')}`)
-      .join('\n')
-      .slice(0, 3800)
-    await notifyAdminInstant({
-      title: '[DMN솔루션] 채팅 상담 알림',
-      fields: {
-        '대화 내용': transcript || '(비어 있음)',
-        '안내': '고객이 담당자 알림을 요청했습니다. 이메일 회신과 함께 확인해 주세요.',
-      },
-    })
-    setNotifyBusy(false)
-    setNotifyOk(true)
-    setTimeout(() => setNotifyOk(false), 5000)
-  }
 
   useEffect(() => {
     if (open) {
@@ -351,42 +329,39 @@ export default function ChatBot() {
           <div ref={endRef} />
         </div>
 
-        {isAdminNotifyConfigured() && (
-          <div style={{
-            padding: '8px 12px',
-            borderTop: '1px solid var(--border)',
-            background: 'rgba(14,165,233,0.06)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 8,
-            flexShrink: 0,
-          }}>
-            <span style={{ fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.4 }}>
-              담당자에게 Slack/Discord로 즉시 알림을 보냅니다.
-            </span>
-            <button
-              type="button"
-              onClick={() => void notifyStaff()}
-              disabled={notifyBusy || !hasUserMessage}
-              style={{
-                flexShrink: 0,
-                padding: '6px 12px',
-                fontSize: '0.72rem',
-                fontFamily: 'var(--mono)',
-                fontWeight: 600,
-                letterSpacing: '0.04em',
-                borderRadius: 6,
-                border: '1px solid var(--accent)',
-                background: hasUserMessage && !notifyBusy ? 'var(--accent)' : 'transparent',
-                color: hasUserMessage && !notifyBusy ? '#000' : 'var(--text3)',
-                cursor: hasUserMessage && !notifyBusy ? 'pointer' : 'not-allowed',
-              }}
-            >
-              {notifyBusy ? '전송 중…' : notifyOk ? '알림 전송됨' : '담당자 알림'}
-            </button>
-          </div>
-        )}
+        <div style={{
+          padding: '8px 12px',
+          borderTop: '1px solid var(--border)',
+          background: 'rgba(251,146,60,0.06)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 8,
+          flexShrink: 0,
+        }}>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.4 }}>
+            상세한 안내가 필요하신가요?
+          </span>
+          <button
+            type="button"
+            onClick={handleContactClick}
+            style={{
+              flexShrink: 0,
+              padding: '6px 12px',
+              fontSize: '0.72rem',
+              fontFamily: 'var(--mono)',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              borderRadius: 6,
+              border: '1px solid var(--accent)',
+              background: 'var(--accent)',
+              color: '#fff',
+              cursor: 'pointer',
+            }}
+          >
+            상담원과 채팅하기
+          </button>
+        </div>
 
         <div style={{
           padding: '10px 12px',
