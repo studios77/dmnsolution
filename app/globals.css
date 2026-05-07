@@ -7,8 +7,8 @@
   --bg3: #bae6fd;
   --surface: #ffffff;
   --surface2: #f8fafc;
-  --hero-bg: #f0f9ff;
-  --hero-elevated: #ffffff;
+  --hero-bg: #0f172a;
+  --hero-elevated: #1e293b;
   --border: rgba(125, 211, 252, 0.4);
   --border2: rgba(56, 189, 248, 0.45);
   --accent: #0284c7;
@@ -21,11 +21,11 @@
   --text: #0f172a;
   --text2: #334155;
   --text3: #64748b;
-  --hero-text: #0f172a;
-  --hero-muted: #334155;
-  --nav-bg: rgba(240, 249, 255, 0.92);
-  --nav-border: rgba(125, 211, 252, 0.4);
-  --nav-link: #334155;
+  --hero-text: #f8fafc;
+  --hero-muted: #cbd5e1;
+  --nav-bg: rgba(15, 23, 42, 0.92);
+  --nav-border: rgba(51, 65, 85, 0.85);
+  --nav-link: #e2e8f0;
   --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
   --sans: 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --display: 'Syne', 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
@@ -69,7 +69,7 @@ body::before {
   position: fixed;
   inset: 0;
   height: 52vh;
-  background: linear-gradient(180deg, rgba(2, 132, 199, 0.08) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.15) 0%, transparent 100%);
   pointer-events: none;
   z-index: 0;
 }

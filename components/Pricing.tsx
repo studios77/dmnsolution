@@ -111,9 +111,9 @@ export default function Pricing() {
               <div key={p.name} style={{
                 border: p.featured ? '2px solid var(--accent)' : '1px solid var(--border)',
                 borderRadius: 2, padding: '36px 28px',
-                background: p.featured ? 'linear-gradient(180deg, var(--accent-soft), var(--surface))' : 'var(--surface)',
+                background: p.featured ? 'linear-gradient(180deg, rgba(251,146,60,0.08), var(--surface))' : 'var(--surface)',
                 position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s',
-                boxShadow: p.featured ? '8px 8px 0 var(--glow)' : '4px 4px 0 rgba(20,18,17,0.04)',
+                boxShadow: p.featured ? '8px 8px 0 rgba(194,65,12,0.12)' : '4px 4px 0 rgba(20,18,17,0.04)',
                 display: 'flex', flexDirection: 'column',
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)' }}
@@ -175,7 +175,7 @@ export default function Pricing() {
             ))}
           </div>
 
-          <div className="reveal" style={{ marginTop: 20, border: '2px solid var(--border)', borderRadius: 2, padding: '36px 28px', background: 'var(--bg2)', boxShadow: '8px 8px 0 var(--glow)' }}>
+          <div className="reveal" style={{ marginTop: 20, border: '2px solid var(--border)', borderRadius: 2, padding: '36px 28px', background: 'var(--bg2)', boxShadow: '8px 8px 0 rgba(20,18,17,0.06)' }}>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.12em', marginBottom: 10 }}>엔터프라이즈</div>
             <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>복수 라인 · 대규모 맞춤</div>
             <div style={{ fontFamily: 'var(--display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)', margin: '14px 0' }}>맞춤 견적</div>

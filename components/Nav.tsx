@@ -15,7 +15,7 @@ type ServiceMenuLink = {
 
 function MenuItemTitle({ item, size, tone = 'onLight' }: { item: ServiceMenuLink; size: 'sm' | 'md'; tone?: 'onLight' | 'onDark' }) {
   const fs = size === 'sm' ? '0.875rem' : '0.95rem'
-  const color = tone === 'onDark' ? 'var(--text)' : 'var(--text)'
+  const color = tone === 'onDark' ? '#f1f5f9' : 'var(--text)'
   return (
     <span
       style={{
@@ -298,7 +298,7 @@ export default function Nav() {
           }}
             onMouseEnter={e => {
               (e.target as HTMLElement).style.background = 'var(--accent)'
-              ;(e.target as HTMLElement).style.color = '#ffffff'
+              ;(e.target as HTMLElement).style.color = '#030712'
             }}
             onMouseLeave={e => {
               (e.target as HTMLElement).style.background = 'transparent'
@@ -310,7 +310,7 @@ export default function Nav() {
 
           <button
             onClick={() => setMobileOpen(o => !o)}
-            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text)' }}
+            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: '#e2e8f0' }}
             className="hamburger"
           >
             {mobileOpen
@@ -324,7 +324,7 @@ export default function Nav() {
       {mobileOpen && (
         <div style={{
           position: 'fixed', top: NAV_OUTER_PX, left: 0, right: 0, zIndex: 199,
-          background: 'var(--surface)', borderBottom: '1px solid var(--nav-border)',
+          background: '#0f172a', borderBottom: '1px solid var(--nav-border)',
           padding: '20px 5%', maxHeight: `calc(100vh - ${NAV_OUTER_PX}px)`, overflowY: 'auto',
         }}>
           {serviceMenu.map((cat, ci) => (
