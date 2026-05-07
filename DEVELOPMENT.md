@@ -76,7 +76,7 @@ dmnsolution/
 
 - **홈**: Hero, 서비스 요약, About, Edge, Pricing, Contact, Footer, 상단 스크롤, 챗봇 UI 등.
 - **서비스 상세 14종**: `ServiceDetailPage` + `lib/servicesData.ts`의 `slug`와 `app/services/<slug>/page.tsx`가 1:1 대응.
-- **브랜딩**: 과거 LunarFlux AI 표기에서 **DMN솔루션**으로 통일(레이아웃·컴포넌트·서비스 페이지 메타데이터 등).
+- **브랜딩**: DMN솔루션으로 브랜드 통일(레이아웃·컴포넌트·서비스 페이지 메타데이터 등).
 - **SEO**: 메인 `metadata`, `robots`, `sitemap`, Open Graph 키워드 등.
 
 ---
@@ -90,7 +90,7 @@ dmnsolution/
 3. **feat** — 전체 공통 컴포넌트 추가(Nav, Hero, Services, About, Contact, Footer, Pricing, EdgeSection, ScrollTop, ChatBot, ServiceDetailPage)  
 4. **feat** — 나머지 컴포넌트 보강(About, Contact, Pricing, EdgeSection, ChatBot)  
 5. **feat** — 14개 서비스 페이지를 `ServiceDetailPage` 패턴으로 추가  
-6. **rebrand** — LunarFlux AI → DMN솔루션(`app/`, `lib/` 등)  
+6. **rebrand** — DMN솔루션으로 리브랜딩(`app/`, `lib/` 등)  
 7. **rebrand** — Nav, Footer, About  
 8. **rebrand** — Contact, Pricing  
 9. **rebrand** — ChatBot, EdgeSection  

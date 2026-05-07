@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   creator: 'DMN솔루션',
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    title: 'DMN솔루션 — IDC · AI 보안 · 라이브 스트리밍',
+    title: SEO_DEFAULT_TITLE,
     description: SEO_DEFAULT_DESCRIPTION,
     url: SITE_ORIGIN,
     siteName: 'DMN솔루션',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DMN솔루션 — IDC · AI 보안 · 라이브 스트리밍',
+    title: SEO_DEFAULT_TITLE,
     description: SEO_DEFAULT_DESCRIPTION,
     images: [SEO_OG_IMAGE],
   },
