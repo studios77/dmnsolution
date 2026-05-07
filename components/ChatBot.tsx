@@ -134,6 +134,38 @@ export default function ChatBot() {
     }
   }
 
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setOpen(false)
+    const contactSection = document.getElementById('contact')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+      setTimeout(() => {
+        const firstInput = contactSection.querySelector('input[name="name"]') as HTMLInputElement
+        if (firstInput) firstInput.focus()
+      }, 500)
+    }
+  }
+
+  const renderMessageText = (text: string) => {
+    const parts = text.split(/(\[문의하기\]|\[무료 상담\])/g)
+    return parts.map((part, i) => {
+      if (part === '[문의하기]' || part === '[무료 상담]') {
+        return (
+          <a
+            key={i}
+            href="#contact"
+            onClick={handleContactClick}
+            style={{ color: 'var(--accent)', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
+          >
+            {part.replace('[', '').replace(']', '')}
+          </a>
+        )
+      }
+      return <span key={i}>{part}</span>
+    })
+  }
+
   return (
     <>
       <button
@@ -258,7 +290,7 @@ export default function ChatBot() {
                 boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
                 fontFamily: 'var(--sans)',
               }}>
-                {msg.text}
+                {msg.role === 'bot' ? renderMessageText(msg.text) : msg.text}
               </div>
             </div>
           ))}
