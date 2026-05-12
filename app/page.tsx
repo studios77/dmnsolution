@@ -74,8 +74,8 @@ export default function Home() {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: 'IDC / 클라우드 인프라',
-                description: 'IDC 서버 임대·코로케이션·위탁운영, HA·DB 이중화, 장애 복구 및 이전.',
+                name: 'AIDC / 지능형 클라우드 인프라',
+                description: 'AIDC 서버 임대·코로케이션·위탁운영, HA·DB 이중화, 장애 복구 및 이전.',
               },
             },
             {

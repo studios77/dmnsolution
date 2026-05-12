@@ -24,10 +24,10 @@ export default function About() {
             회사 · 접근 방식
           </div>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.85rem)', fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            세 라인, 각각 다른 기준으로
+            도메인별 전문화, 독립적 운영 기준
           </h2>
           <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78, marginBottom: 0 }}>
-            IDC·AI 보안·스트리밍은 통합 패키지가 아니라 <strong style={{ color: 'var(--text)', fontWeight: 600 }}>별도 상품</strong>입니다. 도입 검토 시 분야를 나누어 스펙과 SLA를 맞추고, 필요하면 동시에 제안하되 견적은 구분합니다.
+            AIDC·AI 보안·스트리밍은 통합 패키지가 아닌 <strong style={{ color: 'var(--text)', fontWeight: 600 }}>전문 도메인별 독립 서비스</strong>입니다. 도입 검토 시 분야를 나누어 스펙과 SLA를 맞추고, 필요 시 동시 제안하되 견적은 도메인별로 구분합니다.
           </p>
         </div>
 

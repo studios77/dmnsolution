@@ -1,5 +1,5 @@
 const lines = [
-  { href: '#services-idc', label: 'IDC · 서버', hint: '코로케이션 · MSP · HA' },
+  { href: '#services-idc', label: 'AIDC · 서버', hint: '지능형 IDC · MSP · HA' },
   { href: '#services-security', label: 'AI 보안', hint: '관제 · 탐지 · 거버넌스' },
   { href: '#services-streaming', label: '라이브 스트리밍', hint: 'Ultrastream · LL-HLS' },
 ]
@@ -14,8 +14,8 @@ export default function Hero() {
       overflow: 'hidden',
       position: 'relative',
       zIndex: 1,
-      background: 'linear-gradient(165deg, #030712 0%, #0f172a 42%, #111827 100%)',
-      borderBottom: '1px solid rgba(34, 197, 94, 0.18)',
+      background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+      borderBottom: '1px solid rgba(59, 130, 246, 0.2)',
     }}>
       <div
         aria-hidden
@@ -24,8 +24,8 @@ export default function Hero() {
           inset: 0,
           opacity: 0.45,
           backgroundImage: `
-            linear-gradient(rgba(34, 197, 94, 0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.07) 1px, transparent 1px)
+            linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px)
           `,
           backgroundSize: '48px 48px',
           maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 85%)',
@@ -42,7 +42,7 @@ export default function Hero() {
           transform: 'translateX(-50%)',
           width: 'min(900px, 90vw)',
           height: '55%',
-          background: 'radial-gradient(ellipse at center, rgba(34, 197, 94, 0.18) 0%, transparent 68%)',
+          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -63,12 +63,13 @@ export default function Hero() {
             display: 'inline-flex', alignItems: 'center', gap: 10,
             fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)',
             letterSpacing: '0.1em', padding: '8px 16px', marginBottom: 18,
-            borderRadius: 8,
-            border: '1px solid rgba(34, 197, 94, 0.35)',
-            background: 'rgba(34, 197, 94, 0.08)',
+            borderRadius: 12,
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%)',
+            backdropFilter: 'blur(8px)',
             animation: 'fadeUp 0.7s ease both',
           }}>
-            THREE SERVICE LINES — 별도 견적 · 별도 계약
+            SPECIALIZED SERVICE DOMAINS — 독립 운영 · 전문화 계약
           </div>
 
           <div
@@ -90,19 +91,20 @@ export default function Hero() {
                   justifyContent: 'space-between',
                   gap: 12,
                   padding: '12px 16px',
-                  borderRadius: 8,
-                  border: '1px solid rgba(148, 163, 184, 0.25)',
-                  background: 'rgba(15, 23, 42, 0.55)',
+                  borderRadius: 12,
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  backdropFilter: 'blur(12px)',
                   textDecoration: 'none',
                   transition: 'border-color 0.2s, background 0.2s',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(34, 197, 94, 0.45)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.85)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.4)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(30, 41, 59, 0.8)'
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.25)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(15, 23, 42, 0.55)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.2)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(30, 41, 59, 0.6)'
                 }}
               >
                 <span style={{ fontFamily: 'var(--sans)', fontSize: '1.02rem', fontWeight: 700, color: '#f1f5f9' }}>{row.label}</span>
@@ -121,8 +123,8 @@ export default function Hero() {
             marginBottom: 20,
             animation: 'fadeUp 0.7s 0.1s ease both',
           }}>
-            IDC, AI 보안, 스트리밍을<br />
-            <span style={{ color: 'var(--accent)' }}>각각의 서비스</span>로 도입합니다
+            AIDC, AI 보안, 스트리밍을<br />
+            <span style={{ color: 'var(--accent)' }}>각 분야별 전문서비스</span>로 제공합니다
           </h1>
 
           <p style={{
@@ -133,8 +135,8 @@ export default function Hero() {
             marginBottom: 26,
             animation: 'fadeUp 0.7s 0.16s ease both',
           }}>
-            세 사업은 서로 다른 목표·SLA·운영 방식을 가집니다. 인프라만, 보안만, 송출만 — 필요한 라인만 골라 상세 스펙과 견적을 받을 수 있습니다. (여러 분야를 동시에 쓰는 경우에도{' '}
-            <strong style={{ color: '#e2e8f0', fontWeight: 600 }}>항목별로</strong> 구분해 제안합니다.)
+            세 분야는 각각 전문화된 목표·SLA·운영 체계를 갖추고 있습니다. 인프라만, 보안만, 송출만 — 필요한 도메인만 선택해 맞춤형 스펙과 견적을 받으실 수 있습니다. (복수 분야 동시 도입 시에도{' '}
+            <strong style={{ color: '#e2e8f0', fontWeight: 600 }}>분야별로</strong> 구분해 제안합니다.)
           </p>
 
           <div style={{
@@ -144,56 +146,142 @@ export default function Hero() {
             animation: 'fadeUp 0.7s 0.22s ease both',
           }}>
             <a href="#services" style={{
-              padding: '14px 28px',
-              background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)',
-              color: '#030712',
-              borderRadius: 8,
-              fontFamily: 'var(--sans)',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              letterSpacing: '0.02em',
-              textDecoration: 'none',
-              boxShadow: '0 12px 36px rgba(34, 197, 94, 0.35)',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-            }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
-            >분야별 서비스 보기</a>
-            <a href="#contact" style={{
-              padding: '14px 28px',
-              background: 'transparent',
-              color: '#e2e8f0',
-              border: '1px solid rgba(148, 163, 184, 0.45)',
-              borderRadius: 8,
+              padding: '16px 32px',
+              background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+              color: 'white',
+              borderRadius: 12,
               fontFamily: 'var(--sans)',
               fontSize: '0.95rem',
               fontWeight: 600,
-              letterSpacing: '0.02em',
+              letterSpacing: '0.01em',
               textDecoration: 'none',
-              transition: 'background 0.2s, transform 0.2s, border-color 0.2s',
+              boxShadow: '0 8px 32px rgba(59, 130, 246, 0.3)',
+              transition: 'all 0.3s ease',
+              border: 'none',
+            }}
+              onMouseEnter={e => { 
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 12px 40px rgba(59, 130, 246, 0.4)'
+              }}
+              onMouseLeave={e => { 
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.3)'
+              }}
+            >분야별 서비스 보기</a>
+            <a href="#contact" style={{
+              padding: '16px 32px',
+              background: 'rgba(255, 255, 255, 0.1)',
+              color: '#e2e8f0',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: 12,
+              fontFamily: 'var(--sans)',
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              letterSpacing: '0.01em',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(8px)',
             }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)'
-                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(34, 197, 94, 0.5)'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)'
+                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'transparent'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.1)'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.45)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.2)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
             >분야 지정 문의</a>
+          </div>
+
+          {/* Service Images */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 20,
+            marginTop: 32,
+            animation: 'fadeUp 0.7s 0.28s ease both',
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              opacity: 0.8,
+              transition: 'opacity 0.3s',
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
+            >
+              <img src="/images/idc-infrastructure.svg" alt="AIDC Infrastructure" style={{
+                width: 90,
+                height: 70,
+                borderRadius: 16,
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                background: 'rgba(30, 41, 59, 0.4)',
+                padding: 12,
+                backdropFilter: 'blur(8px)',
+              }} />
+              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>AIDC</span>
+            </div>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              opacity: 0.8,
+              transition: 'opacity 0.3s',
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
+            >
+              <img src="/images/ai-security.svg" alt="AI Security" style={{
+                width: 90,
+                height: 70,
+                borderRadius: 16,
+                border: '1px solid rgba(34, 197, 94, 0.2)',
+                background: 'rgba(30, 41, 59, 0.4)',
+                padding: 12,
+                backdropFilter: 'blur(8px)',
+              }} />
+              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>AI SECURITY</span>
+            </div>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              opacity: 0.8,
+              transition: 'opacity 0.3s',
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
+            >
+              <img src="/images/streaming-engine.svg" alt="Streaming Engine" style={{
+                width: 90,
+                height: 70,
+                borderRadius: 16,
+                border: '1px solid rgba(139, 92, 246, 0.2)',
+                background: 'rgba(30, 41, 59, 0.4)',
+                padding: 12,
+                backdropFilter: 'blur(8px)',
+              }} />
+              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>STREAMING</span>
+            </div>
           </div>
         </div>
 
         <aside style={{
-          background: 'rgba(15, 23, 42, 0.72)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          border: '1px solid rgba(34, 197, 94, 0.22)',
-          borderRadius: 12,
-          boxShadow: '0 24px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
-          padding: '26px 24px 22px',
+          background: 'rgba(30, 41, 59, 0.8)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          borderRadius: 20,
+          boxShadow: '0 32px 64px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
+          padding: '32px 28px 28px',
           animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)', letterSpacing: '0.08em', marginBottom: 18, fontWeight: 600 }}>
@@ -201,11 +289,11 @@ export default function Hero() {
           </div>
           {[
             {
-              title: 'IDC · 서버',
+              title: 'AIDC · 서버',
               color: '#38bdf8',
               items: [
-                { k: '가용·SLA', v: '99.99%', d: '인프라·계약별' },
-                { k: 'HA', v: '<30s', d: '페일오버 목표' },
+                { k: '가용·SLA', v: '99.99%', d: '지능형 인프라별' },
+                { k: 'HA', v: '<30s', d: '자동 페일오버' },
               ],
             },
             {

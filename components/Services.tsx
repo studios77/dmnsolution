@@ -10,11 +10,11 @@ type ServiceCard = {
 }
 
 const services: ServiceCard[] = [
-  { icon: '🏢', cat: 'IDC / 서버', name: '서버 임대 · 코로케이션', slug: 'server-rental', desc: '가상화 기반 VM 즉시 할당부터 고객 장비 입주(코로케이션)까지. 전력·냉각·네트워크 포함, IPMI 원격관리.', tags: ['KVM', 'IPMI', 'Bare Metal'] },
-  { icon: '⚙️', cat: 'IDC / MSP', name: '위탁운영 매니지먼트', slug: 'managed-service', desc: 'OS 패치·장애대응·성능튜닝 전담. Zabbix+Grafana 실시간 모니터링, 월 SLA 리포트.', tags: ['Zabbix', 'Ansible', 'Grafana'] },
-  { icon: '🔄', cat: 'IDC / HA', name: '운영서버 이중화 (HA)', slug: 'ha', desc: 'Active-Active/Standby 구성, 자동 페일오버 30초 이내, L4/L7 로드밸런서, 99.99% SLA.', tags: ['Keepalived', 'HAProxy', 'Pacemaker'] },
-  { icon: '🗄️', cat: 'IDC / DB', name: 'DB 이중화 매니지먼트', slug: 'db-cluster', desc: 'Galera Cluster·Master-Slave 구성·모니터링·자동복구 위탁관리. 슬로우쿼리 분석.', tags: ['Galera', 'ProxySQL', 'Percona'] },
-  { icon: '🛠️', cat: 'IDC / 서버', name: '서버 장애 복구 및 이전', slug: 'system-recovery-migration', desc: '당사 IDC 입주 여부와 무관하게 외부 운영 서버·VM·온프레 환경까지 장애 복구·이전·성능·네트워크 지원. 원격·현장.', tags: ['긴급복구', '이전', '온프레'] },
+  { icon: '🏢', cat: 'AIDC / 서버', name: '서버 임대 · 코로케이션', slug: 'server-rental', desc: '지능형 가상화 기반 VM 즉시 할당부터 고객 장비 입주(코로케이션)까지. 전력·냉각·네트워크 포함, IPMI 원격관리.', tags: ['KVM', 'IPMI', 'Bare Metal'] },
+  { icon: '⚙️', cat: 'AIDC / MSP', name: '위탁운영 매니지먼트', slug: 'managed-service', desc: 'OS 패치·장애대응·성능튜닝 전담. Zabbix+Grafana 실시간 모니터링, 월 SLA 리포트.', tags: ['Zabbix', 'Ansible', 'Grafana'] },
+  { icon: '🔄', cat: 'AIDC / HA', name: '운영서버 이중화 (HA)', slug: 'ha', desc: 'Active-Active/Standby 구성, 자동 페일오버 30초 이내, L4/L7 로드밸런서, 99.99% SLA.', tags: ['Keepalived', 'HAProxy', 'Pacemaker'] },
+  { icon: '🗄️', cat: 'AIDC / DB', name: 'DB 이중화 매니지먼트', slug: 'db-cluster', desc: 'Galera Cluster·Master-Slave 구성·모니터링·자동복구 위탁관리. 슬로우쿼리 분석.', tags: ['Galera', 'ProxySQL', 'Percona'] },
+  { icon: '🛠️', cat: 'AIDC / 서버', name: '서버 장애 복구 및 이전', slug: 'system-recovery-migration', desc: '당사 AIDC 입주 여부와 무관하게 외부 운영 서버·VM·온프레 환경까지 장애 복구·이전·성능·네트워크 지원. 원격·현장.', tags: ['긴급복구', '이전', '온프레'] },
   { icon: '🛡️', cat: 'AI 보안', name: 'AI 보안 관제', slug: 'ai-security', desc: '365일 24시간 무인 관제. 위협 자동 탐지·분류·대응과 비용 절감을 동시에. 공공·금융·중견기업 특화.', tags: ['24/7', '자동 대응', '컴플라이언스'] },
   { icon: '🤖', cat: 'AI 보안', name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM 기반 SOC 자동화. Wazuh SIEM·SOAR 플레이북으로 탐지·분석·대응을 자동화합니다.', tags: ['LLM', 'SIEM', 'SOAR'] },
   { icon: '🛰️', cat: 'AI 보안', name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'RTMP/HLS 트래픽 머신러닝 분석. 세션 하이재킹·인젝션·DDoS 실시간 탐지 및 자동차단.', tags: ['Python ML', 'MediaMTX', 'Fail2ban'] },
@@ -30,15 +30,15 @@ const GROUPS: { id: string; anchorId: string; title: string; subtitle: string; s
   {
     id: 'idc',
     anchorId: 'services-idc',
-    title: 'IDC · 서버 인프라',
-    subtitle: '데이터센터 입주·위탁운영·이중화·DB·장애 복구. IDC만 단독으로 문의·계약할 수 있습니다.',
+    title: 'AIDC · 지능형 서버 인프라',
+    subtitle: '지능형 데이터센터 입주·위탁운영·이중화·DB·장애 복구. AIDC만 단독으로 문의·계약할 수 있습니다.',
     slugs: ['server-rental', 'managed-service', 'ha', 'db-cluster', 'system-recovery-migration'],
   },
   {
     id: 'security',
     anchorId: 'services-security',
-    title: 'AI 보안 · 거버넌스',
-    subtitle: '관제, 이상·딥페이크 탐지, 네트워크·제로트러스트, LLM 감사. 보안 라인은 인프라·스트리밍과 별도 견적입니다.',
+    title: 'AI 보안 · 지능형 거버넌스',
+    subtitle: '24/7 관제, 이상·딥페이크 탐지, 네트워크·제로트러스트, LLM 감사. 보안 도메인은 인프라·스트리밍과 독립된 전문 서비스입니다.',
     slugs: ['ai-security', 'ai-agent', 'ai-stream-security', 'deepfake-detection', 'network-security', 'zero-trust', 'llm-security-audit'],
   },
   {
@@ -63,10 +63,10 @@ export default function Services() {
             서비스 카탈로그
           </div>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.85rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            세 가지 사업, 서로 다른 서비스
+            전문 도메인별 특화 서비스
           </h2>
           <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 640, lineHeight: 1.78 }}>
-            아래는 <strong style={{ color: 'var(--text)' }}>IDC</strong>, <strong style={{ color: 'var(--text)' }}>AI 보안</strong>, <strong style={{ color: 'var(--text)' }}>스트리밍</strong>으로 나뉜 목록입니다. 동시에 문의하셔도 견적·계약·운영은 분야별로 구분합니다. 카드를 누르면 해당 상품의 상세·스펙으로 이동합니다.
+            아래는 <strong style={{ color: 'var(--text)' }}>AIDC</strong>, <strong style={{ color: 'var(--text)' }}>AI 보안</strong>, <strong style={{ color: 'var(--text)' }}>스트리밍</strong>으로 구분된 전문 서비스입니다. 복수 분야 동시 문의도 가능하나 견적·계약·운영은 도메인별로 독립 관리합니다. 카드를 클릭하면 해당 서비스의 상세·스펙으로 이동합니다.
           </p>
         </div>
 
