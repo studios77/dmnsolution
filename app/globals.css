@@ -26,9 +26,9 @@
   --text3: #64748b;
   --hero-text: #f8fafc;
   --hero-muted: #cbd5e1;
-  --nav-bg: rgba(255, 255, 255, 0.95);
-  --nav-border: rgba(148, 163, 184, 0.2);
-  --nav-link: #374151;
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --nav-border: rgba(71, 85, 105, 0.3);
+  --nav-link: #e2e8f0;
   --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
   --sans: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --display: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -58,6 +58,7 @@
     --text3: #cbd5e1;
     --hero-text: #f8fafc;
     --hero-muted: #94a3b8;
+    /* Nav stays dark in both modes for consistency */
     --nav-bg: rgba(15, 23, 42, 0.95);
     --nav-border: rgba(71, 85, 105, 0.3);
     --nav-link: #e2e8f0;

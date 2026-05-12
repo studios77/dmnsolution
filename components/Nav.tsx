@@ -13,9 +13,9 @@ type ServiceMenuLink = {
   highlight?: boolean
 }
 
-function MenuItemTitle({ item, size, tone = 'onLight' }: { item: ServiceMenuLink; size: 'sm' | 'md'; tone?: 'onLight' | 'onDark' }) {
+function MenuItemTitle({ item, size, tone = 'onDark' }: { item: ServiceMenuLink; size: 'sm' | 'md'; tone?: 'onLight' | 'onDark' }) {
   const fs = size === 'sm' ? '0.875rem' : '0.95rem'
-  const color = tone === 'onDark' ? '#f1f5f9' : 'var(--text)'
+  const color = tone === 'onDark' ? '#f1f5f9' : tone === 'onLight' ? 'var(--text)' : '#f1f5f9'
   return (
     <span
       style={{
@@ -145,7 +145,7 @@ export default function Nav() {
               maxWidth: 'min(72vw, 300px)',
               objectFit: 'contain',
               objectPosition: 'left center',
-              filter: 'brightness(1.2) contrast(1.1)',
+              filter: 'brightness(1.5) contrast(1.2) saturate(1.1)',
             }}
           />
         </Link>
@@ -180,9 +180,9 @@ export default function Nav() {
                 style={{
                   position: 'absolute', top: 'calc(100% + 8px)',
                   left: '50%', transform: 'translateX(-50%)',
-                  background: 'var(--surface)', border: '1px solid var(--border2)',
+                  background: '#1e293b', border: '1px solid rgba(71, 85, 105, 0.4)',
                   borderRadius: 12,
-                  boxShadow: '0 24px 64px rgba(20,18,17,0.12)',
+                  boxShadow: '0 24px 64px rgba(0,0,0,0.3)',
                   width: 'min(1120px, calc(100vw - 20px))',
                   maxWidth: 'calc(100vw - 20px)',
                   zIndex: 9999,
@@ -212,7 +212,7 @@ export default function Nav() {
                           <div key={si}>
                             {sec.sub && (
                               <div style={{
-                                fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--text3)',
+                                fontFamily: 'var(--mono)', fontSize: '0.62rem', color: '#94a3b8',
                                 letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600,
                                 marginTop: si > 0 ? 14 : 0, marginBottom: 6, paddingLeft: 2,
                               }}>
@@ -233,7 +233,7 @@ export default function Nav() {
                                   transition: 'background 0.15s',
                                 }}
                                 onMouseEnter={e => {
-                                  if (!item.highlight) (e.currentTarget as HTMLElement).style.background = 'var(--bg)'
+                                  if (!item.highlight) (e.currentTarget as HTMLElement).style.background = 'rgba(51, 65, 85, 0.5)'
                                 }}
                                 onMouseLeave={e => {
                                   if (!item.highlight) (e.currentTarget as HTMLElement).style.background = 'transparent'
@@ -241,7 +241,7 @@ export default function Nav() {
                               >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'nowrap' }}>
                                   <div style={{ flex: 1, minWidth: 0 }}>
-                                    <MenuItemTitle item={item} size="sm" />
+                                    <MenuItemTitle item={item} size="sm" tone="onDark" />
                                   </div>
                                   {item.highlight && (
                                     <span style={{ fontFamily: 'var(--mono)', fontSize: '0.56rem', color: cat.color, background: `${cat.color}20`, border: `1px solid ${cat.color}40`, borderRadius: 10, padding: '3px 7px', letterSpacing: '0.06em', flexShrink: 0 }}>
@@ -249,7 +249,7 @@ export default function Nav() {
                                     </span>
                                   )}
                                 </div>
-                                <div style={{ fontFamily: 'var(--sans)', fontSize: '0.8rem', color: 'var(--text3)', marginTop: 5, lineHeight: 1.45, wordBreak: 'keep-all' }}>
+                                <div style={{ fontFamily: 'var(--sans)', fontSize: '0.8rem', color: '#cbd5e1', marginTop: 5, lineHeight: 1.45, wordBreak: 'keep-all' }}>
                                   {item.desc}
                                 </div>
                               </Link>
@@ -260,11 +260,11 @@ export default function Nav() {
                     </div>
                   ))}
                 </div>
-                <div style={{ borderTop: '1px solid var(--border)', padding: '10px 20px', display: 'flex', gap: 16, background: 'var(--bg)', borderRadius: '0 0 12px 12px' }}>
+                <div style={{ borderTop: '1px solid rgba(71, 85, 105, 0.4)', padding: '10px 20px', display: 'flex', gap: 16, background: '#0f172a', borderRadius: '0 0 12px 12px' }}>
                   <Link href="/#services" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: 'var(--accent)', textDecoration: 'none', letterSpacing: '0.06em' }}>
                     전체 서비스 보기 →
                   </Link>
-                  <Link href="/#contact" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: 'var(--text3)', textDecoration: 'none', letterSpacing: '0.06em' }}>
+                  <Link href="/#contact" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: '#94a3b8', textDecoration: 'none', letterSpacing: '0.06em' }}>
                     문의하기 →
                   </Link>
                 </div>
@@ -299,7 +299,7 @@ export default function Nav() {
           }}
             onMouseEnter={e => {
               (e.target as HTMLElement).style.background = 'var(--accent)'
-              ;(e.target as HTMLElement).style.color = '#030712'
+              ;(e.target as HTMLElement).style.color = '#ffffff'
             }}
             onMouseLeave={e => {
               (e.target as HTMLElement).style.background = 'transparent'
