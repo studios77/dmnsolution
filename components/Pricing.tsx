@@ -1,8 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import { formDataToRecord, notifyAdminInstant } from '@/lib/adminNotify'
-
-const WEB3FORMS_KEY = '92e76d57-87e2-4f09-8084-bc2552db772d'
+import { getWeb3FormsAccessKey } from '@/lib/web3formsKey'
 
 const plans = [
   {
@@ -110,10 +109,16 @@ export default function Pricing() {
       return
     }
     
+    const web3Key = getWeb3FormsAccessKey()
+    if (!web3Key) {
+      alert('Web3Forms 액세스 키가 설정되지 않았습니다. NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY를 .env.local 또는 Cloudflare Pages 환경 변수에 추가해 주세요.')
+      return
+    }
+
     setStatus('sending')
 
     const fd = new FormData(formRef.current)
-    fd.append('access_key', WEB3FORMS_KEY)
+    fd.append('access_key', web3Key)
     fd.append('subject', `[DMN솔루션 요금제 접수] ${modal.planTier} — ${modal.planName}`)
     fd.append('from_name', 'DMN솔루션 요금제 신청')
     

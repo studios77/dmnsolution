@@ -3,8 +3,7 @@
 import React, { useRef, useState } from 'react'
 import Link from 'next/link'
 import { formDataToRecord, notifyAdminInstant } from '@/lib/adminNotify'
-
-const WEB3FORMS_KEY = '92e76d57-87e2-4f09-8084-bc2552db772d'
+import { getWeb3FormsAccessKey } from '@/lib/web3formsKey'
 
 interface CaptchaState {
   question: string
@@ -77,10 +76,18 @@ export default function Contact() {
       return
     }
 
+    const web3Key = getWeb3FormsAccessKey()
+    if (!web3Key) {
+      alert(
+        'Web3Forms \uc561\uc138\uc2a4 \ud0a4\uac00 \uc124\uc815\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY\ub97c .env.local \ub610\ub294 Cloudflare Pages \ud658\uacbd \ubcc0\uc218\uc5d0 \ucd94\uac00\ud574 \uc8fc\uc138\uc694.'
+      )
+      return
+    }
+
     setStatus('sending')
     const fd = new FormData(formRef.current)
 
-    fd.append('access_key', WEB3FORMS_KEY)
+    fd.append('access_key', web3Key)
     fd.append(
       'subject',
       '[DMN\uc194\ub8e8\uc158] \ubb38\uc758 \xb7 \uaca9\uc801 \xb7 \ub3c4\uc785\uc0c1\ub2f4 \uc811\uc218'
