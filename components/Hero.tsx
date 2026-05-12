@@ -194,7 +194,7 @@ export default function Hero() {
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.3)'
                 ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
-            >분야 지정 문의</a>
+            >견적 문의</a>
           </div>
 
           {/* Service Images */}
