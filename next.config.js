@@ -7,8 +7,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Turbopack 루트 디렉토리 명시적 설정
   turbopack: {
-    root: path.join(__dirname),
+    root: __dirname,
   },
 }
 
