@@ -2,6 +2,7 @@
 
 /* Modern Streaming Platform aesthetic (AntMedia.io inspired) */
 :root {
+  color-scheme: light;
   --bg: #ffffff;
   --bg2: #f8fafc;
   --bg3: #f1f5f9;
@@ -27,29 +28,54 @@
   --nav-border: rgba(148, 163, 184, 0.2);
   --nav-link: #374151;
   --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
-  --sans: 'Inter', 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --display: 'Inter', 'Syne', 'DM Sans', 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  --sans: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --display: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html { 
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: var(--sans) !important;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
+.light-mode {
+  color-scheme: light !important;
+}
+
+/* 한국어 텍스트에 최적화된 줄간격 */
 main section p,
 main .reveal p {
   font-size: 1rem;
-  line-height: 1.74;
-  letter-spacing: -0.01em;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+/* 한글 폰트 렌더링 개선 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--display);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
 /* Modern gradient background with subtle tech pattern */
@@ -120,4 +146,34 @@ body::before {
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 다크모드 강제 적용 방지 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important;
+  }
+  
+  body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+  }
+}
+
+/* Chrome 자동 다크모드 방지 */
+meta[name="color-scheme"] {
+  content: "light";
+}
+
+/* 폰트 로딩 최적화 */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Inter'), local('-apple-system'), local('BlinkMacSystemFont'), local('system-ui');
+  font-display: swap;
+}
+
+/* 텍스트 선택 스타일 */
+::selection {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--text);
 }
