@@ -110,17 +110,61 @@ export default function Pricing() {
             {plans.map(p => (
               <div key={p.name} style={{
                 border: p.featured ? '2px solid var(--accent)' : '1px solid var(--border)',
-                borderRadius: 2, padding: '36px 28px',
-                background: p.featured ? 'linear-gradient(180deg, rgba(251,146,60,0.08), var(--surface))' : 'var(--surface)',
-                position: 'relative', transition: 'transform 0.3s, box-shadow 0.3s',
-                boxShadow: p.featured ? '8px 8px 0 rgba(194,65,12,0.12)' : '4px 4px 0 rgba(20,18,17,0.04)',
+                borderRadius: 12, padding: '32px 24px',
+                background: p.featured ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%)' : 'var(--surface)',
+                position: 'relative', transition: 'all 0.3s ease',
+                boxShadow: p.featured ? '0 8px 32px rgba(59, 130, 246, 0.15)' : '0 4px 16px rgba(0,0,0,0.08)',
                 display: 'flex', flexDirection: 'column',
+                ...(p.tier === 'IDC Standard' ? {
+                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.06) 0%, rgba(16, 185, 129, 0.04) 100%)',
+                  border: '2px solid rgba(34, 197, 94, 0.2)',
+                } : {}),
+                ...(p.tier === 'HA / DR' ? {
+                  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(124, 58, 237, 0.04) 100%)',
+                  border: '2px solid rgba(139, 92, 246, 0.2)',
+                } : {}),
               }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
+                onMouseEnter={e => { 
+                  const el = e.currentTarget as HTMLElement
+                  el.style.transform = 'translateY(-8px)'
+                  if (p.featured) {
+                    el.style.boxShadow = '0 16px 48px rgba(59, 130, 246, 0.25)'
+                  } else if (p.tier === 'IDC Standard') {
+                    el.style.boxShadow = '0 16px 48px rgba(34, 197, 94, 0.2)'
+                  } else if (p.tier === 'HA / DR') {
+                    el.style.boxShadow = '0 16px 48px rgba(139, 92, 246, 0.2)'
+                  } else {
+                    el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)'
+                  }
+                }}
+                onMouseLeave={e => { 
+                  const el = e.currentTarget as HTMLElement
+                  el.style.transform = 'translateY(0)'
+                  if (p.featured) {
+                    el.style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.15)'
+                  } else if (p.tier === 'IDC Standard') {
+                    el.style.boxShadow = '0 4px 16px rgba(34, 197, 94, 0.1)'
+                  } else if (p.tier === 'HA / DR') {
+                    el.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1)'
+                  } else {
+                    el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'
+                  }
+                }}
               >
                 {p.featured && (
-                  <div style={{ position: 'absolute', top: -1, right: 24, background: 'var(--accent)', color: '#fff', fontFamily: 'var(--sans)', fontSize: '0.72rem', fontWeight: 700, padding: '5px 12px', borderRadius: '0 0 2px 2px' }}>인기</div>
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: -1, 
+                    right: 20, 
+                    background: 'linear-gradient(135deg, var(--accent) 0%, #2563eb 100%)', 
+                    color: '#fff', 
+                    fontFamily: 'var(--sans)', 
+                    fontSize: '0.7rem', 
+                    fontWeight: 700, 
+                    padding: '8px 16px', 
+                    borderRadius: '0 0 12px 12px',
+                    boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+                  }}>✨ 추천</div>
                 )}
                 <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{p.tier}</div>
                 <div style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>{p.name}</div>
@@ -147,25 +191,64 @@ export default function Pricing() {
                 <button
                   onClick={() => openModal(p.name, p.tier)}
                   style={{
-                    display: 'block', width: '100%', padding: 12, borderRadius: 4, textAlign: 'center',
-                    fontFamily: 'var(--mono)', fontSize: '0.75rem', letterSpacing: '0.06em', transition: 'all 0.25s',
-                    background: p.featured ? 'var(--accent)' : 'transparent',
-                    border: p.featured ? '1px solid var(--accent)' : '1px solid var(--border2)',
-                    color: p.featured ? '#fff' : 'var(--text)', fontWeight: p.featured ? 600 : 500,
+                    display: 'block', width: '100%', padding: '14px 16px', borderRadius: 8, textAlign: 'center',
+                    fontFamily: 'var(--sans)', fontSize: '0.85rem', fontWeight: 600, transition: 'all 0.3s ease',
+                    background: (() => {
+                      if (p.featured) return 'linear-gradient(135deg, var(--accent) 0%, #2563eb 100%)'
+                      if (p.tier === 'IDC Standard') return 'transparent'
+                      if (p.tier === 'HA / DR') return 'transparent'
+                      return 'transparent'
+                    })(),
+                    border: (() => {
+                      if (p.featured) return '2px solid var(--accent)'
+                      if (p.tier === 'IDC Standard') return '2px solid rgba(34, 197, 94, 0.3)'
+                      if (p.tier === 'HA / DR') return '2px solid rgba(139, 92, 246, 0.3)'
+                      return '2px solid var(--border)'
+                    })(),
+                    color: (() => {
+                      if (p.featured) return '#fff'
+                      if (p.tier === 'IDC Standard') return '#16a34a'
+                      if (p.tier === 'HA / DR') return '#7c3aed'
+                      return 'var(--text)'
+                    })(),
                     cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
-                    if (!p.featured) {
-                      (e.currentTarget as HTMLButtonElement).style.background = 'var(--accent)'
-                      ;(e.currentTarget as HTMLButtonElement).style.color = '#fff'
-                      ;(e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--accent)'
+                    const btn = e.currentTarget as HTMLButtonElement
+                    if (p.featured) {
+                      btn.style.transform = 'translateY(-2px)'
+                      btn.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.3)'
+                    } else if (p.tier === 'IDC Standard') {
+                      btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)'
+                      btn.style.color = '#fff'
+                      btn.style.transform = 'translateY(-2px)'
+                    } else if (p.tier === 'HA / DR') {
+                      btn.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+                      btn.style.color = '#fff'
+                      btn.style.transform = 'translateY(-2px)'
+                    } else {
+                      btn.style.background = 'var(--accent)'
+                      btn.style.color = '#fff'
+                      btn.style.borderColor = 'var(--accent)'
                     }
                   }}
                   onMouseLeave={e => {
-                    if (!p.featured) {
-                      (e.currentTarget as HTMLButtonElement).style.background = 'transparent'
-                      ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--text)'
-                      ;(e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border2)'
+                    const btn = e.currentTarget as HTMLButtonElement
+                    btn.style.transform = 'translateY(0)'
+                    btn.style.boxShadow = 'none'
+                    if (p.featured) {
+                      btn.style.background = 'linear-gradient(135deg, var(--accent) 0%, #2563eb 100%)'
+                      btn.style.color = '#fff'
+                    } else if (p.tier === 'IDC Standard') {
+                      btn.style.background = 'transparent'
+                      btn.style.color = '#16a34a'
+                    } else if (p.tier === 'HA / DR') {
+                      btn.style.background = 'transparent'
+                      btn.style.color = '#7c3aed'
+                    } else {
+                      btn.style.background = 'transparent'
+                      btn.style.color = 'var(--text)'
+                      btn.style.borderColor = 'var(--border)'
                     }
                   }}
                 >
@@ -175,10 +258,17 @@ export default function Pricing() {
             ))}
           </div>
 
-          <div className="reveal" style={{ marginTop: 20, border: '2px solid var(--border)', borderRadius: 2, padding: '36px 28px', background: 'var(--bg2)', boxShadow: '8px 8px 0 rgba(20,18,17,0.06)' }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent2)', letterSpacing: '0.12em', marginBottom: 10 }}>엔터프라이즈</div>
+          <div className="reveal" style={{ 
+            marginTop: 40, 
+            border: '2px solid rgba(99, 102, 241, 0.2)', 
+            borderRadius: 16, 
+            padding: '40px 32px', 
+            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(79, 70, 229, 0.04) 100%)', 
+            boxShadow: '0 8px 32px rgba(99, 102, 241, 0.1)',
+          }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: '#6366f1', letterSpacing: '0.1em', marginBottom: 12, fontWeight: 700, textTransform: 'uppercase' }}>🚀 Enterprise</div>
             <div style={{ fontFamily: 'var(--display)', fontSize: '1.45rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>복수 라인 · 대규모 맞춤</div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)', margin: '14px 0' }}>맞춤 견적</div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: '1.6rem', fontWeight: 800, color: '#6366f1', margin: '16px 0' }}>맞춤 견적</div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text2)', marginBottom: 20, lineHeight: 1.75, maxWidth: 640 }}>IDC·보안·스트리밍 중 여러 라인을 동시에 쓰거나, 전용 서버·무제한 채널·관제 범위 확대 같은 대규모 요구가 있을 때 협의합니다. 항목별 범위와 SLA를 나누어 제안합니다.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 20px', marginBottom: 24 }}>
               {['무제한 채널 + 전용 서버','AI 보안 관제 24/7','딥페이크·스트림 ML','HA/DR 완전 이중화','LLM 보안 프로그램','현장·원격 복구','IDS/IPS 구성','전담 엔지니어'].map(f => (
@@ -189,7 +279,30 @@ export default function Pricing() {
             </div>
             <button
               onClick={() => openModal('복수 라인 · 대규모 맞춤', 'Enterprise')}
-              style={{ display: 'inline-block', padding: '12px 32px', background: 'var(--accent)', color: '#fff', borderRadius: 2, fontFamily: 'var(--mono)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
+              style={{ 
+                display: 'inline-block', 
+                padding: '16px 32px', 
+                background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)', 
+                color: '#fff', 
+                borderRadius: 10, 
+                fontFamily: 'var(--sans)', 
+                fontSize: '0.85rem', 
+                fontWeight: 600, 
+                border: 'none', 
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 16px rgba(99, 102, 241, 0.3)',
+              }}
+              onMouseEnter={e => {
+                const btn = e.currentTarget as HTMLButtonElement
+                btn.style.transform = 'translateY(-2px)'
+                btn.style.boxShadow = '0 8px 24px rgba(99, 102, 241, 0.4)'
+              }}
+              onMouseLeave={e => {
+                const btn = e.currentTarget as HTMLButtonElement
+                btn.style.transform = 'translateY(0)'
+                btn.style.boxShadow = '0 4px 16px rgba(99, 102, 241, 0.3)'
+              }}
             >
               엔터프라이즈 상담
             </button>
