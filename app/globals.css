@@ -2,7 +2,9 @@
 
 /* Modern Streaming Platform aesthetic (AntMedia.io inspired) */
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
+  
+  /* Light mode variables */
   --bg: #ffffff;
   --bg2: #f8fafc;
   --bg3: #f1f5f9;
@@ -32,6 +34,36 @@
   --display: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --bg2: #1e293b;
+    --bg3: #334155;
+    --surface: #1e293b;
+    --surface2: #334155;
+    --hero-bg: #030712;
+    --hero-elevated: #0f172a;
+    --border: rgba(71, 85, 105, 0.3);
+    --border2: rgba(100, 116, 139, 0.4);
+    --accent: #60a5fa;
+    --accent-hover: #3b82f6;
+    --accent-soft: rgba(96, 165, 250, 0.1);
+    --accent-soft2: rgba(96, 165, 250, 0.15);
+    --accent2: #34d399;
+    --accent3: #a78bfa;
+    --glow: rgba(96, 165, 250, 0.25);
+    --text: #f8fafc;
+    --text2: #e2e8f0;
+    --text3: #cbd5e1;
+    --hero-text: #f8fafc;
+    --hero-muted: #94a3b8;
+    --nav-bg: rgba(15, 23, 42, 0.95);
+    --nav-border: rgba(71, 85, 105, 0.3);
+    --nav-link: #e2e8f0;
+  }
+}
+
 *, *::before, *::after { 
   box-sizing: border-box; 
   margin: 0; 
@@ -40,24 +72,20 @@
 
 html { 
   scroll-behavior: smooth;
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 body {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-  font-family: var(--sans) !important;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
-}
-
-.light-mode {
-  color-scheme: light !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 한국어 텍스트에 최적화된 줄간격 */
@@ -148,21 +176,15 @@ body::before {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 다크모드 강제 적용 방지 */
+/* 다크모드 지원 개선 */
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light !important;
+  /* 다크모드에서 스크롤바 스타일 조정 */
+  ::-webkit-scrollbar-track { 
+    background: var(--bg2); 
   }
-  
-  body {
-    background: var(--bg) !important;
-    color: var(--text) !important;
+  ::-webkit-scrollbar-thumb { 
+    background: var(--border2); 
   }
-}
-
-/* Chrome 자동 다크모드 방지 */
-meta[name="color-scheme"] {
-  content: "light";
 }
 
 /* 폰트 로딩 최적화 */
