@@ -100,6 +100,16 @@ dmnsolution/
 
 ---
 
+## 일일 작업 기록
+
+### 2026-05-13 (수)
+
+- **`dmnsolution.code-workspace` 추가**: Cursor/VS Code에서 프로젝트를 단일 폴더(`dmnsolution`) 워크스페이스로 열 때 쓸 수 있는 설정 파일을 추가했다.
+- **통합 터미널 경로 고정 (`.vscode/settings.json`)**: Windows에서 기본 터미널 프로필을 PowerShell로 두고, `terminal.integrated.cwd`를 `${workspaceFolder}`로 지정해 새 터미널이 항상 저장소 루트에서 열리도록 했다.
+- **문서**: 본 파일에 `일일 작업 기록` 섹션을 추가하고 위 내용을 정리했다. (참고 커밋: `27ab2ea`)
+
+---
+
 ## 유지보수 시 참고
 
 - 새 서비스 페이지: `lib/servicesData.ts`에 항목 추가 후 `app/services/<slug>/page.tsx`에서 `ServiceDetailPage`에 연결.
