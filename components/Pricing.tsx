@@ -33,6 +33,12 @@ interface ModalState {
   planTier: string
 }
 
+interface CaptchaState {
+  question: string
+  answer: number
+  userAnswer: string
+}
+
 const inputStyle: React.CSSProperties = {
   background: 'var(--bg)', border: '1px solid var(--border)',
   borderRadius: 6, padding: '10px 14px', color: 'var(--text)',
@@ -40,14 +46,50 @@ const inputStyle: React.CSSProperties = {
   outline: 'none', width: '100%', transition: 'border-color 0.2s',
 }
 
+// 간단한 수학 문제 생성 함수
+const generateCaptcha = (): CaptchaState => {
+  const num1 = Math.floor(Math.random() * 10) + 1
+  const num2 = Math.floor(Math.random() * 10) + 1
+  const operations = ['+', '-', '×']
+  const operation = operations[Math.floor(Math.random() * operations.length)]
+  
+  let answer: number
+  let question: string
+  
+  switch (operation) {
+    case '+':
+      answer = num1 + num2
+      question = `${num1} + ${num2} = ?`
+      break
+    case '-':
+      // 음수 방지를 위해 큰 수에서 작은 수 빼기
+      const larger = Math.max(num1, num2)
+      const smaller = Math.min(num1, num2)
+      answer = larger - smaller
+      question = `${larger} - ${smaller} = ?`
+      break
+    case '×':
+      answer = num1 * num2
+      question = `${num1} × ${num2} = ?`
+      break
+    default:
+      answer = num1 + num2
+      question = `${num1} + ${num2} = ?`
+  }
+  
+  return { question, answer, userAnswer: '' }
+}
+
 export default function Pricing() {
   const [modal, setModal] = useState<ModalState>({ open: false, planName: '', planTier: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [captcha, setCaptcha] = useState<CaptchaState>(generateCaptcha())
   const formRef = useRef<HTMLFormElement>(null)
 
   const openModal = (planName: string, planTier: string) => {
     setModal({ open: true, planName, planTier })
     setStatus('idle')
+    setCaptcha(generateCaptcha()) // 새 캡챠 생성
     setTimeout(() => formRef.current?.reset(), 50)
   }
 
@@ -60,6 +102,14 @@ export default function Pricing() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formRef.current) return
+    
+    // 캡챠 검증
+    if (parseInt(captcha.userAnswer) !== captcha.answer) {
+      alert('보안 문제의 답이 올바르지 않습니다. 다시 확인해 주세요.')
+      setCaptcha(generateCaptcha()) // 새 캡챠 생성
+      return
+    }
+    
     setStatus('sending')
 
     const fd = new FormData(formRef.current)
@@ -460,6 +510,68 @@ export default function Pricing() {
                         onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
                         onBlur={e => (e.target.style.borderColor = 'var(--border)')}
                       />
+                    </div>
+
+                    {/* 캡챠 */}
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'var(--mono)', fontSize: '0.63rem', color: 'var(--text2)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>
+                        보안 확인 <span style={{ color: '#ef4444' }}>*</span>
+                      </label>
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 12,
+                        padding: '12px 14px',
+                        background: 'var(--accent-soft)',
+                        border: '1px solid var(--border2)',
+                        borderRadius: 6,
+                      }}>
+                        <span style={{ 
+                          fontFamily: 'var(--mono)', 
+                          fontSize: '1rem', 
+                          color: 'var(--text)',
+                          fontWeight: 700,
+                          minWidth: 100,
+                        }}>
+                          {captcha.question}
+                        </span>
+                        <input 
+                          type="number" 
+                          value={captcha.userAnswer}
+                          onChange={e => setCaptcha(prev => ({ ...prev, userAnswer: e.target.value }))}
+                          placeholder="답을 입력하세요"
+                          required
+                          style={{
+                            ...inputStyle,
+                            width: 120,
+                            textAlign: 'center',
+                            fontWeight: 600,
+                            margin: 0,
+                          }}
+                          onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+                          onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setCaptcha(generateCaptcha())}
+                          style={{
+                            background: 'var(--accent)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: 4,
+                            padding: '6px 12px',
+                            fontSize: '0.7rem',
+                            cursor: 'pointer',
+                            fontFamily: 'var(--mono)',
+                          }}
+                          title="새 문제 생성"
+                        >
+                          🔄
+                        </button>
+                      </div>
+                      <p style={{ fontSize: '0.7rem', color: 'var(--text3)', marginTop: 4, fontFamily: 'var(--mono)' }}>
+                        스팸 방지를 위한 간단한 수학 문제입니다.
+                      </p>
                     </div>
                   </div>
 
