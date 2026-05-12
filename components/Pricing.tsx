@@ -66,26 +66,70 @@ export default function Pricing() {
     fd.append('access_key', WEB3FORMS_KEY)
     fd.append('subject', `[DMN솔루션 요금제 접수] ${modal.planTier} — ${modal.planName}`)
     fd.append('from_name', 'DMN솔루션 요금제 신청')
-    fd.append('plan', `${modal.planTier} / ${modal.planName}`)
+    
+    // 이메일 회신 주소 설정
+    const userEmail = fd.get('email') as string
+    if (userEmail) {
+      fd.append('replyto', userEmail)
+    }
+    
+    // 추가 메타데이터
+    fd.append('plan_info', `${modal.planTier} / ${modal.planName}`)
+    fd.append('timestamp', new Date().toISOString())
+    fd.append('redirect', 'false')
+    fd.append('botcheck', '')
+    
+    // 스팸 방지를 위한 허니팟 필드
+    const honeypot = document.createElement('input')
+    honeypot.type = 'text'
+    honeypot.name = 'website'
+    honeypot.style.display = 'none'
+    honeypot.value = ''
+    formRef.current.appendChild(honeypot)
+    
+    console.log('Form data being sent:', Object.fromEntries(fd.entries()))
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
+      const res = await fetch('https://api.web3forms.com/submit', { 
+        method: 'POST', 
+        body: fd,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      
       const data = await res.json()
+      console.log('Web3Forms response:', data)
+      
       if (data.success) {
+        // 성공 시 추가 알림
         const snapshot = formDataToRecord(new FormData(formRef.current))
         void notifyAdminInstant({
-          title: `[DMN솔루션] 요금제 신청 — ${modal.planTier} / ${modal.planName}`,
+          title: `[DMN솔루션] 요금제 신청 접수 — ${modal.planTier} / ${modal.planName}`,
           fields: {
             ...snapshot,
-            subject: `[DMN솔루션 요금제 접수] ${modal.planTier} — ${modal.planName}`,
+            plan_selected: `${modal.planTier} — ${modal.planName}`,
+            submission_time: new Date().toLocaleString('ko-KR'),
+            submission_source: '웹사이트 요금제 페이지',
           },
         })
+        
         setStatus('success')
         formRef.current.reset()
+        
+        // 허니팟 필드 제거
+        const honeypot = formRef.current.querySelector('input[name="website"]')
+        if (honeypot) {
+          honeypot.remove()
+        }
+        
+        console.log('폼 제출 성공: 이메일이 전송되었습니다.')
       } else {
+        console.error('Web3Forms 에러:', data.message || '알 수 없는 오류')
         setStatus('error')
       }
-    } catch {
+    } catch (error) {
+      console.error('폼 제출 실패:', error)
       setStatus('error')
     }
   }
@@ -346,10 +390,14 @@ export default function Pricing() {
                 <div style={{ textAlign: 'center', padding: '32px 0' }}>
                   <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>✅</div>
                   <div style={{ fontFamily: 'var(--display)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text)', marginBottom: 10 }}>
-                    접수가 완료되었습니다!
+                    신청이 성공적으로 접수되었습니다!
                   </div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text2)', lineHeight: 1.7, marginBottom: 24 }}>
-                    접수 내용을 확인한 뒤 <strong>영업일 기준</strong>으로 순차 연락드립니다.
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text2)', lineHeight: 1.7, marginBottom: 16 }}>
+                    <strong>📧 이메일이 전송되었습니다.</strong><br />
+                    접수 내용을 검토한 후 <strong style={{ color: 'var(--accent)' }}>영업일 기준 1-2일 내</strong>로 연락드리겠습니다.
+                  </p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text3)', marginBottom: 24 }}>
+                    ※ 스팸폴더도 확인해 주세요. 회신이 늦을 경우 <strong>0505-299-7623</strong>으로 문의바랍니다.
                   </p>
                   <button
                     onClick={closeModal}
@@ -423,9 +471,15 @@ export default function Pricing() {
                   </div>
 
                   {status === 'error' && (
-                    <p style={{ marginTop: 10, fontSize: '0.8rem', color: '#ef4444', fontFamily: 'var(--mono)' }}>
-                      전송 실패 — 잠시 후 다시 시도하거나 전화로 문의해 주세요.
-                    </p>
+                    <div style={{ marginTop: 12, padding: '12px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 6 }}>
+                      <p style={{ fontSize: '0.8rem', color: '#dc2626', fontWeight: 600, marginBottom: 4 }}>
+                        ⚠️ 전송에 실패했습니다
+                      </p>
+                      <p style={{ fontSize: '0.75rem', color: '#7f1d1d', lineHeight: 1.5 }}>
+                        잠시 후 다시 시도하거나, 직접 <strong>0505-299-7623</strong>으로 문의해 주세요.<br />
+                        또는 <strong>studios77@gmail.com</strong>로 이메일을 보내주시기 바랍니다.
+                      </p>
+                    </div>
                   )}
 
                   <button
