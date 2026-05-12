@@ -56,75 +56,219 @@ function cardFor(slug: string): ServiceCard | undefined {
 
 export default function Services() {
   return (
-    <section id="services" style={{ background: 'var(--bg)', position: 'relative', zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '88px 5% 100px' }}>
-        <div className="reveal">
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.14em', marginBottom: 12 }}>
-            서비스 카탈로그
+    <section id="services" style={{ 
+      background: 'linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%)', 
+      position: 'relative', 
+      zIndex: 1,
+      borderTop: '1px solid var(--border)',
+    }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '100px 5% 120px' }}>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: 80 }}>
+          <div style={{ 
+            fontFamily: 'var(--mono)', 
+            fontSize: '0.75rem', 
+            color: 'var(--accent)', 
+            letterSpacing: '0.15em', 
+            marginBottom: 16,
+            textTransform: 'uppercase',
+            fontWeight: 600
+          }}>
+            ✦ 전문 서비스 포트폴리오 ✦
           </div>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.85rem,4vw,2.85rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.035em', color: 'var(--text)', marginBottom: 14 }}>
-            전문 도메인별 특화 서비스
+          <h2 style={{ 
+            fontFamily: 'var(--display)', 
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', 
+            fontWeight: 800, 
+            lineHeight: 1.1, 
+            letterSpacing: '-0.02em', 
+            color: 'var(--text)', 
+            marginBottom: 24,
+            background: 'linear-gradient(135deg, var(--text) 0%, var(--accent) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            3개 분야 × 전문 서비스
           </h2>
-          <p style={{ fontSize: '0.98rem', color: 'var(--text2)', maxWidth: 640, lineHeight: 1.78 }}>
-            아래는 <strong style={{ color: 'var(--text)' }}>AIDC</strong>, <strong style={{ color: 'var(--text)' }}>AI 보안</strong>, <strong style={{ color: 'var(--text)' }}>스트리밍</strong>으로 구분된 전문 서비스입니다. 복수 분야 동시 문의도 가능하나 견적·계약·운영은 도메인별로 독립 관리합니다. 카드를 클릭하면 해당 서비스의 상세·스펙으로 이동합니다.
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: 'var(--text2)', 
+            maxWidth: 720, 
+            lineHeight: 1.8,
+            margin: '0 auto',
+            fontWeight: 500,
+          }}>
+            <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>AIDC</strong>, <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>AI 보안</strong>, <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>스트리밍</strong> — 각 분야별 전문가가 독립적으로 운영하는 특화 서비스입니다.<br />
+            복합 도입 시에도 <strong style={{ color: 'var(--text)' }}>분야별 전담 관리</strong>로 최적화된 솔루션을 제공합니다.
           </p>
         </div>
 
         {GROUPS.map((g, gi) => (
-          <div key={g.id} id={g.anchorId} style={{ marginTop: gi === 0 ? 52 : 60, scrollMarginTop: 88 }}>
-            <div style={{ marginBottom: 24, paddingBottom: 14, borderBottom: '2px solid var(--text)' }}>
-              <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.02em' }}>{g.title}</h3>
-              <p style={{ fontSize: '0.88rem', color: 'var(--text3)', margin: 0 }}>{g.subtitle}</p>
-            </div>
-            <div className="reveal" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: 16,
+          <div key={g.id} id={g.anchorId} style={{ marginTop: gi === 0 ? 0 : 80, scrollMarginTop: 88 }}>
+            <div style={{ 
+              marginBottom: 40, 
+              padding: '32px', 
+              background: 'var(--surface)',
+              borderRadius: 20,
+              border: '1px solid var(--border)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.04)',
             }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                marginBottom: 16,
+              }}>
+                <div style={{
+                  width: 4,
+                  height: 40,
+                  background: `linear-gradient(180deg, ${gi === 0 ? '#3b82f6' : gi === 1 ? '#22c55e' : '#8b5cf6'} 0%, ${gi === 0 ? '#1d4ed8' : gi === 1 ? '#16a34a' : '#7c3aed'} 100%)`,
+                  borderRadius: 2,
+                }} />
+                <div>
+                  <h3 style={{ 
+                    fontFamily: 'var(--display)', 
+                    fontSize: '1.5rem', 
+                    fontWeight: 800, 
+                    color: 'var(--text)', 
+                    marginBottom: 8, 
+                    letterSpacing: '-0.02em' 
+                  }}>{g.title}</h3>
+                  <p style={{ 
+                    fontSize: '0.95rem', 
+                    color: 'var(--text2)', 
+                    margin: 0,
+                    lineHeight: 1.6,
+                    fontWeight: 500,
+                  }}>{g.subtitle}</p>
+                </div>
+              </div>
+              <div className="reveal" style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: 24,
+              }}>
               {g.slugs.map(slug => {
                 const s = cardFor(slug)
                 if (!s) return null
                 return (
                   <Link key={s.slug} href={`/services/${s.slug}/`} title={s.name} style={{ textDecoration: 'none', minWidth: 0 }}>
                     <div style={{
-                      background: 'var(--surface)',
-                      padding: '26px 22px',
+                      background: '#ffffff',
+                      padding: '32px 28px',
                       height: '100%',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      transition: 'all 0.3s ease',
                       cursor: 'pointer',
                       position: 'relative',
                       overflow: 'hidden',
-                      borderRadius: 2,
-                      border: '1px solid var(--border)',
-                      boxShadow: '4px 4px 0 rgba(20,18,17,0.04)',
+                      borderRadius: 16,
+                      border: '2px solid var(--border)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
                     }}
                       onMouseEnter={e => {
                         const el = e.currentTarget as HTMLElement
-                        el.style.transform = 'translate(-2px,-2px)'
-                        el.style.boxShadow = '8px 8px 0 rgba(34,197,94,0.15)'
+                        el.style.transform = 'translateY(-8px)'
+                        el.style.boxShadow = '0 16px 40px rgba(59, 130, 246, 0.15)'
+                        el.style.borderColor = 'var(--accent)'
                       }}
                       onMouseLeave={e => {
                         const el = e.currentTarget as HTMLElement
-                        el.style.transform = 'translate(0,0)'
-                        el.style.boxShadow = '4px 4px 0 rgba(20,18,17,0.04)'
+                        el.style.transform = 'translateY(0)'
+                        el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'
+                        el.style.borderColor = 'var(--border)'
                       }}
                     >
-                      <div style={{ fontSize: '1.15rem', marginBottom: 12, opacity: 0.9 }} aria-hidden>{s.icon}</div>
-                      <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '0.08em', marginBottom: 8, fontWeight: 700 }}>{s.cat}</div>
-                      <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.05rem, 2vw, 1.18rem)', fontWeight: 800, color: 'var(--text)', marginBottom: 12, lineHeight: 1.25 }}>{s.name}</div>
-                      <div style={{ fontSize: '0.84rem', color: 'var(--text2)', lineHeight: 1.62, marginBottom: 16, wordBreak: 'keep-all' }}>{s.desc}</div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                      <div style={{ 
+                        fontSize: '2.5rem', 
+                        marginBottom: 16, 
+                        textAlign: 'center',
+                        filter: 'grayscale(0.3)',
+                      }} aria-hidden>{s.icon}</div>
+                      
+                      <div style={{ 
+                        fontFamily: 'var(--mono)', 
+                        fontSize: '0.7rem', 
+                        color: 'var(--accent)', 
+                        letterSpacing: '0.1em', 
+                        marginBottom: 12, 
+                        fontWeight: 700,
+                        textAlign: 'center',
+                        textTransform: 'uppercase',
+                        background: 'var(--accent-soft)',
+                        padding: '6px 12px',
+                        borderRadius: 20,
+                        display: 'inline-block',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                      }}>{s.cat}</div>
+                      
+                      <h4 style={{ 
+                        fontFamily: 'var(--display)', 
+                        fontSize: 'clamp(1.15rem, 2.5vw, 1.35rem)', 
+                        fontWeight: 800, 
+                        color: '#0f172a', 
+                        marginBottom: 16, 
+                        lineHeight: 1.3,
+                        textAlign: 'center',
+                      }}>{s.name}</h4>
+                      
+                      <p style={{ 
+                        fontSize: '0.9rem', 
+                        color: '#475569', 
+                        lineHeight: 1.7, 
+                        marginBottom: 20, 
+                        wordBreak: 'keep-all',
+                        textAlign: 'center',
+                        fontWeight: 500,
+                      }}>{s.desc}</p>
+                      
+                      <div style={{ 
+                        display: 'flex', 
+                        flexWrap: 'wrap', 
+                        gap: 8,
+                        justifyContent: 'center',
+                        marginBottom: 20,
+                      }}>
                         {s.tags.map(t => (
-                          <span key={t} style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', padding: '4px 8px', background: 'var(--accent-soft)', border: '1px solid var(--border)', borderRadius: 2, color: 'var(--text3)' }}>{t}</span>
+                          <span key={t} style={{ 
+                            fontFamily: 'var(--mono)', 
+                            fontSize: '0.65rem', 
+                            padding: '6px 12px', 
+                            background: '#f1f5f9', 
+                            border: '1px solid #e2e8f0', 
+                            borderRadius: 20, 
+                            color: '#475569',
+                            fontWeight: 600,
+                          }}>{t}</span>
                         ))}
                       </div>
-                      <div style={{ marginTop: 18, fontFamily: 'var(--sans)', fontSize: '0.82rem', color: 'var(--accent)', fontWeight: 700 }}>
-                        상세 보기 · 스펙 확인 →
+                      
+                      <div style={{ 
+                        marginTop: 'auto',
+                        textAlign: 'center',
+                        padding: '12px 0',
+                        borderTop: '1px solid #f1f5f9',
+                      }}>
+                        <span style={{ 
+                          fontFamily: 'var(--sans)', 
+                          fontSize: '0.85rem', 
+                          color: 'var(--accent)', 
+                          fontWeight: 700,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}>
+                          상세 보기 · 스펙 확인
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                          </svg>
+                        </span>
                       </div>
                     </div>
                   </Link>
                 )
-              })}
+                })}
+              </div>
             </div>
           </div>
         ))}
