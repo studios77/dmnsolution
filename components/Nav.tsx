@@ -41,7 +41,7 @@ type ServiceMenuCategory = { cat: string; color: string; sections: ServiceMenuSe
 
 const serviceMenu: ServiceMenuCategory[] = [
   {
-    cat: 'IDC / 서버',
+    cat: 'AIDC / 서버',
     color: '#38bdf8',
     sections: [
       {
@@ -134,8 +134,8 @@ export default function Nav() {
           <Image
             src="/logo-dmn.png"
             alt="DMN솔루션"
-            width={1200}
-            height={438}
+            width={300}
+            height={110}
             priority
             sizes="(max-width: 480px) 240px, 300px"
             className="nav-brand-logo"
@@ -145,6 +145,7 @@ export default function Nav() {
               maxWidth: 'min(72vw, 300px)',
               objectFit: 'contain',
               objectPosition: 'left center',
+              filter: 'brightness(1.2) contrast(1.1)',
             }}
           />
         </Link>

@@ -14,8 +14,8 @@ export default function Hero() {
       overflow: 'hidden',
       position: 'relative',
       zIndex: 1,
-      background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-      borderBottom: '1px solid rgba(59, 130, 246, 0.2)',
+      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
+      borderBottom: '1px solid rgba(59, 130, 246, 0.3)',
     }}>
       <div
         aria-hidden
@@ -24,8 +24,8 @@ export default function Hero() {
           inset: 0,
           opacity: 0.45,
           backgroundImage: `
-            linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px)
+            linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px)
           `,
           backgroundSize: '48px 48px',
           maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 85%)',
@@ -42,7 +42,7 @@ export default function Hero() {
           transform: 'translateX(-50%)',
           width: 'min(900px, 90vw)',
           height: '55%',
-          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -61,11 +61,11 @@ export default function Hero() {
         <div style={{ textAlign: 'left', position: 'relative', paddingBottom: 8 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
-            fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)',
+            fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#1e40af',
             letterSpacing: '0.1em', padding: '8px 16px', marginBottom: 18,
             borderRadius: 12,
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%)',
+            border: '1px solid rgba(59, 130, 246, 0.4)',
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%)',
             backdropFilter: 'blur(8px)',
             animation: 'fadeUp 0.7s ease both',
           }}>
@@ -92,23 +92,23 @@ export default function Hero() {
                   gap: 12,
                   padding: '12px 16px',
                   borderRadius: 12,
-                  border: '1px solid rgba(148, 163, 184, 0.2)',
-                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(148, 163, 184, 0.3)',
+                  background: 'rgba(255, 255, 255, 0.7)',
                   backdropFilter: 'blur(12px)',
                   textDecoration: 'none',
                   transition: 'border-color 0.2s, background 0.2s',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.4)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(30, 41, 59, 0.8)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.9)'
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.2)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(30, 41, 59, 0.6)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.3)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.7)'
                 }}
               >
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '1.02rem', fontWeight: 700, color: '#f1f5f9' }}>{row.label}</span>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#cbd5e1', textAlign: 'right', lineHeight: 1.35 }}>{row.hint}</span>
+                <span style={{ fontFamily: 'var(--sans)', fontSize: '1.02rem', fontWeight: 700, color: '#1e293b' }}>{row.label}</span>
+                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#475569', textAlign: 'right', lineHeight: 1.35 }}>{row.hint}</span>
               </a>
             ))}
           </div>
@@ -119,7 +119,7 @@ export default function Hero() {
             fontWeight: 800,
             lineHeight: 1.12,
             letterSpacing: '-0.035em',
-            color: 'var(--hero-text)',
+            color: '#0f172a',
             marginBottom: 20,
             animation: 'fadeUp 0.7s 0.1s ease both',
           }}>
@@ -129,14 +129,14 @@ export default function Hero() {
 
           <p style={{
             fontSize: '1.05rem',
-            color: 'var(--hero-muted)',
+            color: '#475569',
             maxWidth: 560,
             lineHeight: 1.75,
             marginBottom: 26,
             animation: 'fadeUp 0.7s 0.16s ease both',
           }}>
             세 분야는 각각 전문화된 목표·SLA·운영 체계를 갖추고 있습니다. 인프라만, 보안만, 송출만 — 필요한 도메인만 선택해 맞춤형 스펙과 견적을 받으실 수 있습니다. (복수 분야 동시 도입 시에도{' '}
-            <strong style={{ color: '#e2e8f0', fontWeight: 600 }}>분야별로</strong> 구분해 제안합니다.)
+            <strong style={{ color: '#1e293b', fontWeight: 600 }}>분야별로</strong> 구분해 제안합니다.)
           </p>
 
           <div style={{
@@ -170,9 +170,9 @@ export default function Hero() {
             >분야별 서비스 보기</a>
             <a href="#contact" style={{
               padding: '16px 32px',
-              background: 'rgba(255, 255, 255, 0.1)',
-              color: '#e2e8f0',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
+              background: 'rgba(59, 130, 246, 0.1)',
+              color: '#1e40af',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: 12,
               fontFamily: 'var(--sans)',
               fontSize: '0.95rem',
@@ -183,15 +183,15 @@ export default function Hero() {
               backdropFilter: 'blur(8px)',
             }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(59, 130, 246, 0.2)'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.5)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.2)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.1)'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(59, 130, 246, 0.1)'
                 ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.2)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.3)'
                 ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
             >분야 지정 문의</a>
@@ -220,12 +220,12 @@ export default function Hero() {
                 width: 90,
                 height: 70,
                 borderRadius: 16,
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                background: 'rgba(30, 41, 59, 0.4)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                background: 'rgba(255, 255, 255, 0.8)',
                 padding: 12,
                 backdropFilter: 'blur(8px)',
               }} />
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>AIDC</span>
+              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>AIDC</span>
             </div>
             <div style={{
               display: 'flex',
@@ -242,12 +242,12 @@ export default function Hero() {
                 width: 90,
                 height: 70,
                 borderRadius: 16,
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-                background: 'rgba(30, 41, 59, 0.4)',
+                border: '1px solid rgba(34, 197, 94, 0.3)',
+                background: 'rgba(255, 255, 255, 0.8)',
                 padding: 12,
                 backdropFilter: 'blur(8px)',
               }} />
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>AI SECURITY</span>
+              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>AI SECURITY</span>
             </div>
             <div style={{
               display: 'flex',
@@ -264,27 +264,27 @@ export default function Hero() {
                 width: 90,
                 height: 70,
                 borderRadius: 16,
-                border: '1px solid rgba(139, 92, 246, 0.2)',
-                background: 'rgba(30, 41, 59, 0.4)',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
+                background: 'rgba(255, 255, 255, 0.8)',
                 padding: 12,
                 backdropFilter: 'blur(8px)',
               }} />
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1', fontFamily: 'var(--sans)', fontWeight: 500 }}>STREAMING</span>
+              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>STREAMING</span>
             </div>
           </div>
         </div>
 
         <aside style={{
-          background: 'rgba(30, 41, 59, 0.8)',
+          background: 'rgba(255, 255, 255, 0.9)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(59, 130, 246, 0.2)',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
           borderRadius: 20,
-          boxShadow: '0 32px 64px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
+          boxShadow: '0 32px 64px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5)',
           padding: '32px 28px 28px',
           animation: 'fadeUp 0.7s 0.22s ease both',
         }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: 'var(--accent)', letterSpacing: '0.08em', marginBottom: 18, fontWeight: 600 }}>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#1e40af', letterSpacing: '0.08em', marginBottom: 18, fontWeight: 600 }}>
             분야별 요약 (참고)
           </div>
           {[
