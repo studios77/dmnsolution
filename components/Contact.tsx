@@ -90,7 +90,7 @@ export default function Contact() {
     fd.append('access_key', web3Key)
     fd.append(
       'subject',
-      '[DMN\uc194\ub8e8\uc158] \ubb38\uc758 \xb7 \uaca8\uc801 \xb7 \ub3c4\uc785\uc0c1\ub2f4 \uc811\uc218'
+      '[DMN\uc194\ub8e8\uc158] \ubb38\uc758 \xb7 \uacac\uc801 \xb7 \ub3c4\uc785\uc0c1\ub2f4 \uc811\uc218'
     )
     fd.append('from_name', 'DMN\uc194\ub8e8\uc158 \ubb38\uc758 \ud3fc')
     fd.append('botcheck', '')
@@ -196,7 +196,7 @@ export default function Contact() {
               textTransform: 'uppercase',
             }}
           >
-            {'\uaca8\uc801 \xb7 \ub3c4\uc785\uc0c1\ub2f4 \xb7 \ubb38\uc758'}
+            {'\uacac\uc801 \xb7 \ub3c4\uc785\uc0c1\ub2f4 \xb7 \ubb38\uc758'}
           </div>
           <h2
             style={{
@@ -209,7 +209,7 @@ export default function Contact() {
               marginBottom: 12,
             }}
           >
-            {'\ud504\ub85c\uc81d\ud2b8\xb7\uaca8\uc801 \ubb38\uc758'}
+            {'\ud504\ub85c\uc81d\ud2b8\xb7\uacac\uc801 \ubb38\uc758'}
           </h2>
           <p style={{ fontSize: '0.97rem', color: 'var(--text2)', maxWidth: 580, lineHeight: 1.78, marginBottom: 28 }}>
             {
