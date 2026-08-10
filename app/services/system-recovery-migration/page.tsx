@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import ServiceDetailPage from '@/components/ServiceDetailPage'
 import { findServiceBySlug } from '@/lib/servicesData'
-import { serviceCanonicalUrl } from '@/lib/site'
+import { serviceMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: '서버 장애 복구 및 이전 | DMN솔루션',
-  description: '외부 고객이 운영 중인 서버·온프레·클라우드 VM에 대해 원격·현장 기술지원.',
-  alternates: { canonical: serviceCanonicalUrl('system-recovery-migration') },
-}
+const s = findServiceBySlug('system-recovery-migration')!
+
+export const metadata: Metadata = serviceMetadata({
+  slug: 'system-recovery-migration',
+  title: '서버 장애 복구 및 시스템 클라우드 이전 | DMN솔루션',
+  description: '랜섬웨어 사고 복구, 데이터베이스 복원, 그리고 레거시 인프라의 클라우드 이전(Migration) 전문 기술 지원 서비스.',
+  keywords: ['서버 장애 복구', '시스템 이전', '클라우드 마이그레이션', '데이터 복원', '트러블슈팅'],
+})
 
 export default function Page() {
-  const s = findServiceBySlug('system-recovery-migration')!
   return <ServiceDetailPage s={s} />
 }

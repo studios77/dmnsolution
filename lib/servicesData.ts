@@ -12,6 +12,8 @@ export type ServiceData = {
   icon: string
   cat: string
   name: string
+  seoH1?: string
+  seoH2?: string
   summary: string
   desc: string
   tags: string[]
@@ -19,7 +21,17 @@ export type ServiceData = {
   specs: string[]
   useCases: string[]
   cta: string
+  /**
+   * 이 서비스 내용을 마지막으로 고친 날 (`YYYY-MM-DD`).
+   * `sitemap.xml` 의 `lastmod` 로 나갑니다. 비우면 `CONTENT_LAST_MODIFIED`.
+   * 서비스 하나만 고쳤을 때 여기에 적으면 그 URL 만 갱신된 것으로 보입니다.
+   */
+  updated?: string
   coloPricing?: ColoPlan[]
+  comparison?: {
+    label: string
+    items: { label: string; ours?: string; others?: string[] }[]
+  }
 }
 
 export const servicesData: ServiceData[] = [
@@ -28,6 +40,8 @@ export const servicesData: ServiceData[] = [
     icon: '🏢',
     cat: 'IDC / 서버',
     name: '서버 임대 · 코로케이션',
+    seoH1: '고성능 전용서버 임대 및 IDC 코로케이션',
+    seoH2: '베어메탈 전용서버 및 고객 장비 코로케이션 완벽 지원',
     summary: '전용서버·VPS·고객 장비 입주. 전력·냉각·네트워크 포함.',
     desc: '가상화 기반 VM 즉시 할당부터 고객 장비 입주(코로케이션)까지, 유연한 형태로 서버 인프라를 구성할 수 있습니다. 전력·냉각·네트워크 회선이 포함되며, IPMI를 통한 원격 콘솔 접근이 가능합니다.',
     tags: ['KVM', 'IPMI', 'Bare Metal', 'VPS', '코로케이션'],
@@ -62,10 +76,66 @@ export const servicesData: ServiceData[] = [
     ],
   },
   {
+    slug: 'aidc',
+    icon: '⚡',
+    cat: 'IDC / AIDC',
+    name: 'AIDC GPU 전용 호스팅',
+    seoH1: '최신 GPU 호스팅 및 AI 전용 AIDC',
+    seoH2: '고전력 코로케이션과 딥러닝 인프라 맞춤 설계',
+    summary: '고성능 GPU 서버 호스팅 및 초고전력 코로케이션. AI 학습·추론 최적화.',
+    desc: '일반 IDC에서는 감당하기 어려운 초고전력(Rack당 최대 40kW)과 극심한 발열을 완벽히 제어하는 AI 전용 데이터센터(AIDC) 서비스입니다. 최신 GPU 탑재 베어메탈 호스팅과 고집적 장비 코로케이션을 제공합니다.',
+    tags: ['RTX 5090', 'NVIDIA', '고전력 랙', '딥러닝', 'LLM'],
+    highlights: [
+      { title: '최신 GPU 베어메탈', desc: 'RTX 5090 등 최신 고성능 GPU가 탑재된 단독 서버를 월 임대 방식으로 즉시 사용 가능합니다.' },
+      { title: '초고전력 밀도 지원', desc: '일반 랙(3~4kW)의 한계를 넘는 고전력(20~40kW) 환경을 안정적으로 제공하여 GPU 풀뱅크 구성이 가능합니다.' },
+      { title: 'AI 맞춤형 냉각/네트워크', desc: 'GPU 병렬 연산(Training)의 병목을 없애기 위해 고대역폭 네트워크(10G/40G)와 최적화된 공조 시스템을 운영합니다.' },
+      { title: '유연한 하드웨어 확장', desc: 'RAM 최대 8TB, 다수의 NVMe/SAS 디스크 추가 등 AI 워크로드 스케일에 맞춰 서버 스펙을 자유롭게 커스텀할 수 있습니다.' },
+    ],
+    specs: [
+      'GPU 라인업: NVIDIA RTX 5090 등 최신 모델',
+      '지원 섀시: 4U 랙마운트 (1200W Hot-Swap 듀얼/트리플 파워)',
+      '네트워크: 기본 1Gbps Dedicated (최대 10G/40G 확장 가능)',
+      '냉각/공조: 컨테인먼트 존 분리 및 고효율 항온항습',
+      '전력: GPU 특화 고용량 이중화 PDU',
+      '관리: 24/7 관제 및 IPMI 기반 대역외 관리(OOB)',
+    ],
+    useCases: [
+      '대규모 언어 모델(LLM) 자체 학습 및 파인튜닝',
+      'AI 이미지/비디오 생성 (Stable Diffusion 등) 모델 추론',
+      '대학 및 연구소의 딥러닝/머신러닝 병렬 연산',
+      '클라우드 GPU 비용 절감을 위한 자체 인프라 구축',
+      '실시간 AI 비전 분석 시스템 (자율주행, 스마트팩토리)',
+    ],
+    cta: 'GPU 호스팅 / AIDC 상담 신청',
+    coloPricing: [
+      { 
+        name: 'RTX 5090 베어메탈', 
+        size: '단독 서버 (4U)', 
+        network: '1Gbps Dedicated (Max 30Mbps)', 
+        price: '770,000원', 
+        note: '월 기준 / 부가세 별도',
+        popular: true 
+      },
+    ],
+    comparison: {
+      label: 'GPU 서버 스펙 상세',
+      items: [
+        { label: 'GPU', ours: 'NVIDIA RTX 5090 32GB x 1EA' },
+        { label: 'CPU', ours: 'Intel Xeon Silver 4208 2.1GHz * 2EA (16코어/32스레드)' },
+        { label: 'RAM', ours: 'DDR4 128G (4*32G) REG-ECC (최대 8TB 확장 가능)' },
+        { label: 'DISK', ours: 'SSD 500GB (SATA, NVMe, SAS 최대 8개 장착 가능)' },
+        { label: 'NETWORK', ours: '1Gbps UTP * 4EA' },
+        { label: 'POWER', ours: '1200W Hot-Swap Power Supply v2 * 3EA' },
+      ],
+    },
+  },
+  {
     slug: 'managed-service',
     icon: '⚙️',
     cat: 'IDC / MSP',
     name: '위탁운영 매니지먼트',
+    seoH1: '서버 위탁운영 및 매니지드 서비스 (MSP)',
+    seoH2: '보안 패치, 모니터링, 장애 대응을 포함한 서버 통합 관리',
     summary: 'OS 패치·장애대응·성능튜닝 전담. 실시간 모니터링 + 월 SLA 리포트.',
     desc: '서버 운영의 모든 것을 전문 엔지니어에게 맡기세요. OS 보안 패치, 장애 대응, 성능 튜닝부터 정기 리포트까지 완전 위탁 운영 서비스를 제공합니다.',
     tags: ['Zabbix', 'Ansible', 'Grafana', 'Nagios', 'Shell'],
@@ -97,6 +167,8 @@ export const servicesData: ServiceData[] = [
     icon: '🔄',
     cat: 'IDC / HA',
     name: '운영서버 이중화 (HA)',
+    seoH1: '운영서버 이중화 (HA) 시스템 구축',
+    seoH2: 'Active-Active 무중단 서비스 및 로드밸런싱 설계',
     summary: 'Active-Active/Standby 구성. 자동 페일오버 30초 이내, 99.99% SLA.',
     desc: '서버 장애 시 서비스 중단을 최소화하는 고가용성(HA) 구성을 제공합니다. Active-Active 또는 Active-Standby 방식으로 설계하며, 자동 페일오버로 30초 이내 전환을 보장합니다.',
     tags: ['Keepalived', 'HAProxy', 'Pacemaker', 'DRBD', 'Corosync'],
@@ -128,6 +200,8 @@ export const servicesData: ServiceData[] = [
     icon: '🗄️',
     cat: 'IDC / DB',
     name: 'DB 이중화 매니지먼트',
+    seoH1: '데이터베이스(DB) 이중화 및 성능 튜닝',
+    seoH2: 'Galera Cluster 기반 무중단 데이터베이스 인프라 매니지먼트',
     summary: 'Galera Cluster·Master-Slave 구성·모니터링·자동복구 위탁관리.',
     desc: '데이터베이스 이중화 설계부터 일상 운영까지 전담합니다. Galera Cluster 또는 Master-Slave 구성으로 데이터 유실을 방지하고, 슬로우 쿼리 분석으로 성능을 지속 최적화합니다.',
     tags: ['Galera', 'ProxySQL', 'Percona', 'MariaDB', 'MySQL'],
@@ -159,7 +233,9 @@ export const servicesData: ServiceData[] = [
     icon: '🛠️',
     cat: 'IDC / 서버',
     name: '서버 장애 복구 및 이전',
-    summary: 'DMN솔루션 IDC와 별도로, 외부 고객이 운영 중인 서버·온프레·클라우드 VM에 대해 원격·현장 기술지원.',
+    seoH1: '서버 긴급 장애 복구 및 클라우드 이전 (마이그레이션)',
+    seoH2: '레거시 시스템 마이그레이션 및 서버 긴급 트러블슈팅',
+    summary: 'DMN솔루션와 별도로, 외부 고객이 운영 중인 서버·온프레·클라우드 VM에 대해 원격·현장 기술지원.',
     desc: '외부 고객이 운영 중인 서버·네트워크·애플리케이션에 대해, 서비스가 필요한 고객이 요청하면 IDC 임대 여부와 관계없이 기술 지원을 제공합니다. 장애 복구, 시스템 이전, 성능·로그 분석 기반 트러블슈팅, 긴급 진단까지 단건 또는 단기 프로젝트 형태로 대응합니다.',
     tags: ['온프레미스', '클라우드 VM', '긴급 복구', '이전', '원격·현장'],
     highlights: [
@@ -186,10 +262,46 @@ export const servicesData: ServiceData[] = [
     cta: '복구·이전 상담 신청',
   },
   {
+    slug: 'dmn-guard',
+    icon: '🧱',
+    cat: '보안 / 네트워크',
+    name: 'DMN Guard · NGFW',
+    seoH1: '차세대 방화벽 NGFW · WAF · AI 보안 통합 어플라이언스',
+    seoH2: 'IDC·호스팅 사업자를 위한 에이전트리스 온프레미스 통합 보안',
+    summary: 'NGFW·WAF·로컬 AI를 한 대에. 에이전트리스 L2 투명 인라인.',
+    desc: '네트워크 방화벽과 웹 방화벽, 로컬 AI 분석을 하나의 어플라이언스에서 융합합니다. L2 투명 인라인으로 삽입되어 IP 변경이나 네트워크 재설계가 필요 없고, 보호 대상 서버에는 아무것도 설치하지 않습니다.',
+    tags: ['NGFW', 'WAF', 'JA4+', '에이전트리스', '로컬 AI'],
+    highlights: [
+      { title: '에이전트리스 인라인', desc: '보호 대상 서버·VM에 무설치. L2 투명 브리지로 삽입되어 IP 변경과 네트워크 재설계가 없습니다.' },
+      { title: 'JA4+ 4지문 봇 방어', desc: 'TLS·HTTP·TCP·핸드셰이크 지문을 방화벽이 직접 수집해, User-Agent를 위조한 자동화 도구를 계층 모순으로 식별합니다.' },
+      { title: '자체 WAF 105규칙', desc: '21개 카테고리 룰셋에 POST 본문 검사까지. 평문 HTTP를 재조립해 요청 body 기반 공격을 잡습니다.' },
+      { title: '외부 전송 0 · 로컬 AI', desc: '위협 브리핑과 권고를 온프레미스 sLLM이 생성합니다. 고객 트래픽과 로그가 외부로 나가지 않습니다.' },
+    ],
+    specs: [
+      '형태: 온프레미스 단일 가상 어플라이언스 (Proxmox VE · KVM)',
+      '배치: L2 투명 인라인 브리지 2-arm, 권장 4 vCPU · 8GB 이상',
+      '엔진: IDS/IPS 51,977 시그니처, 자체 WAF 105규칙 21카테고리, App-ID, DNS 보안, 지오블로킹',
+      '검사: HTTPS 복호화, API 스키마 자동 수집, 포트·앱 불일치 탐지',
+      '관제: AI 상황 브리핑, 활성 인시던트 상관분석, 위협 출발지 지도, Ask the SOC',
+      '운영: 테넌트별 RBAC(default-deny), SIEM 내보내기(CEF/JSON · syslog), 인증서 만료 감시',
+      '안전장치: candidate→commit 원자적 적용·롤백, 보호 IP 3중 가드, 기본 fail-open',
+    ],
+    useCases: [
+      'IDC·호스팅 사업자의 다중 고객사 수용',
+      '웹서버에 에이전트를 설치할 수 없는 환경',
+      'User-Agent를 위조한 봇·스캐너 차단',
+      '트래픽·로그의 외부 반출이 제한된 기관',
+      '네트워크 재설계 없이 보안 계층 추가',
+    ],
+    cta: 'DMN Guard 도입 상담',
+  },
+  {
     slug: 'ai-security',
     icon: '🛡️',
-    cat: 'AI 보안',
+    cat: '보안 / 운영',
     name: 'AI 보안 관제',
+    seoH1: '24/7 무인 자율 AI 보안 관제 솔루션',
+    seoH2: '지능형 위협 탐지 및 SIEM 기반 침해 사고 자동 대응',
     summary: '365일 24시간 무인 관제. 위협 자동 탐지·분류·대응과 비용 절감을 동시에. 공공·금융·중견기업 특화.',
     desc: '24시간 365일 자율 AI 보안 관제 서비스입니다. AI가 보안 위협을 실시간으로 탐지·분류·대응하며, 기존 인력 관제 대비 90% 이상 비용을 절감하면서 엔터프라이즈급 보안을 실현합니다. 공공기관, 금융사, 중견기업에 특화된 컴플라이언스 대응을 포함합니다.',
     tags: ['24/7', '자동 대응', '컴플라이언스', 'Wazuh', 'SIEM'],
@@ -218,9 +330,11 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'ai-stream-security',
-    icon: '🛡️',
-    cat: 'AI 보안',
+    icon: '🛰️',
+    cat: '보안 / 네트워크',
     name: 'AI 스트림 이상탐지',
+    seoH1: '스트리밍 맞춤형 AI 기반 이상 트래픽 탐지',
+    seoH2: '스트리밍 인프라 타겟 DDoS 및 세션 하이재킹 실시간 차단',
     summary: 'RTMP/HLS 트래픽 머신러닝 분석. DDoS·세션 하이재킹 실시간 자동차단.',
     desc: '스트리밍 인프라를 겨냥한 사이버 공격을 AI가 실시간으로 탐지하고 자동 차단합니다. RTMP/HLS 트래픽 패턴을 머신러닝으로 분석해 기존 룰 기반 보안이 놓치는 이상 행위를 검출합니다.',
     tags: ['Python ML', 'MediaMTX', 'Fail2ban', 'eBPF', 'XDP'],
@@ -250,8 +364,10 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'deepfake-detection',
     icon: '🔍',
-    cat: 'AI 보안',
+    cat: '보안 / AI·데이터',
     name: '딥페이크 탐지 서비스',
+    seoH1: '라이브 스트림 딥페이크 탐지 및 AI 검출',
+    seoH2: 'AI 합성 영상 및 보이스 클로닝 실시간 탐지 솔루션',
     summary: '라이브 스트림 내 AI 합성 영상·음성 실시간 검출. 방송사·기업 미디어 대상.',
     desc: '실시간 라이브 스트림에서 딥페이크 합성 영상과 AI 생성 음성을 자동으로 검출합니다. 방송 사고, 허위 정보 유포, 사기 피해를 사전에 방지합니다.',
     tags: ['PyTorch', 'ONNX', 'FaceForensics', 'DeepFaceLab', 'TensorRT'],
@@ -281,8 +397,10 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'network-security',
     icon: '🌐',
-    cat: 'AI 보안',
+    cat: '보안 / 네트워크',
     name: '네트워크 보안 · IDS/IPS',
+    seoH1: '기업 내부망 네트워크 보안 및 지능형 IDS/IPS',
+    seoH2: '머신러닝 기반 이상 트래픽 자동 차단 및 네트워크 보안',
     summary: '지능형 침입탐지·방지. 이상 트래픽 ML 분석과 룰 기반 하이브리드 운영.',
     desc: '네트워크 경계와 내부 세그먼트에서 침입 시도를 실시간으로 탐지하고 차단합니다. 시그니처 IDS와 행위 기반 이상탐지를 결합해 알려지지 않은 공격 흐름까지 포착합니다.',
     tags: ['Suricata', 'Zeek', 'eBPF', '머신러닝', '자동 차단'],
@@ -311,8 +429,10 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'zero-trust',
     icon: '🔐',
-    cat: 'AI 보안',
+    cat: '보안 / 네트워크',
     name: '제로트러스트 아키텍처',
+    seoH1: '최소 권한 기반 제로트러스트 보안 아키텍처',
+    seoH2: 'MFA, 접근통제, 네트워크 마이크로세그멘테이션 설계 컨설팅',
     summary: '신뢰 경계 재설계. ID·디바이스·맥락 기반 최소권한과 지속 검증.',
     desc: '"내부는 안전하다"는 가정을 버리고, 모든 접근을 검증합니다. 정책 설계부터 MFA·세그먼트·조건부 접근까지 단계적 도입 로드맵을 제시합니다.',
     tags: ['IAM', '세그먼트', 'MFA', '조건부 접근', '최소권한'],
@@ -339,10 +459,76 @@ export const servicesData: ServiceData[] = [
     cta: '제로트러스트 상담 신청',
   },
   {
+    slug: 'cloud-posture',
+    icon: '☁️',
+    cat: '보안 / 클라우드',
+    name: '클라우드 보안 형상 진단',
+    seoH1: '클라우드 보안 형상 진단 (CSPM) 및 권한 정리',
+    seoH2: 'AWS·Azure·GCP 설정 오류와 과다 권한 점검',
+    summary: 'AWS·Azure·GCP의 설정 오류와 과다 권한을 점검하고 개선 순서를 제시합니다.',
+    desc: '클라우드 계정에 쌓인 설정 오류, 외부로 열린 스토리지, 과도하게 부여된 권한을 점검합니다. 위험도와 조치 난이도를 함께 따져 실행 가능한 순서로 개선안을 전달합니다.',
+    tags: ['CSPM', 'AWS', 'Azure', 'GCP', '권한 정리'],
+    highlights: [
+      { title: '노출 지점 식별', desc: '공개 버킷, 열린 보안그룹, 미암호화 볼륨처럼 밖에서 접근 가능한 자원을 찾아냅니다.' },
+      { title: '권한 과다 정리', desc: '쓰이지 않는 권한과 지나치게 넓은 역할을 최소권한 기준으로 다시 설계합니다.' },
+      { title: '기준 매핑', desc: '점검 항목을 내부 규정·인증 기준에 연결해 근거가 남는 리포트로 만듭니다.' },
+      { title: '실행 순서 제안', desc: '전부 고치라는 목록이 아니라, 위험도와 작업량을 함께 본 우선순위를 제시합니다.' },
+    ],
+    specs: [
+      '대상: AWS · Azure · GCP 계정 및 구독 단위',
+      '점검: 설정 오류 · 외부 노출 · 권한 과다 · 암호화 · 감사 로깅',
+      '산출물: 위험도별 항목표, 조치 절차, 경영진 요약본',
+      '수행: 1회 진단 또는 정기 재진단(주기 협의)',
+      '연동: 진단 결과를 기존 관제·SIEM 으로 전달 가능',
+    ],
+    useCases: [
+      '클라우드 이전 직후 보안 기준선 확보',
+      '인증·감사 대응 전 사전 점검',
+      '계정이 늘어 관리 범위를 파악하기 어려운 조직',
+      '조직 개편·퇴사 이후 권한 정리',
+      '멀티 클라우드 간 설정 편차 확인',
+    ],
+    cta: '클라우드 보안 진단 상담',
+  },
+  {
+    slug: 'cloud-workload',
+    icon: '📦',
+    cat: '보안 / 클라우드',
+    name: '클라우드 워크로드 보호',
+    seoH1: '컨테이너·쿠버네티스 워크로드 보안 (CWPP)',
+    seoH2: '이미지 취약점 점검과 런타임 이상 행위 대응',
+    summary: '컨테이너·쿠버네티스·VM의 취약점과 런타임 이상 행위를 함께 관리합니다.',
+    desc: '배포 전 이미지의 취약점을 걸러내고, 운영 중인 워크로드에서 예상 밖의 프로세스·통신이 일어나는지 감시합니다. 빌드 단계와 런타임을 나눠 보지 않고 한 흐름으로 다룹니다.',
+    tags: ['CWPP', '컨테이너', 'Kubernetes', '이미지 스캔', '런타임'],
+    highlights: [
+      { title: '이미지 취약점 점검', desc: '배포 전 컨테이너 이미지의 알려진 취약점과 위험한 설정을 걸러냅니다.' },
+      { title: '런타임 이상 감시', desc: '워크로드에서 예상 밖의 프로세스 실행이나 외부 통신이 발생하면 탐지합니다.' },
+      { title: '쿠버네티스 설정 점검', desc: '권한 과다 서비스 계정, 특권 컨테이너, 네트워크 정책 공백을 확인합니다.' },
+      { title: '파이프라인 연결', desc: '점검을 배포 과정에 붙여 문제가 운영에 올라가기 전에 잡습니다.' },
+    ],
+    specs: [
+      '대상: 컨테이너 이미지 · 쿠버네티스 클러스터 · 클라우드 VM',
+      '점검: 이미지 취약점 · 설정 오류 · 특권 상승 · 네트워크 정책',
+      '런타임: 프로세스·파일·아웃바운드 통신 이상 탐지',
+      '연동: CI/CD 파이프라인 단계 삽입, 관제·SIEM 전달',
+      '산출물: 취약점 목록, 조치 가이드, 재점검 결과 비교',
+    ],
+    useCases: [
+      '컨테이너로 서비스를 옮긴 직후 보안 점검',
+      '쿠버네티스 운영 중 권한 구조 정리',
+      '배포 파이프라인에 보안 단계 추가',
+      '외부 이미지·오픈소스 사용 비중이 높은 팀',
+      '런타임 이상 행위 탐지 체계 도입',
+    ],
+    cta: '워크로드 보호 상담',
+  },
+  {
     slug: 'llm-security-audit',
     icon: '📋',
-    cat: 'AI 보안',
+    cat: '보안 / AI·데이터',
     name: 'LLM 보안 감사',
+    seoH1: '생성형 AI / LLM 프롬프트 보안 및 거버넌스 감사',
+    seoH2: '데이터 유출 방지 및 안전한 생성형 AI 도입 컨설팅',
     summary: '내부·대외 LLM 사용의 유출·프롬프트 인젝션·거버넌스 점검.',
     desc: '생성형 AI 도입 시 데이터 유출, 프롬프트 인젝션, 비인가 모델 사용, 감사 추적 부재 등 리스크를 점검합니다. 정책·기술·운영 관점의 개선 과제를 우선순위와 함께 제시합니다.',
     tags: ['프롬프트 보안', '데이터 분류', '거버넌스', '로깅', 'Red Team'],
@@ -372,9 +558,11 @@ export const servicesData: ServiceData[] = [
     slug: 'ultrastream',
     icon: '📡',
     cat: '스트리밍',
-    name: 'Ultrastream 엔진 호스팅',
+    name: 'UltraStreamingEngine',
+    seoH1: '초저지연(LL-HLS) 라이브 스트리밍 솔루션',
+    seoH2: 'WebRTC 및 1~2초 지연시간의 고화질 영상 송출 인코더',
     summary: 'MediaMTX 기반 RTMP/HLS/WebRTC. LL-HLS 1~2초 레이턴시, ABR 4단계.',
-    desc: 'DMN솔루션의 스트리밍 엔진 Ultrastream으로 초저지연 라이브 방송 인프라를 구축하세요. RTMP 수신부터 HLS 변환, WebRTC 배포까지 하나의 파이프라인으로 처리합니다.',
+    desc: 'DMN솔루션의 UltraStreamingEngine으로 초저지연 라이브 방송 인프라를 구축하세요. RTMP 수신부터 HLS 변환, WebRTC 배포까지 하나의 파이프라인으로 처리합니다.',
     tags: ['MediaMTX', 'FFmpeg', 'WebRTC', 'LL-HLS', 'SRT'],
     highlights: [
       { title: 'LL-HLS 초저지연', desc: '1~2초 레이턴시 라이브 스트리밍. 기존 HLS(10~30초) 대비 10배 빠름.' },
@@ -398,12 +586,31 @@ export const servicesData: ServiceData[] = [
       '온라인 교육 강의 스트리밍',
     ],
     cta: '스트리밍 상담 신청',
+    comparison: {
+      label: '타사 스트리밍 엔진 비교',
+      items: [
+        { label: '초저지연', ours: 'LL-HLS 1~2초', others: ['3~8초', '2~5초', '3~10초'] },
+        { label: 'WebRTC 지원', ours: '네이티브 지원', others: ['플러그인 필요/유료', '네이티브 지원(EE)', '네이티브 지원(Pro)'] },
+        { label: '멀티 프로토콜', ours: 'RTMP·HLS·WebRTC·SRT·RTSP 동시', others: ['RTMP·HLS·RTSP', 'RTMP·HLS·WebRTC', 'RTMP·HLS·RTSP'] },
+        { label: 'ABR 트랜스코딩', ours: 'FFmpeg 4단계 (1080p~360p)', others: ['내장 인코더 제한적', 'Adaptive Bitrate 제공', '별도 FFmpeg 연동'] },
+        { label: 'LL-HLS', ours: '네이티브 지원', others: ['미지원', 'EE 버전 유료', '미지원'] },
+        { label: 'SRT 프로토콜', ours: '네이티브 지원', others: ['플러그인 필요', '네이티브 지원(EE)', '네이티브 지원(Pro)'] },
+        { label: '라이선스', ours: '인공지능 기능', others: ['상용 (라이선스 필요)', '상용 (EE 라이선스)', 'GNU GPLv3'] },
+        { label: '인코더 연동', ours: 'OBS, FFMpeg, Wirecast 즉시', others: ['OBS 지원', 'OBS 지원', 'OBS 지원'] },
+        { label: '확장성', ours: 'CDN 연동 무제한 시청자', others: ['서버당 제한', '유료 클러스터링', '서버당 제한'] },
+        { label: '녹화 기능', ours: '스트림 자동 녹화 + VOD 변환', others: ['녹화 추가 비용', '녹화 지원(EE)', '녹화 추가 비용'] },
+        { label: '운영 난이도', ours: '단일 바이너리', others: ['JVM 설치 필요', '복잡한 구성', 'JVM 설치 필요'] },
+        { label: '월 비용 (10만 시청)', ours: 'CDN 비용만 지불', others: ['₩500만~₩2,000만+', '₩300만~₩1,000만+', '₩200만~₩800만+'] },
+      ],
+    },
   },
   {
     slug: 'vod-multistream',
     icon: '🎬',
     cat: '스트리밍',
     name: 'VOD 관리 + 멀티 리스트림',
+    seoH1: 'VOD 아카이빙 및 멀티플랫폼 동시 송출 솔루션',
+    seoH2: '라이브 방송 VOD 변환 및 유튜브·트위치·네이버 다중 스트리밍',
     summary: 'VOD 저장·썸네일 자동생성. 유튜브·트위치·네이버 동시 송출 자동화.',
     desc: '라이브 방송을 자동으로 녹화·저장하고 VOD로 관리합니다. 동시에 유튜브·트위치·네이버TV 등 여러 플랫폼에 자동 동시 송출하여 최대 노출 효과를 얻으세요.',
     tags: ['MariaDB', 'Cloudflare', 'FFmpeg', 'YouTube API', 'Twitch'],
@@ -433,8 +640,10 @@ export const servicesData: ServiceData[] = [
   {
     slug: 'ai-agent',
     icon: '🤖',
-    cat: 'AI 보안',
+    cat: '보안 / 운영',
     name: 'AI 자율 관제 에이전트',
+    seoH1: 'LLM 기반 SOC 자율 보안 관제 에이전트',
+    seoH2: '보안 이벤트 분석부터 SOAR 자동 차단까지 AI 무인 관제',
     summary: 'LLM 기반 SOC 에이전트. 위협탐지→분석→대응 자동화로 24/7 무인 관제.',
     desc: 'LLM(대규모 언어 모델)을 활용한 차세대 SOC 자동화 에이전트입니다. 보안 이벤트를 스스로 분석하고, 대응 방안을 결정하며, 실행까지 자동화합니다. 24시간 무인 관제를 실현합니다.',
     tags: ['Claude API', 'Wazuh', 'SOAR', 'SIEM', 'LangChain'],
@@ -469,6 +678,9 @@ export const SERVICE_SLUGS = [
   'ha',
   'db-cluster',
   'system-recovery-migration',
+  'dmn-guard',
+  'cloud-posture',
+  'cloud-workload',
   'ai-security',
   'ai-stream-security',
   'deepfake-detection',
@@ -478,6 +690,7 @@ export const SERVICE_SLUGS = [
   'ultrastream',
   'vod-multistream',
   'ai-agent',
+  'aidc',
 ] as const
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number]
@@ -488,4 +701,37 @@ export function getServiceBySlug(slug: ServiceSlug): ServiceData | undefined {
 
 export function findServiceBySlug(slug: string): ServiceData | undefined {
   return servicesData.find(s => s.slug === slug)
+}
+
+/** 'IDC / DB' → 'IDC' */
+function categoryRoot(cat: string): string {
+  return cat.split('/')[0].trim()
+}
+
+/**
+ * 기준 서비스와 관련도가 높은 순으로 다른 서비스를 반환합니다.
+ *
+ * 점수: 같은 세부 카테고리 +3, 같은 대분류(IDC 등) +2, 공통 태그 1개당 +2.
+ * 동점이면 servicesData의 원래 순서를 유지합니다 — 정적 빌드 결과가
+ * 매번 동일해야 하므로 정렬은 완전히 결정적이어야 합니다.
+ */
+export function getRelatedServices(slug: string, limit = 4): ServiceData[] {
+  const base = findServiceBySlug(slug)
+  const others = servicesData.filter(s => s.slug !== slug)
+  if (!base) return others.slice(0, limit)
+
+  const baseTags = new Set(base.tags)
+  const baseRoot = categoryRoot(base.cat)
+
+  return others
+    .map((service, order) => {
+      let score = 0
+      if (service.cat === base.cat) score += 3
+      else if (categoryRoot(service.cat) === baseRoot) score += 2
+      score += service.tags.filter(tag => baseTags.has(tag)).length * 2
+      return { service, score, order }
+    })
+    .sort((a, b) => b.score - a.score || a.order - b.order)
+    .slice(0, limit)
+    .map(entry => entry.service)
 }

@@ -1,277 +1,175 @@
 import Link from 'next/link'
+import ServiceIcon from '@/components/ServiceIcon'
+import { servicesData } from '@/lib/servicesData'
 
-type ServiceCard = {
-  icon: string
-  cat: string
-  name: string
-  slug: string
-  desc: string
-  tags: string[]
+/**
+ * 홈 서비스 개요.
+ *
+ * 예전에는 18개 서비스를 카드로 전부 펼쳐 스크롤이 길고 무엇을 먼저 볼지
+ * 알 수 없었습니다. 여기서는 보안 4개 축만 카드로 두고 서비스는 이름 링크로
+ * 접습니다. 상세는 각 페이지와 메가메뉴가 이미 담고 있습니다.
+ *
+ * 콘텐츠 출처는 lib/servicesData.ts 하나입니다. points 의 수치도 전부
+ * servicesData 의 specs·highlights 에서 가져온 값이므로, 사양이 바뀌면
+ * 두 곳을 함께 고쳐야 합니다.
+ */
+type Pillar = {
+  label: string
+  prefix: string
+  blurb: string
+  body: string
+  points: string[]
 }
 
-const services: ServiceCard[] = [
-  { icon: '🏢', cat: 'AIDC / 서버', name: '서버 임대 · 코로케이션', slug: 'server-rental', desc: '지능형 가상화 기반 VM 즉시 할당부터 고객 장비 입주(코로케이션)까지. 전력·냉각·네트워크 포함, IPMI 원격관리.', tags: ['KVM', 'IPMI', 'Bare Metal'] },
-  { icon: '⚙️', cat: 'AIDC / MSP', name: '위탁운영 매니지먼트', slug: 'managed-service', desc: 'OS 패치·장애대응·성능튜닝 전담. Zabbix+Grafana 실시간 모니터링, 월 SLA 리포트.', tags: ['Zabbix', 'Ansible', 'Grafana'] },
-  { icon: '🔄', cat: 'AIDC / HA', name: '운영서버 이중화 (HA)', slug: 'ha', desc: 'Active-Active/Standby 구성, 자동 페일오버 30초 이내, L4/L7 로드밸런서, 99.99% SLA.', tags: ['Keepalived', 'HAProxy', 'Pacemaker'] },
-  { icon: '🗄️', cat: 'AIDC / DB', name: 'DB 이중화 매니지먼트', slug: 'db-cluster', desc: 'Galera Cluster·Master-Slave 구성·모니터링·자동복구 위탁관리. 슬로우쿼리 분석.', tags: ['Galera', 'ProxySQL', 'Percona'] },
-  { icon: '🛠️', cat: 'AIDC / 서버', name: '서버 장애 복구 및 이전', slug: 'system-recovery-migration', desc: '당사 AIDC 입주 여부와 무관하게 외부 운영 서버·VM·온프레 환경까지 장애 복구·이전·성능·네트워크 지원. 원격·현장.', tags: ['긴급복구', '이전', '온프레'] },
-  { icon: '🛡️', cat: 'AI 보안', name: 'AI 보안 관제', slug: 'ai-security', desc: '365일 24시간 무인 관제. 위협 자동 탐지·분류·대응과 비용 절감을 동시에. 공공·금융·중견기업 특화.', tags: ['24/7', '자동 대응', '컴플라이언스'] },
-  { icon: '🤖', cat: 'AI 보안', name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM 기반 SOC 자동화. Wazuh SIEM·SOAR 플레이북으로 탐지·분석·대응을 자동화합니다.', tags: ['LLM', 'SIEM', 'SOAR'] },
-  { icon: '🛰️', cat: 'AI 보안', name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'RTMP/HLS 트래픽 머신러닝 분석. 세션 하이재킹·인젝션·DDoS 실시간 탐지 및 자동차단.', tags: ['Python ML', 'MediaMTX', 'Fail2ban'] },
-  { icon: '🔍', cat: 'AI 보안', name: '딥페이크 탐지 서비스', slug: 'deepfake-detection', desc: '라이브 스트림 내 AI 합성 영상·음성 실시간 검출. 방송사·기업 미디어 대상 고부가가치.', tags: ['PyTorch', 'ONNX', 'FaceForensics'] },
-  { icon: '🌐', cat: 'AI 보안', name: '네트워크 보안 · IDS/IPS', slug: 'network-security', desc: '침입탐지·방지와 ML 보조 이상탐지. 경계·내부 세그먼트 가시화 및 SIEM 연동.', tags: ['Suricata', 'Zeek', 'eBPF'] },
-  { icon: '🔐', cat: 'AI 보안', name: '제로트러스트 아키텍처', slug: 'zero-trust', desc: 'ID·디바이스·맥락 기반 최소권한. 마이크로세그먼트·MFA·지속 검증 로드맵.', tags: ['IAM', '세그먼트', 'MFA'] },
-  { icon: '📋', cat: 'AI 보안', name: 'LLM 보안 감사', slug: 'llm-security-audit', desc: '생성형 AI 유출·프롬프트 인젝션·RAG 거버넌스 점검. 정책·기술·운영 권고안.', tags: ['프롬프트', '거버넌스', '감사'] },
-  { icon: '📡', cat: '스트리밍', name: 'Ultrastream 엔진 호스팅', slug: 'ultrastream', desc: '국내 CDN 대비 빠른 LL-HLS 1~2초 초저지연. 동시 시청자 무제한, 99.99% 가용성 목표.', tags: ['초저지연', '무제한 시청자', '99.99% SLA'] },
-  { icon: '🎬', cat: '스트리밍', name: 'VOD 관리 + 멀티 리스트림', slug: 'vod-multistream', desc: 'VOD 저장·썸네일 자동생성. 유튜브·트위치·네이버 동시 송출 자동화.', tags: ['MariaDB', 'Cloudflare', 'FFmpeg'] },
+const PILLARS: Pillar[] = [
+  {
+    label: '네트워크 보안',
+    prefix: '보안 / 네트워크',
+    blurb: '경계부터 내부 세그먼트까지',
+    body:
+      '방화벽 한 대로 끝나지 않습니다. 밖에서 들어오는 트래픽과 서버끼리 오가는 내부 트래픽을 같은 정책으로 봅니다. DMN Guard 는 보호 대상 서버에 아무것도 설치하지 않고 L2 투명 인라인으로 삽입되어, IP 변경이나 네트워크 재설계 없이 보안 계층을 얹습니다.',
+    points: [
+      'IDS/IPS 51,977 시그니처 · 자체 WAF 105규칙 21카테고리',
+      'JA4+ 4지문으로 User-Agent 를 위조한 봇을 계층 모순으로 식별',
+      '내부망 횡적 이동·스캐닝·비정상 프로토콜 사용까지 가시화',
+    ],
+  },
+  {
+    label: '클라우드 보안',
+    prefix: '보안 / 클라우드',
+    blurb: '설정·권한·워크로드 점검',
+    body:
+      '클라우드 사고는 대부분 침입이 아니라 열려 있는 설정에서 시작합니다. 계정에 쌓인 공개 버킷과 과다 권한을 걷어내고, 배포 전 이미지와 운영 중인 컨테이너를 따로 보지 않고 한 흐름으로 다룹니다.',
+    points: [
+      'AWS · Azure · GCP 계정 단위로 노출 지점과 권한 과다 점검',
+      '이미지 취약점부터 런타임 이상 행위까지 배포 파이프라인에 연결',
+      '전부 고치라는 목록 대신 위험도와 작업량을 함께 본 조치 순서',
+    ],
+  },
+  {
+    label: 'AI · 데이터 보안',
+    prefix: '보안 / AI·데이터',
+    blurb: '생성형 AI와 합성 미디어 대응',
+    body:
+      '생성형 AI 를 업무에 붙이는 순간 새로운 유출 경로가 함께 열립니다. 어떤 모델에 어떤 데이터가 흘러가는지 먼저 목록화하고, 화면과 통화에 섞여 들어오는 합성 영상·음성은 실시간으로 걸러냅니다.',
+    points: [
+      '프롬프트 인젝션 · 시스템 프롬프트 유출 · PII 유입 시뮬레이션',
+      '챗봇 · 코파일럿 · RAG · 외부 API 까지 사용 현황 인벤토리',
+      '라이브 스트림 딥페이크 탐지 정확도 95% 이상, 합성 음성 포함',
+    ],
+  },
+  {
+    label: '보안 운영',
+    prefix: '보안 / 운영',
+    blurb: '24시간 자율 관제와 대응',
+    body:
+      '탐지까지는 도구가 하지만, 새벽 3시에 울린 경보를 판단하는 일은 늘 사람 몫이었습니다. LLM 에이전트가 이벤트를 분석해 심각도를 나누고, 사전 정의된 플레이북으로 차단·격리까지 실행한 뒤 중요한 건만 담당자에게 올립니다.',
+    points: [
+      '심각 위협 5분 이내 탐지·대응, 야간·주말·공휴일 포함 365일',
+      'SOAR 플레이북 50+ 시나리오로 격리·차단·보고까지 자동 실행',
+      '감사 대응용 증적과 일간·주간·월간 리포트 자동 생성',
+    ],
+  },
 ]
 
-const GROUPS: { id: string; anchorId: string; title: string; subtitle: string; slugs: string[] }[] = [
-  {
-    id: 'idc',
-    anchorId: 'services-idc',
-    title: 'AIDC · 지능형 서버 인프라',
-    subtitle: '지능형 데이터센터 입주·위탁운영·이중화·DB·장애 복구. AIDC만 단독으로 문의·계약할 수 있습니다.',
-    slugs: ['server-rental', 'managed-service', 'ha', 'db-cluster', 'system-recovery-migration'],
-  },
-  {
-    id: 'security',
-    anchorId: 'services-security',
-    title: 'AI 보안 · 지능형 거버넌스',
-    subtitle: '24/7 관제, 이상·딥페이크 탐지, 네트워크·제로트러스트, LLM 감사. 보안 도메인은 인프라·스트리밍과 독립된 전문 서비스입니다.',
-    slugs: ['ai-security', 'ai-agent', 'ai-stream-security', 'deepfake-detection', 'network-security', 'zero-trust', 'llm-security-audit'],
-  },
-  {
-    id: 'media',
-    anchorId: 'services-streaming',
-    title: '라이브 스트리밍 · 미디어',
-    subtitle: 'Ultrastream 엔진·VOD·멀티 송출. 송출 품질·채널 수는 스트리밍 상품 기준으로 산정합니다.',
-    slugs: ['ultrastream', 'vod-multistream'],
-  },
-]
-
-function cardFor(slug: string): ServiceCard | undefined {
-  return services.find(s => s.slug === slug)
-}
+const infraCount = servicesData.filter(s => s.cat.startsWith('IDC')).length
+const streamCount = servicesData.filter(s => s.cat.startsWith('스트리밍')).length
 
 export default function Services() {
   return (
-    <section id="services" style={{ 
-      background: 'linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%)', 
-      position: 'relative', 
-      zIndex: 1,
-      borderTop: '1px solid var(--border)',
-    }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '100px 5% 120px' }}>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: 80 }}>
-          <div style={{ 
-            fontFamily: 'var(--mono)', 
-            fontSize: '0.75rem', 
-            color: 'var(--accent)', 
-            letterSpacing: '0.15em', 
-            marginBottom: 16,
-            textTransform: 'uppercase',
-            fontWeight: 600
-          }}>
-            ✦ 전문 서비스 포트폴리오 ✦
+    <section id="services" className="relative z-10 bg-canvas">
+      <div className="container-page py-24 md:py-32">
+        <div className="reveal max-w-xl">
+          <div className="mb-3 flex items-center gap-2.5 font-mono text-label uppercase tracking-[0.15em] text-accent-2">
+            <span className="inline-block h-px w-6 bg-accent-2" />
+            Security Services
           </div>
-          <h2 style={{ 
-            fontFamily: 'var(--display)', 
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', 
-            fontWeight: 800, 
-            lineHeight: 1.1, 
-            letterSpacing: '-0.02em', 
-            color: 'var(--text)', 
-            marginBottom: 24,
-            background: 'linear-gradient(135deg, var(--text) 0%, var(--accent) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            3개 분야 × 전문 서비스
+          <h2 className="break-keep text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-fg">
+            네 개의 축으로 지킵니다
           </h2>
-          <p style={{ 
-            fontSize: '1.1rem', 
-            color: 'var(--text2)', 
-            maxWidth: 720, 
-            lineHeight: 1.8,
-            margin: '0 auto',
-            fontWeight: 500,
-          }}>
-            <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>AIDC</strong>, <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>AI 보안</strong>, <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>스트리밍</strong> — 각 분야별 전문가가 독립적으로 운영하는 특화 서비스입니다.<br />
-            복합 도입 시에도 <strong style={{ color: 'var(--text)' }}>분야별 전담 관리</strong>로 최적화된 솔루션을 제공합니다.
+          <p className="mt-5 break-keep text-lead text-fg-muted">
+            들어오는 트래픽, 클라우드 설정, 생성형 AI, 그리고 경보가 울린 뒤의 24시간.
+            각 축이 무엇을 막는지와 어떤 서비스가 붙는지를 함께 적었습니다.
           </p>
         </div>
 
-        {GROUPS.map((g, gi) => (
-          <div key={g.id} id={g.anchorId} style={{ marginTop: gi === 0 ? 0 : 80, scrollMarginTop: 88 }}>
-            <div style={{ 
-              marginBottom: 40, 
-              padding: '32px', 
-              background: 'var(--surface)',
-              borderRadius: 20,
-              border: '1px solid var(--border)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.04)',
-            }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 16,
-                marginBottom: 16,
-              }}>
-                <div style={{
-                  width: 4,
-                  height: 40,
-                  background: `linear-gradient(180deg, ${gi === 0 ? '#3b82f6' : gi === 1 ? '#22c55e' : '#8b5cf6'} 0%, ${gi === 0 ? '#1d4ed8' : gi === 1 ? '#16a34a' : '#7c3aed'} 100%)`,
-                  borderRadius: 2,
-                }} />
-                <div>
-                  <h3 style={{ 
-                    fontFamily: 'var(--display)', 
-                    fontSize: '1.5rem', 
-                    fontWeight: 800, 
-                    color: 'var(--text)', 
-                    marginBottom: 8, 
-                    letterSpacing: '-0.02em' 
-                  }}>{g.title}</h3>
-                  <p style={{ 
-                    fontSize: '0.95rem', 
-                    color: 'var(--text2)', 
-                    margin: 0,
-                    lineHeight: 1.6,
-                    fontWeight: 500,
-                  }}>{g.subtitle}</p>
+        <div className="reveal mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {PILLARS.map(pillar => {
+            const items = servicesData.filter(s => s.cat.startsWith(pillar.prefix))
+            if (items.length === 0) return null
+
+            return (
+              <div
+                key={pillar.label}
+                className="flex flex-col rounded-2xl border border-line bg-surface/60 px-8 py-9 backdrop-blur transition-colors duration-300 hover:border-accent/50"
+              >
+                <div className="flex items-baseline gap-3">
+                  <h3 className="break-keep text-[1.25rem] font-bold tracking-[-0.02em] text-fg">
+                    {pillar.label}
+                  </h3>
+                  <span className="ml-auto shrink-0 font-mono text-label text-fg-subtle">
+                    {items.length}종
+                  </span>
                 </div>
-              </div>
-              <div className="reveal" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: 24,
-              }}>
-              {g.slugs.map(slug => {
-                const s = cardFor(slug)
-                if (!s) return null
-                return (
-                  <Link key={s.slug} href={`/services/${s.slug}/`} title={s.name} style={{ textDecoration: 'none', minWidth: 0 }}>
-                    <div style={{
-                      background: '#ffffff',
-                      padding: '32px 28px',
-                      height: '100%',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      borderRadius: 16,
-                      border: '2px solid var(--border)',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-                    }}
-                      onMouseEnter={e => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.transform = 'translateY(-8px)'
-                        el.style.boxShadow = '0 16px 40px rgba(59, 130, 246, 0.15)'
-                        el.style.borderColor = 'var(--accent)'
-                      }}
-                      onMouseLeave={e => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.transform = 'translateY(0)'
-                        el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'
-                        el.style.borderColor = 'var(--border)'
-                      }}
-                    >
-                      <div style={{ 
-                        fontSize: '2.5rem', 
-                        marginBottom: 16, 
-                        textAlign: 'center',
-                        filter: 'grayscale(0.3)',
-                      }} aria-hidden>{s.icon}</div>
-                      
-                      <div style={{ 
-                        fontFamily: 'var(--mono)', 
-                        fontSize: '0.7rem', 
-                        color: 'var(--accent)', 
-                        letterSpacing: '0.1em', 
-                        marginBottom: 12, 
-                        fontWeight: 700,
-                        textAlign: 'center',
-                        textTransform: 'uppercase',
-                        background: 'var(--accent-soft)',
-                        padding: '6px 12px',
-                        borderRadius: 20,
-                        display: 'inline-block',
-                        width: '100%',
-                        boxSizing: 'border-box',
-                      }}>{s.cat}</div>
-                      
-                      <h4 style={{ 
-                        fontFamily: 'var(--display)', 
-                        fontSize: 'clamp(1.15rem, 2.5vw, 1.35rem)', 
-                        fontWeight: 800, 
-                        color: '#0f172a', 
-                        marginBottom: 16, 
-                        lineHeight: 1.3,
-                        textAlign: 'center',
-                      }}>{s.name}</h4>
-                      
-                      <p style={{ 
-                        fontSize: '0.9rem', 
-                        color: '#475569', 
-                        lineHeight: 1.7, 
-                        marginBottom: 20, 
-                        wordBreak: 'keep-all',
-                        textAlign: 'center',
-                        fontWeight: 500,
-                      }}>{s.desc}</p>
-                      
-                      <div style={{ 
-                        display: 'flex', 
-                        flexWrap: 'wrap', 
-                        gap: 8,
-                        justifyContent: 'center',
-                        marginBottom: 20,
-                      }}>
-                        {s.tags.map(t => (
-                          <span key={t} style={{ 
-                            fontFamily: 'var(--mono)', 
-                            fontSize: '0.65rem', 
-                            padding: '6px 12px', 
-                            background: '#f1f5f9', 
-                            border: '1px solid #e2e8f0', 
-                            borderRadius: 20, 
-                            color: '#475569',
-                            fontWeight: 600,
-                          }}>{t}</span>
-                        ))}
-                      </div>
-                      
-                      <div style={{ 
-                        marginTop: 'auto',
-                        textAlign: 'center',
-                        padding: '12px 0',
-                        borderTop: '1px solid #f1f5f9',
-                      }}>
-                        <span style={{ 
-                          fontFamily: 'var(--sans)', 
-                          fontSize: '0.85rem', 
-                          color: 'var(--accent)', 
-                          fontWeight: 700,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 8,
-                        }}>
-                          상세 보기 · 스펙 확인
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                          </svg>
+                <p className="mt-1.5 break-keep text-meta text-fg-subtle">{pillar.blurb}</p>
+
+                <p className="mt-5 break-keep text-body leading-[1.85] text-fg-muted">
+                  {pillar.body}
+                </p>
+
+                <ul className="mt-6 flex list-none flex-col gap-2.5">
+                  {pillar.points.map(point => (
+                    <li key={point} className="flex gap-3 break-keep text-meta text-fg-muted">
+                      <span
+                        aria-hidden
+                        className="mt-[0.62em] size-1.5 shrink-0 rounded-full bg-accent/70"
+                      />
+                      <span className="min-w-0">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* 링크 목록은 카드 바닥에 붙입니다. 축마다 서비스 수가 달라
+                    설명 길이도 다른데, mt-auto 가 없으면 카드끼리 구분선 위치가
+                    어긋나 보입니다. */}
+                <ul className="mt-auto flex list-none flex-col pt-7">
+                  {items.map(s => (
+                    <li key={s.slug}>
+                      <Link
+                        href={`/services/${s.slug}/`}
+                        className="group flex items-center gap-2.5 border-t border-line py-3 text-body text-fg-muted transition-colors hover:text-accent"
+                      >
+                        <ServiceIcon slug={s.slug} className="size-4.5 shrink-0 text-fg-subtle transition-colors group-hover:text-accent" />
+                        <span className="min-w-0 break-keep">{s.name}</span>
+                        <span
+                          aria-hidden
+                          className="ml-auto shrink-0 text-fg-subtle transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                        >
+                          →
                         </span>
-                      </div>
-                    </div>
-                  </Link>
-                )
-                })}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </div>
-        ))}
+            )
+          })}
+        </div>
+
+        {/* 인프라·스트리밍은 보안 아래로 접습니다. 여전히 하는 일이지만
+            메인의 초점은 보안입니다. */}
+        <div className="reveal mt-6 flex flex-col gap-4 rounded-2xl border border-line bg-elev px-8 py-7 sm:flex-row sm:items-center">
+          <p className="break-keep text-body text-fg-muted">
+            <span className="font-semibold text-fg">IDC 인프라 {infraCount}종</span> · 스트리밍{' '}
+            {streamCount}종도 함께 운영합니다.
+          </p>
+          <Link
+            href="/contact"
+            className="shrink-0 font-mono text-meta tracking-[0.04em] text-accent transition-colors hover:text-accent-2 sm:ml-auto"
+          >
+            인프라 문의 →
+          </Link>
+        </div>
       </div>
     </section>
   )

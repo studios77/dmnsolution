@@ -1,88 +1,80 @@
-'use client'
-import Image from 'next/image'
+import Link from 'next/link'
 
 const links = [
   ['서비스', '/#services'],
-  ['요금', '/#pricing'],
   ['소개', '/#about'],
-  ['문의', '/#contact'],
+  ['문의', '/contact'],
+  // 전체 페이지 목록. 푸터에 두면 크롤러가 모든 상세 페이지를 발견하는
+  // 경로가 사이트 어디에서나 한 번에 열립니다.
+  ['사이트맵', '/sitemap-page'],
 ]
 
 const companyInfo = [
   { label: '회사명', value: '(주)디엠엔솔루션' },
   { label: '사업자등록번호', value: '209-81-37743' },
   { label: '주소', value: '서울시 영등포구 영중로 140 5F' },
-  { label: '전화', value: '0505-299-7623 / 0505-683-2580' },
-  { label: '이메일', value: 'studios77@gmail.com / phd580@gmail.com' },
+  { label: '전화', value: '0505-299-7623' },
+  { label: '이메일', value: 'studios77@gmail.com' },
 ]
 
 export default function Footer() {
-  const footerBg = '#030712'
-
   return (
-    <footer style={{ background: footerBg, borderTop: '1px solid rgba(34, 197, 94, 0.18)', position: 'relative', zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '52px 5% 32px' }}>
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(260px, 320px) 1fr auto', gap: 48, alignItems: 'start' }}>
+    <footer className="relative z-10 border-t border-line bg-elev">
+      <div className="container-page pb-10 pt-16">
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[200px_1fr_auto] md:gap-12">
           <div>
-            <div style={{ marginBottom: 20, lineHeight: 0 }}>
-              <Image
+            <div className="mb-3 leading-none">
+              <img
                 src="/logo-dmn.png"
                 alt="DMN솔루션"
-                width={1200}
-                height={438}
-                sizes="(max-width: 768px) 90vw, 320px"
-                style={{
-                  height: 56,
-                  width: 'auto',
-                  maxWidth: '100%',
-                  objectFit: 'contain',
-                  objectPosition: 'left center',
-                }}
+                width={300}
+                height={110}
+                className="h-12 w-auto max-w-full object-contain object-left"
               />
+            </div>
+            <div className="font-mono text-meta tracking-[0.08em] text-fg-muted">
+              IDC · AI 보안 · 스트리밍
+              <br />
+              인프라 전문 기업
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {/* 좁은 화면에서는 라벨을 값 위로 올립니다. 110px 고정 라벨을 유지하면
+              320px 뷰포트에서 값에 남는 폭이 ~160px 뿐이라 주소가 잘게 접힙니다. */}
+          <div className="flex flex-col gap-3">
             {companyInfo.map(({ label, value }) => (
-              <div key={label} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.68rem', fontWeight: 600, color: '#64748b', letterSpacing: '0.06em', minWidth: 96, flexShrink: 0 }}>
+              <div key={label} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2.5">
+                <span className="font-mono text-meta tracking-[0.06em] text-fg-subtle sm:w-[110px] sm:shrink-0">
                   {label}
                 </span>
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '0.9rem', color: '#e2e8f0', fontWeight: 450, lineHeight: 1.55, flex: 1, minWidth: 0 }}>
-                  {value}
-                </span>
+                <span className="break-keep text-body text-fg">{value}</span>
               </div>
             ))}
           </div>
 
-          <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: 12, listStyle: 'none', margin: 0, padding: 0, alignItems: 'flex-end' }}>
+          {/* 패딩 없는 링크는 실효 높이가 20px 남짓이라 손가락으로 누르기 어렵습니다.
+              inline-flex + min-h 로 터치 영역을 확보하고, gap 을 줄여 시각적
+              간격은 그대로 유지합니다. */}
+          <ul className="flex list-none flex-col gap-0.5 md:items-end">
             {links.map(([label, href]) => (
               <li key={label}>
-                <a
+                <Link
                   href={href}
-                  style={{ fontFamily: 'var(--sans)', fontSize: '0.88rem', fontWeight: 600, color: '#cbd5e1', textDecoration: 'none', letterSpacing: '0.02em', transition: 'color 0.2s' }}
-                  onMouseEnter={e => ((e.target as HTMLElement).style.color = 'var(--accent)')}
-                  onMouseLeave={e => ((e.target as HTMLElement).style.color = '#cbd5e1')}
+                  className="inline-flex min-h-11 items-center font-mono text-body tracking-[0.06em] text-fg-muted transition-colors duration-200 hover:text-accent"
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        <div style={{ marginTop: 36, paddingTop: 20, borderTop: '1px solid rgba(51, 65, 85, 0.6)', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 12 }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: '0.78rem', color: '#64748b', textAlign: 'center' }}>
-            © 2026 (주)디엠엔솔루션 · DMN솔루션. All rights reserved. · dmns.co.kr
+        <div className="mt-12 flex justify-center border-t border-line/70 pt-6">
+          <span className="font-mono text-meta tracking-[0.06em] text-fg-subtle">
+            © 2026 DMN솔루션. All rights reserved.
           </span>
         </div>
       </div>
-      <style>{`
-        @media(max-width:768px){
-          footer .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-          footer .footer-links { align-items: flex-start !important; }
-        }
-      `}</style>
     </footer>
   )
 }

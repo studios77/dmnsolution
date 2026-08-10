@@ -1,56 +1,50 @@
 import type { Metadata, Viewport } from 'next'
-import { SITE_ORIGIN } from '@/lib/site'
-import {
-  SEO_DEFAULT_DESCRIPTION,
-  SEO_DEFAULT_TITLE,
-  SEO_KEYWORDS,
-  SEO_OG_IMAGE,
-} from '@/lib/seo'
+import { SITE_NAME, SITE_ORIGIN, SITE_VERIFICATION } from '@/lib/site'
+import { SEO_DEFAULT_DESCRIPTION, SEO_DEFAULT_TITLE, SEO_KEYWORDS } from '@/lib/seo'
+import SalesIq from '@/components/SalesIq'
+import ChatBot from '@/components/ChatBot'
 import './globals.css'
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
-  ],
+  themeColor: '#0b0f1a',
 }
 
-export const metadataBase = new URL(SITE_ORIGIN)
-
 export const metadata: Metadata = {
-  applicationName: 'DMN솔루션',
+  // metadataBase 는 별도 export 가 아니라 metadata 의 필드여야 Next 가 인식합니다.
+  // 예전에는 최상위 export 로 두어 죽은 코드였고, 그 상태에서 OG 이미지를
+  // 추가하면 상대 경로가 절대 URL 로 확장되지 않습니다.
+  metadataBase: new URL(SITE_ORIGIN),
+  applicationName: SITE_NAME,
   title: SEO_DEFAULT_TITLE,
   description: SEO_DEFAULT_DESCRIPTION,
   keywords: SEO_KEYWORDS,
-  authors: [{ name: 'DMN솔루션', url: SITE_ORIGIN }],
-  creator: 'DMN솔루션',
+  authors: [{ name: SITE_NAME, url: SITE_ORIGIN }],
+  creator: SITE_NAME,
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     title: SEO_DEFAULT_TITLE,
     description: SEO_DEFAULT_DESCRIPTION,
     url: SITE_ORIGIN,
-    siteName: 'DMN솔루션',
+    siteName: SITE_NAME,
     locale: 'ko_KR',
     type: 'website',
-    images: [
-      {
-        url: SEO_OG_IMAGE,
-        width: 1200,
-        height: 438,
-        alt: 'DMN솔루션 로고',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SEO_DEFAULT_TITLE,
     description: SEO_DEFAULT_DESCRIPTION,
-    images: [SEO_OG_IMAGE],
   },
   alternates: {
     canonical: SITE_ORIGIN,
+  },
+  // 코드가 비어 있으면 태그를 내보내지 않습니다. lib/site 의 SITE_VERIFICATION 참고.
+  verification: {
+    ...(SITE_VERIFICATION.google ? { google: SITE_VERIFICATION.google } : {}),
+    ...(SITE_VERIFICATION.naver
+      ? { other: { 'naver-site-verification': SITE_VERIFICATION.naver } }
+      : {}),
   },
   robots: {
     index: true,
@@ -72,19 +66,38 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
+    <html
+      lang="ko"
+      // globals.css 의 scroll-behavior: smooth 를 의도한 것임을 Next 에 알립니다.
+      // 없으면 라우트 전환마다 부드러운 스크롤 경고가 뜹니다.
+      data-scroll-behavior="smooth"
+    >
       <head>
-        <meta name="color-scheme" content="light dark" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
       </head>
       <body>
-        <a href="#main-content" className="skip-link">
+        {/* Tab 첫 타에 나타납니다. 이게 없으면 키보드 사용자는 매 페이지마다
+            로고와 서비스 메뉴를 지나야 본문에 닿습니다. */}
+        <a
+          href="#main-content"
+          className="skip-link rounded-lg bg-accent px-4 py-2.5 text-body font-semibold text-canvas"
+        >
           본문으로 건너뛰기
         </a>
         {children}
+        {/*
+          상담 위젯은 모든 페이지에 둡니다 — 홈에만 두면 /contact 가 안내하는
+          채팅이 정작 그 페이지에 없습니다. 예전에 실제로 그랬습니다.
+
+          SalesIQ 는 SALESIQ.widgetCode 가 비어 있으면 아무것도 로드하지
+          않습니다. 지금은 비어 있으므로 실제로 뜨는 것은 ChatBot 입니다.
+          SalesIQ 를 개설해 코드를 채우면 둘이 겹치니, 그때 ChatBot 을
+          내리세요.
+        */}
+        <SalesIq />
+        <ChatBot />
       </body>
     </html>
   )

@@ -1,10 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-
-/** fixed bar height for dropdown top / scroll padding */
-const NAV_OUTER_PX = 64
 
 type ServiceMenuLink = {
   name: string
@@ -13,39 +9,51 @@ type ServiceMenuLink = {
   highlight?: boolean
 }
 
-function MenuItemTitle({ item, size, tone = 'onDark' }: { item: ServiceMenuLink; size: 'sm' | 'md'; tone?: 'onLight' | 'onDark' }) {
-  const fs = size === 'sm' ? '0.875rem' : '0.95rem'
-  const color = tone === 'onDark' ? '#f1f5f9' : tone === 'onLight' ? 'var(--text)' : '#f1f5f9'
+type ServiceMenuSection = { sub?: string; items: ServiceMenuLink[] }
+type ServiceMenuCategory = { cat: string; tone: keyof typeof TONES; sections: ServiceMenuSection[] }
+
+/** 카테고리별 강조색. Tailwind가 정적으로 수집하도록 완성된 클래스명으로 보관합니다. */
+const TONES = {
+  cyan: {
+    label: 'text-accent-2',
+    bar: 'bg-accent-2',
+    highlight: 'bg-accent-2/10 border-accent-2/30',
+    badge: 'text-accent-2 bg-accent-2/15 border-accent-2/40',
+  },
+  indigo: {
+    label: 'text-indigo-400',
+    bar: 'bg-indigo-400',
+    highlight: 'bg-indigo-400/10 border-indigo-400/30',
+    badge: 'text-indigo-400 bg-indigo-400/15 border-indigo-400/40',
+  },
+  emerald: {
+    label: 'text-accent',
+    bar: 'bg-accent',
+    highlight: 'bg-accent/10 border-accent/30',
+    badge: 'text-accent bg-accent/15 border-accent/40',
+  },
+} as const
+
+function MenuItemTitle({ item, size }: { item: ServiceMenuLink; size: 'sm' | 'md' }) {
   return (
     <span
-      style={{
-        display: 'block',
-        minWidth: 0,
-        fontFamily: 'var(--sans)',
-        fontSize: fs,
-        fontWeight: 600,
-        color,
-        lineHeight: 1.35,
-        letterSpacing: '-0.01em',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-      }}
+      className={`block min-w-0 font-semibold leading-[1.4] tracking-[-0.01em] text-fg ${
+        size === 'sm' ? 'text-body' : 'text-lead'
+      }`}
     >
       {item.name}
     </span>
   )
 }
-type ServiceMenuSection = { sub?: string; items: ServiceMenuLink[] }
-type ServiceMenuCategory = { cat: string; color: string; sections: ServiceMenuSection[] }
 
 const serviceMenu: ServiceMenuCategory[] = [
   {
-    cat: 'AIDC / 서버',
-    color: '#38bdf8',
+    cat: 'IDC / AIDC',
+    tone: 'cyan',
     sections: [
       {
         items: [
+          { name: 'AIDC GPU 전용 호스팅', slug: 'aidc', desc: '초고전력 코로케이션 · RTX 5090', highlight: true },
           { name: '서버 임대 · 코로케이션', slug: 'server-rental', desc: '1U~풀랙 코로케이션 월정액' },
           { name: '위탁운영 매니지먼트', slug: 'managed-service', desc: '24시간 장애대응 · OS 패치' },
           { name: '서버 이중화 (HA)', slug: 'ha', desc: '자동 페일오버 30초 · 99.99%' },
@@ -56,40 +64,58 @@ const serviceMenu: ServiceMenuCategory[] = [
     ],
   },
   {
-    cat: 'AI 보안',
-    color: '#22c55e',
+    cat: '네트워크 보안',
+    tone: 'indigo',
     sections: [
       {
-        sub: '관제 · 자동화',
         items: [
-          { name: 'AI 보안 관제', slug: 'ai-security', desc: '24시간 무인 자율 보안관제', highlight: true },
-          { name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM SOC · SOAR' },
+          { name: 'DMN Guard · NGFW', slug: 'dmn-guard', desc: 'NGFW·WAF·AI 융합 어플라이언스', highlight: true },
+          { name: '네트워크 보안 · IDS/IPS', slug: 'network-security', desc: '침입탐지 · 이상 ML' },
+          { name: '제로트러스트 설계', slug: 'zero-trust', desc: '세그먼트 · MFA' },
+          { name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'DDoS · 하이재킹 차단' },
+        ],
+      },
+    ],
+  },
+  {
+    cat: '클라우드 · AI 보안',
+    tone: 'cyan',
+    sections: [
+      {
+        sub: '클라우드',
+        items: [
+          { name: '클라우드 보안 형상 진단', slug: 'cloud-posture', desc: 'CSPM · 권한 정리' },
+          { name: '클라우드 워크로드 보호', slug: 'cloud-workload', desc: '컨테이너 · 쿠버네티스' },
         ],
       },
       {
-        sub: '스트리밍 · 미디어',
+        sub: 'AI · 데이터',
         items: [
-          { name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'DDoS · 하이재킹 차단' },
+          { name: 'LLM 보안 감사', slug: 'llm-security-audit', desc: '유출 · 인젝션 점검' },
           { name: '딥페이크 탐지', slug: 'deepfake-detection', desc: '실시간 합성 영상 검출' },
         ],
       },
+    ],
+  },
+  {
+    cat: '보안 운영',
+    tone: 'emerald',
+    sections: [
       {
-        sub: '인프라 · 거버넌스',
         items: [
-          { name: '네트워크 보안 · IDS/IPS', slug: 'network-security', desc: '침입탐지 · 이상 ML' },
-          { name: '제로트러스트 설계', slug: 'zero-trust', desc: '세그먼트 · MFA' },
-          { name: 'LLM 보안 감사', slug: 'llm-security-audit', desc: '유출 · 인젝션 점검' },
+          { name: 'AI 보안 관제', slug: 'ai-security', desc: '24시간 무인 자율 보안관제', highlight: true },
+          { name: 'AI 자율 관제 에이전트', slug: 'ai-agent', desc: 'LLM SOC · SOAR' },
         ],
       },
     ],
   },
   {
     cat: '스트리밍',
-    color: '#a78bfa',
+    tone: 'emerald',
     sections: [
       {
         items: [
-          { name: 'Ultrastream 스트리밍', slug: 'ultrastream', desc: 'LL-HLS 1~2초', highlight: true },
+          { name: 'UltraStreamingEngine', slug: 'ultrastream', desc: 'LL-HLS 1~2초', highlight: true },
           { name: 'VOD + 멀티 리스트림', slug: 'vod-multistream', desc: '동시 송출' },
         ],
       },
@@ -97,18 +123,55 @@ const serviceMenu: ServiceMenuCategory[] = [
   },
 ]
 
+const NAV_LINK = 'text-base font-bold tracking-[0.02em] transition-colors duration-200 hover:text-accent'
+
+const SERVICE_MENU_ID = 'nav-service-menu'
+
+/**
+ * 마우스가 달린 기기인지. 터치 기기에서는 hover로 메뉴를 열지 않습니다.
+ *
+ * 아이패드 등은 탭할 때 mouseenter를 흉내 낸 뒤 click을 보내므로,
+ * 가드가 없으면 hover가 열고 곧바로 click 토글이 닫아 메뉴가 깜빡이기만 합니다.
+ */
+function isHoverCapable() {
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches
+}
+
 export default function Nav() {
   const [active, setActive] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const menuWrapRef = useRef<HTMLLIElement>(null)
+
+  // 열린 메뉴를 빠져나갈 방법. hover로만 닫히면 키보드 사용자는 갇힙니다.
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setMenuOpen(false)
+      menuButtonRef.current?.focus() // 닫은 뒤 포커스를 트리거로 되돌립니다
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      if (!menuWrapRef.current?.contains(e.target as Node)) setMenuOpen(false)
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
     const onScroll = () => {
       let cur = ''
       sections.forEach(s => {
-        if (window.scrollY >= (s as HTMLElement).offsetTop - NAV_OUTER_PX) cur = s.id
+        if (window.scrollY >= (s as HTMLElement).offsetTop - 80) cur = s.id
       })
       setActive(cur)
     }
@@ -118,154 +181,162 @@ export default function Nav() {
 
   return (
     <>
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        padding: '0 5%', minHeight: NAV_OUTER_PX,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'var(--nav-bg)', backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid var(--nav-border)',
-      }}>
-        <Link href="/" onClick={() => { setMenuOpen(false); setMobileOpen(false) }} style={{
-          textDecoration: 'none',
-          display: 'flex', alignItems: 'center',
-          flexShrink: 0,
-          lineHeight: 0,
-        }}>
-          <Image
+      <nav className="fixed inset-x-0 top-0 z-200 border-b border-line bg-canvas/85 backdrop-blur-xl">
+        <div className="container-page flex h-16 items-center justify-between">
+        <Link
+          href="/"
+          onClick={() => { setMenuOpen(false); setMobileOpen(false) }}
+          className="flex shrink-0 items-center gap-2 text-[1.2rem] font-extrabold tracking-[-0.02em] text-fg"
+        >
+          {/* 로고 이미지에 워드마크가 포함돼 있어 옆 텍스트 없이 단독으로 씁니다.
+              정적 내보내기라 next/image 최적화가 없어 일반 img 를 씁니다. */}
+          <img
             src="/logo-dmn.png"
             alt="DMN솔루션"
             width={300}
             height={110}
-            priority
-            sizes="(max-width: 480px) 240px, 300px"
-            className="nav-brand-logo"
-            style={{
-              height: 40,
-              width: 'auto',
-              maxWidth: 'min(72vw, 300px)',
-              objectFit: 'contain',
-              objectPosition: 'left center',
-              filter: 'brightness(1.5) contrast(1.2) saturate(1.1)',
-            }}
+            className="h-9 w-auto shrink-0"
           />
         </Link>
 
-        <ul style={{ display: 'flex', alignItems: 'center', gap: 28, listStyle: 'none', margin: 0, padding: 0 }}>
-          <li style={{ position: 'relative' }}
+        <ul className="hidden list-none items-center gap-7 md:flex">
+          <li
+            ref={menuWrapRef}
+            className="relative"
             onMouseEnter={() => {
+              if (!isHoverCapable()) return
               if (closeTimer.current) clearTimeout(closeTimer.current)
               setMenuOpen(true)
             }}
             onMouseLeave={() => {
+              if (!isHoverCapable()) return
               closeTimer.current = setTimeout(() => setMenuOpen(false), 250)
             }}
+            onBlur={e => {
+              // Tab으로 메뉴 밖까지 나가면 닫습니다. 안에서 이동하는 중이면 유지.
+              if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setMenuOpen(false)
+            }}
           >
-            <button style={{
-              fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700,
-              color: menuOpen ? 'var(--accent)' : 'var(--nav-link)',
-              background: 'none', border: 'none', cursor: 'pointer',
-              letterSpacing: '0.02em', display: 'flex', alignItems: 'center', gap: 4,
-              padding: '4px 0', transition: 'color 0.2s',
-            }}>
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => {
+                if (closeTimer.current) clearTimeout(closeTimer.current)
+                setMenuOpen(o => !o)
+              }}
+              aria-expanded={menuOpen}
+              aria-haspopup="true"
+              aria-controls={SERVICE_MENU_ID}
+              className={`flex items-center gap-1 py-1 text-base font-bold tracking-[0.02em] transition-colors duration-200 ${
+                menuOpen ? 'text-accent' : 'text-fg-muted hover:text-accent'
+              }`}
+            >
               서비스
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" style={{ transform: menuOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                className={`transition-transform duration-200 ${menuOpen ? 'rotate-180' : ''}`}
+              >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
 
             {menuOpen && (
               <div
-                onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current) }}
-                onMouseLeave={() => { closeTimer.current = setTimeout(() => setMenuOpen(false), 250) }}
-                style={{
-                  position: 'absolute', top: 'calc(100% + 8px)',
-                  left: '50%', transform: 'translateX(-50%)',
-                  background: '#1e293b', border: '1px solid rgba(71, 85, 105, 0.4)',
-                  borderRadius: 12,
-                  boxShadow: '0 24px 64px rgba(0,0,0,0.3)',
-                  width: 'min(1120px, calc(100vw - 20px))',
-                  maxWidth: 'calc(100vw - 20px)',
-                  zIndex: 9999,
-                  display: 'flex', flexDirection: 'column',
-                  overflow: 'hidden',
-                  boxSizing: 'border-box',
+                id={SERVICE_MENU_ID}
+                onMouseEnter={() => {
+                  if (!isHoverCapable()) return
+                  if (closeTimer.current) clearTimeout(closeTimer.current)
                 }}
+                onMouseLeave={() => {
+                  if (!isHoverCapable()) return
+                  closeTimer.current = setTimeout(() => setMenuOpen(false), 250)
+                }}
+                className="absolute left-1/2 top-[calc(100%+8px)] z-[9999] flex w-[min(1320px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 flex-col overflow-hidden rounded-xl border border-line-strong bg-elev shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
               >
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', padding: '18px 10px 14px', gap: 0 }}>
-                  {serviceMenu.map((cat, ci) => (
-                    <div key={ci} style={{
-                      minWidth: 0,
-                      padding: '0 10px',
-                      borderRight: ci < serviceMenu.length - 1 ? '1px solid var(--border)' : 'none',
-                    }}>
-                      <div style={{
-                        fontFamily: 'var(--mono)', fontSize: '0.7rem',
-                        color: cat.color, letterSpacing: '0.1em', textTransform: 'uppercase',
-                        marginBottom: 12, fontWeight: 700,
-                        display: 'flex', alignItems: 'center', gap: 6,
-                      }}>
-                        <span style={{ width: 12, height: 1, background: cat.color, display: 'inline-block' }} />
-                        {cat.cat}
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                        {cat.sections.map((sec, si) => (
-                          <div key={si}>
-                            {sec.sub && (
-                              <div style={{
-                                fontFamily: 'var(--mono)', fontSize: '0.62rem', color: '#94a3b8',
-                                letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600,
-                                marginTop: si > 0 ? 14 : 0, marginBottom: 6, paddingLeft: 2,
-                              }}>
-                                {sec.sub}
-                              </div>
-                            )}
-                            {sec.items.map((item, ii) => (
-                              <Link
-                                key={`${si}-${ii}`}
-                                href={`/services/${item.slug}/`}
-                                onClick={() => setMenuOpen(false)}
-                                title={item.name}
-                                style={{
-                                  display: 'block', padding: '10px 8px', borderRadius: 6,
-                                  textDecoration: 'none',
-                                  background: item.highlight ? `${cat.color}10` : 'transparent',
-                                  border: item.highlight ? `1px solid ${cat.color}30` : '1px solid transparent',
-                                  transition: 'background 0.15s',
-                                }}
-                                onMouseEnter={e => {
-                                  if (!item.highlight) (e.currentTarget as HTMLElement).style.background = 'rgba(51, 65, 85, 0.5)'
-                                }}
-                                onMouseLeave={e => {
-                                  if (!item.highlight) (e.currentTarget as HTMLElement).style.background = 'transparent'
-                                }}
-                              >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'nowrap' }}>
-                                  <div style={{ flex: 1, minWidth: 0 }}>
-                                    <MenuItemTitle item={item} size="sm" tone="onDark" />
+                {/* 보안을 3개 열로 펼치면서 5열이 됐습니다. 열이 늘어난 만큼
+                    메뉴 폭도 넓혀야 항목 제목이 과도하게 접히지 않습니다. */}
+                <div className="grid grid-cols-5 gap-0 px-2.5 pb-3.5 pt-4.5">
+                  {serviceMenu.map((cat, ci) => {
+                    const tone = TONES[cat.tone]
+                    return (
+                      <div
+                        key={cat.cat}
+                        className={`min-w-0 px-2.5 ${ci < serviceMenu.length - 1 ? 'border-r border-line' : ''}`}
+                      >
+                        <div
+                          className={`mb-3 flex items-center gap-1.5 font-mono text-label font-bold uppercase tracking-[0.1em] ${tone.label}`}
+                        >
+                          <span className={`inline-block h-px w-3 ${tone.bar}`} />
+                          {cat.cat}
+                        </div>
+                        <div className="flex flex-col gap-0.5">
+                          {cat.sections.map((sec, si) => (
+                            <div key={sec.sub ?? si}>
+                              {sec.sub && (
+                                <div
+                                  className={`mb-1.5 pl-0.5 font-mono text-label font-semibold uppercase tracking-[0.08em] text-fg-subtle ${
+                                    si > 0 ? 'mt-3.5' : ''
+                                  }`}
+                                >
+                                  {sec.sub}
+                                </div>
+                              )}
+                              {sec.items.map(item => (
+                                <Link
+                                  key={item.slug}
+                                  href={`/services/${item.slug}/`}
+                                  onClick={() => setMenuOpen(false)}
+                                  title={item.name}
+                                  className={`block rounded-md border p-2 transition-colors duration-150 ${
+                                    item.highlight
+                                      ? tone.highlight
+                                      : 'border-transparent hover:border-line hover:bg-surface'
+                                  }`}
+                                >
+                                  <div className="flex flex-nowrap items-center gap-1.5">
+                                    <div className="min-w-0 flex-1">
+                                      <MenuItemTitle item={item} size="sm" />
+                                    </div>
+                                    {item.highlight && (
+                                      <span
+                                        className={`shrink-0 rounded-full border px-1.5 py-0.5 font-mono text-label tracking-[0.06em] ${tone.badge}`}
+                                      >
+                                        NEW
+                                      </span>
+                                    )}
                                   </div>
-                                  {item.highlight && (
-                                    <span style={{ fontFamily: 'var(--mono)', fontSize: '0.56rem', color: cat.color, background: `${cat.color}20`, border: `1px solid ${cat.color}40`, borderRadius: 10, padding: '3px 7px', letterSpacing: '0.06em', flexShrink: 0 }}>
-                                      NEW
-                                    </span>
-                                  )}
-                                </div>
-                                <div style={{ fontFamily: 'var(--sans)', fontSize: '0.8rem', color: '#cbd5e1', marginTop: 5, lineHeight: 1.45, wordBreak: 'keep-all' }}>
-                                  {item.desc}
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                        ))}
+                                  <div className="mt-1 break-keep text-meta text-fg-subtle">
+                                    {item.desc}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
-                <div style={{ borderTop: '1px solid rgba(71, 85, 105, 0.4)', padding: '10px 20px', display: 'flex', gap: 16, background: '#0f172a', borderRadius: '0 0 12px 12px' }}>
-                  <Link href="/#services" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: 'var(--accent)', textDecoration: 'none', letterSpacing: '0.06em' }}>
+                <div className="flex gap-4 border-t border-line bg-canvas px-5 py-2.5">
+                  <Link
+                    href="/#services"
+                    onClick={() => setMenuOpen(false)}
+                    className="font-mono text-meta tracking-[0.06em] text-accent hover:text-accent-2"
+                  >
                     전체 서비스 보기 →
                   </Link>
-                  <Link href="/#contact" onClick={() => setMenuOpen(false)} style={{ fontFamily: 'var(--mono)', fontSize: '0.76rem', color: '#94a3b8', textDecoration: 'none', letterSpacing: '0.06em' }}>
-                    문의하기 →
+                  <Link
+                    href="/contact"
+                    onClick={() => setMenuOpen(false)}
+                    className="font-mono text-meta tracking-[0.06em] text-fg-subtle hover:text-fg"
+                  >
+                    무료 상담 신청 →
                   </Link>
                 </div>
               </div>
@@ -273,126 +344,134 @@ export default function Nav() {
           </li>
 
           {[
-            { id: 'pricing', label: '요금' },
             { id: 'about', label: '소개' },
-            { id: 'contact', label: '문의' },
           ].map(m => (
             <li key={m.id}>
-              <Link href={`/#${m.id}`} style={{
-                fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700,
-                color: active === m.id ? 'var(--accent)' : 'var(--nav-link)',
-                textDecoration: 'none', letterSpacing: '0.02em', transition: 'color 0.2s',
-              }}>
+              <Link
+                href={`/#${m.id}`}
+                className={`${NAV_LINK} ${active === m.id ? 'text-accent' : 'text-fg-muted'}`}
+              >
                 {m.label}
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/contact" className={`${NAV_LINK} text-fg-muted`}>
+              문의
+            </Link>
+          </li>
         </ul>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <Link href="/#contact" style={{
-            fontFamily: 'var(--mono)', fontSize: '0.75rem',
-            padding: '8px 18px', background: 'transparent',
-            border: '1px solid var(--accent)', color: 'var(--accent)',
-            borderRadius: 8, textDecoration: 'none', letterSpacing: '0.05em',
-            transition: 'all 0.2s',
-          }}
-            onMouseEnter={e => {
-              (e.target as HTMLElement).style.background = 'var(--accent)'
-              ;(e.target as HTMLElement).style.color = '#ffffff'
-            }}
-            onMouseLeave={e => {
-              (e.target as HTMLElement).style.background = 'transparent'
-              ;(e.target as HTMLElement).style.color = 'var(--accent)'
-            }}
+        <div className="flex items-center gap-3">
+          <Link
+            href="/contact"
+            className="hidden rounded border border-accent px-4.5 py-2 font-mono text-meta tracking-[0.05em] text-accent transition-colors duration-200 hover:bg-accent hover:text-canvas sm:block"
           >
-            문의
+            무료 상담
           </Link>
 
           <button
             onClick={() => setMobileOpen(o => !o)}
-            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: '#e2e8f0' }}
-            className="hamburger"
+            aria-label={mobileOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={mobileOpen}
+            // 예전 p-1 은 실효 30x30px 로, 모바일 전용 요소인데 가장 작았습니다.
+            // -mr-2 로 시각적 위치는 유지하면서 터치 영역만 44px 로 넓힙니다.
+            className="-mr-2 flex size-11 items-center justify-center text-fg md:hidden"
           >
-            {mobileOpen
-              ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            }
+            {mobileOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
+        </div>
         </div>
       </nav>
 
       {mobileOpen && (
-        <div style={{
-          position: 'fixed', top: NAV_OUTER_PX, left: 0, right: 0, zIndex: 199,
-          background: '#0f172a', borderBottom: '1px solid var(--nav-border)',
-          padding: '20px 5%', maxHeight: `calc(100vh - ${NAV_OUTER_PX}px)`, overflowY: 'auto',
-        }}>
-          {serviceMenu.map((cat, ci) => (
-            <div key={ci} style={{ marginBottom: 24 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: cat.color, letterSpacing: '0.08em', marginBottom: 10, fontWeight: 700 }}>
-                {cat.cat}
-              </div>
-              {cat.sections.map((sec, si) => (
-                <div key={si}>
-                  {sec.sub && (
-                    <div style={{ fontFamily: 'var(--mono)', fontSize: '0.62rem', color: '#64748b', letterSpacing: '0.06em', marginTop: si > 0 ? 12 : 0, marginBottom: 8, fontWeight: 600 }}>
-                      {sec.sub}
-                    </div>
-                  )}
-                  {sec.items.map((item, ii) => (
-                    <Link
-                      key={`${si}-${ii}`}
-                      href={`/services/${item.slug}/`}
-                      title={item.name}
-                      onClick={() => setMobileOpen(false)}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        gap: 10,
-                        padding: '12px 0',
-                        borderBottom: '1px solid var(--border)',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <MenuItemTitle item={item} size="md" tone="onDark" />
-                      </div>
-                      {item.highlight && (
-                        <span style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', color: cat.color, background: `${cat.color}15`, border: `1px solid ${cat.color}30`, borderRadius: 10, padding: '4px 9px', flexShrink: 0 }}>
-                          NEW
-                        </span>
-                      )}
-                    </Link>
-                  ))}
+        <div className="container-page fixed inset-x-0 top-16 z-199 max-h-[calc(100vh-64px)] overflow-y-auto border-b border-line bg-elev py-5 md:hidden">
+          {serviceMenu.map(cat => {
+            const tone = TONES[cat.tone]
+            return (
+              <div key={cat.cat} className="mb-6">
+                <div
+                  className={`mb-2.5 font-mono text-label font-bold uppercase tracking-[0.1em] ${tone.label}`}
+                >
+                  {cat.cat}
                 </div>
-              ))}
-            </div>
-          ))}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
-            {[{id:'pricing',label:'요금'},{id:'about',label:'소개'},{id:'contact',label:'문의'}].map(m => (
-              <Link key={m.id} href={`/#${m.id}`} onClick={() => setMobileOpen(false)} style={{ fontFamily: 'var(--sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--nav-link)', textDecoration: 'none', padding: '10px 0', borderBottom: '1px solid var(--nav-border)' }}>
+                {cat.sections.map((sec, si) => (
+                  <div key={sec.sub ?? si}>
+                    {sec.sub && (
+                      <div
+                        className={`mb-2 font-mono text-label font-semibold uppercase tracking-[0.08em] text-fg-subtle ${
+                          si > 0 ? 'mt-3' : ''
+                        }`}
+                      >
+                        {sec.sub}
+                      </div>
+                    )}
+                    {sec.items.map(item => (
+                      <Link
+                        key={item.slug}
+                        href={`/services/${item.slug}/`}
+                        title={item.name}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center justify-between gap-2.5 border-b border-line py-3"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <MenuItemTitle item={item} size="md" />
+                        </div>
+                        {item.highlight && (
+                          <span
+                            className={`shrink-0 rounded-full border px-2 py-1 font-mono text-label ${tone.badge}`}
+                          >
+                            NEW
+                          </span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )
+          })}
+          <div className="mt-4 flex flex-col">
+            {[
+              { id: 'about', label: '소개' },
+            ].map(m => (
+              <Link
+                key={m.id}
+                href={`/#${m.id}`}
+                onClick={() => setMobileOpen(false)}
+                className="border-b border-line py-2.5 text-base font-bold text-fg-muted"
+              >
                 {m.label}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="border-b border-line py-2.5 text-base font-bold text-fg-muted"
+            >
+              문의
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="mt-4 rounded border border-accent py-2.5 text-center font-mono text-meta tracking-[0.05em] text-accent"
+            >
+              무료 상담
+            </Link>
           </div>
         </div>
       )}
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(0.85); }
-        }
-        @media (max-width: 768px) {
-          nav ul { display: none !important; }
-          .hamburger { display: flex !important; }
-        }
-        @media (max-width: 400px) {
-          .nav-brand-logo { max-width: min(82vw, 260px) !important; height: 34px !important; }
-        }
-      `}</style>
     </>
   )
 }

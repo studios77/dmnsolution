@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import ServiceDetailPage from '@/components/ServiceDetailPage'
 import { findServiceBySlug } from '@/lib/servicesData'
-import { serviceCanonicalUrl } from '@/lib/site'
+import { serviceMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: '제로트러스트 아키텍처 | DMN솔루션',
-  description: '신뢰 경계 재설계. ID·디바이스·맥락 기반 최소권한과 지속 검증.',
-  alternates: { canonical: serviceCanonicalUrl('zero-trust') },
-}
+const s = findServiceBySlug('zero-trust')!
+
+export const metadata: Metadata = serviceMetadata({
+  slug: 'zero-trust',
+  title: '제로트러스트 보안 아키텍처 설계 | DMN솔루션',
+  description: '경계 없는 보안 시대, 최소 권한 원칙과 지속 검증을 기반으로 하는 기업 맞춤형 제로트러스트 보안 컨설팅.',
+  keywords: ['제로트러스트', '보안 아키텍처', '최소권한', '접근통제', '보안 컨설팅'],
+})
 
 export default function Page() {
-  const s = findServiceBySlug('zero-trust')!
   return <ServiceDetailPage s={s} />
 }

@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import ServiceDetailPage from '@/components/ServiceDetailPage'
 import { findServiceBySlug } from '@/lib/servicesData'
-import { serviceCanonicalUrl } from '@/lib/site'
+import { serviceMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'AI 자율 관제 에이전트 | DMN솔루션',
-  description: 'LLM 기반 SOC 에이전트. 위협탐지→분석→대응 자동화로 24/7 무인 관제.',
-  alternates: { canonical: serviceCanonicalUrl('ai-agent') },
-}
+const s = findServiceBySlug('ai-agent')!
+
+export const metadata: Metadata = serviceMetadata({
+  slug: 'ai-agent',
+  title: 'AI 자율 보안 관제 에이전트 솔루션 | DMN솔루션',
+  description: 'LLM 기반 SOC 자동화 에이전트로 24시간 365일 무인 자율 관제와 침해 사고 자동 대응을 실현합니다.',
+  keywords: ['보안 관제', '자율 관제', 'AI SOC', 'SOAR 자동화', '위협 탐지'],
+})
 
 export default function Page() {
-  const s = findServiceBySlug('ai-agent')!
   return <ServiceDetailPage s={s} />
 }

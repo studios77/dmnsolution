@@ -112,16 +112,25 @@ export default function ChatBot() {
     }
   }
 
+  /**
+   * 문의 폼으로 보냅니다.
+   *
+   * 문의는 별도 페이지(`/contact/`)라 홈에는 `#contact` 섹션이 없습니다.
+   * 예전처럼 앵커만 찾고 끝내면 링크를 눌러도 아무 일이 없으므로,
+   * 섹션이 없으면 문의 페이지로 이동시킵니다.
+   */
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault()
     const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-      setTimeout(() => {
-        const firstInput = contactSection.querySelector('input[name="name"]') as HTMLInputElement
-        if (firstInput) firstInput.focus()
-      }, 500)
+    if (!contactSection) {
+      window.location.href = '/contact/'
+      return
     }
+    contactSection.scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => {
+      const firstInput = contactSection.querySelector('input[name="name"]') as HTMLInputElement
+      if (firstInput) firstInput.focus()
+    }, 500)
   }
 
   const renderMessageText = (text: string) => {
@@ -131,9 +140,9 @@ export default function ChatBot() {
         return (
           <a
             key={i}
-            href="#contact"
+            href="/contact/"
             onClick={handleContactClick}
-            style={{ color: 'var(--accent)', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
+            style={{ color: 'var(--color-accent)', textDecoration: 'underline', fontWeight: 600, cursor: 'pointer' }}
           >
             {part.replace('[', '').replace(']', '')}
           </a>
@@ -151,27 +160,28 @@ export default function ChatBot() {
         style={{
           position: 'fixed', bottom: 28, right: 28, zIndex: 9999,
           width: 56, height: 56, borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--accent), #9a3412)',
+          background: 'var(--color-accent)',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 22px rgba(194,65,12,0.45)',
+          boxShadow: '0 4px 22px rgba(52,211,153,0.45)',
           transition: 'transform 0.2s, box-shadow 0.2s',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(194,65,12,0.55)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(52,211,153,0.55)'
         }}
         onMouseLeave={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(194,65,12,0.45)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(52,211,153,0.45)'
         }}
       >
+        {/* 강조색이 밝은 에메랄드라 아이콘은 어둡게 둡니다. 흰 아이콘은 대비가 부족합니다. */}
         {open ? (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#04231a" strokeWidth="2.5" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04231a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
         )}
@@ -182,7 +192,7 @@ export default function ChatBot() {
             background: '#ef4444', color: '#fff',
             fontSize: '0.65rem', fontWeight: 700,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '2px solid var(--bg)',
+            border: '2px solid var(--color-canvas)',
           }}>{unread}</span>
         )}
       </button>
@@ -191,10 +201,10 @@ export default function ChatBot() {
         position: 'fixed', bottom: 96, right: 28, zIndex: 9998,
         width: 360, maxHeight: 560,
         display: 'flex', flexDirection: 'column',
-        background: 'var(--surface)',
-        border: '1px solid var(--border2)',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-line-strong)',
         borderRadius: 16,
-        boxShadow: '0 12px 40px rgba(20,18,17,0.14)',
+        boxShadow: '0 12px 40px rgba(0,0,0,0.45)',
         overflow: 'hidden',
         transform: open ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(16px)',
         opacity: open ? 1 : 0,
@@ -204,7 +214,7 @@ export default function ChatBot() {
       }}>
         <div style={{
           padding: '14px 18px',
-          background: 'linear-gradient(135deg, var(--accent), #451a03)',
+          background: 'linear-gradient(135deg, #065f46, #155e75)',
           display: 'flex', alignItems: 'center', gap: 10,
           flexShrink: 0,
         }}>
@@ -220,10 +230,10 @@ export default function ChatBot() {
             </svg>
           </div>
           <div>
-            <div style={{ color: '#fff', fontWeight: 700, fontSize: '0.88rem', fontFamily: 'var(--display)' }}>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: '0.88rem', fontFamily: 'var(--font-sans)' }}>
               {BOT_NAME}
             </div>
-            <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.7rem', fontFamily: 'var(--mono)', display: 'flex', alignItems: 'center', gap: 4 }}>
+            <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.7rem', fontFamily: 'var(--font-mono)', display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
               온라인 · 순차 응답
             </div>
@@ -233,7 +243,7 @@ export default function ChatBot() {
         <div style={{
           flex: 1, overflowY: 'auto', padding: '16px 14px',
           display: 'flex', flexDirection: 'column', gap: 10,
-          background: 'var(--bg)',
+          background: 'var(--color-canvas)',
         }}>
           {messages.map((msg, i) => (
             <div key={i} style={{
@@ -244,7 +254,7 @@ export default function ChatBot() {
               {msg.role === 'bot' && (
                 <div style={{
                   width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg, var(--accent), #451a03)',
+                  background: 'linear-gradient(135deg, #065f46, #155e75)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
@@ -257,15 +267,15 @@ export default function ChatBot() {
                 padding: '9px 13px',
                 borderRadius: msg.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
                 background: msg.role === 'user'
-                  ? 'linear-gradient(135deg, var(--accent), #451a03)'
-                  : 'var(--surface)',
-                color: msg.role === 'user' ? '#fff' : 'var(--text)',
+                  ? 'linear-gradient(135deg, #065f46, #155e75)'
+                  : 'var(--color-surface)',
+                color: msg.role === 'user' ? '#fff' : 'var(--color-fg)',
                 fontSize: '0.82rem',
                 lineHeight: 1.6,
                 whiteSpace: 'pre-wrap',
-                border: msg.role === 'bot' ? '1px solid var(--border)' : 'none',
+                border: msg.role === 'bot' ? '1px solid var(--color-line)' : 'none',
                 boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
-                fontFamily: 'var(--sans)',
+                fontFamily: 'var(--font-sans)',
               }}>
                 {msg.role === 'bot' ? renderMessageText(msg.text) : msg.text}
               </div>
@@ -276,7 +286,7 @@ export default function ChatBot() {
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6 }}>
               <div style={{
                 width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, var(--accent), #451a03)',
+                background: 'linear-gradient(135deg, #065f46, #155e75)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
@@ -285,14 +295,14 @@ export default function ChatBot() {
               </div>
               <div style={{
                 padding: '10px 14px',
-                background: 'var(--surface)', border: '1px solid var(--border)',
+                background: 'var(--color-surface)', border: '1px solid var(--color-line)',
                 borderRadius: '14px 14px 14px 4px',
                 display: 'flex', alignItems: 'center', gap: 4,
               }}>
                 {[0, 1, 2].map(i => (
                   <span key={i} style={{
                     width: 6, height: 6, borderRadius: '50%',
-                    background: 'var(--accent)',
+                    background: 'var(--color-accent)',
                     display: 'inline-block',
                     animation: `dotBounce 1.2s ease-in-out infinite`,
                     animationDelay: `${i * 0.2}s`,
@@ -307,18 +317,18 @@ export default function ChatBot() {
               {QUICK_REPLIES.map(q => (
                 <button key={q} onClick={() => sendMessage(q)} style={{
                   padding: '5px 11px', fontSize: '0.72rem',
-                  background: 'transparent', border: '1px solid var(--border2)',
-                  borderRadius: 20, color: 'var(--accent)',
-                  cursor: 'pointer', fontFamily: 'var(--sans)',
+                  background: 'transparent', border: '1px solid var(--color-line-strong)',
+                  borderRadius: 20, color: 'var(--color-accent)',
+                  cursor: 'pointer', fontFamily: 'var(--font-sans)',
                   transition: 'all 0.15s',
                 }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLButtonElement).style.background = 'var(--accent)'
+                    (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-accent)'
                     ;(e.currentTarget as HTMLButtonElement).style.color = '#fff'
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLButtonElement).style.background = 'transparent'
-                    ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--accent)'
+                    ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--color-accent)'
                   }}
                 >{q}</button>
               ))}
@@ -330,15 +340,15 @@ export default function ChatBot() {
 
         <div style={{
           padding: '8px 12px',
-          borderTop: '1px solid var(--border)',
-          background: 'rgba(251,146,60,0.06)',
+          borderTop: '1px solid var(--color-line)',
+          background: 'rgba(52,211,153,0.06)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: 8,
           flexShrink: 0,
         }}>
-          <span style={{ fontSize: '0.68rem', color: 'var(--text3)', lineHeight: 1.4 }}>
+          <span style={{ fontSize: '0.68rem', color: 'var(--color-fg-subtle)', lineHeight: 1.4 }}>
             상세한 안내가 필요하신가요?
           </span>
           <button
@@ -349,13 +359,13 @@ export default function ChatBot() {
               flexShrink: 0,
               padding: '6px 12px',
               fontSize: '0.72rem',
-              fontFamily: 'var(--mono)',
+              fontFamily: 'var(--font-mono)',
               fontWeight: 600,
               letterSpacing: '0.04em',
               borderRadius: 6,
-              border: '1px solid var(--accent)',
-              background: typing ? 'transparent' : 'var(--accent)',
-              color: typing ? 'var(--accent)' : '#fff',
+              border: '1px solid var(--color-accent)',
+              background: typing ? 'transparent' : 'var(--color-accent)',
+              color: typing ? 'var(--color-accent)' : '#fff',
               cursor: typing ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s',
             }}
@@ -366,8 +376,8 @@ export default function ChatBot() {
 
         <div style={{
           padding: '10px 12px',
-          borderTop: '1px solid var(--border)',
-          background: 'var(--surface)',
+          borderTop: '1px solid var(--color-line)',
+          background: 'var(--color-surface)',
           display: 'flex', alignItems: 'center', gap: 8,
           flexShrink: 0,
         }}>
@@ -378,22 +388,22 @@ export default function ChatBot() {
             onKeyDown={handleKey}
             placeholder="메시지를 입력하세요..."
             style={{
-              flex: 1, border: '1px solid var(--border)',
+              flex: 1, border: '1px solid var(--color-line)',
               borderRadius: 8, padding: '8px 12px',
-              fontSize: '0.82rem', fontFamily: 'var(--sans)',
-              background: 'var(--bg)', color: 'var(--text)',
+              fontSize: '0.82rem', fontFamily: 'var(--font-sans)',
+              background: 'var(--color-canvas)', color: 'var(--color-fg)',
               outline: 'none',
               transition: 'border-color 0.2s',
             }}
-            onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+            onFocus={e => (e.currentTarget.style.borderColor = 'var(--color-accent)')}
+            onBlur={e => (e.currentTarget.style.borderColor = 'var(--color-line)')}
           />
           <button
             onClick={() => sendMessage(input)}
             disabled={!input.trim() || typing}
             style={{
               width: 36, height: 36, borderRadius: 8, flexShrink: 0,
-              background: input.trim() && !typing ? 'var(--accent)' : 'var(--border)',
+              background: input.trim() && !typing ? 'var(--color-accent)' : 'var(--color-line)',
               border: 'none', cursor: input.trim() && !typing ? 'pointer' : 'not-allowed',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'background 0.2s',

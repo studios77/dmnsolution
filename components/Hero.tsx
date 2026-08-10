@@ -1,366 +1,170 @@
-const lines = [
-  { href: '#services-idc', label: 'AIDC · 서버', hint: '지능형 IDC · MSP · HA' },
-  { href: '#services-security', label: 'AI 보안', hint: '관제 · 탐지 · 거버넌스' },
-  { href: '#services-streaming', label: '라이브 스트리밍', hint: 'Ultrastream · LL-HLS' },
+import Link from 'next/link'
+import ServerRack from '@/components/ServerRack'
+
+/**
+ * 관제 중심 히어로.
+ *
+ * 큰 제목만 놓는 대신 방화벽이 실제로 무엇을 보고 있는지를 첫 화면에 둡니다.
+ * IDC·SI 업체 사이트와 구분되는 지점이라, 보안 회사로 읽히게 하는 것이 목적입니다.
+ *
+ * 수치 표기 원칙:
+ *  - 티커와 우측 카드의 값(51,977 · 105 · 0)은 콘솔 실측 고정값입니다.
+ *  - 인시던트 목록은 화면 형태를 보이기 위한 예시이며, 출발지는 국가와
+ *    ASN 유형까지만 씁니다. 실제 공격자 IP 는 싣지 않습니다.
+ *    실시간처럼 오해되지 않도록 "예시 화면" 을 명시합니다.
+ */
+const TICKER = [
+  { label: '데이터패스', value: 'ENFORCING' },
+  { label: 'IDS', value: '51,977 시그니처' },
+  { label: 'WAF', value: '105 규칙' },
+  { label: '지오블로킹', value: '적용 중' },
+  { label: '외부 전송', value: '0' },
+]
+
+const INCIDENTS = [
+  { score: 71, cc: 'US', org: 'Cloud Provider (ASN)', tags: ['Scanner', '계층모순'] },
+  { score: 68, cc: 'US', org: 'Broadband ISP (ASN)', tags: ['RCE·LFI·CMDi'] },
+  { score: 65, cc: 'CN', org: 'Regional ISP (ASN)', tags: ['봇 의심'] },
+]
+
+const STATS = [
+  { value: '51,977', label: 'IDS 시그니처', fill: '88%' },
+  { value: '105', label: '자체 WAF 규칙 · 21 카테고리', fill: '72%' },
+  { value: '0', label: '외부 전송 · 로컬 AI 분석', fill: '100%' },
 ]
 
 export default function Hero() {
   return (
-    <section id="hero" style={{
-      minHeight: 'min(100vh, 920px)',
-      display: 'flex',
-      alignItems: 'center',
-      padding: '112px 5% 64px',
-      overflow: 'hidden',
-      position: 'relative',
-      zIndex: 1,
-      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
-      borderBottom: '1px solid rgba(59, 130, 246, 0.3)',
-    }}>
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.45,
-          backgroundImage: `
-            linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
-          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 85%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 85%)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '-20%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 'min(900px, 90vw)',
-          height: '55%',
-          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      <div style={{
-        maxWidth: 1180,
-        margin: '0 auto',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1.08fr) minmax(280px, 0.92fr)',
-        gap: 'clamp(36px, 5vw, 72px)',
-        alignItems: 'center',
-        position: 'relative',
-      }} className="hero-split">
-
-        <div style={{ textAlign: 'left', position: 'relative', paddingBottom: 8 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#1e40af',
-            letterSpacing: '0.1em', padding: '8px 16px', marginBottom: 18,
-            borderRadius: 12,
-            border: '1px solid rgba(59, 130, 246, 0.4)',
-            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%)',
-            backdropFilter: 'blur(8px)',
-            animation: 'fadeUp 0.7s ease both',
-          }}>
-            SPECIALIZED SERVICE DOMAINS — 독립 운영 · 전문화 계약
-          </div>
-
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 10,
-              marginBottom: 22,
-              animation: 'fadeUp 0.7s 0.05s ease both',
-            }}
-          >
-            {lines.map(row => (
-              <a
-                key={row.href}
-                href={row.href}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: 12,
-                  padding: '12px 16px',
-                  borderRadius: 12,
-                  border: '1px solid rgba(148, 163, 184, 0.3)',
-                  background: 'rgba(255, 255, 255, 0.7)',
-                  backdropFilter: 'blur(12px)',
-                  textDecoration: 'none',
-                  transition: 'border-color 0.2s, background 0.2s',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.5)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.9)'
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(148, 163, 184, 0.3)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(255, 255, 255, 0.7)'
-                }}
-              >
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '1.02rem', fontWeight: 700, color: '#1e293b' }}>{row.label}</span>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#475569', textAlign: 'right', lineHeight: 1.35 }}>{row.hint}</span>
-              </a>
-            ))}
-          </div>
-
-          <h1 style={{
-            fontFamily: 'var(--display)',
-            fontSize: 'clamp(2rem, 5vw, 3.2rem)',
-            fontWeight: 800,
-            lineHeight: 1.12,
-            letterSpacing: '-0.035em',
-            color: '#0f172a',
-            marginBottom: 20,
-            animation: 'fadeUp 0.7s 0.1s ease both',
-          }}>
-            AIDC, AI 보안, 스트리밍을<br />
-            <span style={{ color: 'var(--accent)' }}>각 분야별 전문서비스</span>로 제공합니다
-          </h1>
-
-          <p style={{
-            fontSize: '1.05rem',
-            color: '#475569',
-            maxWidth: 560,
-            lineHeight: 1.75,
-            marginBottom: 26,
-            animation: 'fadeUp 0.7s 0.16s ease both',
-          }}>
-            세 분야는 각각 전문화된 목표·SLA·운영 체계를 갖추고 있습니다. 인프라만, 보안만, 송출만 — 필요한 도메인만 선택해 맞춤형 스펙과 견적을 받으실 수 있습니다. (복수 분야 동시 도입 시에도{' '}
-            <strong style={{ color: '#1e293b', fontWeight: 600 }}>분야별로</strong> 구분해 제안합니다.)
-          </p>
-
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 12,
-            animation: 'fadeUp 0.7s 0.22s ease both',
-          }}>
-            <a href="#services" style={{
-              padding: '16px 32px',
-              background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-              color: 'white',
-              borderRadius: 12,
-              fontFamily: 'var(--sans)',
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              letterSpacing: '0.01em',
-              textDecoration: 'none',
-              boxShadow: '0 8px 32px rgba(59, 130, 246, 0.3)',
-              transition: 'all 0.3s ease',
-              border: 'none',
-            }}
-              onMouseEnter={e => { 
-                (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 12px 40px rgba(59, 130, 246, 0.4)'
-              }}
-              onMouseLeave={e => { 
-                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.3)'
-              }}
-            >분야별 서비스 보기</a>
-            <a href="#contact" style={{
-              padding: '16px 32px',
-              background: 'rgba(59, 130, 246, 0.1)',
-              color: '#1e40af',
-              border: '1px solid rgba(59, 130, 246, 0.3)',
-              borderRadius: 12,
-              fontFamily: 'var(--sans)',
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              letterSpacing: '0.01em',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              backdropFilter: 'blur(8px)',
-            }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(59, 130, 246, 0.2)'
-                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.5)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.2)'
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(59, 130, 246, 0.1)'
-                ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(59, 130, 246, 0.3)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-              }}
-            >견적 문의</a>
-          </div>
-
-          {/* Service Images */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 20,
-            marginTop: 32,
-            animation: 'fadeUp 0.7s 0.28s ease both',
-          }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 8,
-              opacity: 0.8,
-              transition: 'opacity 0.3s',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
-            >
-              <img src="/images/idc-infrastructure.svg" alt="AIDC Infrastructure" style={{
-                width: 90,
-                height: 70,
-                borderRadius: 16,
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                background: 'rgba(255, 255, 255, 0.8)',
-                padding: 12,
-                backdropFilter: 'blur(8px)',
-              }} />
-              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>AIDC</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 8,
-              opacity: 0.8,
-              transition: 'opacity 0.3s',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
-            >
-              <img src="/images/ai-security.svg" alt="AI Security" style={{
-                width: 90,
-                height: 70,
-                borderRadius: 16,
-                border: '1px solid rgba(34, 197, 94, 0.3)',
-                background: 'rgba(255, 255, 255, 0.8)',
-                padding: 12,
-                backdropFilter: 'blur(8px)',
-              }} />
-              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>AI SECURITY</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 8,
-              opacity: 0.8,
-              transition: 'opacity 0.3s',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.8' }}
-            >
-              <img src="/images/streaming-engine.svg" alt="Streaming Engine" style={{
-                width: 90,
-                height: 70,
-                borderRadius: 16,
-                border: '1px solid rgba(139, 92, 246, 0.3)',
-                background: 'rgba(255, 255, 255, 0.8)',
-                padding: 12,
-                backdropFilter: 'blur(8px)',
-              }} />
-              <span style={{ fontSize: '0.75rem', color: '#475569', fontFamily: 'var(--sans)', fontWeight: 500 }}>STREAMING</span>
-            </div>
-          </div>
+    <>
+      {/* 상단 상태 티커. 가로 스크롤을 허용해 좁은 화면에서 줄바꿈으로 뭉치지 않게 합니다. */}
+      <div className="relative z-10 border-b border-line bg-elev">
+        <div className="container-page flex items-center gap-4 overflow-x-auto py-2.5">
+          <span className="flex shrink-0 items-center gap-1.5 font-mono text-label font-bold text-danger">
+            <span className="inline-block size-1.5 animate-[pulseDot_1.5s_ease-in-out_infinite] rounded-full bg-danger" />
+            LIVE
+          </span>
+          {TICKER.map(t => (
+            <span key={t.label} className="flex shrink-0 items-center gap-1.5 font-mono text-label text-fg-subtle">
+              <span className="text-line-strong">·</span>
+              {t.label}
+              <b className="font-semibold text-fg-muted">{t.value}</b>
+            </span>
+          ))}
         </div>
+      </div>
 
-        <aside style={{
-          background: 'rgba(255, 255, 255, 0.9)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(59, 130, 246, 0.3)',
-          borderRadius: 20,
-          boxShadow: '0 32px 64px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5)',
-          padding: '32px 28px 28px',
-          animation: 'fadeUp 0.7s 0.22s ease both',
-        }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '0.78rem', color: '#1e40af', letterSpacing: '0.08em', marginBottom: 18, fontWeight: 600 }}>
-            분야별 요약 (참고)
+      <section id="hero" className="relative z-10 overflow-hidden pb-24 pt-16 md:pt-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_900px_460px_at_50%_8%,rgba(52,211,153,0.14),transparent_62%),radial-gradient(ellipse_620px_340px_at_82%_40%,rgba(248,113,113,0.09),transparent_58%)]"
+        />
+
+        <div className="container-page relative">
+          {/* 상단은 2열: 좌측 카피, 우측 랙 비주얼.
+              lg 미만에서는 랙을 감춥니다 — 좁은 화면에서 세로로 쌓으면
+              본문이 첫 화면 밖으로 밀려납니다. */}
+          <div className="mb-14 grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
+          <div className="max-w-2xl">
+            {/* 배지는 h1 이 다루지 않는 축을 맡습니다. 예전에는 배지와 h1 이
+                모두 "차세대 방화벽 · AI 보안 관제" 를 말해 같은 말이 두 번
+                나왔습니다. h1 에 방화벽·관제가 들어갔으므로 배지는 클라우드와
+                데이터 쪽을 가져갑니다. */}
+            <div className="mb-6 inline-flex animate-[fadeUp_0.8s_ease_both] items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-3.5 py-1.5 font-mono text-label uppercase tracking-[0.12em] text-accent">
+              네트워크 · 클라우드 · AI 데이터 보안
+            </div>
+            {/* 검색엔진이 가장 무겁게 보는 자리입니다. 예전 문구
+                "AI 보안을 설계하고 직접 운영합니다" 는 브랜드 선언이라
+                주력 검색어인 "차세대 방화벽" 과 "AI 보안 관제" 가 없었습니다.
+                줄당 10~11자를 넘기면 좁은 화면에서 네 줄로 늘어지므로
+                문구를 바꿀 때 길이를 함께 보세요. */}
+            <h1 className="mb-5 animate-[fadeUp_0.8s_0.1s_ease_both] break-keep text-[clamp(2.25rem,5.5vw,3.4rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-fg">
+              <span className="bg-gradient-to-br from-accent to-accent-2 bg-clip-text text-transparent">
+                차세대 방화벽
+              </span>
+              을 만들고
+              <br />
+              AI 보안 관제까지 맡습니다
+            </h1>
+            <p className="mb-8 max-w-xl animate-[fadeUp_0.8s_0.2s_ease_both] break-keep text-lead text-fg-muted">
+              자체 개발한 DMN Guard가 네트워크 계층에서 직접 지문을 수집합니다. 분석은 전부 온프레미스에서 끝납니다.
+            </p>
+            <div className="flex animate-[fadeUp_0.8s_0.3s_ease_both] flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <Link
+                href="/contact"
+                className="rounded-full bg-accent px-9 py-3.5 text-center text-body font-semibold text-canvas shadow-[0_8px_28px_rgba(52,211,153,0.28)] transition-colors hover:bg-accent-2"
+              >
+                무료 상담 신청
+              </Link>
+              <Link
+                href="/services/dmn-guard/"
+                className="rounded-full border border-line-strong bg-surface/60 px-9 py-3.5 text-center text-body font-semibold text-fg backdrop-blur transition-colors hover:border-accent hover:text-accent"
+              >
+                제품 살펴보기
+              </Link>
+            </div>
           </div>
-          {[
-            {
-              title: 'AIDC · 서버',
-              color: '#38bdf8',
-              items: [
-                { k: '가용·SLA', v: '99.99%', d: '지능형 인프라별' },
-                { k: 'HA', v: '<30s', d: '자동 페일오버' },
-              ],
-            },
-            {
-              title: 'AI 보안',
-              color: '#22c55e',
-              items: [
-                { k: '관제', v: '24/7', d: '옵션·범위별' },
-                { k: '탐지', v: '95%+', d: '딥페이크 등 목표' },
-              ],
-            },
-            {
-              title: '스트리밍',
-              color: '#a78bfa',
-              items: [
-                { k: '지연', v: '1~2s', d: 'LL-HLS' },
-                { k: '엔진', v: 'Ultrastream', d: '채널·용량 별도' },
-              ],
-            },
-          ].map(block => (
-            <div
-              key={block.title}
-              style={{
-                marginBottom: 16,
-                paddingBottom: 16,
-                borderBottom: '1px solid rgba(51, 65, 85, 0.65)',
-              }}
-            >
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', fontWeight: 700, color: block.color, letterSpacing: '0.05em', marginBottom: 12 }}>
-                {block.title}
+
+            <div className="hidden animate-[fadeUp_0.8s_0.35s_ease_both] lg:block">
+              <ServerRack />
+            </div>
+          </div>
+
+          {/* 관제 보드 */}
+          <div className="grid animate-[fadeUp_0.8s_0.4s_ease_both] grid-cols-1 gap-4 lg:grid-cols-[1.35fr_1fr]">
+            <div className="rounded-2xl border border-line bg-surface/55 p-6 backdrop-blur">
+              <div className="mb-5 flex items-center gap-2.5">
+                <span className="font-mono text-label uppercase tracking-[0.12em] text-accent-2">
+                  활성 인시던트
+                </span>
+                {/* 실시간 데이터로 오해되지 않도록 명시합니다 */}
+                <span className="ml-auto font-mono text-label text-fg-subtle">점수순 · 예시 화면</span>
               </div>
-              {block.items.map(row => (
-                <div
-                  key={row.k}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    gap: 12,
-                    padding: '8px 0',
-                  }}
-                >
-                  <span style={{ fontSize: '0.88rem', color: '#cbd5e1', fontWeight: 600 }}>{row.k}</span>
-                  <span style={{ textAlign: 'right' }}>
-                    <span className="stat-num" style={{ display: 'block', fontSize: '1.28rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.01em' }}>{row.v}</span>
-                    <div style={{ fontSize: '0.76rem', color: '#94a3b8', marginTop: 3, lineHeight: 1.35, fontFamily: 'var(--sans)' }}>{row.d}</div>
-                  </span>
+              <div className="flex flex-col">
+                {INCIDENTS.map(inc => (
+                  <div
+                    key={inc.org}
+                    className="flex items-center gap-3 border-t border-line py-3.5 first:border-t-0 first:pt-0"
+                  >
+                    <span className="min-w-9 shrink-0 font-mono text-[1.2rem] font-extrabold leading-none text-danger">
+                      {inc.score}
+                    </span>
+                    <span className="shrink-0 rounded border border-line bg-elev px-2 py-0.5 font-mono text-label text-fg-muted">
+                      {inc.cc}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-body text-fg-muted">{inc.org}</span>
+                    <span className="hidden shrink-0 gap-1.5 sm:flex">
+                      {inc.tags.map(tag => (
+                        <span
+                          key={tag}
+                          className="whitespace-nowrap rounded-full border border-line bg-elev px-2.5 py-0.5 font-mono text-label text-fg-subtle"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2.5">
+              {STATS.map(s => (
+                <div key={s.label} className="rounded-xl border border-line bg-elev px-5 py-4">
+                  <div className="text-[1.5rem] font-extrabold leading-none tracking-[-0.02em] text-accent">
+                    {s.value}
+                  </div>
+                  <div className="mt-1.5 break-keep font-mono text-label uppercase tracking-[0.06em] text-fg-subtle">
+                    {s.label}
+                  </div>
+                  <div className="mt-3 h-1 overflow-hidden rounded-full bg-line">
+                    <span className="block h-full bg-accent" style={{ width: s.fill }} />
+                  </div>
                 </div>
               ))}
             </div>
-          ))}
-          <p style={{ margin: 0, fontSize: '0.76rem', color: '#94a3b8', lineHeight: 1.55, fontFamily: 'var(--mono)' }}>
-            실제 수치·범위는 견적서·SLA를 따릅니다.
-          </p>
-        </aside>
-      </div>
-
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 900px) {
-          .hero-split {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
-    </section>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

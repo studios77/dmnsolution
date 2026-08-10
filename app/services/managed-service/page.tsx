@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import ServiceDetailPage from '@/components/ServiceDetailPage'
 import { findServiceBySlug } from '@/lib/servicesData'
-import { serviceCanonicalUrl } from '@/lib/site'
+import { serviceMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: '위탁운영 매니지먼트 | DMN솔루션',
-  description: 'OS 패치·장애대응·성능튜닝 전담. 실시간 모니터링 + 월 SLA 리포트.',
-  alternates: { canonical: serviceCanonicalUrl('managed-service') },
-}
+const s = findServiceBySlug('managed-service')!
+
+export const metadata: Metadata = serviceMetadata({
+  slug: 'managed-service',
+  title: '서버 위탁운영 및 매니지드 서비스 (MSP) | DMN솔루션',
+  description: 'OS 보안 패치부터 24시간 모니터링, 장애 대응까지 서버 운영의 모든 것을 위탁 관리해 드립니다.',
+  keywords: ['서버 위탁운영', '매니지드 서비스', '보안 패치', '장애 대응', '서버 관리'],
+})
 
 export default function Page() {
-  const s = findServiceBySlug('managed-service')!
   return <ServiceDetailPage s={s} />
 }

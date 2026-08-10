@@ -26,6 +26,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# cloudflare — .dev.vars 에는 Pages Function 의 운영 비밀이 그대로 들어갑니다.
+.dev.vars
+.wrangler/
+
 # vercel
 .vercel
 
