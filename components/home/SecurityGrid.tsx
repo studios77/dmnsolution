@@ -20,13 +20,13 @@ export default function SecurityGrid() {
               SECURITY SERVICES
             </p>
             <h2 className="mt-4 max-w-[26rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
-              네 개의 축으로 지킵니다
+              네 개의 축으로 방어 체계를 구성합니다
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">
-            경계에서 막고, 클라우드 설정을 정리하고, AI 가 만들어 내는 새 위험을
-            점검하고, 그 전부를 24시간 관제합니다. 보안 서비스 {total}종을 한 팀이
-            운영합니다.
+            경계에서 차단하고, 클라우드 설정을 정비하며, 생성형 AI가 새로 만들어 내는
+            위험을 점검합니다. 그리고 이 전부를 24시간 관제합니다. 보안 서비스{' '}
+            {total}종을 한 팀이 운영합니다.
           </p>
         </div>
 

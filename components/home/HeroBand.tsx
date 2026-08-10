@@ -9,8 +9,8 @@ import Link from 'next/link'
  * 캡처는 고객사 IP·호스트명이 섞여 들어갈 위험이 있습니다.
  */
 const SIGNALS = [
-  { t: '02:14:07', label: '차단', detail: 'SQLi 시도 · JA4+ 지문 불일치', tone: 'danger' },
-  { t: '02:13:52', label: '격리', detail: '자동화 봇 트래픽 · UA 위조 탐지', tone: 'warn' },
+  { t: '02:14:07', label: '차단', detail: 'SQL 인젝션 시도 · JA4+ 지문 불일치', tone: 'danger' },
+  { t: '02:13:52', label: '격리', detail: '자동화 봇 트래픽 · User-Agent 위조 판별', tone: 'warn' },
   { t: '02:11:30', label: '허용', detail: '정상 세션 복원 · 오탐 자동 해제', tone: 'ok' },
 ]
 
@@ -37,19 +37,19 @@ export default function HeroBand() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 font-mono text-label font-bold tracking-[0.1em] text-accent">
             <span className="inline-block size-1.5 animate-[pulseDot_1.8s_ease-in-out_infinite] rounded-full bg-accent" />
-            자체 개발 NGFW · DMN Guard
+            자사 개발 NGFW · DMN Guard
           </p>
 
           <h1 className="mt-7 text-[2.2rem] font-extrabold leading-[1.24] tracking-[-0.035em] text-fg sm:text-[2.9rem] lg:text-[3.35rem]">
-            방화벽을 직접 만들고,
+            방화벽부터 <span className="text-accent">관제</span>까지,
             <br />
-            <span className="text-accent">AI 관제</span>까지 맡습니다
+            직접 만들고 직접 운영합니다
           </h1>
 
           <p className="mt-7 max-w-[35rem] text-lead text-fg-muted">
-            네트워크·클라우드·AI 데이터 보안을 한 팀이 봅니다. 탐지에서 그치지 않고
-            차단까지 저희 장비가 직접 수행하며, 분석은 온프레미스에서 끝나 데이터가
-            밖으로 나가지 않습니다.
+            네트워크와 클라우드, AI 데이터 보안을 한 팀이 일관된 기준으로 다룹니다.
+            탐지에 머무르지 않고 차단까지 자사 장비가 수행하며, 분석은 온프레미스에서
+            완결되어 데이터가 외부로 반출되지 않습니다.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -57,13 +57,13 @@ export default function HeroBand() {
               href="/services/dmn-guard/"
               className="on-accent rounded-full bg-accent px-8 py-3.5 text-center text-body font-bold transition-transform duration-200 hover:-translate-y-0.5"
             >
-              DMN Guard 알아보기
+              DMN Guard 살펴보기
             </Link>
             <Link
               href="/contact/"
               className="rounded-full border border-line-strong px-8 py-3.5 text-center text-body font-semibold text-fg transition-colors duration-200 hover:border-accent hover:text-accent"
             >
-              보안 진단 문의
+              보안 진단 요청
             </Link>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function HeroBand() {
           </dl>
 
           <p className="border-t border-line px-5 py-3 text-label text-fg-subtle">
-            표시된 항목은 동작 방식을 보여 주기 위한 예시입니다.
+            표시된 항목은 동작 방식을 설명하기 위한 예시입니다.
           </p>
         </div>
       </div>

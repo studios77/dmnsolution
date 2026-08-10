@@ -18,12 +18,12 @@ export default function InfraBand() {
               INFRASTRUCTURE · STREAMING
             </p>
             <h2 className="mt-4 text-[1.85rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.15rem]">
-              보안만 하는 회사는 아닙니다
+              인프라와 송출까지, 같은 팀이 운영합니다
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">
-            서버를 맡기고 계신 곳이라면 보안까지 한 팀에서 처리됩니다. 물론 각각
-            별도 상품이라, 필요한 쪽만 계약하셔도 됩니다.
+            서버 운영을 위탁하신 경우 보안까지 동일한 팀이 이어받습니다. 각 영역은
+            별도 상품으로 구성되어 있어, 필요한 부분만 선택해 계약하실 수 있습니다.
           </p>
         </div>
 

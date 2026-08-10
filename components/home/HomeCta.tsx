@@ -13,13 +13,13 @@ export default function HomeCta() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
           <div>
             <h2 className="max-w-[26rem] text-[1.9rem] font-extrabold leading-[1.35] tracking-[-0.03em] text-fg sm:text-[2.25rem]">
-              지금 무엇이 열려 있는지부터 봐 드립니다
+              현재 노출된 지점부터 진단해 드립니다
             </h2>
             <p className="mt-5 max-w-[36rem] text-lead text-fg-muted">
-              쓰고 계신 구성만 알려 주시면 됩니다. 장비를 바꾸지 않아도 되는지,
-              무엇부터 막아야 하는지 먼저 정리해 드립니다. 필요 없는 영역까지 묶어
-              제안하지 않고, 견적은 영역별로 나눠 무엇에 얼마가 드는지 그대로
-              보이게 합니다.
+              운영 중인 구성만 알려 주시면 됩니다. 장비 교체가 필요한 사안인지, 어느
+              지점부터 조치해야 하는지 먼저 정리해 드립니다. 불필요한 영역을 묶어
+              제안하지 않으며, 견적은 영역별로 구분해 산정 근거가 그대로 드러나도록
+              제시합니다.
             </p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4">

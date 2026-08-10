@@ -9,12 +9,12 @@ import { findServiceBySlug } from '@/lib/servicesData'
  * 먼저 필요합니다. 수치는 서비스 상세 페이지와 같은 값을 씁니다.
  */
 const SPECS = [
-  { k: '설치 방식', v: '에이전트리스', note: '보호 대상 서버·VM 에 무설치' },
-  { k: '삽입 위치', v: 'L2 투명 인라인', note: 'IP 변경·네트워크 재설계 없음' },
+  { k: '설치 방식', v: '에이전트리스', note: '보호 대상 서버·VM에 에이전트 미설치' },
+  { k: '삽입 위치', v: 'L2 투명 인라인', note: 'IP 변경 및 네트워크 재설계 불필요' },
   { k: 'IDS 시그니처', v: '51,977', note: '침입탐지 룰셋' },
   { k: '자체 WAF 규칙', v: '105개', note: '21개 카테고리 · POST 본문 검사' },
   { k: '봇 식별', v: 'JA4+ 4지문', note: 'TLS·HTTP·TCP·핸드셰이크' },
-  { k: 'AI 분석 위치', v: '온프레미스', note: '외부 전송 0' },
+  { k: 'AI 분석 위치', v: '온프레미스', note: '분석 데이터 외부 반출 없음' },
 ]
 
 export default function GuardBand() {
@@ -27,7 +27,7 @@ export default function GuardBand() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-16">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/8 px-3 py-1.5 font-mono text-label font-bold tracking-[0.1em] text-accent">
-              자체 개발 제품
+              자사 개발 제품
             </p>
             <h2 className="mt-6 text-[1.9rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.2rem]">
               DMN Guard

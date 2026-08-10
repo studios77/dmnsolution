@@ -11,27 +11,27 @@ const PIPELINE = [
   {
     n: '01',
     title: '수집',
-    desc: 'Wazuh SIEM 으로 서버·네트워크·앱·클라우드 로그를 한곳에 모읍니다.',
+    desc: 'Wazuh SIEM으로 서버·네트워크·애플리케이션·클라우드 로그를 단일 지점에 집약합니다.',
   },
   {
     n: '02',
     title: '탐지',
-    desc: '시그니처와 AI 행위 기반을 함께 씁니다. 알려진 공격과 처음 보는 패턴을 각각 다른 방식으로 잡습니다.',
+    desc: '시그니처 기반과 AI 행위 기반을 병행합니다. 알려진 공격과 미지의 패턴을 서로 다른 방식으로 포착합니다.',
   },
   {
     n: '03',
     title: '분석',
-    desc: 'LLM 이 이벤트를 맥락과 함께 읽고 심각도를 매깁니다. 오탐을 걸러 중요한 것만 남깁니다.',
+    desc: 'LLM이 이벤트를 맥락과 함께 해석해 심각도를 판정합니다. 오탐을 배제하고 유효한 사안만 남깁니다.',
   },
   {
     n: '04',
     title: '대응',
-    desc: 'IP 차단·계정 격리·알림을 플레이북에 따라 자동 실행합니다. 50개 이상의 시나리오가 미리 정의돼 있습니다.',
+    desc: 'IP 차단과 계정 격리, 통보를 플레이북에 따라 자동 실행합니다. 50개 이상의 시나리오가 사전 정의되어 있습니다.',
   },
   {
     n: '05',
     title: '보고',
-    desc: '일간·주간·월간 리포트를 자동 생성합니다. 감사 대응에 쓸 증적이 그대로 남습니다.',
+    desc: '일간·주간·월간 리포트를 자동 생성합니다. 감사 대응에 필요한 증적이 그대로 축적됩니다.',
   },
 ]
 
@@ -41,7 +41,7 @@ const FACTS = [
   { k: 'SIEM', v: 'Wazuh 기반 통합 수집' },
   { k: 'SOAR 플레이북', v: '50+ 시나리오' },
   { k: '로그 보관', v: '90일 이상 (연장 가능)' },
-  { k: '에스컬레이션', v: '임계 위협 즉시 담당자 통보' },
+  { k: '에스컬레이션', v: '임계 위협 발생 시 즉시 통보' },
 ]
 
 export default function SocSection() {
@@ -59,13 +59,13 @@ export default function SocSection() {
               SECURITY OPERATIONS
             </p>
             <h2 className="mt-4 max-w-[24rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
-              사람이 없는 시간에도 같은 기준으로
+              담당자가 없는 시간에도, 기준은 동일하게
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">
-            새벽 3시의 경보를 누가 볼 것인가 — 관제를 맡기는 이유는 대개 이 질문
-            하나입니다. 탐지에서 보고까지 다섯 단계를 자동으로 돌리고, 사람은 넘어온
-            것만 봅니다.
+            심야에 발생한 경보를 누가 판단할 것인가. 관제를 위탁하시는 이유는 대개 이
+            한 가지로 수렴합니다. 수집부터 보고까지 다섯 단계를 자동으로 수행하고,
+            담당자는 선별된 사안만 확인합니다.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function SocSection() {
               href="/services/ai-security/"
               className="on-accent rounded-full bg-accent px-7 py-3.5 text-center text-body font-bold transition-transform duration-200 hover:-translate-y-0.5"
             >
-              관제 서비스 보기
+              관제 서비스 살펴보기
             </Link>
             <Link
               href="/services/ai-agent/"
