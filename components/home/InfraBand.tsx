@@ -17,8 +17,11 @@ export default function InfraBand() {
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent-2">
               INFRASTRUCTURE · STREAMING
             </p>
-            <h2 className="mt-4 text-[1.85rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.15rem]">
-              인프라와 송출까지, 같은 팀이 운영합니다
+            <h2 className="mt-4 max-w-[26rem] text-[1.85rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.15rem]">
+              IDC 서버 임대 · 코로케이션 · 라이브 스트리밍
+              <span className="mt-2.5 block text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
+                인프라와 송출까지, 같은 팀이 운영합니다
+              </span>
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">

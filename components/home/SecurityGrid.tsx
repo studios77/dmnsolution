@@ -19,8 +19,14 @@ export default function SecurityGrid() {
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent">
               SECURITY SERVICES
             </p>
+            {/* h2 는 검색어를 담고, 슬로건은 그 아래 줄로 내립니다. 제목 자리에
+                슬로건만 있으면 이 섹션이 무엇에 관한 것인지 검색엔진이 알 수
+                없습니다. */}
             <h2 className="mt-4 max-w-[26rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
-              네 개의 축으로 방어 체계를 구성합니다
+              네트워크 · 클라우드 · AI 데이터 보안
+              <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
+                네 개의 축으로 방어 체계를 구성합니다
+              </span>
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">

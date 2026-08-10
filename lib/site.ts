@@ -1,7 +1,26 @@
 export const SITE_NAME = 'DMN솔루션'
 
-/** Production site origin (trailing slash 없음) */
-export const SITE_ORIGIN = 'https://dmns.co.kr'
+/**
+ * Production site origin (trailing slash 없음).
+ *
+ * **www 를 씁니다. 바꾸기 전에 아래를 읽으세요.**
+ *
+ * 예전에는 apex(`https://dmns.co.kr`)였는데, 그 호스트가 Cloudflare Pages 의
+ * 커스텀 도메인으로 등록돼 있지 않아 인증서가 없었습니다. DNS 는 Cloudflare 를
+ * 가리키지만 TLS 핸드셰이크에서 끊겨, 브라우저로도 크롤러로도 열리지 않았습니다.
+ *
+ * 그 상태로 sitemap.xml 의 21개 URL 과 모든 canonical, robots 의 Host·Sitemap 이
+ * 전부 apex 를 가리키고 있었습니다. 검색엔진이 사이트맵을 받아도 그 안의 주소가
+ * 하나도 열리지 않으니 색인될 수가 없었습니다. 이것이 검색에 잡히지 않던
+ * 직접적인 원인입니다.
+ *
+ * apex 를 쓰고 싶다면 순서가 있습니다:
+ *   1. Cloudflare Pages → dmnsolution → Custom domains 에 `dmns.co.kr` 추가
+ *   2. `https://dmns.co.kr/` 이 200 으로 열리는지 확인
+ *   3. 그 뒤에 이 값을 바꾸고, www → apex 301 리다이렉트를 걸어 한쪽으로 모음
+ * 확인 없이 값만 되돌리면 색인이 다시 통째로 끊깁니다.
+ */
+export const SITE_ORIGIN = 'https://www.dmns.co.kr'
 
 export function serviceCanonicalUrl(slug: string): string {
   return `${SITE_ORIGIN}/services/${slug}/`
@@ -92,7 +111,7 @@ export const SALESIQ: SalesIqConfig = {
  * 특정 페이지만 갱신됐다면 아래 `STATIC_PAGES.lastModified` 나
  * `ServiceData.updated` 로 그 페이지만 덮어쓰면 됩니다.
  */
-export const CONTENT_LAST_MODIFIED = '2026-08-08'
+export const CONTENT_LAST_MODIFIED = '2026-08-11'
 
 export type StaticPage = {
   path: string

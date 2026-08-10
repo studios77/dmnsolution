@@ -49,7 +49,10 @@ export default function CloudSecuritySection() {
               CLOUD SECURITY
             </p>
             <h2 className="mt-4 max-w-[26rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
-              설정에서 비롯되는 위험과, 운영 중 발생하는 위험
+              클라우드 보안 진단 · CSPM / CWPP
+              <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
+                설정에서 비롯되는 위험과, 운영 중 발생하는 위험
+              </span>
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">

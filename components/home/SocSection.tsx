@@ -59,7 +59,10 @@ export default function SocSection() {
               SECURITY OPERATIONS
             </p>
             <h2 className="mt-4 max-w-[24rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
-              담당자가 없는 시간에도, 기준은 동일하게
+              AI 보안 관제 · 24시간 무인 SOC
+              <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
+                담당자가 없는 시간에도, 기준은 동일하게
+              </span>
             </h2>
           </div>
           <p className="max-w-[30rem] text-body text-fg-muted">

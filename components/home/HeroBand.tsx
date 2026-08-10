@@ -40,8 +40,16 @@ export default function HeroBand() {
             자사 개발 NGFW · DMN Guard
           </p>
 
-          <h1 className="mt-7 text-[2.2rem] font-extrabold leading-[1.24] tracking-[-0.035em] text-fg sm:text-[2.9rem] lg:text-[3.35rem]">
-            방화벽부터 <span className="text-accent">관제</span>까지,
+          {/*
+            h1 에 주력 검색어를 담습니다.
+
+            한동안 "방화벽부터 관제까지, 직접 만들고 직접 운영합니다" 였습니다.
+            읽기는 좋았지만 검색엔진이 가장 무겁게 보는 자리에 정작 사람들이
+            검색하는 말("차세대 방화벽", "AI 보안 관제")이 하나도 없었습니다.
+            문장의 리듬은 두고 낱말만 정확한 것으로 바꿉니다.
+          */}
+          <h1 className="mt-7 text-[2rem] font-extrabold leading-[1.26] tracking-[-0.035em] text-fg sm:text-[2.6rem] lg:text-[3rem]">
+            차세대 방화벽부터 <span className="text-accent">AI 보안 관제</span>까지,
             <br />
             직접 만들고 직접 운영합니다
           </h1>

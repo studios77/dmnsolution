@@ -29,12 +29,14 @@ export default function GuardBand() {
             <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/8 px-3 py-1.5 font-mono text-label font-bold tracking-[0.1em] text-accent">
               자사 개발 제품
             </p>
+            {/* 제품명만 있으면 검색엔진에는 뜻 없는 고유명사입니다. 카테고리
+                어휘(차세대 방화벽·NGFW·WAF)를 같은 제목 안에 넣습니다. */}
             <h2 className="mt-6 text-[1.9rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.2rem]">
               DMN Guard
+              <span className="mt-2 block text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
+                차세대 방화벽 NGFW · WAF · 로컬 AI 융합 어플라이언스
+              </span>
             </h2>
-            <p className="mt-2 font-mono text-meta font-semibold tracking-[0.06em] text-fg-subtle">
-              NGFW · WAF · 로컬 AI 융합 어플라이언스
-            </p>
             <p className="mt-6 text-body text-fg-muted">{guard.desc}</p>
 
             <Link
