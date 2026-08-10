@@ -144,31 +144,37 @@ body::before {
    강조색은 어두운 바탕용으로 다시 밝게 올립니다(#047857 은 어두운 배경에서
    대비 2.3:1 로 읽히지 않습니다).
 --------------------------------------------------------------------------- */
-.dark-band {
-  --color-canvas: #0a1020;
-  --color-elev: #101a2e;
-  --color-surface: #172440;
-  --color-line: #263352;
-  --color-line-strong: #3a4b70;
-  --color-accent: #34d399;
-  --color-accent-2: #22d3ee;
-  --color-accent-soft: #05261c;
-  --color-accent-2-soft: #052a33;
-  --color-fg: #e8eef7;
-  --color-fg-muted: #a3b3cc;
-  --color-fg-subtle: #8b9db8;
-  --color-danger: #f87171;
-  --color-warn: #fbbf24;
-  color-scheme: dark;
-  background-color: var(--color-canvas);
-  color: var(--color-fg);
-}
+/* @layer base 안에 둡니다. 레이어 밖에 두면 이 규칙이 Tailwind 의
+   @layer utilities 를 이겨서, Nav 의 `bg-canvas/90` 반투명이 아래
+   background-color 에 덮여 불투명해집니다. base 에 넣으면 배경은 기본값으로
+   깔리되 유틸리티로 덮어쓸 수 있습니다. */
+@layer base {
+  .dark-band {
+    --color-canvas: #0a1020;
+    --color-elev: #101a2e;
+    --color-surface: #172440;
+    --color-line: #263352;
+    --color-line-strong: #3a4b70;
+    --color-accent: #34d399;
+    --color-accent-2: #22d3ee;
+    --color-accent-soft: #05261c;
+    --color-accent-2-soft: #052a33;
+    --color-fg: #e8eef7;
+    --color-fg-muted: #a3b3cc;
+    --color-fg-subtle: #8b9db8;
+    --color-danger: #f87171;
+    --color-warn: #fbbf24;
+    color-scheme: dark;
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+  }
 
-/* 어두운 구역 안의 강조색 채움 위에는 다시 어두운 글자가 옵니다.
-   밝은 본문에서 정한 `text-canvas`(거의 흰색)를 그대로 쓰면 밝은 에메랄드
-   위에 흰 글자가 얹혀 읽히지 않습니다. */
-.dark-band .on-accent {
-  color: #04231a;
+  /* 어두운 구역 안의 강조색 채움 위에는 다시 어두운 글자가 옵니다.
+     밝은 본문에서 정한 `text-canvas`(거의 흰색)를 그대로 쓰면 밝은 에메랄드
+     위에 흰 글자가 얹혀 읽히지 않습니다. */
+  .dark-band .on-accent {
+    color: #04231a;
+  }
 }
 
 /* 격자 오버레이. 다크에서는 흰 선이었지만 밝은 배경에서는 보이지 않으므로

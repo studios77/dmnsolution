@@ -185,7 +185,18 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="dark-band fixed inset-x-0 top-0 z-200 border-b border-line bg-canvas/90 backdrop-blur-xl">
+      {/*
+        배경을 토큰(bg-canvas/90)이 아니라 리터럴로 둡니다.
+
+        Tailwind 는 알파가 붙은 색 유틸리티에 대해 정적 폴백과 color-mix 버전을
+        함께 내보내는데, 폴백에는 **토큰의 기본값(밝은 #f7f9fc)** 이 구워집니다.
+        color-mix 를 모르는 브라우저에서는 어두운 헤더에 밝은 배경이 깔리고,
+        로고 워드마크가 흰색이라 글자가 통째로 사라집니다.
+
+        리터럴 다크 값을 쓰면 폴백도 어두운 색이라 어느 쪽으로 떨어져도 안전합니다.
+        헤더는 항상 .dark-band 이므로 토큰을 따라갈 이유도 없습니다.
+      */}
+      <nav className="dark-band fixed inset-x-0 top-0 z-200 border-b border-line bg-[#0a1020]/90 backdrop-blur-xl">
         <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="/"

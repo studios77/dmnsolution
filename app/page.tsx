@@ -4,9 +4,9 @@ import { SEO_DEFAULT_DESCRIPTION } from '@/lib/seo'
 import HeroBand from '@/components/home/HeroBand'
 import GuardBand from '@/components/home/GuardBand'
 import SecurityGrid from '@/components/home/SecurityGrid'
+import SocSection from '@/components/home/SocSection'
+import CloudSecuritySection from '@/components/home/CloudSecuritySection'
 import InfraBand from '@/components/home/InfraBand'
-import IndustriesSection from '@/components/home/IndustriesSection'
-import ProcessSection from '@/components/home/ProcessSection'
 import HomeCta from '@/components/home/HomeCta'
 import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
@@ -130,15 +130,20 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         {/*
-          홈 구성: 히어로 → 자체 제품 → 보안 4축 → 인프라·스트리밍 → 산업군 →
-          도입 절차 → 문의.
+          홈 구성: 히어로 → NGFW → 보안 4축 → 보안 관제 → 클라우드 보안 →
+          인프라·스트리밍 → 문의.
 
           보안을 앞세웁니다. 세 사업 축을 대등하게 늘어놓았더니 "무슨 회사인지"
           가 흐려졌고, 실제로 앞세울 것은 직접 만든 방화벽과 관제입니다. IDC 와
           스트리밍은 뒤쪽 한 띠로 묶되 빼지는 않습니다 — 별도 상품으로 계약되는
           실제 사업이기 때문입니다.
 
-          어두운 띠(히어로·인프라·푸터)와 밝은 본문을 번갈아 둡니다. 로고
+          중간에 있던 산업군·도입절차는 뺐습니다. 어느 보안 업체에나 붙는 일반적인
+          내용이라 이 회사가 무엇을 하는지 설명해 주지 못했습니다. 자리를 관제
+          운영 방식과 클라우드 보안으로 채웁니다 — 둘 다 서비스 본문에 이미 있는
+          수치와 점검 항목을 그대로 씁니다.
+
+          어두운 띠(히어로·관제·인프라·푸터)와 밝은 본문을 번갈아 둡니다. 로고
           워드마크가 흰색이라 헤더·푸터는 어두워야 하고, 그 대비가 섹션 경계
           역할도 합니다.
 
@@ -147,9 +152,9 @@ export default function Home() {
         <HeroBand />
         <GuardBand />
         <SecurityGrid />
+        <SocSection />
+        <CloudSecuritySection />
         <InfraBand />
-        <IndustriesSection />
-        <ProcessSection />
         <HomeCta />
       </main>
       <Footer />
