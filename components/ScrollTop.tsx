@@ -26,7 +26,7 @@ export default function ScrollTop() {
     <button
       onClick={scrollToTop}
       aria-label="맨 위로 이동"
-      className={`fixed bottom-24 left-5 z-[9997] flex size-13 items-center justify-center rounded-full border border-line-strong bg-surface p-0 shadow-[0_4px_20px_rgba(52,211,153,0.15)] transition-all duration-300 hover:border-accent hover:shadow-[0_4px_24px_rgba(52,211,153,0.35)] sm:left-7 ${
+      className={`fixed bottom-24 left-5 z-[9997] flex size-13 items-center justify-center rounded-full border border-line-strong bg-surface p-0 shadow-[0_4px_20px_rgba(4,120,87,0.14)] transition-all duration-300 hover:border-accent hover:shadow-[0_4px_24px_rgba(4,120,87,0.30)] sm:left-7 ${
         visible
           ? 'translate-y-0 scale-100 opacity-100'
           : 'pointer-events-none translate-y-4 scale-90 opacity-0'

@@ -20,11 +20,13 @@ const TONES = {
     highlight: 'bg-accent-2/10 border-accent-2/30',
     badge: 'text-accent-2 bg-accent-2/15 border-accent-2/40',
   },
+  /* 밝은 배경 기준으로 내린 톤입니다. indigo-400(#818cf8)은 흰 바탕 위
+     대비가 2.9:1 이라 라벨 글자로 쓰면 AA(4.5)에 미달합니다. */
   indigo: {
-    label: 'text-indigo-400',
-    bar: 'bg-indigo-400',
-    highlight: 'bg-indigo-400/10 border-indigo-400/30',
-    badge: 'text-indigo-400 bg-indigo-400/15 border-indigo-400/40',
+    label: 'text-indigo-600',
+    bar: 'bg-indigo-500',
+    highlight: 'bg-indigo-500/10 border-indigo-500/30',
+    badge: 'text-indigo-700 bg-indigo-500/15 border-indigo-500/40',
   },
   emerald: {
     label: 'text-accent',
@@ -257,7 +259,7 @@ export default function Nav() {
                   if (!isHoverCapable()) return
                   closeTimer.current = setTimeout(() => setMenuOpen(false), 250)
                 }}
-                className="absolute left-1/2 top-[calc(100%+8px)] z-[9999] flex w-[min(1320px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 flex-col overflow-hidden rounded-xl border border-line-strong bg-elev shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
+                className="absolute left-1/2 top-[calc(100%+8px)] z-[9999] flex w-[min(1320px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 flex-col overflow-hidden rounded-xl border border-line-strong bg-elev shadow-[0_20px_60px_rgba(15,23,42,0.14)]"
               >
                 {/* 보안을 3개 열로 펼치면서 5열이 됐습니다. 열이 늘어난 만큼
                     메뉴 폭도 넓혀야 항목 제목이 과도하게 접히지 않습니다. */}
@@ -325,14 +327,14 @@ export default function Nav() {
                 </div>
                 <div className="flex gap-4 border-t border-line bg-canvas px-5 py-2.5">
                   <Link
-                    href="/#services"
+                    href="/#pillars"
                     onClick={() => setMenuOpen(false)}
                     className="font-mono text-meta tracking-[0.06em] text-accent hover:text-accent-2"
                   >
                     전체 서비스 보기 →
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/contact/"
                     onClick={() => setMenuOpen(false)}
                     className="font-mono text-meta tracking-[0.06em] text-fg-subtle hover:text-fg"
                   >
@@ -356,7 +358,7 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <Link href="/contact" className={`${NAV_LINK} text-fg-muted`}>
+            <Link href="/contact/" className={`${NAV_LINK} text-fg-muted`}>
               문의
             </Link>
           </li>
@@ -364,7 +366,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/contact"
+            href="/contact/"
             className="hidden rounded border border-accent px-4.5 py-2 font-mono text-meta tracking-[0.05em] text-accent transition-colors duration-200 hover:bg-accent hover:text-canvas sm:block"
           >
             무료 상담
@@ -456,14 +458,14 @@ export default function Nav() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/contact/"
               onClick={() => setMobileOpen(false)}
               className="border-b border-line py-2.5 text-base font-bold text-fg-muted"
             >
               문의
             </Link>
             <Link
-              href="/contact"
+              href="/contact/"
               onClick={() => setMobileOpen(false)}
               className="mt-4 rounded border border-accent py-2.5 text-center font-mono text-meta tracking-[0.05em] text-accent"
             >

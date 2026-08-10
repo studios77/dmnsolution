@@ -66,7 +66,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: '홈', item: `${SITE_ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: s.cat, item: `${SITE_ORIGIN}/#services` },
+          { '@type': 'ListItem', position: 2, name: s.cat, item: `${SITE_ORIGIN}/#pillars` },
           { '@type': 'ListItem', position: 3, name: s.name, item: serviceCanonicalUrl(s.slug) },
         ],
       },
@@ -187,8 +187,10 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                     </tr>
                   </thead>
                   <tbody>
+                    {/* 줄무늬는 어두운 오버레이입니다. 흰색으로 두면 밝은
+                        배경 위에서 아무것도 보이지 않습니다. */}
                     {s.comparison.items.map((item, i) => (
-                      <tr key={item.label} className={i % 2 === 0 ? '' : 'bg-white/[0.015]'}>
+                      <tr key={item.label} className={i % 2 === 0 ? '' : 'bg-fg/[0.025]'}>
                         <td className="border-b border-line px-5 py-3.5 font-mono text-meta tracking-[0.03em] text-fg-muted">
                           {item.label}
                         </td>
@@ -230,7 +232,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                     key={plan.name}
                     className={`relative flex flex-col rounded-xl px-5 pb-6 pt-7 ${
                       plan.popular
-                        ? 'border-[1.5px] border-accent bg-gradient-to-b from-accent/12 to-surface shadow-[0_0_32px_rgba(52,211,153,0.18)]'
+                        ? 'border-[1.5px] border-accent bg-gradient-to-b from-accent/12 to-surface shadow-[0_0_32px_rgba(4,120,87,0.14)]'
                         : 'border border-line bg-surface'
                     }`}
                   >
@@ -292,13 +294,13 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
             </p>
             <div className="flex flex-col items-stretch justify-center gap-4 sm:flex-row">
               <Link
-                href="/contact"
-                className="rounded bg-accent px-9 py-3.5 font-mono text-meta font-medium tracking-[0.06em] text-canvas shadow-[0_0_30px_rgba(52,211,153,0.3)] transition-colors hover:bg-accent-2"
+                href="/contact/"
+                className="rounded bg-accent px-9 py-3.5 font-mono text-meta font-medium tracking-[0.06em] text-canvas shadow-[0_0_30px_rgba(4,120,87,0.26)] transition-colors hover:bg-accent-2"
               >
                 {s.cta}
               </Link>
               <Link
-                href="/#services"
+                href="/#pillars"
                 className="rounded border border-line-strong px-9 py-3.5 font-mono text-meta tracking-[0.06em] text-fg transition-colors hover:border-accent hover:text-accent"
               >
                 다른 서비스 보기

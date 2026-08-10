@@ -1,10 +1,11 @@
 import Nav from '@/components/Nav'
 import { SITE_NAME, SITE_ORIGIN } from '@/lib/site'
 import { SEO_DEFAULT_DESCRIPTION } from '@/lib/seo'
-import Hero from '@/components/Hero'
-import Services from '@/components/Services'
-import Flagship from '@/components/Flagship'
-import ClosingCta from '@/components/ClosingCta'
+import HomeHero from '@/components/home/HomeHero'
+import PillarSection from '@/components/home/PillarSection'
+import GuardBand from '@/components/home/GuardBand'
+import ProcessSection from '@/components/home/ProcessSection'
+import HomeCta from '@/components/home/HomeCta'
 import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
 
@@ -124,15 +125,23 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="grid-bg" />
       <Nav />
       <main id="main-content">
-        {/* 자체 제품 → 보안 4개 축 → 마무리. 예전의 EdgeSection·About 은
-            내용이 겹치고 길어 Flagship·ClosingCta 로 흡수했습니다. */}
-        <Hero />
-        <Flagship />
-        <Services />
-        <ClosingCta />
+        {/*
+          홈 구성: 3축 소개 → 축별 서비스 → 자체 제품 → 도입 절차 → 문의.
+
+          서비스 분류(`servicesData.cat`)와 상세 페이지는 그대로 두고 홈 화면만
+          새로 짰습니다. 자체 제품 하나를 앞세우는 구성이 아니라 세 축을 나란히
+          두는 구성인데, DMN솔루션이 세 영역을 각각 따로 계약해 팔기 때문입니다.
+
+          `grid-bg` 는 뺐습니다 — 밝은 배경에서는 격자가 콘텐츠를 흐리게만 하고
+          섹션 경계는 이제 배경색 교차(bg-elev)로 구분됩니다.
+        */}
+        <HomeHero />
+        <PillarSection />
+        <GuardBand />
+        <ProcessSection />
+        <HomeCta />
       </main>
       <Footer />
       <ScrollTop />

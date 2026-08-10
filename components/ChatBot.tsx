@@ -163,25 +163,26 @@ export default function ChatBot() {
           background: 'var(--color-accent)',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 22px rgba(52,211,153,0.45)',
+          boxShadow: '0 4px 22px rgba(4,120,87,0.35)',
           transition: 'transform 0.2s, box-shadow 0.2s',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(52,211,153,0.55)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 28px rgba(4,120,87,0.45)'
         }}
         onMouseLeave={e => {
           (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'
-          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(52,211,153,0.45)'
+          ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 22px rgba(4,120,87,0.35)'
         }}
       >
-        {/* 강조색이 밝은 에메랄드라 아이콘은 어둡게 둡니다. 흰 아이콘은 대비가 부족합니다. */}
+        {/* 강조색이 진한 에메랄드라 아이콘은 흰색입니다. 밝은 테마에서 채움색과
+            전경색은 항상 반대 방향으로 갑니다. */}
         {open ? (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#04231a" strokeWidth="2.5" strokeLinecap="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04231a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
         )}
@@ -204,7 +205,7 @@ export default function ChatBot() {
         background: 'var(--color-surface)',
         border: '1px solid var(--color-line-strong)',
         borderRadius: 16,
-        boxShadow: '0 12px 40px rgba(0,0,0,0.45)',
+        boxShadow: '0 12px 40px rgba(15,23,42,0.16)',
         overflow: 'hidden',
         transform: open ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(16px)',
         opacity: open ? 1 : 0,
@@ -341,7 +342,7 @@ export default function ChatBot() {
         <div style={{
           padding: '8px 12px',
           borderTop: '1px solid var(--color-line)',
-          background: 'rgba(52,211,153,0.06)',
+          background: 'rgba(4,120,87,0.06)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
