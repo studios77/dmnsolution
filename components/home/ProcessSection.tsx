@@ -30,7 +30,7 @@ const STEPS = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-20 lg:py-24">
+    <section className="bg-elev py-20 lg:py-24">
       <div className="container-page">
         <p className="font-mono text-label font-bold tracking-[0.14em] text-fg-subtle">PROCESS</p>
         <h2 className="mt-4 text-[1.9rem] font-extrabold leading-[1.35] tracking-[-0.03em] text-fg sm:text-[2.25rem]">

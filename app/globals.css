@@ -131,6 +131,46 @@ body::before {
   z-index: 0;
 }
 
+/* ---------------------------------------------------------------------------
+   어두운 구역.
+
+   본문은 밝지만 헤더·히어로·푸터는 어둡게 갑니다. 보안 제품 사이트의 흔한
+   리듬이기도 하고, 무엇보다 **로고 워드마크가 흰색**이라 밝은 바탕에 두면
+   초록 사각형만 남고 글자가 사라집니다.
+
+   토큰을 이 안에서만 다시 선언합니다. Tailwind v4 유틸리티는 전부
+   `var(--color-*)` 를 읽으므로, 하위의 bg-surface·text-fg·border-line 이
+   자동으로 어두운 값을 씁니다 — 클래스를 따로 만들 필요가 없습니다.
+   강조색은 어두운 바탕용으로 다시 밝게 올립니다(#047857 은 어두운 배경에서
+   대비 2.3:1 로 읽히지 않습니다).
+--------------------------------------------------------------------------- */
+.dark-band {
+  --color-canvas: #0a1020;
+  --color-elev: #101a2e;
+  --color-surface: #172440;
+  --color-line: #263352;
+  --color-line-strong: #3a4b70;
+  --color-accent: #34d399;
+  --color-accent-2: #22d3ee;
+  --color-accent-soft: #05261c;
+  --color-accent-2-soft: #052a33;
+  --color-fg: #e8eef7;
+  --color-fg-muted: #a3b3cc;
+  --color-fg-subtle: #8b9db8;
+  --color-danger: #f87171;
+  --color-warn: #fbbf24;
+  color-scheme: dark;
+  background-color: var(--color-canvas);
+  color: var(--color-fg);
+}
+
+/* 어두운 구역 안의 강조색 채움 위에는 다시 어두운 글자가 옵니다.
+   밝은 본문에서 정한 `text-canvas`(거의 흰색)를 그대로 쓰면 밝은 에메랄드
+   위에 흰 글자가 얹혀 읽히지 않습니다. */
+.dark-band .on-accent {
+  color: #04231a;
+}
+
 /* 격자 오버레이. 다크에서는 흰 선이었지만 밝은 배경에서는 보이지 않으므로
    어두운 선으로 뒤집습니다. */
 .grid-bg {

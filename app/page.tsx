@@ -1,9 +1,11 @@
 import Nav from '@/components/Nav'
 import { SITE_NAME, SITE_ORIGIN } from '@/lib/site'
 import { SEO_DEFAULT_DESCRIPTION } from '@/lib/seo'
-import HomeHero from '@/components/home/HomeHero'
-import PillarSection from '@/components/home/PillarSection'
+import HeroBand from '@/components/home/HeroBand'
 import GuardBand from '@/components/home/GuardBand'
+import SecurityGrid from '@/components/home/SecurityGrid'
+import InfraBand from '@/components/home/InfraBand'
+import IndustriesSection from '@/components/home/IndustriesSection'
 import ProcessSection from '@/components/home/ProcessSection'
 import HomeCta from '@/components/home/HomeCta'
 import Footer from '@/components/Footer'
@@ -128,18 +130,25 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         {/*
-          홈 구성: 3축 소개 → 축별 서비스 → 자체 제품 → 도입 절차 → 문의.
+          홈 구성: 히어로 → 자체 제품 → 보안 4축 → 인프라·스트리밍 → 산업군 →
+          도입 절차 → 문의.
 
-          서비스 분류(`servicesData.cat`)와 상세 페이지는 그대로 두고 홈 화면만
-          새로 짰습니다. 자체 제품 하나를 앞세우는 구성이 아니라 세 축을 나란히
-          두는 구성인데, DMN솔루션이 세 영역을 각각 따로 계약해 팔기 때문입니다.
+          보안을 앞세웁니다. 세 사업 축을 대등하게 늘어놓았더니 "무슨 회사인지"
+          가 흐려졌고, 실제로 앞세울 것은 직접 만든 방화벽과 관제입니다. IDC 와
+          스트리밍은 뒤쪽 한 띠로 묶되 빼지는 않습니다 — 별도 상품으로 계약되는
+          실제 사업이기 때문입니다.
 
-          `grid-bg` 는 뺐습니다 — 밝은 배경에서는 격자가 콘텐츠를 흐리게만 하고
-          섹션 경계는 이제 배경색 교차(bg-elev)로 구분됩니다.
+          어두운 띠(히어로·인프라·푸터)와 밝은 본문을 번갈아 둡니다. 로고
+          워드마크가 흰색이라 헤더·푸터는 어두워야 하고, 그 대비가 섹션 경계
+          역할도 합니다.
+
+          서비스 분류(`servicesData.cat`)와 18개 상세 페이지는 그대로입니다.
         */}
-        <HomeHero />
-        <PillarSection />
+        <HeroBand />
         <GuardBand />
+        <SecurityGrid />
+        <InfraBand />
+        <IndustriesSection />
         <ProcessSection />
         <HomeCta />
       </main>

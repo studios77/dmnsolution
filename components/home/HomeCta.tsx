@@ -8,17 +8,18 @@ import Link from 'next/link'
  */
 export default function HomeCta() {
   return (
-    <section id="about" className="scroll-mt-20 border-t border-line bg-elev py-20 lg:py-24">
+    <section id="about" className="scroll-mt-20 border-t border-line py-20 lg:py-24">
       <div className="container-page">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
           <div>
             <h2 className="max-w-[26rem] text-[1.9rem] font-extrabold leading-[1.35] tracking-[-0.03em] text-fg sm:text-[2.25rem]">
-              어느 축이 필요한지부터 같이 정리하겠습니다
+              지금 무엇이 열려 있는지부터 봐 드립니다
             </h2>
             <p className="mt-5 max-w-[36rem] text-lead text-fg-muted">
-              지금 쓰는 구성만 알려 주시면 됩니다. 필요 없는 영역까지 묶어 제안하지
-              않습니다. 견적은 축별로 나눠 드리므로 무엇에 얼마가 드는지 그대로
-              보입니다.
+              쓰고 계신 구성만 알려 주시면 됩니다. 장비를 바꾸지 않아도 되는지,
+              무엇부터 막아야 하는지 먼저 정리해 드립니다. 필요 없는 영역까지 묶어
+              제안하지 않고, 견적은 영역별로 나눠 무엇에 얼마가 드는지 그대로
+              보이게 합니다.
             </p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4">

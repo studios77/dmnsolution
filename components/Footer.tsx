@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const links = [
-  ['서비스', '/#pillars'],
+  ['서비스', '/#security'],
   ['소개', '/#about'],
   ['문의', '/contact/'],
   // 전체 페이지 목록. 푸터에 두면 크롤러가 모든 상세 페이지를 발견하는
@@ -19,7 +19,7 @@ const companyInfo = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-line bg-elev">
+    <footer className="dark-band relative z-10 border-t border-line">
       <div className="container-page pb-10 pt-16">
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[200px_1fr_auto] md:gap-12">
           <div>

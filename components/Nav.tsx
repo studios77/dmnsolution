@@ -20,13 +20,15 @@ const TONES = {
     highlight: 'bg-accent-2/10 border-accent-2/30',
     badge: 'text-accent-2 bg-accent-2/15 border-accent-2/40',
   },
-  /* 밝은 배경 기준으로 내린 톤입니다. indigo-400(#818cf8)은 흰 바탕 위
-     대비가 2.9:1 이라 라벨 글자로 쓰면 AA(4.5)에 미달합니다. */
+  /* 헤더는 .dark-band 안이라 어두운 바탕 기준으로 고릅니다.
+     accent 계열은 토큰이라 구역에 따라 알아서 뒤집히지만 indigo 는 Tailwind
+     고정색이라 여기서 직접 정해야 합니다. indigo-600 은 어두운 바탕에서
+     대비 3.3:1 로 떨어집니다. */
   indigo: {
-    label: 'text-indigo-600',
-    bar: 'bg-indigo-500',
-    highlight: 'bg-indigo-500/10 border-indigo-500/30',
-    badge: 'text-indigo-700 bg-indigo-500/15 border-indigo-500/40',
+    label: 'text-indigo-300',
+    bar: 'bg-indigo-400',
+    highlight: 'bg-indigo-400/10 border-indigo-400/30',
+    badge: 'text-indigo-300 bg-indigo-400/15 border-indigo-400/40',
   },
   emerald: {
     label: 'text-accent',
@@ -183,7 +185,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="fixed inset-x-0 top-0 z-200 border-b border-line bg-canvas/85 backdrop-blur-xl">
+      <nav className="dark-band fixed inset-x-0 top-0 z-200 border-b border-line bg-canvas/90 backdrop-blur-xl">
         <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="/"
@@ -327,7 +329,7 @@ export default function Nav() {
                 </div>
                 <div className="flex gap-4 border-t border-line bg-canvas px-5 py-2.5">
                   <Link
-                    href="/#pillars"
+                    href="/#security"
                     onClick={() => setMenuOpen(false)}
                     className="font-mono text-meta tracking-[0.06em] text-accent hover:text-accent-2"
                   >
@@ -398,7 +400,9 @@ export default function Nav() {
       </nav>
 
       {mobileOpen && (
-        <div className="container-page fixed inset-x-0 top-16 z-199 max-h-[calc(100vh-64px)] overflow-y-auto border-b border-line bg-elev py-5 md:hidden">
+        // 드로어는 <nav> 밖이라 .dark-band 를 따로 붙입니다. 빠뜨리면 어두운
+        // 헤더 바로 밑에 흰 패널이 붙어 경계가 튑니다.
+        <div className="dark-band container-page fixed inset-x-0 top-16 z-199 max-h-[calc(100vh-64px)] overflow-y-auto border-b border-line bg-elev py-5 md:hidden">
           {serviceMenu.map(cat => {
             const tone = TONES[cat.tone]
             return (

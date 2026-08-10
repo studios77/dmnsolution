@@ -66,7 +66,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: '홈', item: `${SITE_ORIGIN}/` },
-          { '@type': 'ListItem', position: 2, name: s.cat, item: `${SITE_ORIGIN}/#pillars` },
+          { '@type': 'ListItem', position: 2, name: s.cat, item: `${SITE_ORIGIN}/#security` },
           { '@type': 'ListItem', position: 3, name: s.name, item: serviceCanonicalUrl(s.slug) },
         ],
       },
@@ -300,7 +300,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                 {s.cta}
               </Link>
               <Link
-                href="/#pillars"
+                href="/#security"
                 className="rounded border border-line-strong px-9 py-3.5 font-mono text-meta tracking-[0.06em] text-fg transition-colors hover:border-accent hover:text-accent"
               >
                 다른 서비스 보기
