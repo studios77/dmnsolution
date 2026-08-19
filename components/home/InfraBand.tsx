@@ -18,7 +18,7 @@ export default function InfraBand() {
               INFRASTRUCTURE · STREAMING
             </p>
             <h2 className="mt-4 max-w-[26rem] text-[1.85rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.15rem]">
-              IDC 서버 임대 · 코로케이션 · 라이브 스트리밍
+              AIDC · 서버 임대 · 서버/DB 이중화 · 라이브 스트리밍
               <span className="mt-2.5 block text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
                 인프라와 송출까지, 같은 팀이 운영합니다
               </span>

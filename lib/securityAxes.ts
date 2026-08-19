@@ -57,7 +57,7 @@ export const NON_SECURITY = [
     id: 'infra',
     label: 'IDC · 서버 인프라',
     catPrefix: 'IDC',
-    desc: '코로케이션과 서버 임대, GPU 전용 호스팅, 위탁운영과 이중화를 아우릅니다.',
+    desc: '코로케이션과 서버 임대, AIDC GPU 전용 호스팅, 위탁운영, 서버·DB 이중화와 장애 복구를 아우릅니다.',
     metrics: ['99.99% SLA', '30초 자동 페일오버', '24시간 장애 대응'],
   },
   {
