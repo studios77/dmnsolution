@@ -1,8 +1,35 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { getWeb3FormsKey } from '@/lib/web3formsKey'
 
 const SERVICES = ['IDC', 'AI', '보안', '스트리밍', '기타']
+
+/**
+ * 문의를 어디로 보낼지.
+ *
+ *   'server'    → `/api/contact` (Cloudflare Pages Function).
+ *                 키가 서버에만 있어 안전합니다. ZeptoMail·Resend·웹훅 중
+ *                 하나가 설정돼 있어야 동작합니다.
+ *   'web3forms' → 브라우저에서 Web3Forms 를 직접 호출합니다.
+ *
+ * **지금 'web3forms' 인 이유.** 이관하며 전달을 서버 경유로 바꿨는데,
+ * Web3Forms 무료 플랜은 서버에서 호출하면 403 으로 막습니다.
+ *
+ *   POST https://api.web3forms.com/submit → 403
+ *   "This method is not allowed. Use our API in client side or contact
+ *    support with server IP address (Pro plan is required)"
+ *
+ * 그래서 폼이 502 를 돌려주고 문의가 한 건도 전달되지 않았습니다. 무료 플랜을
+ * 쓰는 동안에는 브라우저에서 직접 부르는 것이 유일하게 동작하는 경로입니다.
+ *
+ * **서버 경로로 되돌리는 법**: Cloudflare Secret 에 `RESEND_API_KEY` 와
+ * `CONTACT_TO_EMAIL` 을 넣고(또는 Web3Forms Pro 결제) 이 값을 'server' 로
+ * 바꾸세요. 그때부터 접근 키가 브라우저 번들에서 사라집니다.
+ */
+const DELIVERY_MODE: 'server' | 'web3forms' = 'web3forms'
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 
 /** 입력 요소 공통 스타일. outline을 지우는 대신 focus 링을 남겨 키보드 접근성을 유지합니다. */
 const FIELD =
@@ -55,30 +82,70 @@ export default function ContactForm() {
     setSubmitStatus('idle')
 
     try {
-      // Cloudflare Pages Function이 웹훅으로 중계한다.
-      // 웹훅 URL은 서버 환경변수에만 있으므로 브라우저에 노출되지 않는다.
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      const outcome =
+        DELIVERY_MODE === 'server' ? await sendViaServer() : await sendViaWeb3Forms()
 
-      if (res.ok) {
+      if (outcome === 'success') {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', company: '', service: 'IDC', message: '' })
         generateCaptcha()
         return
       }
 
-      // 503 = 관리자가 웹훅을 아직 설정하지 않음. 접수된 것처럼 보이면 안 되므로
-      // 성공으로 처리하지 않고 대체 연락 수단을 안내한다.
-      setSubmitStatus(res.status === 503 ? 'unconfigured' : 'error')
+      // 접수되지 않은 문의를 접수된 것처럼 보이게 하지 않습니다. 실패는 실패로
+      // 알리고 이메일 주소를 함께 안내합니다.
+      setSubmitStatus(outcome)
     } catch (error) {
       console.warn('[ContactForm] 문의 전송 실패', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  /** Cloudflare Pages Function 경유. 전달 채널은 서버 환경변수에만 있습니다. */
+  async function sendViaServer(): Promise<'success' | 'error' | 'unconfigured'> {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+    if (res.ok) return 'success'
+    // 503 = 관리자가 전달 채널을 아직 설정하지 않음.
+    return res.status === 503 ? 'unconfigured' : 'error'
+  }
+
+  /** 브라우저에서 Web3Forms 직접 호출. 무료 플랜에서 동작하는 유일한 경로입니다. */
+  async function sendViaWeb3Forms(): Promise<'success' | 'error' | 'unconfigured'> {
+    const accessKey = getWeb3FormsKey()
+    // 키가 없으면 보낼 곳이 없습니다. 빌드 환경에 NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    // 가 빠진 경우이고, 조용히 실패시키는 대신 대체 수단을 안내합니다.
+    if (!accessKey) return 'unconfigured'
+
+    const res = await fetch(WEB3FORMS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: `[DMN솔루션] 문의 접수 — ${formData.service}`,
+        from_name: 'DMN솔루션 웹사이트',
+        // 답장 버튼이 문의자에게 바로 가도록 합니다.
+        replyto: formData.email,
+        이름: formData.name,
+        회사: formData.company || '(미기재)',
+        관심분야: formData.service,
+        이메일: formData.email,
+        문의내용: formData.message,
+        // 허니팟. 사람은 볼 수 없는 필드라 값이 차 있으면 봇입니다.
+        botcheck: '',
+      }),
+    })
+
+    if (!res.ok) return 'error'
+    // Web3Forms 는 200 을 주면서 본문에 success:false 를 담는 경우가 있습니다.
+    // 상태코드만 보면 실패를 성공으로 표시하게 됩니다.
+    const body = (await res.json().catch(() => null)) as { success?: boolean } | null
+    return body?.success ? 'success' : 'error'
   }
 
   return (
