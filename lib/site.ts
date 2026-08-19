@@ -3,22 +3,27 @@ export const SITE_NAME = 'DMN솔루션'
 /**
  * Production site origin (trailing slash 없음).
  *
- * **www 를 씁니다. 바꾸기 전에 아래를 읽으세요.**
+ * **www 가 정본입니다. apex(`dmns.co.kr`)로 되돌리지 마세요.**
  *
- * 예전에는 apex(`https://dmns.co.kr`)였는데, 그 호스트가 Cloudflare Pages 의
- * 커스텀 도메인으로 등록돼 있지 않아 인증서가 없었습니다. DNS 는 Cloudflare 를
- * 가리키지만 TLS 핸드셰이크에서 끊겨, 브라우저로도 크롤러로도 열리지 않았습니다.
+ * 2026-08-11 에 결정한 사항입니다. apex 는 열리지 않습니다 — 자체 네임서버
+ * (`ns.dmns.co.kr`)를 쓰는데 apex 에 Cloudflare IP 가 A 레코드로 직접 박혀
+ * 있어, 연결은 Cloudflare 엣지까지 가지만 그 호스트가 어느 프로젝트에도
+ * 등록돼 있지 않아 내줄 인증서가 없고 TLS 에서 끊깁니다.
  *
- * 그 상태로 sitemap.xml 의 21개 URL 과 모든 canonical, robots 의 Host·Sitemap 이
- * 전부 apex 를 가리키고 있었습니다. 검색엔진이 사이트맵을 받아도 그 안의 주소가
- * 하나도 열리지 않으니 색인될 수가 없었습니다. 이것이 검색에 잡히지 않던
- * 직접적인 원인입니다.
+ * apex 를 Pages 에 붙이려면 존을 Cloudflare 네임서버로 옮겨야 합니다. apex 는
+ * DNS 규격상 CNAME 을 쓸 수 없어 Cloudflare 가 존을 직접 관리하며 CNAME
+ * 플래트닝을 해줘야 하기 때문입니다. 자체 DNS 를 유지하기로 해서 apex 는
+ * 쓰지 않습니다.
  *
- * apex 를 쓰고 싶다면 순서가 있습니다:
- *   1. Cloudflare Pages → dmnsolution → Custom domains 에 `dmns.co.kr` 추가
+ * 예전에는 이 값이 apex 였고, 그 탓에 sitemap.xml 의 21개 URL 과 모든
+ * canonical, robots 의 Host·Sitemap 이 전부 열리지 않는 주소를 가리켰습니다.
+ * 검색엔진이 사이트맵을 받아도 안의 주소가 하나도 열리지 않으니 색인될 수
+ * 없었습니다. 값만 바꾸면 그 상태로 되돌아갑니다.
+ *
+ * 나중에 apex 를 살리게 되면 순서를 지키세요:
+ *   1. 네임서버 이전(또는 자사 서버에서 apex 를 직접 서빙하고 www 로 301)
  *   2. `https://dmns.co.kr/` 이 200 으로 열리는지 확인
- *   3. 그 뒤에 이 값을 바꾸고, www → apex 301 리다이렉트를 걸어 한쪽으로 모음
- * 확인 없이 값만 되돌리면 색인이 다시 통째로 끊깁니다.
+ *   3. 그 뒤에 이 값을 바꾸고, 한쪽으로 301 을 걸어 주소를 하나로 모음
  */
 export const SITE_ORIGIN = 'https://www.dmns.co.kr'
 

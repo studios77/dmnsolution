@@ -52,33 +52,50 @@ c462bb8  중간 섹션 교체(보안 관제·클라우드 보안) + 헤더 배�
 
 우선순위 순입니다. 1~2번을 하지 않으면 **검색에 계속 안 잡힙니다.**
 
-### 3-1. 네이버 서치어드바이저 등록 — 가장 급함
+### 3-1. 네이버 서치어드바이저 — `www` 로 다시 등록 (가장 급함)
 
-1. <https://searchadvisor.naver.com> → 사이트 등록에 `https://www.dmns.co.kr` 입력
-2. 소유확인 방식에서 **HTML 태그** 선택 → 표시되는 코드 복사
-3. 그 코드를 `lib/site.ts` 의 `SITE_VERIFICATION.naver` 에 넣고 배포
-4. 서치어드바이저로 돌아와 소유확인
-5. **요청 → 사이트맵 제출 → `https://www.dmns.co.kr/sitemap.xml`**
+소유확인 파일은 이미 적용해 두었습니다.
 
-5번을 빠뜨리지 마세요. 네이버는 사이트맵을 직접 제출하지 않으면 사실상 수집하지 않습니다.
+```
+public/naverca6bca8171f8548a5beb02755b723cad.html
+→ https://www.dmns.co.kr/naverca6bca8171f8548a5beb02755b723cad.html
+```
+
+**기존 등록이 apex(`dmns.co.kr`)로 되어 있는데, 그 주소로는 인증 파일도 사이트맵도 열리지 않습니다.** 그래서 등록은 살아 있어도 수집이 0 이었습니다.
+
+1. <https://searchadvisor.naver.com> → 사이트 등록에 **`https://www.dmns.co.kr`** 입력
+2. 소유확인 (파일은 이미 올라가 있으므로 바로 통과합니다)
+3. **요청 → 사이트맵 제출 → `https://www.dmns.co.kr/sitemap.xml`**
+4. 기존 apex 등록은 지워도 됩니다
+
+3번을 빠뜨리지 마세요. 네이버는 사이트맵을 직접 제출하지 않으면 사실상 수집하지 않습니다. 요청 → 웹 페이지 수집에 홈 주소를 한 번 넣어보면 크롤링이 실제로 도는지 바로 확인됩니다.
+
+> 인증 파일은 내용이 한 줄뿐이고 확장자만 `.html` 이라 얼핏 쓰레기 파일로 보입니다. **지우면 재검증에서 미인증으로 떨어져 수집이 멈춥니다.** `public/_redirects` 의 규칙도 이 파일을 위한 것이라 함께 유지해야 합니다 — Pages 가 `.html` 을 떼고 308 로 보내는 기본 동작 때문에, 등록한 경로에서 바로 200 이 나오도록 재작성해 둔 것입니다.
 
 ### 3-2. 구글 서치콘솔 등록
 
 <https://search.google.com/search-console> 에서 `www.dmns.co.kr` 등록 → 소유확인 → 사이트맵 제출. DNS TXT 로 인증하면 `SITE_VERIFICATION.google` 은 비워 둡니다(메타태그와 DNS 를 함께 쓰면 중복입니다).
 
-### 3-3. apex 도메인 `dmns.co.kr` 살리기
+### 3-3. apex 도메인 `dmns.co.kr` — 쓰지 않기로 결정 (2026-08-11)
 
-지금 이 주소는 **열리지 않습니다.** DNS 는 Cloudflare 를 가리키지만 Pages 커스텀 도메인에 등록돼 있지 않아 인증서가 없고 TLS 에서 끊깁니다. 검색 문제 이전에, 명함·메일에 적힌 짧은 주소를 사람이 못 여는 문제입니다.
+**정본 주소는 `www.dmns.co.kr` 입니다.** apex 는 열리지 않으며, 살리지 않기로 했습니다.
 
-Cloudflare Pages → dmnsolution → **Custom domains** 에서 `dmns.co.kr` 추가.
+이유는 DNS 구조입니다. 자체 네임서버(`ns.dmns.co.kr`, 112.175.51.198)를 쓰는데, apex 를 Cloudflare Pages 에 붙이려면 존을 Cloudflare 네임서버로 옮겨야 합니다 — apex 는 DNS 규격상 CNAME 을 쓸 수 없어, Cloudflare 가 존을 직접 관리하며 CNAME 플래트닝을 해줘야 하기 때문입니다. 자체 DNS 운영을 유지하는 쪽을 택했습니다.
 
-추가한 뒤 apex 를 정본 주소로 삼고 싶다면 **순서를 지켜야 합니다**:
+```
+ns.dmns.co.kr                                    자체 네임서버
+www.dmns.co.kr → CNAME → dmnsolution.pages.dev   정상
+dmns.co.kr     → A     → 172.66.x.x (Cloudflare) TLS 실패
+```
 
-1. `https://dmns.co.kr/` 이 200 으로 열리는지 확인
-2. 그다음 `lib/site.ts` 의 `SITE_ORIGIN` 을 apex 로 변경
-3. www → apex 301 리다이렉트로 한쪽에 모음
+**apex 의 A 레코드 두 개는 자체 DNS 에서 지우는 편이 낫습니다.** Cloudflare IP 를 직접 가리켜 열리지 않는 주소를 만들고 있고, Cloudflare 가 그 IP 를 계속 보장하지도 않습니다.
 
-확인 없이 값만 되돌리면 사이트맵 21개 URL 과 모든 canonical 이 다시 열리지 않는 주소를 가리켜, 색인이 통째로 끊깁니다. 실제로 그 상태였습니다.
+나중에 마음이 바뀌면 두 가지 길이 있습니다.
+
+- **네임서버를 Cloudflare 로 이전** — 공식 지원 경로. 기존 레코드는 가져올 수 있습니다.
+- **자사 서버에서 apex 를 직접 서빙** — A 레코드를 자사 서버로 돌리고 거기서 www 로 301. 인증서는 Let's Encrypt. 자체 DNS 를 유지할 수 있습니다.
+
+어느 쪽이든 **순서를 지키세요**: apex 가 200 으로 열리는 것을 먼저 확인하고, 그다음 `lib/site.ts` 의 `SITE_ORIGIN` 을 바꿉니다. 확인 없이 값만 되돌리면 사이트맵 21개 URL 과 모든 canonical 이 열리지 않는 주소를 가리켜 색인이 통째로 끊깁니다. 실제로 그 상태였습니다.
 
 ### 3-4. 노출된 Web3Forms 키 정리
 

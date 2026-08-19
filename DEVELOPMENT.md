@@ -1,7 +1,7 @@
 # DMN솔루션 — 개발 내역 및 프로젝트 구조
 
 Next.js(App Router) 기반의 DMN솔루션 랜딩·서비스 소개 사이트입니다.  
-배포·도메인은 `lib/site.ts`의 `SITE_ORIGIN`(https://dmns.co.kr) 및 `layout.tsx`의 `metadataBase`와 일치합니다.
+배포·도메인은 `lib/site.ts`의 `SITE_ORIGIN`(https://www.dmns.co.kr) 및 `layout.tsx`의 `metadataBase`와 일치합니다.
 
 ---
 
@@ -26,7 +26,7 @@ Next.js(App Router) 기반의 DMN솔루션 랜딩·서비스 소개 사이트입
 dmnsolution/
 ├── app/
 │   ├── globals.css          # 글로벌 스타일
-│   ├── layout.tsx           # 루트 레이아웃, 메타데이터·metadataBase(dmns.co.kr)
+│   ├── layout.tsx           # 루트 레이아웃, 메타데이터·metadataBase(www.dmns.co.kr)
 │   ├── page.tsx             # 메인(홈)
 │   ├── robots.ts            # 크롤러 규칙
 │   ├── sitemap.ts           # 사이트맵
@@ -112,17 +112,31 @@ dmnsolution/
 검색에 잡히지 않던 원인은 SEO 설정이 아니라 **주소**였다.
 
 - **모든 URL 이 열리지 않는 호스트를 가리키고 있었다.** `SITE_ORIGIN` 이 apex(`https://dmns.co.kr`)였는데 그 호스트는 Cloudflare Pages 커스텀 도메인에 등록돼 있지 않아 인증서가 없고 TLS 핸드셰이크에서 끊긴다. 그 상태로 sitemap.xml 의 21개 URL, 모든 canonical, robots 의 `Host`·`Sitemap` 이 전부 apex 를 가리켰다. 검색엔진이 사이트맵을 받아도 안의 주소가 하나도 열리지 않으니 색인될 수 없었다. **실제로 서비스되는 `https://www.dmns.co.kr` 로 바꿨다.**
-  - apex 로 되돌리려면 순서가 있다: Cloudflare 에 커스텀 도메인 추가 → `https://dmns.co.kr/` 이 200 인지 확인 → 그다음 `SITE_ORIGIN` 변경 → www에서 301 리다이렉트. 확인 없이 값만 되돌리면 색인이 다시 끊긴다.
+  - **apex 는 쓰지 않기로 했다(2026-08-11 결정).** 자체 네임서버(`ns.dmns.co.kr`)를 유지하는데, apex 를 Cloudflare Pages 에 붙이려면 존을 Cloudflare 네임서버로 옮겨야 한다 — apex 는 DNS 규격상 CNAME 을 쓸 수 없어 Cloudflare 가 존을 직접 관리하며 CNAME 플래트닝을 해줘야 하기 때문이다. 자체 DNS 를 유지하는 쪽을 택했으므로 www 가 정본이다.
+  - 나중에 apex 를 살린다면 순서를 지킨다: 네임서버 이전(또는 자사 서버에서 apex 를 직접 서빙하고 www 로 301) → `https://dmns.co.kr/` 이 200 인지 확인 → 그다음 `SITE_ORIGIN` 변경. 확인 없이 값만 되돌리면 색인이 다시 끊긴다.
+  - 참고: apex 에 아직 Cloudflare IP(`172.66.45.11`, `172.66.46.245`)가 A 레코드로 박혀 있다. 열리지 않는 주소를 만들 뿐이고 Cloudflare 가 그 IP 를 보장하지도 않으므로 자체 DNS 에서 정리하는 편이 낫다.
 - **제목에 검색어가 없었다.** 메인 재설계 때 h1·h2 를 전부 슬로건으로 바꿔, 검색엔진이 가장 무겁게 보는 자리에 정작 사람들이 검색하는 말이 하나도 없었다. 슬로건은 부제로 내리고 제목에 주제어를 넣었다.
   - h1: "방화벽부터 관제까지" → "**차세대 방화벽**부터 **AI 보안 관제**까지"
   - h2: 제품명·슬로건만 있던 자리에 `차세대 방화벽 NGFW·WAF`, `네트워크·클라우드·AI 데이터 보안`, `AI 보안 관제 · 24시간 무인 SOC`, `클라우드 보안 진단 · CSPM/CWPP`, `IDC 서버 임대 · 코로케이션 · 라이브 스트리밍` 을 넣었다.
 - **`CONTENT_LAST_MODIFIED`** 를 2026-08-11 로 올렸다. 콘텐츠가 크게 바뀌었는데 8일자로 남아 있었다.
 
-**아직 사람이 해야 하는 일 (이것 없이는 특히 네이버에서 색인이 거의 안 된다):**
+**네이버 소유확인 — HTML 파일 방식으로 적용했다.**
 
-1. **네이버 서치어드바이저** — <https://searchadvisor.naver.com> 에서 `www.dmns.co.kr` 등록 → HTML 태그 방식 선택 → 발급된 코드를 `lib/site.ts` 의 `SITE_VERIFICATION.naver` 에 넣고 배포 → 소유확인 → **요청 탭에서 `https://www.dmns.co.kr/sitemap.xml` 제출**. 네이버는 사이트맵을 직접 제출하지 않으면 사실상 수집하지 않는다.
-2. **구글 서치콘솔** — <https://search.google.com/search-console> 에서 등록 → 소유확인(HTML 태그면 `SITE_VERIFICATION.google`, DNS TXT 면 비워 둠) → 사이트맵 제출.
-3. **apex 도메인** — `dmns.co.kr` 은 여전히 열리지 않는다. SEO 이전에 명함·메일에 적힌 짧은 주소를 사람이 못 여는 문제다.
+받은 파일이 `searchadvisor/` 에 있었는데 그 위치는 배포되지 않는다. 정적 내보내기는 `public/` 안의 파일만 루트로 복사한다.
+
+```
+public/naverca6bca8171f8548a5beb02755b723cad.html
+→ https://www.dmns.co.kr/naverca6bca8171f8548a5beb02755b723cad.html
+```
+
+여기에 함정이 하나 더 있었다. **Pages 는 기본적으로 `.html` 확장자를 떼고 308 로 보낸다.** 내용은 결국 나오지만 검증 요청이 리다이렉트를 따라가지 않으면 미인증으로 떨어지므로, `public/_redirects` 에 200 재작성 규칙을 넣어 확장자가 붙은 경로에서 바로 200 이 나오게 했다.
+
+`SITE_VERIFICATION.naver` 는 계속 비워 둔다 — 파일 방식과 메타태그 방식은 코드 값이 달라, 파일명의 코드를 메타태그에 옮겨 적으면 검증되지 않는 태그가 나간다.
+
+**아직 사람이 해야 하는 일:**
+
+1. **네이버 서치어드바이저에 `www.dmns.co.kr` 등록.** 기존 등록이 apex(`dmns.co.kr`)로 되어 있는데 그 주소로는 인증 파일도 사이트맵도 열리지 않는다. www 로 새로 등록 → 소유확인 → **요청 탭에서 `https://www.dmns.co.kr/sitemap.xml` 제출**. 네이버는 사이트맵을 직접 제출하지 않으면 사실상 수집하지 않는다.
+2. **구글 서치콘솔** — <https://search.google.com/search-console> 에서 `www.dmns.co.kr` 등록 → 소유확인(HTML 태그면 `SITE_VERIFICATION.google`, DNS TXT 면 비워 둠) → 사이트맵 제출.
 
 ### 2026-08-10 (월) — AI 보안 전문기업 구성으로 메인 재편, 로고 가시성 수정
 
