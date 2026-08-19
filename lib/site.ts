@@ -47,7 +47,7 @@ export const SITE_VERIFICATION = {
   /**
    * **비워 두는 것이 맞습니다. 네이버는 HTML 파일 방식으로 인증했습니다.**
    *
-   *   public/naverca6bca8171f8548a5beb02755b723cad.html
+   *   public/naver0a178f992d62cb9949c885e1ccf80a6c.html
    *
    * 이 파일이 사이트 루트에서 그대로 열려야 인증이 유지됩니다. `public/` 안의
    * 파일만 정적 내보내기 루트로 복사되므로 다른 폴더로 옮기지 마세요.

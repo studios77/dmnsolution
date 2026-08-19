@@ -125,8 +125,8 @@ dmnsolution/
 받은 파일이 `searchadvisor/` 에 있었는데 그 위치는 배포되지 않는다. 정적 내보내기는 `public/` 안의 파일만 루트로 복사한다.
 
 ```
-public/naverca6bca8171f8548a5beb02755b723cad.html
-→ https://www.dmns.co.kr/naverca6bca8171f8548a5beb02755b723cad.html
+public/naver0a178f992d62cb9949c885e1ccf80a6c.html
+→ https://www.dmns.co.kr/naver0a178f992d62cb9949c885e1ccf80a6c.html
 ```
 
 여기에 함정이 하나 더 있었다. **Pages 는 기본적으로 `.html` 확장자를 떼고 308 로 보낸다.** 내용은 결국 나오지만 검증 요청이 리다이렉트를 따라가지 않으면 미인증으로 떨어지므로, `public/_redirects` 에 200 재작성 규칙을 넣어 확장자가 붙은 경로에서 바로 200 이 나오게 했다.
