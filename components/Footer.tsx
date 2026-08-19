@@ -14,7 +14,7 @@ const companyInfo = [
   { label: '사업자등록번호', value: '209-81-37743' },
   { label: '주소', value: '서울시 영등포구 영중로 140 5F' },
   { label: '전화', value: '0505-299-7623' },
-  { label: '이메일', value: 'studios77@gmail.com' },
+  { label: '이메일', value: 'dmnsolution251@gmail.com' },
 ]
 
 export default function Footer() {

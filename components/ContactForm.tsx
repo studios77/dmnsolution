@@ -93,10 +93,10 @@ export default function ContactForm() {
             상세한 제안서 요청, 기술 검토서 전달 등 문의사항을 남겨주시면 검토 후 24시간 이내에 회신해 드립니다.
             <br />
             <a
-              href="mailto:studios77@gmail.com"
+              href="mailto:dmnsolution251@gmail.com"
               className="mt-2 inline-block rounded-md border border-line bg-elev px-2 py-1 text-body font-semibold text-accent-2 transition-colors hover:border-accent-2"
             >
-              studios77@gmail.com
+              dmnsolution251@gmail.com
             </a>
           </p>
         </div>
@@ -209,8 +209,8 @@ export default function ContactForm() {
         {submitStatus === 'error' && (
           <div className="rounded-lg bg-danger/10 p-3 text-body text-danger">
             문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주시고, 계속 실패하면{' '}
-            <a href="mailto:studios77@gmail.com" className="font-semibold underline">
-              studios77@gmail.com
+            <a href="mailto:dmnsolution251@gmail.com" className="font-semibold underline">
+              dmnsolution251@gmail.com
             </a>
             로 직접 보내주세요.
           </div>
@@ -219,8 +219,8 @@ export default function ContactForm() {
         {submitStatus === 'unconfigured' && (
           <div className="rounded-lg bg-warn/10 p-3 text-body text-warn">
             현재 온라인 접수가 준비 중입니다. 번거로우시겠지만{' '}
-            <a href="mailto:studios77@gmail.com" className="font-semibold underline">
-              studios77@gmail.com
+            <a href="mailto:dmnsolution251@gmail.com" className="font-semibold underline">
+              dmnsolution251@gmail.com
             </a>
             로 보내주시면 동일하게 처리해 드립니다.
           </div>

@@ -52,7 +52,7 @@ export default function Home() {
             '@type': 'ContactPoint',
             contactType: 'sales',
             telephone: '+82-505-299-7623',
-            email: 'studios77@gmail.com',
+            email: 'dmnsolution251@gmail.com',
             areaServed: 'KR',
             availableLanguage: ['ko', 'en'],
           },

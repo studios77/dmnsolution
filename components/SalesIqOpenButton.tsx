@@ -59,8 +59,8 @@ export default function SalesIqOpenButton() {
       {state === 'failed' && (
         <p className="mt-3 break-keep text-body text-warn">
           채팅창을 열지 못했습니다. 광고 차단 확장 프로그램이 켜져 있을 수 있습니다.{' '}
-          <a href="mailto:studios77@gmail.com" className="font-semibold underline">
-            studios77@gmail.com
+          <a href="mailto:dmnsolution251@gmail.com" className="font-semibold underline">
+            dmnsolution251@gmail.com
           </a>
           로 보내주셔도 동일하게 처리해 드립니다.
         </p>

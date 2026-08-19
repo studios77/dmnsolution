@@ -36,7 +36,7 @@ interface Env {
   ZEPTOMAIL_HOST?: string
   /** Resend API 키. ZeptoMail 대신 쓸 경우. https://resend.com */
   RESEND_API_KEY?: string
-  /** 문의를 받을 주소. 예: studios77@gmail.com */
+  /** 문의를 받을 주소. 예: dmnsolution251@gmail.com */
   CONTACT_TO_EMAIL?: string
   /** 발신 주소. 발송 서비스에서 인증한 도메인이어야 합니다. */
   CONTACT_FROM_EMAIL?: string

@@ -29,7 +29,7 @@ export default function HomeCta() {
               </div>
               <div>
                 <dt className="font-mono text-label tracking-[0.08em] text-fg-subtle">이메일</dt>
-                <dd className="mt-1 text-body font-semibold text-fg">studios77@gmail.com</dd>
+                <dd className="mt-1 text-body font-semibold text-fg">dmnsolution251@gmail.com</dd>
               </div>
             </dl>
           </div>
