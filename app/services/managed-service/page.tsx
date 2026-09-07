@@ -7,7 +7,7 @@ const s = findServiceBySlug('managed-service')!
 
 export const metadata: Metadata = serviceMetadata({
   slug: 'managed-service',
-  title: '서버 위탁운영 및 매니지드 서비스 (MSP) | DMN솔루션',
+  title: '서버 위탁운영 및 매니지드 서비스 (MSP) | 디엠엔솔루션',
   description: 'OS 보안 패치부터 24시간 모니터링, 장애 대응까지 서버 운영의 모든 것을 위탁 관리해 드립니다.',
   keywords: ['서버 위탁운영', '매니지드 서비스', '보안 패치', '장애 대응', '서버 관리'],
 })

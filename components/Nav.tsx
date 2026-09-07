@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { SITE_NAME, SITE_NAME_KO } from '@/lib/site'
 
 type ServiceMenuLink = {
   name: string
@@ -204,10 +205,13 @@ export default function Nav() {
           className="flex shrink-0 items-center gap-2 text-[1.2rem] font-extrabold tracking-[-0.02em] text-fg"
         >
           {/* 로고 이미지에 워드마크가 포함돼 있어 옆 텍스트 없이 단독으로 씁니다.
-              정적 내보내기라 next/image 최적화가 없어 일반 img 를 씁니다. */}
+              정적 내보내기라 next/image 최적화가 없어 일반 img 를 씁니다.
+
+              워드마크가 로마자뿐이라 alt 에 한글 표기를 함께 둡니다 — 이 페이지
+              최상단에서 회사명이 텍스트로 읽히는 유일한 자리입니다. */}
           <img
             src="/logo-dmn.png"
-            alt="DMN솔루션"
+            alt={`${SITE_NAME_KO}(${SITE_NAME})`}
             width={300}
             height={110}
             className="h-9 w-auto shrink-0"

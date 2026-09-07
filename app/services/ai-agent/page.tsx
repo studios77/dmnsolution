@@ -7,7 +7,7 @@ const s = findServiceBySlug('ai-agent')!
 
 export const metadata: Metadata = serviceMetadata({
   slug: 'ai-agent',
-  title: 'AI 자율 보안 관제 에이전트 솔루션 | DMN솔루션',
+  title: 'AI 자율 보안 관제 에이전트 솔루션 | 디엠엔솔루션',
   description: 'LLM 기반 SOC 자동화 에이전트로 24시간 365일 무인 자율 관제와 침해 사고 자동 대응을 실현합니다.',
   keywords: ['보안 관제', '자율 관제', 'AI SOC', 'SOAR 자동화', '위협 탐지'],
 })

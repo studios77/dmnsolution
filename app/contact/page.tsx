@@ -3,14 +3,14 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
 import SalesIqOpenButton from '@/components/SalesIqOpenButton'
-import { SALESIQ, SITE_NAME } from '@/lib/site'
+import { SALESIQ, SITE_NAME_KO } from '@/lib/site'
 import { pageMetadata } from '@/lib/seo'
 
 // canonical·openGraph 를 헬퍼가 함께 만듭니다. 예전에는 canonical 만 있어
 // 공유 시 홈 카드가 떴습니다.
 export const metadata: Metadata = pageMetadata({
   path: '/contact/',
-  title: `무료 상담 | ${SITE_NAME}`,
+  title: `무료 상담 | ${SITE_NAME_KO}`,
   description: 'AI 보안 도입 상담, 인프라 구축 견적, 긴급 장애 대응 문의를 받습니다.',
   keywords: ['보안 상담', 'NGFW 도입 문의', 'AI 보안 견적', 'IDC 문의'],
 })

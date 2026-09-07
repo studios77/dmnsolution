@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SITE_LEGAL_NAME, SITE_NAME, SITE_NAME_KO } from '@/lib/site'
 
 const links = [
   ['서비스', '/#security'],
@@ -10,7 +11,7 @@ const links = [
 ]
 
 const companyInfo = [
-  { label: '회사명', value: '(주)디엠엔솔루션' },
+  { label: '회사명', value: `${SITE_LEGAL_NAME} (${SITE_NAME})` },
   { label: '사업자등록번호', value: '209-81-37743' },
   { label: '주소', value: '서울시 영등포구 영중로 140 5F' },
   { label: '전화', value: '0505-299-7623' },
@@ -24,15 +25,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[200px_1fr_auto] md:gap-12">
           <div>
             <div className="mb-3 leading-none">
+              {/* 워드마크가 로마자라 alt 에 한글 표기를 함께 둡니다. 로고
+                  이미지만으로는 회사명이 텍스트로 읽히지 않습니다. */}
               <img
                 src="/logo-dmn.png"
-                alt="DMN솔루션"
+                alt={`${SITE_NAME_KO}(${SITE_NAME})`}
                 width={300}
                 height={110}
                 className="h-12 w-auto max-w-full object-contain object-left"
               />
             </div>
             <div className="font-mono text-meta tracking-[0.08em] text-fg-muted">
+              {SITE_NAME_KO}
+              <br />
               IDC · AI 보안 · 스트리밍
               <br />
               인프라 전문 기업
@@ -71,7 +76,7 @@ export default function Footer() {
 
         <div className="mt-12 flex justify-center border-t border-line/70 pt-6">
           <span className="font-mono text-meta tracking-[0.06em] text-fg-subtle">
-            © 2026 DMN솔루션. All rights reserved.
+            © 2026 {SITE_LEGAL_NAME} ({SITE_NAME}). All rights reserved.
           </span>
         </div>
       </div>

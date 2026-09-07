@@ -1,5 +1,11 @@
 import Nav from '@/components/Nav'
-import { SITE_NAME, SITE_ORIGIN } from '@/lib/site'
+import {
+  SITE_ALTERNATE_NAMES,
+  SITE_LEGAL_NAME,
+  SITE_NAME,
+  SITE_NAME_KO,
+  SITE_ORIGIN,
+} from '@/lib/site'
 import { SEO_DEFAULT_DESCRIPTION } from '@/lib/seo'
 import HeroBand from '@/components/home/HeroBand'
 import GuardBand from '@/components/home/GuardBand'
@@ -21,6 +27,7 @@ export default function Home() {
         '@id': `${site}/#website`,
         url: site,
         name: SITE_NAME,
+        alternateName: SITE_ALTERNATE_NAMES,
         inLanguage: 'ko-KR',
         description: SEO_DEFAULT_DESCRIPTION,
         publisher: { '@id': `${site}/#organization` },
@@ -29,8 +36,11 @@ export default function Home() {
         '@type': 'Organization',
         '@id': `${site}/#organization`,
         name: SITE_NAME,
+        // 같은 회사의 다른 표기들. 검색엔진이 "디엠엔솔루션" 과 "DMN솔루션" 을
+        // 한 회사로 묶는 근거가 되는 자리입니다. 목록은 lib/site 에 있습니다.
+        alternateName: SITE_ALTERNATE_NAMES,
         // 사업자등록상 법인명. 브랜드명과 달라 함께 싣습니다.
-        legalName: '(주)디엠엔솔루션',
+        legalName: SITE_LEGAL_NAME,
         url: site,
         description: SEO_DEFAULT_DESCRIPTION,
         logo: {

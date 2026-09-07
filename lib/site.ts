@@ -1,6 +1,43 @@
 export const SITE_NAME = 'DMN솔루션'
 
 /**
+ * 한글로 풀어 쓴 회사명.
+ *
+ * **검색창에는 이 표기로 칩니다.** 2026-09-07 에 확인한 문제입니다 — 사이트
+ * 전체가 `DMN솔루션` 으로만 적혀 있어서 "디엠엔솔루션" 으로 검색하면 새 사이트가
+ * 나오지 않았습니다. 검색엔진은 `DMN` 과 `디엠엔` 을 같은 말로 묶어 주지
+ * 않습니다. 로마자를 한글 음차로 바꾸는 것은 사람이 하는 일이지 형태소 분석기가
+ * 하는 일이 아닙니다.
+ *
+ * 그때 검색 결과에 뜨던 것은 리브랜딩 전 옛 사이트였고, 그 제목이
+ * "스트리밍솔루션 | 디엠엔솔루션 – ..." 이라 이 표기를 갖고 있었습니다. 즉
+ * 예전에는 잡히던 검색어를 리브랜딩하면서 잃은 것입니다.
+ *
+ * 그래서 제목·설명·JSON-LD·푸터에 이 표기를 함께 싣습니다. **어느 한 곳이라도
+ * 지우면 브랜드 검색이 다시 약해집니다.** 화면에 두 이름이 겹쳐 보이는 것은
+ * 중복이 아니라 의도한 것입니다.
+ */
+export const SITE_NAME_KO = '디엠엔솔루션'
+
+/** 사업자등록상 법인명. 푸터 표기와 JSON-LD `legalName` 이 같은 값을 봅니다. */
+export const SITE_LEGAL_NAME = '(주)디엠엔솔루션'
+
+/**
+ * JSON-LD `alternateName` 에 싣는 같은 회사의 다른 표기들.
+ *
+ * 검색엔진에 "이 이름들은 전부 한 회사" 라고 알려 주는 자리입니다. 띄어쓴 형태를
+ * 함께 두는 이유는 SEO_KEYWORDS 의 "서버이중화"/"서버 이중화" 와 같습니다.
+ */
+export const SITE_ALTERNATE_NAMES: string[] = [
+  '디엠엔솔루션',
+  '디엠엔 솔루션',
+  'DMN솔루션',
+  'DMN 솔루션',
+  'DMN Solution',
+  'DMNSolution',
+]
+
+/**
  * Production site origin (trailing slash 없음).
  *
  * **www 가 정본입니다. apex(`dmns.co.kr`)로 되돌리지 마세요.**
@@ -122,7 +159,7 @@ export const SALESIQ: SalesIqConfig = {
  * 특정 페이지만 갱신됐다면 아래 `STATIC_PAGES.lastModified` 나
  * `ServiceData.updated` 로 그 페이지만 덮어쓰면 됩니다.
  */
-export const CONTENT_LAST_MODIFIED = '2026-08-11'
+export const CONTENT_LAST_MODIFIED = '2026-09-07'
 
 export type StaticPage = {
   path: string

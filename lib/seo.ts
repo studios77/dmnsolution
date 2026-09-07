@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE_NAME, SITE_ORIGIN, serviceCanonicalUrl } from './site'
+import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './site'
 
 /**
  * 브라우저 탭과 검색 결과에 뜨는 기본 제목·설명.
@@ -23,8 +23,16 @@ import { SITE_NAME, SITE_ORIGIN, serviceCanonicalUrl } from './site'
  *   /services/db-cluster/                무중단 DB 이중화 및 매니지먼트 서비스
  *   /services/system-recovery-migration/ 서버 장애 복구 및 시스템 클라우드 이전
  *   /services/aidc/                      최신 GPU 호스팅 및 AI 전용 IDC (AIDC)
+ *
+ * **두 이름을 나란히 두는 것은 의도한 것입니다.** 2026-09-07 이전에는 앞자리가
+ * `DMN솔루션` 뿐이라 정작 회사 이름인 "디엠엔솔루션" 으로 검색해도 잡히지
+ * 않았습니다. 자세한 사연은 `SITE_NAME_KO` 주석에 적어 두었습니다.
+ *
+ * 그 자리를 만드느라 `AIDC` 를 뺐습니다 — 45자를 지키려면 하나는 빠져야 했고,
+ * AIDC 는 위에 적힌 대로 `/services/aidc/` 가 제목으로 정확히 갖고 있어서
+ * 잃는 것이 가장 적습니다. 설명문과 키워드에는 그대로 남아 있습니다.
  */
-export const SEO_DEFAULT_TITLE = `${SITE_NAME} | AI 보안 관제 · 차세대 방화벽 · AIDC · 서버 이중화`
+export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO}(${SITE_NAME}) | AI 보안 관제 · 차세대 방화벽 · 서버 이중화`
 
 /**
  * 검색 결과에 그대로 표시되는 설명문입니다.
@@ -34,9 +42,12 @@ export const SEO_DEFAULT_TITLE = `${SITE_NAME} | AI 보안 관제 · 차세대 �
  * 의 회사 소개로도 쓰이므로 낱말 나열이 아니라 문장으로 둡니다.
  *
  * 한글 기준 100자 안쪽으로 유지하세요. 넘으면 검색 결과에서 잘립니다.
+ *
+ * 회사명으로 시작합니다. 브랜드 검색의 스니펫이기도 하고, 이 문장이 JSON-LD 의
+ * 회사 소개로도 쓰여 "디엠엔솔루션" 표기를 한 번 더 싣는 자리가 됩니다.
  */
 export const SEO_DEFAULT_DESCRIPTION =
-  'AIDC GPU 호스팅, 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
+  '디엠엔솔루션(DMN솔루션)은 AIDC GPU 호스팅, 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
 
 /**
  * 검색어. 실제 제공 서비스 순서대로 둡니다 — 보안 → 인프라 → 스트리밍.
@@ -122,7 +133,18 @@ export const SEO_KEYWORDS: string[] = [
   'VOD',
 
   // 브랜드
+  //
+  // 한글 음차를 맨 앞에 둡니다 — 사람들이 실제로 검색창에 치는 표기입니다.
+  // 로마자 표기만 두었다가 브랜드 검색을 통째로 놓쳤습니다(SITE_NAME_KO 참고).
+  '디엠엔솔루션',
+  '디엠엔 솔루션',
+  '주식회사 디엠엔솔루션',
+  '(주)디엠엔솔루션',
   'DMN솔루션',
+  'DMN 솔루션',
+  'DMN Solution',
+  'DMNSolution',
+  'DMN',
   'dmns.co.kr',
 ]
 
