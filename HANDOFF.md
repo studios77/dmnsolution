@@ -3,7 +3,7 @@
 작업 이력은 `DEVELOPMENT.md` 의 일일 기록에, 코드 규칙은 `CLAUDE.md` 에 있습니다.
 이 문서는 **지금 사이트가 어떤 상태이고, 다음에 무엇을 해야 하는가** 만 다룹니다.
 
-최종 갱신: 2026-10-05 (GitHub `main` = `c2786eb` 기준)
+최종 갱신: 2026-10-05 (GitHub `main` = `874a3a6` 기준)
 
 ---
 
@@ -15,18 +15,51 @@
 | 미리보기 | https://dmnsolution.pages.dev |
 | 저장소 | `studios77/dmnsolution` (main 푸시 → Cloudflare 자동 빌드) |
 | 호스팅 | Cloudflare Pages 프로젝트 `dmnsolution` |
-| 마지막 커밋 | `c2786eb` (2026-09-07) |
-| 페이지 수 | 26 (홈 · 문의 · 사이트맵 · 서비스 18 · 기타) |
+| 마지막 커밋 | `874a3a6` (2026-10-05) |
+| 페이지 수 | 26 (홈 · 문의 · 사이트맵 · 서비스 18 · 기타). 노출 서비스는 17 — DMN Guard 는 비노출 |
+| 사이트맵 | `sitemap.xml` 20개 URL (DMN Guard 제외) |
+| 홈 주력 | **AIDC GPU 전용 호스팅** (2 참고) |
 | 빌드 | `npm run build` 성공, 정적 내보내기(`out/`) |
+| 푸시 전 빌드 훅 | 이 PC 에 `core.hooksPath=.githooks` 설정 완료 (2026-10-05) |
 | 문의 폼 | 브라우저 직접 전송으로 복구 (3-0 참고) |
-| 회사명 표기 | `DMN솔루션` + 한글 `디엠엔솔루션` 병기 (2 참고) |
-| 콘텐츠 기준일 | `CONTENT_LAST_MODIFIED = '2026-09-07'` |
+| 회사명 표기 | `DMN솔루션` + 한글 `디엠엔솔루션` 병기, 푸터는 `(주)디엠엔솔루션` 만 (2-1 참고) |
+| 콘텐츠 기준일 | `CONTENT_LAST_MODIFIED = '2026-10-05'` |
 
 작업 트리는 깨끗하고, 모든 변경은 푸시·배포된 상태입니다.
 
 ---
 
-## 2. 최근 작업 (2026-08-19 ~ 09-07)
+## 2. 최근 작업 — 홈 주력을 AIDC GPU 호스팅으로 전환, DMN Guard 판매 중단 (2026-10-05)
+
+```
+874a3a6  DMN Guard·NGFW 를 홈과 검색엔진에서 내리고 하단 회사명을 법인명으로 통일
+a3562e9  홈 히어로와 두 번째 띠를 AIDC GPU 호스팅 상품으로 교체
+d4b3a4d  (GuardBand 삭제만 들어간 불완전 커밋 — a3562e9 가 바로 보완. Cloudflare 에서 이 빌드는 실패로 보일 수 있음)
+94dce50  서비스 메뉴에서 DMN Guard 를 빼고 히어로 배지·버튼을 AIDC 로
+593ebee  인계 노트 갱신
+```
+
+**홈 구성** — 히어로(AIDC) → AIDC 소개 띠 → 보안 4축 → 보안 관제 → 클라우드 보안 → 인프라·스트리밍 → 문의.
+
+- `components/home/HeroBand.tsx` — 제목 "GPU 전용 호스팅으로 AI 학습·추론을 바로 시작합니다". 오른쪽 카드는 RTX 5090 베어메탈 사양 6줄과 월 가격입니다. **사양·가격은 `servicesData` 의 aidc(`comparison`, `coloPricing`)에서 읽으므로** 가격을 바꿀 때는 `lib/servicesData.ts` 만 고치면 홈과 상세 페이지가 함께 바뀝니다.
+- `components/home/AidcBand.tsx` — 예전 DMN Guard 띠(`GuardBand.tsx`, 삭제됨 — git 기록에 있음) 자리. 제목·설명·가격은 `servicesData` 에서, 사양 4칸(`POINTS`)만 컴포넌트에 직접 적혀 있습니다.
+- `public/images/aidc-gpu-rack.svg` — 사이트 색으로 직접 그린 GPU 랙 일러스트(실사 아님). 실제 사진이나 Claude Design 등에서 만든 이미지로 바꾸려면 이 파일만 교체하면 됩니다.
+
+**DMN Guard · NGFW 판매 중단 처리** — 상세 페이지 파일(`app/services/dmn-guard/`)은 남기고 사이트 어디에서도 보이지 않게 했습니다.
+
+- 비노출 목록은 `lib/servicesData.ts` 의 **`UNLISTED_SLUGS`** 한 곳입니다. 사이트맵(xml·페이지), 홈 보안 카드, 상세 페이지 하단 "관련 서비스" 가 모두 `listedServices` 를 씁니다
+- 서비스 메뉴(`components/Nav.tsx`)는 목록이 직접 적혀 있어 따로 뺐습니다
+- 상세 페이지에는 `noindex, nofollow` 를 걸었습니다. robots.txt 로 막지 않은 것은 의도입니다 — 막으면 크롤러가 noindex 를 못 봐 이미 색인된 주소가 안 빠집니다
+- 홈 제목 `… | GPU 호스팅 · AI 보안 관제 · 서버 이중화`(예전 "차세대 방화벽" 자리), 검색 키워드·OG alt·JSON-LD·문의 페이지 키워드에서 DMN Guard·NGFW·차세대 방화벽을 모두 뺐습니다
+- 빌드 결과 기준, dmn-guard 페이지 자신을 빼면 이 세 낱말이 나오는 페이지는 0 입니다
+
+> **다시 팔려면** `UNLISTED_SLUGS` 에서 빼고 `Nav.tsx` 메뉴 항목을 되살리고, dmn-guard `page.tsx` 의 `robots` 를 지우세요. 홈 띠가 필요하면 git 기록에서 `GuardBand.tsx` 를 가져옵니다.
+
+**하단 회사명** — 푸터 회사명 칸과 저작권 줄을 `(주)디엠엔솔루션 (DMN솔루션)` → `(주)디엠엔솔루션` 으로 바꿨습니다. 검색용 병기(`SITE_ALTERNATE_NAMES`, 홈 제목·설명, 로고 alt)는 그대로입니다.
+
+---
+
+## 2-1. 문의 폼 복구 · 한글 회사명 (2026-08-19 ~ 09-07)
 
 ```
 c2786eb  회사명 한글 표기를 검색되도록 사이트 전반에 싣는다   (09-07)
@@ -48,7 +81,9 @@ b2dc910  인계 노트에 문의 폼 장애를 최상단 항목으로 올림    
 
 ---
 
-## 2-1. 이관·리브랜딩 (2026-08-10 ~ 08-11)
+## 2-2. 이관·리브랜딩 (2026-08-10 ~ 08-11)
+
+> 아래 "메인페이지" 구성(NGFW 앞세움)은 2026-10-05 에 AIDC 중심으로 바뀌었습니다(2 참고).
 
 `lunarflux-site` 소스를 가져와 DMN솔루션 사이트로 바꾸고, 테마와 메인페이지를 새로 짠 뒤 검색 노출 문제를 고쳤습니다.
 
@@ -124,6 +159,13 @@ public/naver0a178f992d62cb9949c885e1ccf80a6c.html
 
 <https://search.google.com/search-console> 에서 `www.dmns.co.kr` 등록 → 소유확인 → 사이트맵 제출. DNS TXT 로 인증하면 `SITE_VERIFICATION.google` 은 비워 둡니다(메타태그와 DNS 를 함께 쓰면 중복입니다).
 
+### 3-2-1. 검색 결과에서 DMN Guard 빨리 빼기 (2026-10-05 추가)
+
+noindex 는 크롤러가 다시 방문해야 반영돼 며칠~몇 주 걸립니다. 앞당기려면 3-1·3-2 등록을 마친 뒤:
+
+- **네이버 서치어드바이저** → 요청 → 웹 페이지 수집에 홈 주소 제출(새 제목 반영), 콘텐츠 → 검색 노출 제한(또는 웹문서 삭제 요청)에 `https://www.dmns.co.kr/services/dmn-guard/`
+- **구글 서치콘솔** → URL 검사로 홈 색인 생성 요청, 삭제 → 새 요청에 `https://www.dmns.co.kr/services/dmn-guard/`
+
 ### 3-3. apex 도메인 `dmns.co.kr` — 쓰지 않기로 결정 (2026-08-11)
 
 **정본 주소는 `www.dmns.co.kr` 입니다.** apex 는 열리지 않으며, 살리지 않기로 했습니다.
@@ -143,7 +185,7 @@ dmns.co.kr     → A     → 172.66.x.x (Cloudflare) TLS 실패
 - **네임서버를 Cloudflare 로 이전** — 공식 지원 경로. 기존 레코드는 가져올 수 있습니다.
 - **자사 서버에서 apex 를 직접 서빙** — A 레코드를 자사 서버로 돌리고 거기서 www 로 301. 인증서는 Let's Encrypt. 자체 DNS 를 유지할 수 있습니다.
 
-어느 쪽이든 **순서를 지키세요**: apex 가 200 으로 열리는 것을 먼저 확인하고, 그다음 `lib/site.ts` 의 `SITE_ORIGIN` 을 바꿉니다. 확인 없이 값만 되돌리면 사이트맵 21개 URL 과 모든 canonical 이 열리지 않는 주소를 가리켜 색인이 통째로 끊깁니다. 실제로 그 상태였습니다.
+어느 쪽이든 **순서를 지키세요**: apex 가 200 으로 열리는 것을 먼저 확인하고, 그다음 `lib/site.ts` 의 `SITE_ORIGIN` 을 바꿉니다. 확인 없이 값만 되돌리면 사이트맵 20개 URL 과 모든 canonical 이 열리지 않는 주소를 가리켜 색인이 통째로 끊깁니다. 실제로 그 상태였습니다.
 
 ### 3-4. Web3Forms 수신 주소 확인
 
@@ -170,6 +212,10 @@ dmns.co.kr     → A     → 172.66.x.x (Cloudflare) TLS 실패
 **`.dark-band` 는 `@layer base` 안에 있어야 합니다.** 레이어 밖에 두면 Tailwind 의 `@layer utilities` 를 이겨서, 유틸리티로 배경을 덮어쓸 수 없습니다.
 
 **홈에 서비스 이름을 복사해 두지 마세요.** 보안 4축은 `lib/securityAxes.ts` 가 `servicesData` 의 `cat` 으로 묶습니다. 서비스를 추가하면 홈이 자동으로 따라옵니다.
+
+**서비스 목록을 새로 그릴 때는 `servicesData` 가 아니라 `listedServices` 를 쓰세요.** `servicesData` 에는 판매를 내린 서비스(`UNLISTED_SLUGS`)도 들어 있어, 그대로 쓰면 숨긴 DMN Guard 가 다시 노출됩니다. 단, 서비스 메뉴(`Nav.tsx`)는 목록이 직접 적혀 있어 이 규칙을 따르지 않습니다.
+
+**`git add` 에 이미 지운 파일 경로를 섞지 마세요.** 경로 하나가 없으면 명령 전체가 실패해, 미리 스테이징된 삭제만 커밋됩니다(`d4b3a4d` 가 그렇게 나갔습니다). 푸시 전 빌드 훅은 커밋이 아니라 작업 폴더를 빌드하므로 이런 불완전 커밋을 잡지 못합니다. 커밋 직후 `git status` 로 남은 변경이 없는지 확인하세요.
 
 **문의 폼은 `npm run dev` 로 확인되지 않습니다.** Next 개발 서버는 `/api/contact` 를 서빙하지 않습니다. `npm run build && npx wrangler pages dev out` 을 쓰세요.
 
