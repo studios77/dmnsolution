@@ -264,6 +264,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                     >
                       {[
                         { label: '네트워크', value: plan.network },
+                        ...(plan.term ? [{ label: '약정 기간', value: plan.term }] : []),
                         { label: '냉각·보안', value: '포함' },
                         { label: 'IPMI 원격관리', value: '포함' },
                       ].map(item => (

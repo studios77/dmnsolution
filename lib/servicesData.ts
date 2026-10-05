@@ -4,6 +4,8 @@ export type ColoPlan = {
   network: string
   price: string
   note?: string
+  /** 최소 약정 기간 (예: '6개월 약정'). 있으면 홈 카드와 상세 요금표에 함께 표시됩니다. */
+  term?: string
   popular?: boolean
 }
 
@@ -112,8 +114,9 @@ export const servicesData: ServiceData[] = [
         name: 'RTX 5090 베어메탈', 
         size: '단독 서버 (4U)', 
         network: '1Gbps Dedicated (Max 30Mbps)', 
-        price: '770,000원', 
-        note: '월 기준 / 부가세 별도',
+        price: '500,000원',
+        note: '월 기준 / 부가세 별도 / 6개월 약정',
+        term: '6개월 약정',
         popular: true 
       },
     ],

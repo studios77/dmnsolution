@@ -87,7 +87,7 @@ export default function HeroBand() {
 
           {plan && (
             <div className="flex flex-wrap items-end justify-between gap-2 border-t border-line px-5 py-4">
-              <p className="text-label text-fg-subtle">{plan.size} · 월 임대</p>
+              <p className="text-label text-fg-subtle">{plan.size} · 월 임대{plan.term ? ` · ${plan.term}` : ''}</p>
               <p className="font-mono text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-accent">
                 월 {plan.price}
                 <span className="ml-1.5 font-sans text-label font-normal text-fg-subtle">부가세 별도</span>

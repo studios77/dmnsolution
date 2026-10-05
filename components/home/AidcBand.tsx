@@ -54,7 +54,7 @@ export default function AidcBand() {
               {plan && (
                 <p className="text-meta text-fg-muted">
                   {plan.name} <strong className="text-body font-bold text-accent">월 {plan.price}~</strong>
-                  <span className="ml-1 text-fg-subtle">(부가세 별도)</span>
+                  <span className="ml-1 text-fg-subtle">(부가세 별도{plan.term ? ` · ${plan.term}` : ''})</span>
                 </p>
               )}
             </div>
