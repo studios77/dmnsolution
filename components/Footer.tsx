@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SITE_LEGAL_NAME, SITE_NAME, SITE_NAME_KO } from '@/lib/site'
+import { SITE_LEGAL_NAME, SITE_NAME_KO } from '@/lib/site'
 
 const links = [
   ['서비스', '/#security'],
@@ -29,7 +29,7 @@ export default function Footer() {
                   이미지만으로는 회사명이 텍스트로 읽히지 않습니다. */}
               <img
                 src="/logo-dmn.png"
-                alt={`${SITE_NAME_KO}(${SITE_NAME})`}
+                alt={SITE_NAME_KO}
                 width={300}
                 height={110}
                 className="h-12 w-auto max-w-full object-contain object-left"

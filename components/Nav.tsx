@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { SITE_NAME, SITE_NAME_KO } from '@/lib/site'
+import { SITE_NAME_KO } from '@/lib/site'
 
 type ServiceMenuLink = {
   name: string
@@ -210,7 +210,7 @@ export default function Nav() {
               최상단에서 회사명이 텍스트로 읽히는 유일한 자리입니다. */}
           <img
             src="/logo-dmn.png"
-            alt={`${SITE_NAME_KO}(${SITE_NAME})`}
+            alt={SITE_NAME_KO}
             width={300}
             height={110}
             className="h-9 w-auto shrink-0"

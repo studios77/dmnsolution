@@ -124,7 +124,7 @@ async function sendWeb3Forms(env: Env, values: Field[], replyTo: string): Promis
       ...Object.fromEntries(values.map(v => [v.label, v.value || '—'])),
       access_key: key,
       subject: compose(values).subject,
-      from_name: 'DMN솔루션 사이트',
+      from_name: '디엠엔솔루션 사이트',
       // 답장하면 문의자에게 바로 가도록.
       ...(replyTo ? { replyto: replyTo } : {}),
     }),
@@ -153,7 +153,7 @@ async function sendZeptoMail(env: Env, values: Field[], replyTo: string): Promis
 
   const token = raw.startsWith('Zoho-enczapikey') ? raw : `Zoho-enczapikey ${raw}`
   const host = env.ZEPTOMAIL_HOST?.trim() || 'api.zeptomail.com'
-  const from = splitAddress(env.CONTACT_FROM_EMAIL?.trim() || 'DMN솔루션 <noreply@dmns.co.kr>')
+  const from = splitAddress(env.CONTACT_FROM_EMAIL?.trim() || '디엠엔솔루션 <noreply@dmns.co.kr>')
   const mail = compose(values)
 
   const res = await fetch(`https://${host}/v1.1/email`, {
@@ -179,7 +179,7 @@ async function sendResend(env: Env, values: Field[], replyTo: string): Promise<b
   const to = env.CONTACT_TO_EMAIL?.trim()
   if (!key || !to) return false
 
-  const from = env.CONTACT_FROM_EMAIL?.trim() || 'DMN솔루션 <noreply@dmns.co.kr>'
+  const from = env.CONTACT_FROM_EMAIL?.trim() || '디엠엔솔루션 <noreply@dmns.co.kr>'
   const mail = compose(values)
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -212,7 +212,7 @@ async function sendWebhook(env: Env, values: Field[]): Promise<boolean> {
     webhook.includes('discordapp.com/api/webhooks')
   ) {
     body = JSON.stringify({
-      username: 'DMN솔루션 사이트',
+      username: '디엠엔솔루션 사이트',
       embeds: [
         {
           title: TITLE,

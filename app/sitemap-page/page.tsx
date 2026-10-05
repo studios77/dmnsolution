@@ -23,8 +23,8 @@ export const metadata: Metadata = pageMetadata({
   path: '/sitemap-page/',
   title: `사이트맵 | ${SITE_NAME}`,
   description:
-    'DMN솔루션 전체 페이지 목록. 네트워크·클라우드·AI 데이터 보안과 보안 운영, IDC 인프라, 스트리밍 서비스를 한눈에 확인하세요.',
-  keywords: ['사이트맵', 'DMN솔루션 서비스', '전체 서비스 목록'],
+    '디엠엔솔루션 전체 페이지 목록. 네트워크·클라우드·AI 데이터 보안과 보안 운영, IDC 인프라, 스트리밍 서비스를 한눈에 확인하세요.',
+  keywords: ['사이트맵', '디엠엔솔루션 서비스', '전체 서비스 목록'],
 })
 
 /** 노출 순서 = 배열 순서. 보안을 앞에, 스트리밍을 뒤에 둡니다. */
@@ -62,7 +62,7 @@ const GROUPS: { label: string; prefix: string; desc: string }[] = [
 ]
 
 const GENERAL = [
-  { href: '/', label: '홈', desc: 'AI 보안 전문 기업 DMN솔루션' },
+  { href: '/', label: '홈', desc: 'AI 보안 전문 기업 디엠엔솔루션' },
   { href: '/contact/', label: '무료 상담 · 문의', desc: '도입 상담, 견적, 긴급 장애 대응 접수' },
 ]
 

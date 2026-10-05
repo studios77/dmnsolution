@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SITE_NAME, SITE_NAME_KO } from '@/lib/site'
+import { SITE_NAME_KO } from '@/lib/site'
 
 /**
  * 마무리 CTA.
@@ -22,7 +22,7 @@ export default function HomeCta() {
               검색에서는 본문에 그 이름이 있는지가 홈의 순위를 가릅니다.
             */}
             <p className="mt-5 max-w-[36rem] text-lead text-fg-muted">
-              {SITE_NAME_KO}({SITE_NAME})은 운영 중인 구성만 알려 주시면 됩니다. 장비
+              {SITE_NAME_KO}은 운영 중인 구성만 알려 주시면 됩니다. 장비
               교체가 필요한 사안인지, 어느 지점부터 조치해야 하는지 먼저 정리해
               드립니다. 불필요한 영역을 묶어 제안하지 않으며, 견적은 영역별로 구분해
               산정 근거가 그대로 드러나도록 제시합니다.

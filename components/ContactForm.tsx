@@ -127,8 +127,8 @@ export default function ContactForm() {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         access_key: accessKey,
-        subject: `[DMN솔루션] 문의 접수 — ${formData.service}`,
-        from_name: 'DMN솔루션 웹사이트',
+        subject: `[디엠엔솔루션] 문의 접수 — ${formData.service}`,
+        from_name: '디엠엔솔루션 웹사이트',
         // 답장 버튼이 문의자에게 바로 가도록 합니다.
         replyto: formData.email,
         이름: formData.name,
@@ -193,7 +193,7 @@ export default function ContactForm() {
               value={formData.company}
               onChange={handleChange}
               className={FIELD}
-              placeholder="(주)루나플럭스"
+              placeholder="회사명 기입"
             />
           </div>
         </div>

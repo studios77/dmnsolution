@@ -6,7 +6,7 @@ interface Message {
   text: string
 }
 
-const BOT_NAME = 'DMN솔루션 어시스턴트'
+const BOT_NAME = '디엠엔솔루션 어시스턴트'
 
 const QUICK_REPLIES = [
   'IDC 서버 임대 문의',
@@ -20,7 +20,7 @@ function getBotResponse(input: string): string {
   const q = input.toLowerCase()
 
   if (q.includes('idc') || q.includes('서버 임대') || q.includes('서버임대') || q.includes('위탁')) {
-    return 'DMN솔루션 IDC 서버 임대·위탁운영 서비스는 국내 주요 IDC에 위치한 고사양 서버를 합리적인 비용으로 제공합니다.\n\n✔ 전용 서버 / 코로케이션\n✔ 24/7 모니터링 및 운영 대행\n✔ 유연한 계약 기간 (월 단위)\n\n자세한 견적은 하단 [문의하기]를 통해 문의해 주세요.'
+    return '디엠엔솔루션 IDC 서버 임대·위탁운영 서비스는 국내 주요 IDC에 위치한 고사양 서버를 합리적인 비용으로 제공합니다.\n\n✔ 전용 서버 / 코로케이션\n✔ 24/7 모니터링 및 운영 대행\n✔ 유연한 계약 기간 (월 단위)\n\n자세한 견적은 하단 [문의하기]를 통해 문의해 주세요.'
   }
 
   if (
@@ -33,11 +33,11 @@ function getBotResponse(input: string): string {
     q.includes('서버 장애') ||
     (q.includes('장애') && (q.includes('복구') || q.includes('대응')))
   ) {
-    return 'DMN솔루션 IDC에 두신 서버가 아니어도, 외부 고객이 운영 중인 온프레미스·VM·클라우드 인스턴스에 대해 기술지원이 가능합니다. 서비스가 필요한 고객이 요청하면 착수합니다.\n\n✔ 장애 복구·데이터 복원\n✔ 시스템·DB 이전 및 컷오버\n✔ 성능·네트워크 트러블슈팅\n✔ 원격 우선, 필요 시 현장 방문\n\n상세: [서비스] → IDC/서버 → 서버 장애 복구 및 이전\n자세한 견적은 [문의하기]로 문의해 주세요.'
+    return '디엠엔솔루션 IDC에 두신 서버가 아니어도, 외부 고객이 운영 중인 온프레미스·VM·클라우드 인스턴스에 대해 기술지원이 가능합니다. 서비스가 필요한 고객이 요청하면 착수합니다.\n\n✔ 장애 복구·데이터 복원\n✔ 시스템·DB 이전 및 컷오버\n✔ 성능·네트워크 트러블슈팅\n✔ 원격 우선, 필요 시 현장 방문\n\n상세: [서비스] → IDC/서버 → 서버 장애 복구 및 이전\n자세한 견적은 [문의하기]로 문의해 주세요.'
   }
 
   if (q.includes('스트리밍') || q.includes('ultrastream') || q.includes('라이브') || q.includes('vod')) {
-    return 'DMN솔루션 Ultrastream 엔진 기반 스트리밍 솔루션을 제공합니다.\n\n✔ 초저지연 라이브 스트리밍\n✔ VOD 멀티스트림 동시 배포\n✔ 4K·8K 고화질 지원\n✔ CDN 연동 및 글로벌 배포\n\n플랫폼 데모 및 가격 문의는 [문의하기] 섹션을 이용해 주세요.'
+    return '디엠엔솔루션 Ultrastream 엔진 기반 스트리밍 솔루션을 제공합니다.\n\n✔ 초저지연 라이브 스트리밍\n✔ VOD 멀티스트림 동시 배포\n✔ 4K·8K 고화질 지원\n✔ CDN 연동 및 글로벌 배포\n\n플랫폼 데모 및 가격 문의는 [문의하기] 섹션을 이용해 주세요.'
   }
 
   if (q.includes('ai 보안') || q.includes('보안') || q.includes('딥페이크') || q.includes('네트워크 보안')) {
@@ -61,11 +61,11 @@ function getBotResponse(input: string): string {
   }
 
   if (q.includes('안녕') || q.includes('hello') || q.includes('hi') || q.includes('반가')) {
-    return '안녕하세요! DMN솔루션 어시스턴트입니다. 😊\n\nIDC 서버, 스트리밍, AI 보안, 백업/DR 등 다양한 서비스를 제공하고 있습니다. 궁금하신 점을 편하게 물어보세요!'
+    return '안녕하세요! 디엠엔솔루션 어시스턴트입니다. 😊\n\nIDC 서버, 스트리밍, AI 보안, 백업/DR 등 다양한 서비스를 제공하고 있습니다. 궁금하신 점을 편하게 물어보세요!'
   }
 
-  if (q.includes('소개') || q.includes('회사') || q.includes('dmnsolution') || q.includes('dmns.co.kr') || q.includes('dmn솔루션')) {
-    return 'DMN솔루션은 IDC·서버, AI 보안, 라이브 스트리밍을 각각 독립된 서비스로 제공하는 기술 인프라 파트너입니다. 세 분야는 별도 견적·계약이 가능합니다.\n\n🌙 사업 분야 (각각 다른 상품)\n✔ IDC — 서버 임대·코로케이션·위탁운영·HA·복구\n✔ AI 보안 — 관제, 딥페이크·이상탐지, 네트워크 보안 등\n✔ 스트리밍 — Ultrastream(LL-HLS), VOD·멀티 송출\n\n필요한 분야만 선택하거나, 여러 라인을 동시에 문의하실 수 있습니다.'
+  if (q.includes('소개') || q.includes('회사') || q.includes('dmnsolution') || q.includes('dmns.co.kr') || q.includes('dmn솔루션') || q.includes('디엠엔')) {
+    return '디엠엔솔루션은 IDC·서버, AI 보안, 라이브 스트리밍을 각각 독립된 서비스로 제공하는 기술 인프라 파트너입니다. 세 분야는 별도 견적·계약이 가능합니다.\n\n🌙 사업 분야 (각각 다른 상품)\n✔ IDC — 서버 임대·코로케이션·위탁운영·HA·복구\n✔ AI 보안 — 관제, 딥페이크·이상탐지, 네트워크 보안 등\n✔ 스트리밍 — Ultrastream(LL-HLS), VOD·멀티 송출\n\n필요한 분야만 선택하거나, 여러 라인을 동시에 문의하실 수 있습니다.'
   }
 
   return '죄송합니다, 정확한 답변을 드리기 어렵습니다. 😅\n\n아래 항목 중 궁금하신 내용을 선택하시거나, [문의하기] 섹션을 통해 직접 문의해 주시면 전문 담당자가 빠르게 안내해 드리겠습니다.\n\n• IDC 서버 임대 / 코로케이션\n• 서버 장애 복구 및 이전 (외부 운영 서버)\n• 스트리밍 솔루션\n• AI 보안 서비스\n• 백업/DR 솔루션\n• 요금 및 상담'
@@ -74,7 +74,7 @@ function getBotResponse(input: string): string {
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: '안녕하세요! DMN솔루션 어시스턴트입니다.\nIDC·스트리밍·AI 보안 등 궁금한 점을 적어 주시거나, 아래 버튼을 눌러 주세요.' },
+    { role: 'bot', text: '안녕하세요! 디엠엔솔루션 어시스턴트입니다.\nIDC·스트리밍·AI 보안 등 궁금한 점을 적어 주시거나, 아래 버튼을 눌러 주세요.' },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)

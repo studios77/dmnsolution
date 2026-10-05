@@ -25,15 +25,14 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  *   /services/system-recovery-migration/ 서버 장애 복구 및 시스템 클라우드 이전
  *   /services/aidc/                      최신 GPU 호스팅 및 AI 전용 IDC (AIDC)
  *
- * **두 이름을 나란히 두는 것은 의도한 것입니다.** 2026-09-07 이전에는 앞자리가
+ * **앞자리는 한글 회사명 `디엠엔솔루션` 하나입니다.** 2026-09-07 이전에는
  * `DMN솔루션` 뿐이라 정작 회사 이름인 "디엠엔솔루션" 으로 검색해도 잡히지
- * 않았습니다. 자세한 사연은 `SITE_NAME_KO` 주석에 적어 두었습니다.
- *
- * 그 자리를 만드느라 `AIDC` 를 뺐습니다 — 45자를 지키려면 하나는 빠져야 했고,
- * AIDC 는 위에 적힌 대로 `/services/aidc/` 가 제목으로 정확히 갖고 있어서
- * 잃는 것이 가장 적습니다. 설명문과 키워드에는 그대로 남아 있습니다.
+ * 않았습니다(사연은 `SITE_NAME_KO` 주석). 한동안 `디엠엔솔루션(DMN솔루션)` 으로
+ * 병기했지만, 이 제목이 즐겨찾기 이름으로도 그대로 저장되어 2026-10-05 에
+ * 한글 표기만 남겼습니다. "DMN솔루션" 검색은 설명문·키워드·JSON-LD 의
+ * alternateName 이 받칩니다.
  */
-export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO}(${SITE_NAME}) | GPU 호스팅 · AI 보안 관제 · 서버 이중화`
+export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO} | GPU 호스팅 · AI 보안 관제 · 서버 이중화`
 
 /**
  * 검색 결과에 그대로 표시되는 설명문입니다.
@@ -48,7 +47,7 @@ export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO}(${SITE_NAME}) | GPU 호스팅 
  * 회사 소개로도 쓰여 "디엠엔솔루션" 표기를 한 번 더 싣는 자리가 됩니다.
  */
 export const SEO_DEFAULT_DESCRIPTION =
-  '디엠엔솔루션(DMN솔루션)은 AIDC GPU 호스팅, 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
+  '디엠엔솔루션은 AIDC GPU 호스팅, 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
 
 /**
  * 검색어. 실제 제공 서비스 순서대로 둡니다 — 보안 → 인프라 → 스트리밍.

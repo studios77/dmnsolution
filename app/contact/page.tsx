@@ -74,15 +74,15 @@ export default function ContactPage() {
               <div>
                 <h3 className="mb-2 text-[1.25rem] font-bold">긴급 기술 지원</h3>
                 <p className="mb-3 break-keep text-body text-fg-muted">
-                  DMN솔루션 인프라 장애 발생 시나 긴급하게 대응이 필요한 사안은 즉각 연락 바랍니다.
+                  디엠엔솔루션 인프라 장애 발생 시나 긴급하게 대응이 필요한 사안은 즉각 연락 바랍니다.
                   <br />
                   (일반 비용 문의는 가급적 위 문의 폼을 이용해 주세요.)
                 </p>
                 <a
-                  href="tel:01032043847"
+                  href="tel:05052997623"
                   className="inline-block rounded-lg border border-line bg-elev px-4 py-2 text-[1.1rem] font-bold text-fg transition-colors hover:border-accent hover:text-accent"
                 >
-                  0505-683-2580
+                  0505-299-7623
                 </a>
                 <p className="mt-3 break-keep text-body text-fg-subtle">
                   * 운영 시간: 평일 10:00 - 19:00 (긴급 장애는 24시간)
