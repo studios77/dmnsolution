@@ -1,26 +1,20 @@
 import Link from 'next/link'
+import { findServiceBySlug } from '@/lib/servicesData'
 
 /**
  * 홈 히어로 — 어두운 띠.
  *
- * 보안 회사의 첫 화면이 답해야 하는 것은 "무엇을 막아 주는가" 입니다. 그래서
- * 세 사업 축을 나란히 늘어놓는 대신 보안을 앞세우고, 오른쪽에는 관제 화면을
- * 본뜬 패널을 둡니다. 실제 콘솔 캡처가 아니라 코드로 그린 재현입니다 —
- * 캡처는 고객사 IP·호스트명이 섞여 들어갈 위험이 있습니다.
+ * 2026-10 부터 첫 화면은 AIDC GPU 전용 호스팅을 앞세웁니다. 이전에는 차세대
+ * 방화벽·보안 관제를 앞세우고 오른쪽에 관제 화면 재현 패널을 두었습니다(git 기록 참고).
+ *
+ * 오른쪽 카드의 사양·가격은 `servicesData` 의 aidc 값을 그대로 씁니다. 상세 페이지와
+ * 숫자가 어긋나지 않도록 여기에 따로 적지 않습니다.
  */
-const SIGNALS = [
-  { t: '02:14:07', label: '차단', detail: 'SQL 인젝션 시도 · JA4+ 지문 불일치', tone: 'danger' },
-  { t: '02:13:52', label: '격리', detail: '자동화 봇 트래픽 · User-Agent 위조 판별', tone: 'warn' },
-  { t: '02:11:30', label: '허용', detail: '정상 세션 복원 · 오탐 자동 해제', tone: 'ok' },
-]
-
-const TONE_CHIP = {
-  danger: 'border-danger/40 bg-danger/10 text-danger',
-  warn: 'border-warn/40 bg-warn/10 text-warn',
-  ok: 'border-accent/40 bg-accent/10 text-accent',
-} as const
-
 export default function HeroBand() {
+  const aidc = findServiceBySlug('aidc')
+  const plan = aidc?.coloPricing?.[0]
+  const specs = aidc?.comparison?.items ?? []
+
   return (
     <section className="dark-band relative overflow-hidden">
       <div
@@ -40,24 +34,18 @@ export default function HeroBand() {
             AIDC GPU 전용 호스팅
           </p>
 
-          {/*
-            h1 에 주력 검색어를 담습니다.
-
-            한동안 "방화벽부터 관제까지, 직접 만들고 직접 운영합니다" 였습니다.
-            읽기는 좋았지만 검색엔진이 가장 무겁게 보는 자리에 정작 사람들이
-            검색하는 말("차세대 방화벽", "AI 보안 관제")이 하나도 없었습니다.
-            문장의 리듬은 두고 낱말만 정확한 것으로 바꿉니다.
-          */}
-          <h1 className="mt-7 text-[2rem] font-extrabold leading-[1.26] tracking-[-0.035em] text-fg sm:text-[2.6rem] lg:text-[3rem]">
-            차세대 방화벽부터 <span className="text-accent">AI 보안 관제</span>까지,
+          {/* h1 에 사람들이 검색하는 말("GPU 호스팅")을 담습니다. break-keep 으로
+              한국어 낱말이 중간에서 끊기지 않게 합니다. */}
+          <h1 className="mt-7 break-keep text-[2rem] font-extrabold leading-[1.26] tracking-[-0.035em] text-fg sm:text-[2.6rem] lg:text-[3rem]">
+            <span className="text-accent">GPU 전용 호스팅</span>으로
             <br />
-            직접 만들고 직접 운영합니다
+            AI 학습·추론을 바로 시작합니다
           </h1>
 
           <p className="mt-7 max-w-[35rem] text-lead text-fg-muted">
-            네트워크와 클라우드, AI 데이터 보안을 한 팀이 일관된 기준으로 다룹니다.
-            탐지에 머무르지 않고 차단까지 자사 장비가 수행하며, 분석은 온프레미스에서
-            완결되어 데이터가 외부로 반출되지 않습니다.
+            RTX 5090 베어메탈 단독 서버를 월 임대로 즉시 사용할 수 있습니다. 랙당 최대
+            40kW 초고전력과 GPU 전용 공조로 발열을 제어하고, 고객 장비 코로케이션과
+            10G/40G 네트워크 확장까지 AI 워크로드에 맞춰 구성합니다.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -71,57 +59,41 @@ export default function HeroBand() {
               href="/contact/"
               className="rounded-full border border-line-strong px-8 py-3.5 text-center text-body font-semibold text-fg transition-colors duration-200 hover:border-accent hover:text-accent"
             >
-              보안 진단 요청
+              GPU 호스팅 상담
             </Link>
           </div>
         </div>
 
-        {/* 관제 보드 재현 */}
+        {/* 대표 상품 사양 카드 */}
         <div className="rounded-2xl border border-line-strong bg-elev shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-          <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
+          <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
             <span className="font-mono text-label font-bold tracking-[0.12em] text-fg-subtle">
-              실시간 관제
+              {plan?.name ?? 'GPU 서버'}
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-2.5 py-1 font-mono text-label font-bold tracking-[0.1em] text-accent">
               <span className="inline-block size-1.5 animate-[pulseDot_1.6s_ease-in-out_infinite] rounded-full bg-accent" />
-              LIVE
+              즉시 사용
             </span>
           </div>
 
-          <ul className="list-none divide-y divide-line">
-            {SIGNALS.map(s => (
-              <li key={s.t} className="flex items-start gap-3 px-5 py-3.5">
-                <span className="mt-0.5 shrink-0 font-mono text-label text-fg-subtle">{s.t}</span>
-                <span
-                  className={`shrink-0 rounded border px-1.5 py-0.5 font-mono text-label font-bold ${
-                    TONE_CHIP[s.tone as keyof typeof TONE_CHIP]
-                  }`}
-                >
-                  {s.label}
-                </span>
-                <span className="min-w-0 flex-1 text-meta text-fg-muted">{s.detail}</span>
-              </li>
-            ))}
-          </ul>
-
-          <dl className="grid grid-cols-3 gap-px border-t border-line bg-line">
-            {[
-              { v: '51,977', l: 'IDS 시그니처' },
-              { v: '105', l: '자체 WAF 규칙' },
-              { v: '0', l: '외부 전송' },
-            ].map(m => (
-              <div key={m.l} className="flex flex-col-reverse bg-elev px-4 py-4">
-                <dt className="mt-1 text-label leading-snug text-fg-subtle">{m.l}</dt>
-                <dd className="font-mono text-[1.15rem] font-bold leading-tight tracking-[-0.02em] text-accent">
-                  {m.v}
-                </dd>
+          <dl className="divide-y divide-line">
+            {specs.map(s => (
+              <div key={s.label} className="grid grid-cols-[5.5rem_1fr] items-baseline gap-3 px-5 py-3">
+                <dt className="font-mono text-label font-bold tracking-[0.06em] text-fg-subtle">{s.label}</dt>
+                <dd className="text-meta text-fg-muted">{s.ours}</dd>
               </div>
             ))}
           </dl>
 
-          <p className="border-t border-line px-5 py-3 text-label text-fg-subtle">
-            표시된 항목은 동작 방식을 설명하기 위한 예시입니다.
-          </p>
+          {plan && (
+            <div className="flex flex-wrap items-end justify-between gap-2 border-t border-line px-5 py-4">
+              <p className="text-label text-fg-subtle">{plan.size} · 월 임대</p>
+              <p className="font-mono text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-accent">
+                월 {plan.price}
+                <span className="ml-1.5 font-sans text-label font-normal text-fg-subtle">부가세 별도</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

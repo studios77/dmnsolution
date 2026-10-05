@@ -8,7 +8,7 @@ import {
 } from '@/lib/site'
 import { SEO_DEFAULT_DESCRIPTION } from '@/lib/seo'
 import HeroBand from '@/components/home/HeroBand'
-import GuardBand from '@/components/home/GuardBand'
+import AidcBand from '@/components/home/AidcBand'
 import SecurityGrid from '@/components/home/SecurityGrid'
 import SocSection from '@/components/home/SocSection'
 import CloudSecuritySection from '@/components/home/CloudSecuritySection'
@@ -140,8 +140,12 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         {/*
-          홈 구성: 히어로 → NGFW → 보안 4축 → 보안 관제 → 클라우드 보안 →
+          홈 구성: 히어로 → AIDC GPU 호스팅 → 보안 4축 → 보안 관제 → 클라우드 보안 →
           인프라·스트리밍 → 문의.
+
+          2026-10 에 히어로 전체와 두 번째 띠를 DMN Guard(NGFW) 에서 AIDC GPU
+          호스팅으로 바꿨습니다. DMN Guard 는 메뉴에서도 빠졌고, 상세 페이지만 남아
+          있습니다. 예전 띠는 git 기록의 components/home/GuardBand.tsx 에 있습니다.
 
           보안을 앞세웁니다. 세 사업 축을 대등하게 늘어놓았더니 "무슨 회사인지"
           가 흐려졌고, 실제로 앞세울 것은 직접 만든 방화벽과 관제입니다. IDC 와
@@ -160,7 +164,7 @@ export default function Home() {
           서비스 분류(`servicesData.cat`)와 18개 상세 페이지는 그대로입니다.
         */}
         <HeroBand />
-        <GuardBand />
+        <AidcBand />
         <SecurityGrid />
         <SocSection />
         <CloudSecuritySection />

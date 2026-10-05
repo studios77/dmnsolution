@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-labelledby="t">
+  <title id="t">AIDC GPU 랙 — RTX 5090 서버 5대, 랙 전력 40kW, 냉·온 통로 분리 공조</title>
+  <defs>
+    <radialGradient id="glowL" cx="20%" cy="10%" r="70%">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="85%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rackGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 수평선은 높이가 0이라 objectBoundingBox 그라데이션이 그려지지 않습니다 -->
+    <linearGradient id="cold" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="236" y2="0">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="hot" gradientUnits="userSpaceOnUse" x1="484" y1="0" x2="580" y2="0">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="power" x1="0" x2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="util" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" x2="1">
+      <stop offset="0" stop-color="#3a4b70" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#3a4b70"/>
+      <stop offset="1" stop-color="#3a4b70" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
+    </pattern>
+
+    <g id="fan">
+      <circle r="20" fill="#0a1020" stroke="#3a4b70"/>
+      <circle r="13" fill="none" stroke="#263352" stroke-width="9" stroke-dasharray="6 4.2"/>
+      <circle r="4" fill="#3a4b70"/>
+    </g>
+    <g id="unit">
+      <rect width="188" height="66" rx="4" fill="#101a2e" stroke="#263352"/>
+      <use href="#fan" x="26" y="33"/>
+      <use href="#fan" x="72" y="33"/>
+      <text x="104" y="25" font-family="'JetBrains Mono',Consolas,monospace" font-size="10" font-weight="700" fill="#a3b3cc">RTX 5090</text>
+      <text x="104" y="39" font-family="'JetBrains Mono',Consolas,monospace" font-size="9" fill="#8b9db8">32GB · 4U</text>
+      <circle cx="108" cy="52" r="2.5" fill="#34d399"/>
+      <circle cx="117" cy="52" r="2.5" fill="#34d399"/>
+      <circle cx="126" cy="52" r="2.5" fill="#22d3ee"/>
+      <rect x="152" y="10" width="26" height="8" rx="1.5" fill="#172440" stroke="#263352"/>
+      <rect x="152" y="22" width="26" height="8" rx="1.5" fill="#172440" stroke="#263352"/>
+      <rect x="152" y="34" width="26" height="8" rx="1.5" fill="#172440" stroke="#263352"/>
+      <rect x="152" y="46" width="26" height="8" rx="1.5" fill="#172440" stroke="#263352"/>
+    </g>
+    <marker id="headC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M1 1L8 5L1 9" fill="none" stroke="#22d3ee" stroke-width="1.6"/>
+    </marker>
+    <marker id="headH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M1 1L8 5L1 9" fill="none" stroke="#fbbf24" stroke-opacity=".5" stroke-width="1.6"/>
+    </marker>
+  </defs>
+
+  <!-- 바탕 -->
+  <rect width="800" height="560" fill="#0a1020"/>
+  <rect width="800" height="560" fill="url(#grid)"/>
+  <rect width="800" height="560" fill="url(#glowL)"/>
+  <rect width="800" height="560" fill="url(#glowR)"/>
+  <ellipse cx="360" cy="290" rx="220" ry="260" fill="url(#rackGlow)"/>
+
+  <!-- 냉기 통로 -->
+  <g font-family="'JetBrains Mono',Consolas,monospace">
+    <text x="48" y="104" font-size="11" font-weight="700" letter-spacing="1.5" fill="#22d3ee">COLD AISLE</text>
+    <text x="48" y="122" font-size="11" fill="#8b9db8">22°C · 45%RH</text>
+  </g>
+  <g stroke="url(#cold)" stroke-width="2" stroke-dasharray="5 6" fill="none" marker-end="url(#headC)">
+    <path d="M60 160H236"/>
+    <path d="M90 236H236"/>
+    <path d="M60 312H236"/>
+    <path d="M90 388H236"/>
+    <path d="M60 452H236"/>
+  </g>
+
+  <!-- 배기 통로 -->
+  <g font-family="'JetBrains Mono',Consolas,monospace">
+    <text x="486" y="104" font-size="11" font-weight="700" letter-spacing="1.5" fill="#fbbf24" fill-opacity=".85">HOT AISLE</text>
+  </g>
+  <g stroke="url(#hot)" stroke-width="2" stroke-dasharray="5 6" fill="none" marker-end="url(#headH)">
+    <path d="M484 160H570"/>
+    <path d="M484 236H556"/>
+    <path d="M484 312H570"/>
+    <path d="M484 388H556"/>
+    <path d="M484 452H570"/>
+  </g>
+
+  <!-- 랙 -->
+  <rect x="250" y="60" width="220" height="450" rx="10" fill="#172440" stroke="#3a4b70" stroke-width="1.5"/>
+  <rect x="250" y="60" width="220" height="30" rx="10" fill="#101a2e"/>
+  <rect x="250" y="80" width="220" height="10" fill="#101a2e"/>
+  <text x="266" y="80" font-family="'JetBrains Mono',Consolas,monospace" font-size="11" font-weight="700" letter-spacing="1" fill="#a3b3cc">AIDC · RACK A-07</text>
+  <circle cx="452" cy="75" r="4" fill="#34d399"/>
+  <circle cx="452" cy="75" r="8" fill="#34d399" fill-opacity=".2"/>
+
+  <use href="#unit" x="266" y="98"/>
+  <use href="#unit" x="266" y="172"/>
+  <use href="#unit" x="266" y="246"/>
+  <use href="#unit" x="266" y="320"/>
+  <use href="#unit" x="266" y="394"/>
+
+  <!-- PDU -->
+  <rect x="266" y="472" width="188" height="24" rx="4" fill="#101a2e" stroke="#263352"/>
+  <text x="276" y="488" font-family="'JetBrains Mono',Consolas,monospace" font-size="9" fill="#8b9db8">PDU A/B · 이중화</text>
+  <g fill="#34d399">
+    <circle cx="410" cy="484" r="2.5"/><circle cx="420" cy="484" r="2.5"/><circle cx="430" cy="484" r="2.5"/><circle cx="440" cy="484" r="2.5"/>
+  </g>
+
+  <!-- 바닥 -->
+  <rect x="262" y="510" width="16" height="8" rx="2" fill="#263352"/>
+  <rect x="442" y="510" width="16" height="8" rx="2" fill="#263352"/>
+  <rect x="40" y="520" width="720" height="1" fill="url(#floor)"/>
+
+  <!-- 지표 카드 -->
+  <g font-family="'JetBrains Mono',Consolas,monospace">
+    <!-- 랙 전력 -->
+    <rect x="590" y="64" width="180" height="122" rx="12" fill="#101a2e" stroke="#3a4b70"/>
+    <text x="606" y="90" font-size="10.5" font-weight="700" letter-spacing="1.2" fill="#8b9db8">RACK POWER</text>
+    <text x="754" y="90" font-size="10.5" text-anchor="end" fill="#34d399">MAX 40kW</text>
+    <text x="606" y="136" font-size="32" font-weight="700" fill="#e8eef7">32.4<tspan font-size="14" fill="#a3b3cc" dx="4">kW</tspan></text>
+    <rect x="606" y="156" width="148" height="7" rx="3.5" fill="#263352"/>
+    <rect x="606" y="156" width="120" height="7" rx="3.5" fill="url(#power)"/>
+
+    <!-- GPU 사용률 -->
+    <rect x="590" y="202" width="180" height="160" rx="12" fill="#101a2e" stroke="#3a4b70"/>
+    <text x="606" y="228" font-size="10.5" font-weight="700" letter-spacing="1.2" fill="#8b9db8">GPU UTIL</text>
+    <circle cx="718" cy="224" r="3" fill="#34d399"/>
+    <text x="754" y="228" font-size="10.5" text-anchor="end" fill="#34d399">LIVE</text>
+    <rect x="610" y="264" width="18" height="76" rx="3" fill="url(#util)"/>
+    <rect x="640" y="252" width="18" height="88" rx="3" fill="url(#util)"/>
+    <rect x="670" y="276" width="18" height="64" rx="3" fill="url(#util)"/>
+    <rect x="700" y="246" width="18" height="94" rx="3" fill="url(#util)"/>
+    <rect x="730" y="260" width="18" height="80" rx="3" fill="url(#util)"/>
+    <rect x="606" y="340" width="148" height="1" fill="#3a4b70"/>
+    <text x="606" y="354" font-size="9" fill="#8b9db8">GPU 1 — 5 · RTX 5090</text>
+
+    <!-- 업링크 -->
+    <rect x="590" y="378" width="180" height="108" rx="12" fill="#101a2e" stroke="#3a4b70"/>
+    <text x="606" y="404" font-size="10.5" font-weight="700" letter-spacing="1.2" fill="#8b9db8">UPLINK</text>
+    <text x="606" y="446" font-size="32" font-weight="700" fill="#e8eef7">40<tspan font-size="14" fill="#a3b3cc" dx="4">Gbps</tspan></text>
+    <text x="606" y="470" font-size="9.5" fill="#22d3ee">DEDICATED · 1G → 10G/40G</text>
+  </g>
+
+  <!-- 왼쪽 하단 -->
+  <g font-family="'JetBrains Mono',Consolas,monospace">
+    <text x="48" y="490" font-size="10.5" font-weight="700" letter-spacing="1.2" fill="#8b9db8">RACK DENSITY</text>
+    <text x="48" y="508" font-size="13" font-weight="700" fill="#34d399">20 – 40 kW</text>
+  </g>
+</svg>
