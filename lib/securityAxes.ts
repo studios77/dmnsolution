@@ -1,4 +1,4 @@
-import { servicesData, type ServiceData } from '@/lib/servicesData'
+import { listedServices, type ServiceData } from '@/lib/servicesData'
 
 /**
  * 홈의 보안 4축.
@@ -21,8 +21,8 @@ export const SECURITY_AXES: SecurityAxis[] = [
     cat: '보안 / 네트워크',
     n: '01',
     title: '네트워크 보안',
-    desc: '자사 개발 NGFW를 L2 투명 인라인으로 배치합니다. 보호 대상 서버에는 에이전트를 설치하지 않으며, IP 변경이나 네트워크 재설계도 수반되지 않습니다.',
-    proof: 'IDS 시그니처 51,977 · 자체 WAF 규칙 105개',
+    desc: '네트워크 경계와 내부 세그먼트에서 침입 시도를 실시간으로 탐지·차단하고, 제로트러스트 원칙으로 모든 접근을 검증합니다. 스트리밍 트래픽의 이상 행위도 AI가 잡아냅니다.',
+    proof: 'IDS/IPS · 제로트러스트 · 이상 감지 후 5초 이내 차단',
   },
   {
     cat: '보안 / 클라우드',
@@ -48,7 +48,7 @@ export const SECURITY_AXES: SecurityAxis[] = [
 ]
 
 export function servicesOfAxis(axis: SecurityAxis): ServiceData[] {
-  return servicesData.filter(s => s.cat === axis.cat)
+  return listedServices.filter(s => s.cat === axis.cat)
 }
 
 /** 보안 외 사업 축. 홈에서 부차 띠로 한 번에 보여 줍니다. */
@@ -70,5 +70,5 @@ export const NON_SECURITY = [
 ]
 
 export function servicesByPrefix(prefix: string): ServiceData[] {
-  return servicesData.filter(s => s.cat.startsWith(prefix))
+  return listedServices.filter(s => s.cat.startsWith(prefix))
 }

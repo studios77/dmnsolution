@@ -695,6 +695,22 @@ export const SERVICE_SLUGS = [
 
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number]
 
+/**
+ * 판매를 내린 서비스. 상세 페이지 파일은 남겨 두되 사이트 어디에서도 링크하지
+ * 않고 검색엔진에도 내보내지 않습니다 — 메뉴·홈·사이트맵(xml·페이지)·관련 서비스
+ * 에서 빠지고, 상세 페이지에는 noindex 가 붙습니다.
+ *
+ * 2026-10: DMN Guard · NGFW. 다시 팔려면 여기서 빼고 Nav 메뉴에 항목을 되살리세요.
+ */
+export const UNLISTED_SLUGS: readonly ServiceSlug[] = ['dmn-guard']
+
+export function isListedService(slug: string): boolean {
+  return !(UNLISTED_SLUGS as readonly string[]).includes(slug)
+}
+
+/** 사이트에 노출하는 서비스만. 목록을 그릴 때는 servicesData 대신 이것을 쓰세요. */
+export const listedServices: ServiceData[] = servicesData.filter(s => isListedService(s.slug))
+
 export function getServiceBySlug(slug: ServiceSlug): ServiceData | undefined {
   return servicesData.find(s => s.slug === slug)
 }
@@ -717,7 +733,7 @@ function categoryRoot(cat: string): string {
  */
 export function getRelatedServices(slug: string, limit = 4): ServiceData[] {
   const base = findServiceBySlug(slug)
-  const others = servicesData.filter(s => s.slug !== slug)
+  const others = listedServices.filter(s => s.slug !== slug)
   if (!base) return others.slice(0, limit)
 
   const baseTags = new Set(base.tags)

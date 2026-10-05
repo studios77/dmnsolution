@@ -5,8 +5,9 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  * 브라우저 탭과 검색 결과에 뜨는 기본 제목·설명.
  *
  * 예전 값은 "최고의 스트리밍솔루션·AI 보안·인프라" 였습니다. 두 가지를 고쳤습니다.
- *  - 스트리밍이 앞에 있어 보안 전문사로 읽히지 않았습니다. 주력이 자체 개발한
- *    차세대 방화벽이므로 순서를 뒤집었습니다.
+ *  - 스트리밍이 앞에 있어 무엇을 하는 회사인지 읽히지 않았습니다. 주력 상품을
+ *    앞에 둡니다. 2026-10 부터 주력은 AIDC GPU 호스팅이고, 판매를 내린
+ *    DMN Guard(NGFW·차세대 방화벽) 관련 낱말은 제목·키워드에서 모두 뺐습니다.
  *  - "최고의" 같은 최상급 표현은 근거를 대기 어렵고 표시광고 측면에서도
  *    불리합니다. 무엇을 하는지로 대체했습니다.
  *
@@ -32,7 +33,7 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  * AIDC 는 위에 적힌 대로 `/services/aidc/` 가 제목으로 정확히 갖고 있어서
  * 잃는 것이 가장 적습니다. 설명문과 키워드에는 그대로 남아 있습니다.
  */
-export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO}(${SITE_NAME}) | AI 보안 관제 · 차세대 방화벽 · 서버 이중화`
+export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO}(${SITE_NAME}) | GPU 호스팅 · AI 보안 관제 · 서버 이중화`
 
 /**
  * 검색 결과에 그대로 표시되는 설명문입니다.
@@ -54,15 +55,14 @@ export const SEO_DEFAULT_DESCRIPTION =
  * 스트리밍은 여전히 제공하므로 빼지 않고 뒤로 내렸습니다.
  */
 export const SEO_KEYWORDS: string[] = [
-  // 주력 제품
-  'DMN Guard',
-  'NGFW',
-  '차세대 방화벽',
-  'WAF',
-  '웹방화벽',
-  '통합 보안 어플라이언스',
-  'JA4',
-  '봇 차단',
+  // 주력 상품
+  'GPU 호스팅',
+  'GPU 서버 호스팅',
+  'GPU 서버 임대',
+  'RTX 5090 서버',
+  'AIDC',
+  'AI 데이터센터',
+  'GPU 전용 호스팅',
 
   // 네트워크 보안
   '네트워크 보안',
@@ -106,10 +106,6 @@ export const SEO_KEYWORDS: string[] = [
   '서버 임대',
   '서버임대',
   '코로케이션',
-  'GPU 호스팅',
-  'AIDC',
-  'AI 데이터센터',
-  'GPU 전용 호스팅',
   '위탁운영',
   'HA',
   '서버 이중화',
@@ -163,7 +159,7 @@ const OG_IMAGE = {
   url: '/opengraph-image.png',
   width: 1200,
   height: 630,
-  alt: `${SITE_NAME} — 차세대 방화벽 · AI 보안 관제`,
+  alt: `${SITE_NAME} — GPU 호스팅 · AI 보안 관제`,
 }
 
 /**

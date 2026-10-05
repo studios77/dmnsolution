@@ -11,7 +11,7 @@ const links = [
 ]
 
 const companyInfo = [
-  { label: '회사명', value: `${SITE_LEGAL_NAME} (${SITE_NAME})` },
+  { label: '회사명', value: SITE_LEGAL_NAME },
   { label: '사업자등록번호', value: '209-81-37743' },
   { label: '주소', value: '서울시 영등포구 영중로 140 5F' },
   { label: '전화', value: '0505-299-7623' },
@@ -76,7 +76,7 @@ export default function Footer() {
 
         <div className="mt-12 flex justify-center border-t border-line/70 pt-6">
           <span className="font-mono text-meta tracking-[0.06em] text-fg-subtle">
-            © 2026 {SITE_LEGAL_NAME} ({SITE_NAME}). All rights reserved.
+            © 2026 {SITE_LEGAL_NAME}. All rights reserved.
           </span>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ServiceIcon from '@/components/ServiceIcon'
-import { servicesData } from '@/lib/servicesData'
+import { listedServices } from '@/lib/servicesData'
 import { SITE_NAME } from '@/lib/site'
 import { pageMetadata } from '@/lib/seo'
 
@@ -17,7 +17,7 @@ import { pageMetadata } from '@/lib/seo'
  * 경로가 /sitemap 이 아니라 /sitemap-page 인 이유: app/sitemap.ts 가
  * /sitemap.xml 을 만들고 있어 이름이 겹치지 않게 피했습니다.
  *
- * 목록은 servicesData 에서 가져오므로 서비스를 추가하면 자동으로 실립니다.
+ * 목록은 listedServices(판매 중인 서비스) 에서 가져오므로 서비스를 추가하면 자동으로 실립니다.
  */
 export const metadata: Metadata = pageMetadata({
   path: '/sitemap-page/',
@@ -32,7 +32,7 @@ const GROUPS: { label: string; prefix: string; desc: string }[] = [
   {
     label: '네트워크 보안',
     prefix: '보안 / 네트워크',
-    desc: '경계 방화벽부터 내부 세그먼트까지, 트래픽이 지나는 길목을 통제합니다.',
+    desc: '침입탐지·차단부터 내부 세그먼트 분리까지, 트래픽이 지나는 길목을 통제합니다.',
   },
   {
     label: '클라우드 보안',
@@ -80,8 +80,8 @@ export default function SitemapPage() {
             사이트맵
           </h1>
           <p className="mb-14 max-w-xl break-keep text-lead text-fg-muted">
-            전체 페이지를 한눈에 볼 수 있습니다. 보안 {servicesData.filter(s => s.cat.startsWith('보안')).length}종을
-            포함해 모두 {servicesData.length}개 서비스를 운영합니다.
+            전체 페이지를 한눈에 볼 수 있습니다. 보안 {listedServices.filter(s => s.cat.startsWith('보안')).length}종을
+            포함해 모두 {listedServices.length}개 서비스를 운영합니다.
           </p>
 
           <div className="mb-12">
@@ -104,7 +104,7 @@ export default function SitemapPage() {
           </div>
 
           {GROUPS.map(group => {
-            const items = servicesData.filter(s => s.cat.startsWith(group.prefix))
+            const items = listedServices.filter(s => s.cat.startsWith(group.prefix))
             if (items.length === 0) return null
 
             return (

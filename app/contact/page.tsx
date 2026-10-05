@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   path: '/contact/',
   title: `무료 상담 | ${SITE_NAME_KO}`,
   description: 'AI 보안 도입 상담, 인프라 구축 견적, 긴급 장애 대응 문의를 받습니다.',
-  keywords: ['보안 상담', 'NGFW 도입 문의', 'AI 보안 견적', 'IDC 문의'],
+  keywords: ['보안 상담', 'GPU 호스팅 문의', 'AI 보안 견적', 'IDC 문의'],
 })
 
 export default function ContactPage() {

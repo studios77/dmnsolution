@@ -77,9 +77,8 @@ export default function Home() {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: '네트워크 보안 / 차세대 방화벽',
-                description:
-                  '자체 개발 NGFW DMN Guard(NGFW·WAF·로컬 AI 융합 어플라이언스), IDS/IPS 침입탐지, 제로트러스트 설계, 스트림 이상탐지.',
+                name: '네트워크 보안',
+                description: 'IDS/IPS 침입탐지, 제로트러스트 설계, AI 스트림 이상탐지.',
               },
             },
             {

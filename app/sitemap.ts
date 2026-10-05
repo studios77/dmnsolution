@@ -6,7 +6,7 @@ import {
   SITE_ORIGIN,
   STATIC_PAGES,
 } from '@/lib/site'
-import { getServiceBySlug, SERVICE_SLUGS } from '@/lib/servicesData'
+import { getServiceBySlug, isListedService, SERVICE_SLUGS } from '@/lib/servicesData'
 
 export const dynamic = 'force-static'
 export const revalidate = false
@@ -37,11 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: page.priority,
     })),
-    ...SERVICE_SLUGS.map((slug) => ({
+    // 판매를 내린 서비스(UNLISTED_SLUGS)는 검색엔진에 제출하지 않습니다.
+    ...SERVICE_SLUGS.filter(isListedService).map((slug) => ({
       url: serviceCanonicalUrl(slug),
       lastModified: getServiceBySlug(slug)?.updated ?? CONTENT_LAST_MODIFIED,
       changeFrequency: 'monthly' as const,
-      priority: slug === 'dmn-guard' || slug === 'ai-security' ? 0.95 : 0.85,
+      priority: slug === 'aidc' || slug === 'ai-security' ? 0.95 : 0.85,
     })),
   ]
   return entries
