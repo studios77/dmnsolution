@@ -53,12 +53,12 @@ export default function SocSection() {
       />
 
       <div className="container-page relative">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent">
               SECURITY OPERATIONS
             </p>
-            <h2 className="mt-4 max-w-[24rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
+            <h2 className="mt-4 break-keep text-[1.6rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg md:whitespace-nowrap md:text-[1.9rem] lg:text-[2.1rem]">
               AI 보안 관제 · 24시간 무인 SOC
               <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
                 담당자가 없는 시간에도, 기준은 동일하게

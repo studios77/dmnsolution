@@ -43,12 +43,12 @@ export default function CloudSecuritySection() {
   return (
     <section className="bg-elev py-20 lg:py-28">
       <div className="container-page">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent-2">
               CLOUD SECURITY
             </p>
-            <h2 className="mt-4 max-w-[26rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
+            <h2 className="mt-4 break-keep text-[1.6rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg md:whitespace-nowrap md:text-[1.9rem] lg:text-[2.1rem]">
               클라우드 보안 진단 · CSPM / CWPP
               <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
                 설정에서 비롯되는 위험과, 운영 중 발생하는 위험

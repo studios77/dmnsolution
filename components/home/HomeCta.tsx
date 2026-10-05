@@ -13,7 +13,7 @@ export default function HomeCta() {
       <div className="container-page">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
           <div>
-            <h2 className="max-w-[26rem] text-[1.9rem] font-extrabold leading-[1.35] tracking-[-0.03em] text-fg sm:text-[2.25rem]">
+            <h2 className="break-keep text-[1.6rem] font-extrabold leading-[1.35] tracking-[-0.03em] text-fg md:whitespace-nowrap md:text-[1.9rem] lg:text-[2.1rem]">
               현재 노출된 지점부터 진단해 드립니다
             </h2>
             {/*

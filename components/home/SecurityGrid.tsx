@@ -14,7 +14,7 @@ export default function SecurityGrid() {
   return (
     <section id="security" className="scroll-mt-20 py-20 lg:py-28">
       <div className="container-page">
-        <div className="flex flex-col gap-6 border-b border-line pb-10 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 border-b border-line pb-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent">
               SECURITY SERVICES
@@ -22,7 +22,7 @@ export default function SecurityGrid() {
             {/* h2 는 검색어를 담고, 슬로건은 그 아래 줄로 내립니다. 제목 자리에
                 슬로건만 있으면 이 섹션이 무엇에 관한 것인지 검색엔진이 알 수
                 없습니다. */}
-            <h2 className="mt-4 max-w-[26rem] text-[1.95rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg sm:text-[2.4rem]">
+            <h2 className="mt-4 break-keep text-[1.6rem] font-extrabold leading-[1.3] tracking-[-0.032em] text-fg md:whitespace-nowrap md:text-[1.9rem] lg:text-[2.1rem]">
               네트워크 · 클라우드 · AI 데이터 보안
               <span className="mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
                 네 개의 축으로 방어 체계를 구성합니다

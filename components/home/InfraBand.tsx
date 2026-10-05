@@ -12,12 +12,12 @@ export default function InfraBand() {
   return (
     <section className="dark-band border-y border-line py-20 lg:py-24">
       <div className="container-page">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-mono text-label font-bold tracking-[0.14em] text-accent-2">
               INFRASTRUCTURE · STREAMING
             </p>
-            <h2 className="mt-4 max-w-[26rem] text-[1.85rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg sm:text-[2.15rem]">
+            <h2 className="mt-4 break-keep text-[1.5rem] font-extrabold leading-[1.32] tracking-[-0.03em] text-fg md:whitespace-nowrap md:text-[1.7rem] lg:text-[1.9rem]">
               AIDC · 서버 임대 · 서버/DB 이중화 · 라이브 스트리밍
               <span className="mt-2.5 block text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-fg-muted sm:text-lead">
                 인프라와 송출까지, 같은 팀이 운영합니다
