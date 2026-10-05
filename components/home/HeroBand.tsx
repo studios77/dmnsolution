@@ -37,7 +37,7 @@ export default function HeroBand() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 font-mono text-label font-bold tracking-[0.1em] text-accent">
             <span className="inline-block size-1.5 animate-[pulseDot_1.8s_ease-in-out_infinite] rounded-full bg-accent" />
-            자사 개발 NGFW · DMN Guard
+            AIDC GPU 전용 호스팅
           </p>
 
           {/*
@@ -62,10 +62,10 @@ export default function HeroBand() {
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href="/services/dmn-guard/"
+              href="/services/aidc/"
               className="on-accent rounded-full bg-accent px-8 py-3.5 text-center text-body font-bold transition-transform duration-200 hover:-translate-y-0.5"
             >
-              DMN Guard 살펴보기
+              AIDC GPU 호스팅 살펴보기
             </Link>
             <Link
               href="/contact/"

@@ -74,7 +74,6 @@ const serviceMenu: ServiceMenuCategory[] = [
     sections: [
       {
         items: [
-          { name: 'DMN Guard · NGFW', slug: 'dmn-guard', desc: 'NGFW·WAF·AI 융합 어플라이언스', highlight: true },
           { name: '네트워크 보안 · IDS/IPS', slug: 'network-security', desc: '침입탐지 · 이상 ML' },
           { name: '제로트러스트 설계', slug: 'zero-trust', desc: '세그먼트 · MFA' },
           { name: 'AI 스트림 이상탐지', slug: 'ai-stream-security', desc: 'DDoS · 하이재킹 차단' },
