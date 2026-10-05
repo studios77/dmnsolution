@@ -57,7 +57,7 @@ d4b3a4d  (GuardBand 삭제만 들어간 불완전 커밋 — a3562e9 가 바로 
 - 약정은 `ColoPlan` 의 `term` 항목(`'6개월 약정'`)입니다. 값이 있으면 홈 히어로 카드, 홈 AIDC 띠, 상세 요금표("약정 기간" 행)에 함께 나옵니다. `note` 문자열("월 기준 / 부가세 별도 / 6개월 약정")에도 적혀 있으니 **약정을 바꿀 때는 `term` 과 `note` 둘 다 고치세요**
 - 다른 상품(서버 임대·코로케이션)은 `term` 이 없어 표시가 그대로입니다
 
-> **확인 필요** — aidc 의 네트워크 표기가 `1Gbps Dedicated (Max 30Mbps)` 입니다. 1Gbps 전용과 최대 30Mbps 가 한 줄에 같이 있어 고객이 헷갈리거나 불리하게 읽을 수 있습니다. 실제 회선 조건을 확인해 고쳐 주세요.
+> **의도한 표기** — aidc 요금표의 네트워크 `1Gbps Dedicated (Max 30Mbps)` 는 실제 상품 조건에 맞춘 표기입니다(2026-10-05 확인). "1Gbps 전용회선" 등으로 바꾸지 마세요.
 - `components/home/AidcBand.tsx` — 예전 DMN Guard 띠(`GuardBand.tsx`, 삭제됨 — git 기록에 있음) 자리. 제목·설명·가격은 `servicesData` 에서, 사양 4칸(`POINTS`)만 컴포넌트에 직접 적혀 있습니다.
 - `public/images/aidc-gpu-rack.svg` — 사이트 색으로 직접 그린 GPU 랙 일러스트(실사 아님). 실제 사진이나 Claude Design 등에서 만든 이미지로 바꾸려면 이 파일만 교체하면 됩니다.
 
