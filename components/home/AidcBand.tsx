@@ -2,22 +2,21 @@ import Link from 'next/link'
 import { findServiceBySlug } from '@/lib/servicesData'
 
 /**
- * AIDC GPU 호스팅 소개 띠. 히어로 바로 아래, 예전 DMN Guard 띠 자리입니다.
+ * AI 코로케이션(AIDC) 소개 띠. 히어로 바로 아래, 예전 DMN Guard 띠 자리입니다.
  *
  * 그림은 실제 랙 사진이 아니라 사이트 색으로 그린 일러스트(`/images/aidc-gpu-rack.svg`)
  * 입니다. 수치는 서비스 상세 페이지(`servicesData` 의 aidc)와 같은 값을 씁니다.
  */
 const POINTS = [
-  { k: 'GPU', v: 'RTX 5090 32GB' },
   { k: '랙당 전력', v: '최대 40kW' },
+  { k: '냉각', v: '냉·온 통로 분리' },
   { k: '네트워크', v: '1G 기본 · 10G/40G' },
-  { k: '운영', v: '24/7 관제 · IPMI' },
+  { k: '운영', v: '24/7 관제' },
 ]
 
 export default function AidcBand() {
   const aidc = findServiceBySlug('aidc')
   if (!aidc) return null
-  const plan = aidc.coloPricing?.[0]
 
   return (
     <section className="border-y border-line bg-elev py-20 lg:py-24">
@@ -49,14 +48,11 @@ export default function AidcBand() {
                 href="/services/aidc/"
                 className="inline-block rounded-full bg-accent px-8 py-3.5 text-body font-semibold text-canvas transition-transform duration-200 hover:-translate-y-0.5"
               >
-                GPU 호스팅 상세 보기
+                AI 코로케이션 상세 보기
               </Link>
-              {plan && (
-                <p className="text-meta text-fg-muted">
-                  {plan.name} <strong className="text-body font-bold text-accent">월 {plan.price}~</strong>
-                  <span className="ml-1 text-fg-subtle">(부가세 별도{plan.term ? ` · ${plan.term}` : ''})</span>
-                </p>
-              )}
+              <p className="text-meta text-fg-muted">
+                요금은 <strong className="text-body font-bold text-accent">전력 용량 · 장비 수량별 맞춤 견적</strong>
+              </p>
             </div>
           </div>
 
@@ -64,7 +60,7 @@ export default function AidcBand() {
             {/* 정적 내보내기라 next/image 최적화를 쓸 수 없습니다. SVG 라 원본 그대로 둡니다. */}
             <img
               src="/images/aidc-gpu-rack.svg"
-              alt="AIDC GPU 랙 일러스트 — RTX 5090 서버 5대가 장착된 랙과 랙 전력·GPU 사용률·업링크 지표"
+              alt="AI 코로케이션 랙 일러스트 — 고객 GPU 서버 5대가 입주한 고전력 랙과 랙 전력·GPU 사용률·업링크 지표"
               width={800}
               height={560}
               loading="lazy"

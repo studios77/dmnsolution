@@ -9,7 +9,7 @@
 ### 1.1 서버 임대 및 코로케이션
 * **가상화 및 컴퓨팅 (Virtualization & Compute):** KVM, Bare Metal, VPS
 * **인프라 관리 (Management):** IPMI (대역외 관리 원격 제어), OOB (Out-Of-Band)
-* **AIDC (GPU 전용 호스팅):** NVIDIA RTX 5090, 고전력 랙 (초고전력 밀도 제어), 딥러닝 / LLM 최적화 환경
+* **AIDC (AI 코로케이션):** 고객 GPU 서버 입주, 랙당 20~40kW 고전력 랙, 냉·온 통로 분리 공조, A/B 이중화 전력, 10G/40G 네트워크
 
 ### 1.2 서버 위탁운영 (MSP)
 * **모니터링 (Monitoring & Alerting):** Zabbix, Grafana, Nagios

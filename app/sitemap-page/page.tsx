@@ -52,7 +52,7 @@ const GROUPS: { label: string; prefix: string; desc: string }[] = [
   {
     label: 'IDC 인프라',
     prefix: 'IDC',
-    desc: '서버 임대·코로케이션부터 GPU 호스팅, 이중화, 위탁운영, 장애 복구까지.',
+    desc: '서버 임대·코로케이션부터 AI 코로케이션, 이중화, 위탁운영, 장애 복구까지.',
   },
   {
     label: '스트리밍',

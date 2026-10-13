@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  *
  * 예전 값은 "최고의 스트리밍솔루션·AI 보안·인프라" 였습니다. 두 가지를 고쳤습니다.
  *  - 스트리밍이 앞에 있어 무엇을 하는 회사인지 읽히지 않았습니다. 주력 상품을
- *    앞에 둡니다. 2026-10 부터 주력은 AIDC GPU 호스팅이고, 판매를 내린
+ *    앞에 둡니다. 2026-10-13 부터 주력은 AI 코로케이션(AIDC)이고, 판매를 내린
  *    DMN Guard(NGFW·차세대 방화벽) 관련 낱말은 제목·키워드에서 모두 뺐습니다.
  *  - "최고의" 같은 최상급 표현은 근거를 대기 어렵고 표시광고 측면에서도
  *    불리합니다. 무엇을 하는지로 대체했습니다.
@@ -23,7 +23,7 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  *   /services/ha/                        운영서버 이중화 (HA) 설계 및 구축
  *   /services/db-cluster/                무중단 DB 이중화 및 매니지먼트 서비스
  *   /services/system-recovery-migration/ 서버 장애 복구 및 시스템 클라우드 이전
- *   /services/aidc/                      최신 GPU 호스팅 및 AI 전용 IDC (AIDC)
+ *   /services/aidc/                      AI 코로케이션 · GPU 서버 고전력 IDC (AIDC)
  *
  * **앞자리는 한글 회사명 `디엠엔솔루션` 하나입니다.** 2026-09-07 이전에는
  * `DMN솔루션` 뿐이라 정작 회사 이름인 "디엠엔솔루션" 으로 검색해도 잡히지
@@ -32,7 +32,7 @@ import { SITE_NAME, SITE_NAME_KO, SITE_ORIGIN, serviceCanonicalUrl } from './sit
  * 한글 표기만 남겼습니다. "DMN솔루션" 검색은 설명문·키워드·JSON-LD 의
  * alternateName 이 받칩니다.
  */
-export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO} | GPU 호스팅 · AI 보안 관제 · 서버 이중화`
+export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO} | AI 코로케이션 · AI 보안 관제 · 서버 이중화`
 
 /**
  * 검색 결과에 그대로 표시되는 설명문입니다.
@@ -47,7 +47,7 @@ export const SEO_DEFAULT_TITLE = `${SITE_NAME_KO} | GPU 호스팅 · AI 보안 �
  * 회사 소개로도 쓰여 "디엠엔솔루션" 표기를 한 번 더 싣는 자리가 됩니다.
  */
 export const SEO_DEFAULT_DESCRIPTION =
-  '디엠엔솔루션은 AIDC GPU 호스팅, 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
+  '디엠엔솔루션은 AI 코로케이션(AIDC), 서버 임대·코로케이션, 서버·DB 이중화, 서버 장애 복구, 24시간 AI 보안 관제까지 한 팀이 운영합니다.'
 
 /**
  * 검색어. 실제 제공 서비스 순서대로 둡니다 — 보안 → 인프라 → 스트리밍.
@@ -55,13 +55,13 @@ export const SEO_DEFAULT_DESCRIPTION =
  */
 export const SEO_KEYWORDS: string[] = [
   // 주력 상품
-  'GPU 호스팅',
-  'GPU 서버 호스팅',
-  'GPU 서버 임대',
-  'RTX 5090 서버',
+  'AI 코로케이션',
+  'GPU 코로케이션',
+  'GPU 서버 코로케이션',
+  '고전력 코로케이션',
   'AIDC',
   'AI 데이터센터',
-  'GPU 전용 호스팅',
+  'GPU 서버 입주',
 
   // 네트워크 보안
   '네트워크 보안',
@@ -158,7 +158,7 @@ const OG_IMAGE = {
   url: '/opengraph-image.png',
   width: 1200,
   height: 630,
-  alt: `${SITE_NAME} — GPU 호스팅 · AI 보안 관제`,
+  alt: `${SITE_NAME} — AI 코로케이션 · AI 보안 관제`,
 }
 
 /**

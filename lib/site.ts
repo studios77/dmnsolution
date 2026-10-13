@@ -165,7 +165,7 @@ export const SALESIQ: SalesIqConfig = {
  * 특정 페이지만 갱신됐다면 아래 `STATIC_PAGES.lastModified` 나
  * `ServiceData.updated` 로 그 페이지만 덮어쓰면 됩니다.
  */
-export const CONTENT_LAST_MODIFIED = '2026-10-05'
+export const CONTENT_LAST_MODIFIED = '2026-10-13'
 
 export type StaticPage = {
   path: string

@@ -58,7 +58,7 @@ const serviceMenu: ServiceMenuCategory[] = [
     sections: [
       {
         items: [
-          { name: 'AIDC GPU 전용 호스팅', slug: 'aidc', desc: '초고전력 코로케이션 · RTX 5090', highlight: true },
+          { name: 'AI 코로케이션', slug: 'aidc', desc: '랙당 최대 40kW · GPU 서버 입주', highlight: true },
           { name: '서버 임대 · 코로케이션', slug: 'server-rental', desc: '1U~풀랙 코로케이션 월정액' },
           { name: '위탁운영 매니지먼트', slug: 'managed-service', desc: '24시간 장애대응 · OS 패치' },
           { name: '서버 이중화 (HA)', slug: 'ha', desc: '자동 페일오버 30초 · 99.99%' },

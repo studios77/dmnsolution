@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-labelledby="t">
-  <title id="t">AIDC GPU 랙 — RTX 5090 서버 5대, 랙 전력 40kW, 냉·온 통로 분리 공조</title>
+  <title id="t">AI 코로케이션 랙 — 고객 GPU 서버 5대, 랙 전력 40kW, 냉·온 통로 분리 공조</title>
   <defs>
     <radialGradient id="glowL" cx="20%" cy="10%" r="70%">
       <stop offset="0" stop-color="#34d399" stop-opacity=".16"/>
@@ -48,8 +48,8 @@
       <rect width="188" height="66" rx="4" fill="#101a2e" stroke="#263352"/>
       <use href="#fan" x="26" y="33"/>
       <use href="#fan" x="72" y="33"/>
-      <text x="104" y="25" font-family="'JetBrains Mono',Consolas,monospace" font-size="10" font-weight="700" fill="#a3b3cc">RTX 5090</text>
-      <text x="104" y="39" font-family="'JetBrains Mono',Consolas,monospace" font-size="9" fill="#8b9db8">32GB · 4U</text>
+      <text x="104" y="25" font-family="'JetBrains Mono',Consolas,monospace" font-size="10" font-weight="700" fill="#a3b3cc">GPU SERVER</text>
+      <text x="104" y="39" font-family="'JetBrains Mono',Consolas,monospace" font-size="9" fill="#8b9db8">고객 장비 · 4U</text>
       <circle cx="108" cy="52" r="2.5" fill="#34d399"/>
       <circle cx="117" cy="52" r="2.5" fill="#34d399"/>
       <circle cx="126" cy="52" r="2.5" fill="#22d3ee"/>
@@ -102,7 +102,7 @@
   <rect x="250" y="60" width="220" height="450" rx="10" fill="#172440" stroke="#3a4b70" stroke-width="1.5"/>
   <rect x="250" y="60" width="220" height="30" rx="10" fill="#101a2e"/>
   <rect x="250" y="80" width="220" height="10" fill="#101a2e"/>
-  <text x="266" y="80" font-family="'JetBrains Mono',Consolas,monospace" font-size="11" font-weight="700" letter-spacing="1" fill="#a3b3cc">AIDC · RACK A-07</text>
+  <text x="266" y="80" font-family="'JetBrains Mono',Consolas,monospace" font-size="11" font-weight="700" letter-spacing="1" fill="#a3b3cc">AI COLO · RACK A-07</text>
   <circle cx="452" cy="75" r="4" fill="#34d399"/>
   <circle cx="452" cy="75" r="8" fill="#34d399" fill-opacity=".2"/>
 
@@ -145,7 +145,7 @@
     <rect x="700" y="246" width="18" height="94" rx="3" fill="url(#util)"/>
     <rect x="730" y="260" width="18" height="80" rx="3" fill="url(#util)"/>
     <rect x="606" y="340" width="148" height="1" fill="#3a4b70"/>
-    <text x="606" y="354" font-size="9" fill="#8b9db8">GPU 1 — 5 · RTX 5090</text>
+    <text x="606" y="354" font-size="9" fill="#8b9db8">SERVER 1 — 5 · 고객 장비</text>
 
     <!-- 업링크 -->
     <rect x="590" y="378" width="180" height="108" rx="12" fill="#101a2e" stroke="#3a4b70"/>

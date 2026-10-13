@@ -171,9 +171,7 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                     <tr className="bg-surface">
                       <th className={`${TH} text-left`}>기능</th>
                       <th className={`${TH} min-w-40 bg-accent/6 font-bold text-accent`}>
-                        {s.slug === 'aidc'
-                          ? 'AIDC GPU 전용 호스팅'
-                          : s.slug === 'ultrastream'
+                        {s.slug === 'ultrastream'
                             ? 'UltraStreamingEngine'
                             : s.name}
                       </th>
@@ -209,9 +207,12 @@ export default function ServiceDetailPage({ s }: { s: ServiceData }) {
                   </tbody>
                 </table>
               </div>
-              <p className="mt-4 break-keep font-mono text-meta text-fg-subtle">
-                * 비교 정보는 각 엔진의 공개 문서 기준이며, 버전·플랜에 따라 차이가 있을 수 있습니다. 최신 정보는 각 벤더 공식 문서를 확인하세요.
-              </p>
+              {/* 타사 비교가 있는 표에만 붙는 단서입니다. 사양표(aidc)에는 맞지 않습니다. */}
+              {s.comparison.items[0]?.others && (
+                <p className="mt-4 break-keep font-mono text-meta text-fg-subtle">
+                  * 비교 정보는 각 엔진의 공개 문서 기준이며, 버전·플랜에 따라 차이가 있을 수 있습니다. 최신 정보는 각 벤더 공식 문서를 확인하세요.
+                </p>
+              )}
             </div>
           </section>
         )}
